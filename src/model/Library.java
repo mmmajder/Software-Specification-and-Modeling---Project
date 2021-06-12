@@ -7,6 +7,8 @@ import java.util.List;
 
 public class Library implements Publisher {
 
+    private List<Account> accounts;
+    private List<Payment> payments;
     private PriceCatalog currentCatalog;
     private List<PriceCatalog> priceCatalogs;
     private HashMap<MemberType, Integer> maxIssueDays;

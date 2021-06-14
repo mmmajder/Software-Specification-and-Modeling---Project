@@ -1,6 +1,6 @@
 package model;
 
-import enums.Genre;
+import model.enums.Genre;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

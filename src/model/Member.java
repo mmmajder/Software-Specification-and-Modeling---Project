@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-import enums.MemberType;
+import model.enums.MemberType;
 
 public class Member extends Person {
     private MemberType type;

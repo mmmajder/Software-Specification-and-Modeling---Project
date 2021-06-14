@@ -1,6 +1,6 @@
 package model;
 
-import enums.MemberType;
+import model.enums.MemberType;
 
 import java.time.LocalDate;
 import java.util.HashMap;

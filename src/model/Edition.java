@@ -1,5 +1,7 @@
 package model;
 
+import enums.Genre;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 

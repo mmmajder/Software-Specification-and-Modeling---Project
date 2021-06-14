@@ -1,5 +1,7 @@
 package model;
 
+import enums.AccountType;
+
 public class Account {
     private String username;
     private String password;

@@ -1,6 +1,9 @@
 package model;
 
+import enums.MemberType;
+
 import java.time.LocalDate;
+import java.util.HashMap;
 
 public class PriceCatalog {
 

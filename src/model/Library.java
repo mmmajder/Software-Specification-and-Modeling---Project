@@ -1,8 +1,10 @@
 package model;
 
+import enums.MemberType;
 import observer.Observer;
 import observer.Publisher;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Library implements Publisher {

@@ -3,8 +3,8 @@ package model;
 import java.util.ArrayList;
 
 public class Book {
-    String bookId;
-    SampleState state;
-    ArrayList<IssuedBook> issueHistory;
-    Edition edition;
+    private String bookId;
+    private SampleState state;
+    private ArrayList<IssuedBook> issueHistory;
+    private Edition edition;
 }

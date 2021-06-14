@@ -3,10 +3,10 @@ package model;
 import java.time.LocalDate;
 
 public class IssuedBook {
-    LocalDate issueDate;
-    LocalDate returnDate;
-    boolean prolongedIssue;
-    Book book;
+    private LocalDate issueDate;
+    private LocalDate returnDate;
+    private boolean prolongedIssue;
+    private  Book book;
 
     public IssuedBook(LocalDate issueDate, Book book){
         this.issueDate = issueDate;

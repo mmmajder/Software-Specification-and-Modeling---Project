@@ -1,7 +1,5 @@
 package model;
 
-import enums.Genre;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -12,7 +10,7 @@ public class Edition {
     private String publisher;
     private int numberOfPages;
     private String description;
-    private Genre genre;
+    //private Genre genre;
     private LocalDate publishedDate;
     private String language;
     //private Image image;

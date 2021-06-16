@@ -1,4 +1,4 @@
-package view;
+package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,10 +17,12 @@ public class LoginController {
 
     @FXML
     private void switchToUser(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("user.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../fxml/user.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(true);
+        stage.setTitle("SIMS Library");
         stage.show();
     }
 

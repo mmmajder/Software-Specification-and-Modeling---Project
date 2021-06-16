@@ -25,7 +25,7 @@
             <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false" />
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../logo.png" />
+                  <Image url="@../fxml/logo.png" />
                </image>
             </ImageView>
             <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="75.0" visible="false" />

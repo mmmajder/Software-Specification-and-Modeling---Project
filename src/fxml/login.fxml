@@ -42,13 +42,13 @@
                         <Font name="Roboto Bold" size="12.0" />
                     </font>
                 </Label>
-                <Button defaultButton="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="212.0" style="-fx-background-color: #abcb2e;" text="LOGIN" textFill="WHITE" GridPane.rowIndex="4" onAction="#switchToUser">
+                <Button defaultButton="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="315.0" style="-fx-background-color: #abcb2e;" text="LOGIN" textFill="WHITE" GridPane.rowIndex="4" onAction="#switchToUser">
                     <font>
                         <Font name="Roboto Bold" size="12.0" />
                     </font>
                 </Button>
-                <PasswordField GridPane.rowIndex="3" />
-                <TextField GridPane.rowIndex="1" />
+                <PasswordField GridPane.rowIndex="3" fx:id="password" />
+                <TextField GridPane.rowIndex="1" fx:id="username" />
             </children>
         </GridPane>
     </children>

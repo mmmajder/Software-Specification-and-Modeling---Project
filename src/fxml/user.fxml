@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@user.css" fx:controller="controller.UserController">
    <left>
-      <ListView minWidth="200.0" prefHeight="540.0" prefWidth="200.0" style="-fx-border-color: #abc82e;" BorderPane.alignment="CENTER" />
+      <ListView fx:id="genres" minWidth="200.0" prefHeight="540.0" prefWidth="200.0" style="-fx-border-color: #abc82e; -fx-background-color: transparent;" BorderPane.alignment="CENTER" />
    </left>
    <top>
       <HBox prefHeight="26.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
@@ -82,25 +82,94 @@
                      </font>
                   </Label>
                   <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false" />
-                  <ImageView fitHeight="49.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="26.0">
                      <image>
-                        <Image url="@../../../../../desc.png" />
+                        <Image url="@asc.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="26.0">
+                     <image>
+                        <Image url="@desc.png" />
                      </image>
                   </ImageView>
                </children>
             </HBox>
-            <GridPane minHeight="490.0" minWidth="700.0" prefHeight="490.0" prefWidth="700.0" style="-fx-background-color: #7ab12b;">
+            <GridPane minHeight="490.0" minWidth="700.0" prefHeight="490.0" prefWidth="700.0" style="-fx-background-color: #7ab12b;" fx:id="grid">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
-            <HBox prefHeight="29.0" prefWidth="700.0" style="-fx-background-color: white;" />
+            <HBox prefHeight="45.0" prefWidth="700.0" style="-fx-background-color: white;">
+               <children>
+                  <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false" />
+                  <Label text="1" textFill="#7ab12b">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false" />
+                  <Label text="2" textFill="#7ab12b">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false" />
+                  <Label text="3" textFill="#7ab12b">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false" />
+                  <Label text="4" textFill="#7ab12b">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false" />
+                  <Label text="5" textFill="#7ab12b">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false" />
+                  <Label text="6" textFill="#7ab12b">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false" />
+                  <Label text="7" textFill="#7ab12b">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false" />
+                  <Label text="8" textFill="#7ab12b">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false" />
+                  <Label text="9" textFill="#7ab12b">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false" />
+                  <Label text="10" textFill="#7ab12b">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children></HBox>
          </children>
       </VBox>
    </center>

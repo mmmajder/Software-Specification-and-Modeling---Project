@@ -30,18 +30,24 @@
                     </font>
                 </Label>
                 <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="30.0" visible="false" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="122.0" text="MEMBERSHIP" textFill="#63ac29">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="122.0" text="MEMBERS" textFill="#63ac29">
                     <font>
                         <Font name="SansSerif Bold" size="15.0" />
                     </font>
                 </Label>
                 <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="30.0" visible="false" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="122.0" text="HISTORY" textFill="#63ac29">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="129.0" text="RESERVATIONS" textFill="#63ac29">
                     <font>
                         <Font name="SansSerif Bold" size="15.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="71.0" prefWidth="210.0" text="LOGOUT" textFill="#63ac29">
+            <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="30.0" visible="false" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="130.0" text="RENTED BOOKS" textFill="#63ac29">
+               <font>
+                  <Font name="SansSerif Bold" size="15.0" />
+               </font>
+            </Label>
+                <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="50.0" prefWidth="106.0" text="LOGOUT" textFill="#63ac29">
                     <font>
                         <Font name="SansSerif Bold" size="15.0" />
                     </font>
@@ -115,7 +121,7 @@
                 </Label>
                 <Label fx:id="lblAuthor" text="Author" textFill="#63ac29">
                     <font>
-                        <Font size="18.0" />
+                        <Font name="System Italic" size="18.0" />
                     </font>
                 </Label>
                 <Separator prefHeight="20.0" prefWidth="608.0" visible="false" />
@@ -128,11 +134,11 @@
             <right>
                 <Pane prefHeight="76.0" prefWidth="382.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Button layoutX="214.0" layoutY="18.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #7AB12B;" text="EDIT" textFill="WHITE">
+                        <Button layoutX="214.0" layoutY="58.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #7AB12B;" text="EDIT" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button layoutX="37.0" layoutY="18.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #FF0000;" text="RENT" textFill="WHITE">
+                  <Button layoutX="37.0" layoutY="58.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #FF0000;" text="RENT" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -143,12 +149,12 @@
          <center>
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="lblAuthor1" layoutX="241.0" layoutY="14.0" text="Available:" textFill="#63ac29">
+                  <Label fx:id="lblAuthor1" layoutX="240.0" layoutY="38.0" text="Available:" textFill="#63ac29">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblAuthor11" layoutX="241.0" layoutY="34.0" text="Taken or reserved:" textFill="RED">
+                  <Label fx:id="lblAuthor11" layoutX="240.0" layoutY="58.0" text="Taken or reserved:" textFill="RED">
                      <font>
                         <Font size="14.0" />
                      </font>

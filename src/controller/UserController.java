@@ -1,11 +1,11 @@
 package controller;
 
-import enums.Genre;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import model.Edition;
+import model.enums.Genre;
 
 import java.awt.*;
 import java.util.ArrayList;

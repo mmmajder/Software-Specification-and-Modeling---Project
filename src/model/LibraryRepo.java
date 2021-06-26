@@ -48,17 +48,7 @@ public class LibraryRepo implements ILibraryRepo {
                 String jmbg = resultSet.getString("person");
 
                 Account account;
-                AccountType type;
-
-                if (accType.equalsIgnoreCase("ADMIN")) {
-                    type = AccountType.ADMIN;
-
-                } else if (accType.equalsIgnoreCase("LIBRARIAN")) {
-                    type = AccountType.LIBRARIAN;
-
-                } else {
-                    type = AccountType.MEMBER;
-                }
+                AccountType type = AccountType.valueOf(accType);
 
                 account = new Account(username, password, email, type, null);
                 loadPerson(account, jmbg, type);

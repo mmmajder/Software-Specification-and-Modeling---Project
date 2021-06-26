@@ -1,8 +1,9 @@
-package enums;
+package model.enums;
 
 public enum ContributorType {
     AUTHOR,
     ILLUSTRATOR,
     TRANSLATOR,
-    CRITIC
+    CRITIC,
+    EDITOR
 }

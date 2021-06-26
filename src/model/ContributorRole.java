@@ -1,6 +1,6 @@
 package model;
 
-import enums.ContributorType;
+import model.enums.ContributorType;
 
 public class ContributorRole {
     private ContributorType role;

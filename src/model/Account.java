@@ -1,6 +1,6 @@
 package model;
 
-import enums.AccountType;
+import model.enums.AccountType;
 
 public class Account {
     private String username;

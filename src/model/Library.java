@@ -1,6 +1,6 @@
 package model;
 
-import enums.MemberType;
+import model.enums.MemberType;
 import observer.Observer;
 import observer.Publisher;
 

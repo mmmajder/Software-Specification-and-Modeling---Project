@@ -7,7 +7,6 @@ import javafx.scene.layout.Pane;
 import model.Edition;
 import model.enums.Genre;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

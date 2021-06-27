@@ -1,8 +1,11 @@
 package model;
 
-import model.enums.AccountType;
-
 public interface ILibraryRepo {
     void loadAccounts(Library library);
-    void loadPerson(Account account, String jmbg, AccountType type);
+    void loadPersons(Library library);
+    void loadEditions(Library library);
+    void loadContributors(Library library);
+    void loadContributorRoles(Library library);
+    void loadTags(Library library);
+    void loadBooks(Library library);
 }

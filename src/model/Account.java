@@ -18,6 +18,14 @@ public class Account {
         this.person = person;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public AccountType getType() {
+        return type;
+    }
+
     public void setPerson(Person person) {
         this.person = person;
     }

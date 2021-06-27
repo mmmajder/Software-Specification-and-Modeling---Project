@@ -23,15 +23,4 @@ public abstract class Person {
     public void setAccount(Account account) {
         this.account = account;
     }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", JMBG='" + JMBG + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", birthDate=" + birthDate +
-                '}';
-    }
 }

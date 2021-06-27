@@ -39,7 +39,7 @@ CREATE TABLE contributors (
 );
 
 CREATE TABLE editions (
-    Ide INTEGER NOT NULL,
+    Ide VARCHAR(50) NOT NULL,
     Title VARCHAR(60) NOT NULL,
     Publisher VARCHAR(50) NOT NULL,
     NumOfPages INTEGER NOT NULL,
@@ -54,28 +54,26 @@ CREATE TABLE editions (
 );
 
 CREATE TABLE tags (
-    Idt INTEGER NOT NULL,
     Tag VARCHAR(50) NOT NULL,
-    CONSTRAINT tags_PK PRIMARY KEY (Idt),
-    CONSTRAINT tags_UQ UNIQUE (Tag)
+    CONSTRAINT tags_PK PRIMARY KEY (Tag)
 );
 
 CREATE TABLE editionTags (
-    Ide INTEGER NOT NULL,
-    Idt INTEGER NOT NULL,
-    CONSTRAINT editionTags_PK PRIMARY KEY (Idt, Ide)
+    Ide VARCHAR(50) NOT NULL,
+    Tag VARCHAR(50) NOT NULL,
+    CONSTRAINT editionTags_PK PRIMARY KEY (Tag, Ide)
 );
 
 CREATE TABLE editionContributors (
-    Ide INTEGER NOT NULL,
+    Ide VARCHAR(50) NOT NULL,
     Idc INTEGER NOT NULL,
     Type VARCHAR(15) NOT NULL,
     CONSTRAINT editionContributors_PK PRIMARY KEY (Ide, Idc)
 );
 
 CREATE TABLE books (
-    Idb INTEGER NOT NULL,
-    Edition INTEGER NOT NULL,
+    Idb VARCHAR(50) NOT NULL,
+    Edition VARCHAR(50) NOT NULL,
     State VARCHAR(20) NOT NULL,
     IsRestricted INTEGER NOT NULL,
     CONSTRAINT books_PK PRIMARY KEY (Idb),

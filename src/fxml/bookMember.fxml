@@ -91,6 +91,11 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
+            <Label text="Editor:">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
             <Label fx:id="lblGenre" text="Genre:">
                <padding>
                   <Insets left="20.0" />

@@ -1,107 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="600.0" maxWidth="900.0" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #7AB12B;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-    <top>
-        <HBox prefHeight="26.0" prefWidth="900.0" style="-fx-background-color: #ffffff; -fx-border-color: #7AB12B;" BorderPane.alignment="CENTER">
-            <children>
-                <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false" />
-                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../fxml/logo.png" />
-                    </image>
-                </ImageView>
-                <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="75.0" visible="false" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="99.0" prefWidth="99.0" text="BOOKS" textFill="#63ac29">
-                    <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                    </font>
-                </Label>
-                <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="30.0" visible="false" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="122.0" text="MEMBERS" textFill="#63ac29" underline="true">
-                    <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                    </font>
-                </Label>
-                <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="30.0" visible="false" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="129.0" text="RESERVATIONS" textFill="#63ac29">
-                    <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                    </font>
-                </Label>
-                <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="30.0" visible="false" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="130.0" text="RENTED BOOKS" textFill="#63ac29">
-                    <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                    </font>
-                </Label>
-                <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="50.0" prefWidth="106.0" text="LOGOUT" textFill="#63ac29">
-                    <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                    </font>
-                </Label>
-            </children>
-        </HBox>
-    </top>
-    <center>
-        <VBox prefHeight="517.0" prefWidth="613.0" style="-fx-background-color: #7AB12B;" BorderPane.alignment="CENTER">
-            <children>
-                <HBox prefHeight="75.0" prefWidth="860.0" style="-fx-background-color: #7AB12B;">
-                    <children>
-                        <TextField prefHeight="25.0" prefWidth="302.0" promptText="search..." />
-                        <Separator orientation="VERTICAL" prefHeight="25.0" prefWidth="95.0" visible="false" />
-                        <Label text="ADD MEMBER" textFill="WHITE" />
-                        <Separator orientation="VERTICAL" prefHeight="25.0" prefWidth="100.0" visible="false" />
-                        <Label text="REMOVE MEMBER" textFill="WHITE" />
-                        <Separator orientation="VERTICAL" prefHeight="25.0" prefWidth="100.0" visible="false" />
-                        <Label text="SAVE CHANGES" textFill="WHITE" />
-                    </children>
-                    <VBox.margin>
-                        <Insets top="30.0" />
-                    </VBox.margin>
-                </HBox>
-                <Separator prefHeight="10.0" prefWidth="200.0" visible="false" />
-                <TableView prefHeight="345.0" prefWidth="860.0">
-                    <columns>
-                        <TableColumn prefWidth="75.0" text="Name" />
-                        <TableColumn prefWidth="101.0" text="Surname" />
-                        <TableColumn prefWidth="149.0" text="JMBG" />
-                        <TableColumn prefWidth="138.0" text="Phone number" />
-                        <TableColumn prefWidth="236.0" text="Email address" />
-                        <TableColumn prefWidth="160.0" text="Birth date" />
-                    </columns>
-                </TableView>
-                <Separator prefHeight="30.0" prefWidth="200.0" visible="false" />
-                <Label text="Currently issued books by selected user:" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
-                </Label>
-                <Separator prefHeight="30.0" prefWidth="200.0" visible="false" />
-                <TableView prefHeight="212.0" prefWidth="324.0">
-                    <columns>
-                        <TableColumn prefWidth="106.0" text="ID" />
-                        <TableColumn prefWidth="318.0" text="TITLE" />
-                        <TableColumn prefWidth="169.0" text="PROLONGED" />
-                        <TableColumn prefWidth="266.0" text="RETURN DATE" />
-                    </columns>
-                </TableView>
-            </children>
-            <BorderPane.margin>
-                <Insets bottom="20.0" left="20.0" right="20.0" />
-            </BorderPane.margin>
-        </VBox>
-    </center>
-</BorderPane>
+
+<Pane prefHeight="550.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #7AB12B;">
+          <center>
+              <VBox prefHeight="517.0" prefWidth="613.0" style="-fx-background-color: #7AB12B;" BorderPane.alignment="CENTER">
+                  <children>
+                      <HBox prefHeight="25.0" prefWidth="860.0" style="-fx-background-color: #7AB12B;">
+                          <children>
+                              <Label text="RESERVATION REQUESTS" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                              <Separator orientation="VERTICAL" prefHeight="22.0" prefWidth="317.0" visible="false" />
+                        <Label text="APPROVED RESERVATIONS" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                          </children>
+                          <VBox.margin>
+                              <Insets left="30.0" top="30.0" />
+                          </VBox.margin>
+                      </HBox>
+                      <Separator prefHeight="10.0" prefWidth="200.0" visible="false" />
+                  <HBox prefHeight="395.0" prefWidth="830.0">
+                     <children>
+                            <TableView prefHeight="313.0" prefWidth="350.0">
+                                <columns>
+                                    <TableColumn prefWidth="175.0" text="Member" />
+                                    <TableColumn prefWidth="170.0" text="Edition" />
+                                </columns>
+                            </TableView>
+                        <Separator orientation="VERTICAL" prefHeight="313.0" prefWidth="100.0" visible="false" />
+                            <TableView prefHeight="313.0" prefWidth="350.0">
+                                <columns>
+                                    <TableColumn prefWidth="137.0" text="Member" />
+                                    <TableColumn prefWidth="137.0" text="Edition" />
+                                    <TableColumn prefWidth="75.0" text="Days left" />
+                                </columns>
+                            </TableView>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </HBox>
+                      <Separator prefHeight="30.0" prefWidth="200.0" visible="false" />
+                  <HBox prefHeight="54.0" prefWidth="860.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: #ABC82E;" text="APPROVE" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Separator orientation="VERTICAL" prefHeight="122.0" prefWidth="100.0" visible="false" />
+                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: #ABC82E;" text="ISSUE" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </HBox>
+                  </children>
+                  <BorderPane.margin>
+                      <Insets bottom="20.0" left="20.0" right="20.0" />
+                  </BorderPane.margin>
+              </VBox>
+          </center>
+      </BorderPane>
+   </children>
+</Pane>

@@ -18,240 +18,208 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="600.0" maxWidth="900.0" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-    <top>
-        <HBox prefHeight="26.0" prefWidth="900.0" style="-fx-background-color: #ffffff; -fx-border-color: #7AB12B;" BorderPane.alignment="CENTER">
-            <children>
-                <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false" />
-                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../fxml/logo.png" />
-                    </image>
-                </ImageView>
-                <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="75.0" visible="false" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="99.0" prefWidth="99.0" text="BOOKS" textFill="#63ac29" underline="true">
-                    <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                    </font>
-                </Label>
-                <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="30.0" visible="false" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="122.0" text="MEMBERS" textFill="#63ac29">
-                    <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                    </font>
-                </Label>
-                <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="30.0" visible="false" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="129.0" text="RESERVATIONS" textFill="#63ac29">
-                    <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                    </font>
-                </Label>
-                <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="30.0" visible="false" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="130.0" text="RENTED BOOKS" textFill="#63ac29">
-                    <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                    </font>
-                </Label>
-                <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="50.0" prefWidth="106.0" text="LOGOUT" textFill="#63ac29">
-                    <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                    </font>
-                </Label>
-            </children>
-        </HBox>
-    </top>
-    <left>
-        <VBox prefHeight="475.0" prefWidth="287.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
-            <children>
-                <Pane prefHeight="264.0" prefWidth="287.0">
-                    <children>
-                        <ImageView fitHeight="216.0" fitWidth="194.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+
+<Pane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="550.0" prefWidth="900.0">
+          <left>
+              <VBox prefHeight="475.0" prefWidth="287.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
+                  <children>
+                      <Pane prefHeight="264.0" prefWidth="287.0">
+                          <children>
+                              <ImageView fitHeight="216.0" fitWidth="194.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
 
                         </ImageView>
-                  <Label fx:id="lblTitle2" layoutX="60.0" layoutY="38.0" prefHeight="186.0" prefWidth="103.0" text="UPLOAD PICTURE" textFill="#63ac29" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Label>
-                    </children>
-                </Pane>
-            <BorderPane prefHeight="16.0" prefWidth="295.0">
-               <left>
-                      <Label fx:id="lblPublishedDate" text="Published date:" BorderPane.alignment="CENTER">
-                          <padding>
+                        <Label fx:id="lblTitle2" layoutX="60.0" layoutY="38.0" prefHeight="186.0" prefWidth="103.0" text="UPLOAD PICTURE" textFill="#63ac29" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                          </children>
+                      </Pane>
+                  <BorderPane prefHeight="16.0" prefWidth="295.0">
+                     <left>
+                            <Label fx:id="lblPublishedDate" text="Published date:" BorderPane.alignment="CENTER">
+                                <padding>
+                                    <Insets left="20.0" />
+                                </padding>
+                            </Label>
+                     </left>
+                     <right>
+                        <DatePicker prefHeight="25.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </DatePicker>
+                     </right>
+                  </BorderPane>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <BorderPane prefHeight="21.0" prefWidth="295.0">
+                     <left>
+                        <Label fx:id="lblPublishedDate3" text="Language:" BorderPane.alignment="CENTER">
+                           <padding>
                               <Insets left="20.0" />
-                          </padding>
-                      </Label>
-               </left>
-               <right>
-                  <DatePicker prefHeight="25.0" prefWidth="150.0" BorderPane.alignment="CENTER">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </DatePicker>
-               </right>
-            </BorderPane>
-            <Separator prefWidth="200.0" visible="false" />
-            <BorderPane prefHeight="21.0" prefWidth="295.0">
-               <left>
-                  <Label fx:id="lblPublishedDate3" text="Language:" BorderPane.alignment="CENTER">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-               </left>
-               <right>
-                  <ComboBox prefHeight="25.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
-               </right>
-            </BorderPane>
-            <Separator prefWidth="200.0" visible="false" />
-            <BorderPane prefHeight="23.0" prefWidth="295.0">
-               <left>
-                  <Label fx:id="lblPublishedDate31" text="Publisher:" BorderPane.alignment="CENTER">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-               </left>
-               <right>
-                  <ComboBox prefWidth="150.0" BorderPane.alignment="CENTER" />
-               </right>
-            </BorderPane>
-            <Separator prefWidth="200.0" visible="false" />
-            <BorderPane>
-               <left>
-                  <Label fx:id="lblPublishedDate11" text="Number of pages:" BorderPane.alignment="CENTER">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-               </left>
-               <right>
-                  <Spinner BorderPane.alignment="CENTER" />
-               </right>
-            </BorderPane>
-            <Separator prefWidth="200.0" visible="false" />
-            <BorderPane>
-               <left>
-                  <Label fx:id="lblPublishedDate14" text="Genre:" BorderPane.alignment="CENTER">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-               </left>
-               <right>
-                  <ComboBox prefWidth="150.0" BorderPane.alignment="CENTER" />
-               </right>
-            </BorderPane>
-            <Separator prefWidth="200.0" visible="false" />
-            <BorderPane>
-               <left>
-                  <Label fx:id="lblPublishedDate141" text="Tags:" BorderPane.alignment="CENTER">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-               </left>
-               <right>
-                  <ComboBox prefWidth="150.0" BorderPane.alignment="CENTER" />
-               </right>
-            </BorderPane>
-            <Separator prefWidth="200.0" visible="false" />
-            <Pane prefHeight="55.0" prefWidth="287.0">
-               <children>
-                  <Label layoutY="6.0" text="Contributors:">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-                  <ScrollPane layoutX="137.0" layoutY="2.0" prefHeight="50.0" prefWidth="150.0">
-                     <content>
-                        <TextField prefHeight="206.0" prefWidth="133.0" />
-                     </content>
-                  </ScrollPane>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="97.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            </children>
-        </VBox>
-    </left>
-    <center>
-        <VBox prefHeight="517.0" prefWidth="613.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
-            <children>
-                <Separator prefHeight="28.0" prefWidth="608.0" visible="false" />
-            <HBox prefHeight="35.0" prefWidth="605.0">
-               <children>
-                      <Label fx:id="lblTitle" prefHeight="17.0" prefWidth="43.0" text="Title:" textFill="#63ac29">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                      </Label>
-                  <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
-                  <TextField prefWidth="149.0" />
-                  <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="174.0" visible="false" />
-                  <Label fx:id="lblTitle1" prefHeight="24.0" prefWidth="58.0" text="Position:" textFill="#63ac29">
-                     <font>
-                        <Font name="System Italic" size="12.0" />
-                     </font>
-                  </Label>
-                  <TextField />
-               </children>
-            </HBox>
-            <HBox prefHeight="35.0" prefWidth="605.0">
-               <children>
-                  <Label fx:id="lblAuthor" text="Writter:" textFill="#63ac29">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin></Label>
-                  <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="7.0" visible="false" />
-                  <ComboBox prefWidth="150.0" />
-                  <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="175.0" visible="false" />
-                  <Label prefHeight="27.0" prefWidth="167.0" text="+ ADD NEW CONTRIBUTOR" textFill="#63ac29">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <Separator prefHeight="16.0" prefWidth="613.0" visible="false" />
-            <HBox prefHeight="35.0" prefWidth="605.0">
-               <children>
-                  <TextArea minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="598.0" promptText="book description" style="-fx-font-style: #63ac29;">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin></TextArea>
-               </children>
-            </HBox>
-                <Separator prefHeight="20.0" prefWidth="608.0" visible="false" />
-            </children>
-        </VBox>
-    </center>
-    <bottom>
-        <BorderPane prefHeight="64.0" prefWidth="900.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
-            <right>
-                <Pane prefHeight="76.0" prefWidth="382.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <Button layoutX="214.0" layoutY="25.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #7AB12B;" text="SAVE" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Button>
-                        <Button layoutX="38.0" layoutY="25.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #FF0000;" text="REMOVE" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Button>
-                    </children>
-                </Pane>
-            </right>
-            <center>
-                <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-            </center>
-        </BorderPane>
-    </bottom>
-</BorderPane>
+                           </padding>
+                        </Label>
+                     </left>
+                     <right>
+                        <ComboBox prefHeight="25.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <BorderPane prefHeight="23.0" prefWidth="295.0">
+                     <left>
+                        <Label fx:id="lblPublishedDate31" text="Publisher:" BorderPane.alignment="CENTER">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </left>
+                     <right>
+                        <ComboBox prefWidth="150.0" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <BorderPane>
+                     <left>
+                        <Label fx:id="lblPublishedDate11" text="Number of pages:" BorderPane.alignment="CENTER">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </left>
+                     <right>
+                        <Spinner BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <BorderPane>
+                     <left>
+                        <Label fx:id="lblPublishedDate14" text="Genre:" BorderPane.alignment="CENTER">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </left>
+                     <right>
+                        <ComboBox prefWidth="150.0" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <BorderPane>
+                     <left>
+                        <Label fx:id="lblPublishedDate141" text="Tags:" BorderPane.alignment="CENTER">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </left>
+                     <right>
+                        <ComboBox prefWidth="150.0" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <Pane prefHeight="55.0" prefWidth="287.0">
+                     <children>
+                        <Label layoutY="6.0" text="Contributors:">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                        <ScrollPane layoutX="137.0" layoutY="2.0" prefHeight="50.0" prefWidth="150.0">
+                           <content>
+                              <TextField prefHeight="206.0" prefWidth="133.0" />
+                           </content>
+                        </ScrollPane>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="97.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  </children>
+              </VBox>
+          </left>
+          <center>
+              <VBox prefHeight="517.0" prefWidth="613.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
+                  <children>
+                      <Separator prefHeight="28.0" prefWidth="608.0" visible="false" />
+                  <HBox prefHeight="35.0" prefWidth="605.0">
+                     <children>
+                            <Label fx:id="lblTitle" prefHeight="17.0" prefWidth="43.0" text="Title:" textFill="#63ac29">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                            </Label>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
+                        <TextField prefWidth="149.0" />
+                        <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="174.0" visible="false" />
+                        <Label fx:id="lblTitle1" prefHeight="24.0" prefWidth="58.0" text="Position:" textFill="#63ac29">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="35.0" prefWidth="605.0">
+                     <children>
+                        <Label fx:id="lblAuthor" text="Writter:" textFill="#63ac29">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="7.0" visible="false" />
+                        <ComboBox prefWidth="150.0" />
+                        <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="175.0" visible="false" />
+                        <Label prefHeight="27.0" prefWidth="167.0" text="+ ADD NEW CONTRIBUTOR" textFill="#63ac29">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefHeight="16.0" prefWidth="613.0" visible="false" />
+                  <HBox prefHeight="35.0" prefWidth="605.0">
+                     <children>
+                        <TextArea minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="598.0" promptText="book description" style="-fx-font-style: #63ac29;">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextArea>
+                     </children>
+                  </HBox>
+                      <Separator prefHeight="20.0" prefWidth="608.0" visible="false" />
+                  </children>
+              </VBox>
+          </center>
+          <bottom>
+              <BorderPane prefHeight="64.0" prefWidth="900.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
+                  <right>
+                      <Pane prefHeight="76.0" prefWidth="382.0" BorderPane.alignment="CENTER">
+                          <children>
+                              <Button layoutX="214.0" layoutY="25.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #7AB12B;" text="SAVE" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                              <Button layoutX="38.0" layoutY="25.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #FF0000;" text="REMOVE" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                          </children>
+                      </Pane>
+                  </right>
+                  <center>
+                      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                  </center>
+              </BorderPane>
+          </bottom>
+      </BorderPane>
+   </children>
+</Pane>

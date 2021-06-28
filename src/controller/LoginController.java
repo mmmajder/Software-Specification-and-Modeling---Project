@@ -8,12 +8,12 @@ import utils.exceptions.MissingValueException;
 
 public class LoginController {
 
-    public void login(String username, String password) throws MissingValueException {
+    static public void login(String username, String password) throws MissingValueException {
         //TODO Library l
         if (StringUtils.isNullOrEmpty(username)) {
             throw new MissingValueException("username");
         }
-        else if (StringUtils.isNullOrEmpty(password)) {
+        if (StringUtils.isNullOrEmpty(password)) {
             throw new MissingValueException("password");
         }
 

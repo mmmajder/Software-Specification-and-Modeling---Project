@@ -17,6 +17,10 @@ public class BookPane extends Pane {
     public BookPane() {
     }
 
+    public Edition getEdition() {
+        return edition;
+    }
+
     public void setEdition(Edition edition) {
         this.edition = edition;
         //this.imageView = new ImageView(new Image(getClass().getResourceAsStream(edition.getImageUrl())));

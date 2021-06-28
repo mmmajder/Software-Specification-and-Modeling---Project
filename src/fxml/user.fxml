@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@user.css" fx:controller="controller.UserController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" stylesheets="@user.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserController">
    <left>
       <ListView fx:id="genres" minWidth="200.0" prefHeight="540.0" prefWidth="200.0" style="-fx-border-color: #abc82e; -fx-background-color: transparent;" BorderPane.alignment="CENTER" />
    </left>
@@ -28,36 +28,43 @@
                   <Image url="@../fxml/logo.png" />
                </image>
             </ImageView>
-            <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="75.0" visible="false" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="99.0" prefWidth="99.0" text="BOOKS" textFill="#63ac29">
+            <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="100.0" visible="false" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="99.0" prefWidth="99.0" text="BOOKS" textFill="#63ac29" underline="true">
                <font>
-                  <Font name="SansSerif Bold" size="15.0" />
+                  <Font name="SansSerif Bold" size="12.0" />
                </font>
             </Label>
-            <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="30.0" visible="false" />
+            <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="20.0" visible="false" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="122.0" text="MEMBERSHIP" textFill="#63ac29">
                <font>
-                  <Font name="SansSerif Bold" size="15.0" />
+                  <Font name="SansSerif Bold" size="12.0" />
                </font>
             </Label>
-            <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="30.0" visible="false" />
+            <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="20.0" visible="false" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="122.0" text="HISTORY" textFill="#63ac29">
                <font>
-                  <Font name="SansSerif Bold" size="15.0" />
+                  <Font name="SansSerif Bold" size="12.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="71.0" prefWidth="210.0" text="LOGOUT" textFill="#63ac29">
+            <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="20.0" visible="false" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="122.0" text="NOTIFICATIONS" textFill="#63ac29">
                <font>
-                  <Font name="SansSerif Bold" size="15.0" />
+                  <Font name="SansSerif Bold" size="12.0" />
                </font>
             </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="50.0" prefWidth="311.0" text="LOGOUT" textFill="#63ac29">
+               <font>
+                  <Font name="SansSerif Bold" size="12.0" />
+               </font>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="40.0" visible="false" />
          </children>
       </HBox>
    </top>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox minHeight="40.0" prefHeight="40.0" prefWidth="700.0" style="-fx-background-color: #abc82e;">
+            <HBox minHeight="40.0" minWidth="700.0" prefHeight="40.0" prefWidth="700.0" style="-fx-background-color: #abc82e;">
                <children>
                   <Pane prefHeight="50.0" prefWidth="436.0">
                      <children>
@@ -94,7 +101,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <GridPane minHeight="490.0" minWidth="700.0" prefHeight="490.0" prefWidth="700.0" style="-fx-background-color: #7ab12b;" fx:id="grid">
+            <GridPane fx:id="grid" minHeight="490.0" minWidth="700.0" prefHeight="490.0" prefWidth="700.0" style="-fx-background-color: #7ab12b;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

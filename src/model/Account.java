@@ -18,7 +18,11 @@ public class Account {
         this.person = person;
     }
 
+    public String getUsername() { return username; }
+    public String getPassword() { return password; }
+
     public void setPerson(Person person) {
         this.person = person;
     }
+
 }

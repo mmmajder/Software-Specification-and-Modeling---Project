@@ -3,6 +3,8 @@ package model;
 import model.enums.MemberType;
 import observer.Observer;
 import observer.Publisher;
+import utils.exceptions.MissingValueException;
+import utils.exceptions.NoAccountWithThatUsername;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +34,17 @@ public class Library implements Publisher {
     public List<Account> getAccounts() {
         return accounts;
     }
-    
+
+    public Account getAccount(String username) throws NoAccountWithThatUsername {
+        for (Account a : accounts){
+            if (a.getUsername().equals(username)){
+                return a;
+            }
+        }
+
+        throw new NoAccountWithThatUsername();
+    }
+
     public void addAccount(Account account) {
         accounts.add(account);
     }

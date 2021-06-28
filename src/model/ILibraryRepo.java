@@ -7,5 +7,6 @@ public interface ILibraryRepo {
     void loadContributors(Library library);
     void loadContributorRoles(Library library);
     void loadTags(Library library);
+    void loadGenres(Library library);
     void loadBooks(Library library);
 }

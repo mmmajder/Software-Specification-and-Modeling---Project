@@ -2,7 +2,6 @@ package model;
 
 import model.enums.AccountType;
 import model.enums.ContributorType;
-import model.enums.Genre;
 import model.enums.SampleState;
 
 import java.sql.*;
@@ -119,7 +118,6 @@ public class LibraryRepo implements ILibraryRepo {
                 String publisher = editions.getString("publisher");
                 int numOfPages = editions.getInt("numOfPages");
                 String description = editions.getString("description");
-                String genre = editions.getString("genre");
                 LocalDate publishedDate = editions.getDate("publishedDate").toLocalDate();
                 String language = editions.getString("language");
                 int format = editions.getInt("format");
@@ -134,8 +132,8 @@ public class LibraryRepo implements ILibraryRepo {
 
                 BookFormat bookFormat = new BookFormat(format, height, width, thickness);
 
-                Edition edition = new Edition(editionId, title, publisher, numOfPages, description,
-                        Genre.valueOf(genre), publishedDate, language, null, bookFormat);
+                Edition edition = new Edition(editionId, title, publisher, numOfPages, description, publishedDate,
+                        language, null, bookFormat);
                 library.addEdition(edition);
             }
 
@@ -213,6 +211,37 @@ public class LibraryRepo implements ILibraryRepo {
 
                 Edition edition = library.getEdition(editionId);
                 edition.addTag(tag);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void loadGenres(Library library) {
+        String query = "SELECT * FROM editionGenres";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet genres = statement.executeQuery();
+
+            while (genres.next()) {
+                String editionId = genres.getString("edition");
+                int genreId = genres.getInt("genre");
+
+                query = "SELECT * FROM genres WHERE idg = " + genreId;
+                statement = connection.prepareStatement(query);
+                ResultSet result = statement.executeQuery();
+                result.next();
+
+                String genreName = genres.getString("name");
+                Genre genre = new Genre(genreId, genreName);
+                library.addGenre(genre);
+
+                Edition edition = library.getEdition(editionId);
+                edition.addGenre(genre);
+                genre.addEdition(edition);
             }
 
         } catch (SQLException e) {

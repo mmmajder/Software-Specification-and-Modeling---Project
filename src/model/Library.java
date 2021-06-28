@@ -12,6 +12,7 @@ public class Library implements Publisher {
 
     private List<Book> books;
     private List<Edition> editions;
+    private List<Genre> genres;
     private List<Contributor> contributors;
     private List<Account> accounts;
     private List<Payment> payments;
@@ -25,6 +26,7 @@ public class Library implements Publisher {
 
     public Library() {
         this.books = new ArrayList<>();
+        this.genres = new ArrayList<>();
         this.contributors = new ArrayList<>();
         this.editions = new ArrayList<>();
         this.accounts = new ArrayList<>();
@@ -54,6 +56,10 @@ public class Library implements Publisher {
 
     public void addBook(Book book) {
         this.books.add(book);
+    }
+
+    public void addGenre(Genre genre) {
+        this.genres.add(genre);
     }
 
     public Edition getEdition(String editionId) {

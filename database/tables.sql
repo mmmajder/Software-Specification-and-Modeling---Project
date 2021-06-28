@@ -44,13 +44,26 @@ CREATE TABLE editions (
     Publisher VARCHAR(50) NOT NULL,
     NumOfPages INTEGER NOT NULL,
     Description VARCHAR(250) NOT NULL,
-    Genre VARCHAR(15) NOT NULL,
     PublishedDate DATE NOT NULL,
     Language VARCHAR(20) NOT NULL,
     Format INTEGER NOT NULL,
     Image VARCHAR(200),
     CONSTRAINT editions_PK PRIMARY KEY (Ide),
     CONSTRAINT editions_FK FOREIGN KEY (Format) REFERENCES bookFormats (Idbf)
+);
+
+CREATE TABLE genres (
+    Idg INTEGER NOT NULL,
+    Name VARCHAR(35) NOT NULL,
+    CONSTRAINT genres_PK PRIMARY KEY (Idg)
+);
+
+CREATE TABLE editionGenres (
+    Edition VARCHAR(50) NOT NULL,
+    Genre INTEGER NOT NULL,
+    CONSTRAINT editionGenres_PK PRIMARY KEY (Edition, Genre),
+    CONSTRAINT editionGenres_FK1 FOREIGN KEY (Edition) REFERENCES editions (Ide),
+    CONSTRAINT editionGenres_FK2 FOREIGN KEY (Genre) REFERENCES genres (Idg)
 );
 
 CREATE TABLE tags (
@@ -62,7 +75,8 @@ CREATE TABLE editionTags (
     Ide VARCHAR(50) NOT NULL,
     Tag VARCHAR(50) NOT NULL,
     CONSTRAINT editionTags_PK PRIMARY KEY (Tag, Ide),
-    CONSTRAINT editionTags_FK FOREIGN KEY (Ide) REFERENCES editions (Ide)
+    CONSTRAINT editionTags_FK1 FOREIGN KEY (Ide) REFERENCES editions (Ide),
+    CONSTRAINT editionTags_FK2 FOREIGN KEY (Tag) REFERENCES tags (Tag)
 );
 
 CREATE TABLE editionContributors (
@@ -108,7 +122,8 @@ CREATE TABLE issuedBooks (
     CONSTRAINT issuedBooks_PK PRIMARY KEY (Book, IssueDate),
     CONSTRAINT issuedBooks_FKB FOREIGN KEY (Book) REFERENCES books (Idb),
     CONSTRAINT issuedBooks_FKL FOREIGN KEY (Librarian) REFERENCES librarians (JMBG),
-    CONSTRAINT issuedBooks_FKM FOREIGN KEY (Member) REFERENCES members (JMBG)
+    CONSTRAINT issuedBooks_FKM FOREIGN KEY (Member) REFERENCES members (JMBG),
+    CONSTRAINT issuedBooks_CHK CHECK (ProlongedIssue IN (0, 1))
 );
 
 CREATE TABLE librarianIssuedBooks (

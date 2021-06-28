@@ -18,11 +18,13 @@ public class LoginController {
     public PasswordField passwordField;
     private Stage stage;
     private Scene scene;
-    private Parent root;
 
     @FXML
     private void switchToUser(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/memberCRUD.fxml"));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/user.fxml"));
+        final Parent root = (Parent) loader.load();
+        final UserController controller = loader.getController();
+        controller.initData();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -37,9 +39,10 @@ public class LoginController {
 
     @FXML
     private void alert(ActionEvent event) {
-        Alert a = new Alert(Alert.AlertType.WARNING);
-        a.setTitle("Alert");
-        a.setContentText("Use");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("I have a great message for you!");
+        alert.showAndWait();
     }
-
 }

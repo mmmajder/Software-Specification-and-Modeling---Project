@@ -29,21 +29,6 @@ public class BookController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private Edition edition;
-
-    @FXML
-    private void switchToBook(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/bookMember.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setResizable(true);
-        stage.setMinWidth(900);
-        stage.setMinHeight(600);
-        stage.setTitle(lblTitle.getText());
-
-        stage.show();
-    }
 
     @FXML
     private void alert(ActionEvent event) {
@@ -53,7 +38,7 @@ public class BookController {
     }
 
     @FXML
-    private void initBook(ActionEvent event) {
+    public void initData(Edition edition) {
         lblTitle.setText(edition.getTitle());
         //lblAuthor.setText(edition.getAuthor());
         txtDescription.setText(edition.getDescription());
@@ -67,6 +52,4 @@ public class BookController {
         txtTags.setText("Tags: " + edition.getTags());
         // TODO add needed getters
     }
-
-
 }

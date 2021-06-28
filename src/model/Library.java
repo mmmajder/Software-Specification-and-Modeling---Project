@@ -20,6 +20,8 @@ public class Library implements Publisher {
     private HashMap<MemberType, Integer> maxIssuedBooks;
     private List<BookSection> sections;
 
+    private ArrayList<Edition> editions;
+
     private List<Observer> observers;
 
     public Library() {
@@ -35,6 +37,15 @@ public class Library implements Publisher {
         return accounts;
     }
 
+    public boolean doesEditionIdExist(String editionId){
+        for (Edition e : editions){
+            if (e.getEditionId().equals(editionId)){
+                return true;
+            }
+        }
+
+        return false;
+    }
     public Account getAccount(String username) throws NoAccountWithThatUsername {
         for (Account a : accounts){
             if (a.getUsername().equals(username)){

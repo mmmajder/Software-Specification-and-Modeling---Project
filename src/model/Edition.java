@@ -44,5 +44,7 @@ public class Edition {
         this.publishedDate = publishedDate;
     }
 
+    public String getEditionId(){ return editionId; }
+
 
 }

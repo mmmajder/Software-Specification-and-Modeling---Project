@@ -1,2 +1,7 @@
-package utils.exceptions;public class InvalidAccountPassword {
+package utils.exceptions;
+
+public class InvalidAccountPassword extends Exception {
+
+    public InvalidAccountPassword() {}
+
 }

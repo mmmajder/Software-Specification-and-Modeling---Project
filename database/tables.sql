@@ -61,14 +61,17 @@ CREATE TABLE tags (
 CREATE TABLE editionTags (
     Ide VARCHAR(50) NOT NULL,
     Tag VARCHAR(50) NOT NULL,
-    CONSTRAINT editionTags_PK PRIMARY KEY (Tag, Ide)
+    CONSTRAINT editionTags_PK PRIMARY KEY (Tag, Ide),
+    CONSTRAINT editionTags_FK FOREIGN KEY (Ide) REFERENCES editions (Ide)
 );
 
 CREATE TABLE editionContributors (
     Ide VARCHAR(50) NOT NULL,
     Idc INTEGER NOT NULL,
     Type VARCHAR(15) NOT NULL,
-    CONSTRAINT editionContributors_PK PRIMARY KEY (Ide, Idc)
+    CONSTRAINT editionContributors_PK PRIMARY KEY (Ide, Idc),
+    CONSTRAINT editionContributors_FK1 FOREIGN KEY (Ide) REFERENCES editions (Ide),
+    CONSTRAINT editionContributors_FK2 FOREIGN KEY (Idc) REFERENCES contributors (Idc)
 );
 
 CREATE TABLE books (
@@ -79,6 +82,91 @@ CREATE TABLE books (
     CONSTRAINT books_PK PRIMARY KEY (Idb),
     CONSTRAINT books_FK FOREIGN KEY (Edition) REFERENCES editions (Ide),
     CONSTRAINT books_CHK CHECK (IsRestricted IN (0, 1))
+);
+
+CREATE TABLE members (
+    JMBG CHAR(13) NOT NULL,
+    Type VARCHAR(12) NOT NULL,
+    Debt NUMBER(5, 2),
+    CONSTRAINT members_PK PRIMARY KEY (JMBG)
+);
+
+CREATE TABLE librarians (
+    JMBG CHAR(13) NOT NULL,
+    CONSTRAINT librarians_PK PRIMARY KEY (JMBG)
+);
+
+CREATE TABLE issuedBooks (
+    Book VARCHAR(50) NOT NULL,
+    IssueDate DATE NOT NULL,
+    ReturnDate DATE,
+    ProlongedIssue INTEGER NOT NULL,
+    Librarian CHAR(13) NOT NULL,
+    Member CHAR(13) NOT NULL,
+    CONSTRAINT issuedBooks_PK PRIMARY KEY (Book, IssueDate),
+    CONSTRAINT issuedBooks_FKB FOREIGN KEY (Book) REFERENCES books (Idb),
+    CONSTRAINT issuedBooks_FKL FOREIGN KEY (Librarian) REFERENCES librarians (JMBG),
+    CONSTRAINT issuedBooks_FKM FOREIGN KEY (Member) REFERENCES members (JMBG)
+);
+
+CREATE TABLE librarianIssuedBooks (
+    Librarian CHAR(13) NOT NULL,
+    Book VARCHAR(50) NOT NULL,
+    IssueDate DATE NOT NULL,
+    CONSTRAINT librarianIssuedBooks_PK PRIMARY KEY (Librarian, Book, IssueDate)
+);
+
+CREATE TABLE currentlyTakenBooks (
+    Member CHAR(13) NOT NULL,
+    Book VARCHAR(50) NOT NULL,
+    IssueDate DATE NOT NULL,
+    CONSTRAINT currentlyTakenBooks_PK PRIMARY KEY (Member, Book, IssueDate)
+);
+
+CREATE TABLE returnedBooks (
+    Member CHAR(13) NOT NULL,
+    Book VARCHAR(50) NOT NULL,
+    IssueDate DATE NOT NULL,
+    CONSTRAINT returnedBooks_PK PRIMARY KEY (Member, Book, IssueDate)
+);
+
+CREATE TABLE bookSections (
+    Section VARCHAR(100) NOT NULL,
+    CONSTRAINT bookSection_PK PRIMARY KEY (Section)
+);
+
+CREATE TABLE bookShelves (
+    Shelf INTEGER NOT NULL,
+    CONSTRAINT bookShelf_PK PRIMARY KEY (Shelf)
+);
+
+CREATE TABLE sectionShelf (
+    Section VARCHAR(100) NOT NULL,
+    Shelf INTEGER NOT NULL,
+    CONSTRAINT sectionShelf_PK PRIMARY KEY (Section, Shelf),
+    CONSTRAINT sectionShelf_FK1 FOREIGN KEY (Section) REFERENCES bookSections (Section),
+    CONSTRAINT sectionShelf_FK2 FOREIGN KEY (Shelf) REFERENCES bookShelves (Shelf)
+);
+
+CREATE TABLE bookShelfRows (
+    "ROW" INTEGER NOT NULL,
+    CONSTRAINT bookShelfRow_PK PRIMARY KEY ("ROW")
+);
+
+CREATE TABLE shelfRow (
+    Shelf INTEGER NOT NULL,
+    "ROW" INTEGER NOT NULL,
+    CONSTRAINT shelfRow_PK PRIMARY KEY (Shelf, "ROW"),
+    CONSTRAINT shelfRow_FK1 FOREIGN KEY (Shelf) REFERENCES bookShelves (Shelf),
+    CONSTRAINT shelfRow_FK2 FOREIGN KEY ("ROW") REFERENCES bookShelfRows ("ROW")
+);
+
+CREATE TABLE booksInRow (
+    "ROW" INTEGER NOT NULL,
+    Book VARCHAR(50) NOT NULL,
+    CONSTRAINT booksInRow_PK PRIMARY KEY ("ROW", Book),
+    CONSTRAINT booksInRow_FK1 FOREIGN KEY ("ROW") REFERENCES bookShelfRows ("ROW"),
+    CONSTRAINT booksInRow_FK2 FOREIGN KEY (Book) REFERENCES books (Idb)
 );
 
 COMMIT;

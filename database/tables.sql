@@ -88,12 +88,14 @@ CREATE TABLE members (
     JMBG CHAR(13) NOT NULL,
     Type VARCHAR(12) NOT NULL,
     Debt NUMBER(5, 2),
-    CONSTRAINT members_PK PRIMARY KEY (JMBG)
+    CONSTRAINT members_PK PRIMARY KEY (JMBG),
+    CONSTRAINT members_FK FOREIGN KEY (JMBG) REFERENCES persons (JMBG)
 );
 
 CREATE TABLE librarians (
     JMBG CHAR(13) NOT NULL,
-    CONSTRAINT librarians_PK PRIMARY KEY (JMBG)
+    CONSTRAINT librarians_PK PRIMARY KEY (JMBG),
+    CONSTRAINT librarians_FK FOREIGN KEY (JMBG) REFERENCES persons (JMBG)
 );
 
 CREATE TABLE issuedBooks (
@@ -113,21 +115,27 @@ CREATE TABLE librarianIssuedBooks (
     Librarian CHAR(13) NOT NULL,
     Book VARCHAR(50) NOT NULL,
     IssueDate DATE NOT NULL,
-    CONSTRAINT librarianIssuedBooks_PK PRIMARY KEY (Librarian, Book, IssueDate)
+    CONSTRAINT librarianIssuedBooks_PK PRIMARY KEY (Librarian, Book, IssueDate),
+    CONSTRAINT librarianIssuedBooks_FK1 FOREIGN KEY (Book, IssueDate) REFERENCES issuedBooks (Book, IssueDate),
+    CONSTRAINT librarianIssuedBooks_FK2 FOREIGN KEY (Librarian) REFERENCES librarians (JMBG)
 );
 
 CREATE TABLE currentlyTakenBooks (
     Member CHAR(13) NOT NULL,
     Book VARCHAR(50) NOT NULL,
     IssueDate DATE NOT NULL,
-    CONSTRAINT currentlyTakenBooks_PK PRIMARY KEY (Member, Book, IssueDate)
+    CONSTRAINT currentlyTakenBooks_PK PRIMARY KEY (Member, Book, IssueDate),
+    CONSTRAINT currentlyTakenBook_FK1 FOREIGN KEY (Book, IssueDate) REFERENCES issuedBooks (Book, IssueDate),
+    CONSTRAINT currentlyTakenBook_FK2 FOREIGN KEY (Member) REFERENCES members (JMBG)
 );
 
 CREATE TABLE returnedBooks (
     Member CHAR(13) NOT NULL,
     Book VARCHAR(50) NOT NULL,
     IssueDate DATE NOT NULL,
-    CONSTRAINT returnedBooks_PK PRIMARY KEY (Member, Book, IssueDate)
+    CONSTRAINT returnedBooks_PK PRIMARY KEY (Member, Book, IssueDate),
+    CONSTRAINT returnedBooks_FK1 FOREIGN KEY (Book, IssueDate) REFERENCES issuedBooks (Book, IssueDate),
+    CONSTRAINT returnedBooks_FK2 FOREIGN KEY (Member) REFERENCES members (JMBG)
 );
 
 CREATE TABLE bookSections (
@@ -167,6 +175,55 @@ CREATE TABLE booksInRow (
     CONSTRAINT booksInRow_PK PRIMARY KEY ("ROW", Book),
     CONSTRAINT booksInRow_FK1 FOREIGN KEY ("ROW") REFERENCES bookShelfRows ("ROW"),
     CONSTRAINT booksInRow_FK2 FOREIGN KEY (Book) REFERENCES books (Idb)
+);
+
+CREATE TABLE payments (
+    Idp INTEGER NOT NULL,
+    Member CHAR(13) NOT NULL,
+    ToDate DATE NOT NULL,
+    CONSTRAINT payments_PK PRIMARY KEY (Idp),
+    CONSTRAINT payments_FK FOREIGN KEY (Member) REFERENCES members (JMBG)
+);
+
+CREATE TABLE memberPayments (
+    Member CHAR(13) NOT NULL,
+    Payment INTEGER NOT NULL,
+    CONSTRAINT memberPayments_PK PRIMARY KEY (Member, Payment),
+    CONSTRAINT memberPayments_FK1 FOREIGN KEY (Member) REFERENCES members (JMBG),
+    CONSTRAINT memberPayments_FK2 FOREIGN KEY (Payment) REFERENCES payments (Idp)
+);
+
+CREATE TABLE priceCatalogs (
+    CatalogId INTEGER NOT NULL,
+    FromDate DATE NOT NULL,
+    ToDate DATE,
+    CONSTRAINT priceCatalogs_PK PRIMARY KEY (CatalogId)
+);
+
+CREATE TABLE prices (
+    Type VARCHAR(12) NOT NULL,
+    Price NUMBER(5, 2) NOT NULL,
+    CONSTRAINT prices_PK PRIMARY KEY (Type)
+);
+
+CREATE TABLE catalogPrices (
+    Catalog INTEGER NOT NULL,
+    Type VARCHAR(12) NOT NULL,
+    CONSTRAINT catalogPrices_PK PRIMARY KEY (Catalog, Type),
+    CONSTRAINT catalogPrices_FK1 FOREIGN KEY (Catalog) REFERENCES priceCatalogs (CatalogId),
+    CONSTRAINT catalogPrices_FK2 FOREIGN KEY (Type) REFERENCES prices (Type)
+);
+
+CREATE TABLE maxIssuedBooks (
+    Type VARCHAR(12) NOT NULL,
+    Limit INTEGER NOT NULL,
+    CONSTRAINT maxIssuedBooks_PK PRIMARY KEY (Type)
+);
+
+CREATE TABLE maxIssueDays (
+    Type VARCHAR(12) NOT NULL,
+    Days INTEGER NOT NULL,
+    CONSTRAINT maxIssueDays_PK PRIMARY KEY (Type)
 );
 
 COMMIT;

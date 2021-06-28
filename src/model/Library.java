@@ -37,25 +37,6 @@ public class Library implements Publisher {
         return accounts;
     }
 
-    public boolean doesEditionIdExist(String editionId){
-        for (Edition e : editions){
-            if (e.getEditionId().equals(editionId)){
-                return true;
-            }
-        }
-
-        return false;
-    }
-    public Account getAccount(String username) throws NoAccountWithThatUsername {
-        for (Account a : accounts){
-            if (a.getUsername().equals(username)){
-                return a;
-            }
-        }
-
-        throw new NoAccountWithThatUsername();
-    }
-
     public void addAccount(Account account) {
         accounts.add(account);
     }

@@ -20,4 +20,14 @@ public class EditionService {
 
         return e;
     }
+
+    public static boolean doesEditionIdExist(ArrayList<Edition> editions, String editionId){
+        for (Edition e : editions){
+            if (e.getEditionId().equals(editionId)){
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ public class Edition {
     private List<Genre> genres;
     private LocalDate publishedDate;
     private String language;
-    private Image image;
+    private String image;
     private List<Book> books;
     private BookFormat format;
     private List<ContributorRole> contributorRoles;
@@ -28,7 +27,7 @@ public class Edition {
         this.contributorRoles = new ArrayList<>();
     }
 
-    public Edition(String editionId, String title, String publisher, int numberOfPages, String description, LocalDate publishedDate, String language, Image image, BookFormat format) {
+    public Edition(String editionId, String title, String publisher, int numberOfPages, String description, LocalDate publishedDate, String language, String image, BookFormat format) {
         this.editionId = editionId;
         this.title = title;
         this.publisher = publisher;
@@ -42,6 +41,10 @@ public class Edition {
         this.tags = new ArrayList<>();
         this.books = new ArrayList<>();
         this.contributorRoles = new ArrayList<>();
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public String getEditionId() {

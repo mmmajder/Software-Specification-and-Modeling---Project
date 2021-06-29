@@ -123,6 +123,7 @@ public class LibraryRepo implements ILibraryRepo {
                 LocalDate publishedDate = editions.getDate("publishedDate").toLocalDate();
                 String language = editions.getString("language");
                 int format = editions.getInt("format");
+                String image = editions.getString("image");
 
                 query = "SELECT * FROM bookFormats WHERE idbf = " + format;
                 ResultSet formats = statement.executeQuery(query);
@@ -135,7 +136,7 @@ public class LibraryRepo implements ILibraryRepo {
                 BookFormat bookFormat = new BookFormat(format, height, width, thickness);
 
                 Edition edition = new Edition(editionId, title, publisher, numOfPages, description, publishedDate,
-                        language, null, bookFormat);
+                        language, image, bookFormat);
                 library.addEdition(edition);
             }
 

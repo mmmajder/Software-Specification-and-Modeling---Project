@@ -1,38 +1,57 @@
 package model;
 
-import model.enums.Genre;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Edition {
+
     private String editionId;
-    private ArrayList<String> tags;
+    private List<String> tags;
     private String title;
     private String publisher;
     private int numberOfPages;
     private String description;
-    private Genre genre;
+    private List<Genre> genres;
     private LocalDate publishedDate;
     private String language;
-    private String imageURL;
-    private ArrayList<Book> books;
+    private String image;
+    private List<Book> books;
     private BookFormat format;
-    private ArrayList<Contributor> contributors;
+    private List<ContributorRole> contributorRoles;
 
-    public Genre getGenre() {
-        return genre;
+    public Edition(String editionId, String title, String publisher, Genre genre, String language, BookFormat format, List<Contributor> contributors) {
+        this.genres = new ArrayList<>();
+        this.tags = new ArrayList<>();
+        this.books = new ArrayList<>();
+        this.contributorRoles = new ArrayList<>();
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public Edition(String editionId, String title, String publisher, int numberOfPages, String description, LocalDate publishedDate, String language, String image, BookFormat format) {
+        this.editionId = editionId;
+        this.title = title;
+        this.publisher = publisher;
+        this.numberOfPages = numberOfPages;
+        this.description = description;
+        this.publishedDate = publishedDate;
+        this.language = language;
+        this.image = image;
+        this.format = format;
+        this.genres = new ArrayList<>();
+        this.tags = new ArrayList<>();
+        this.books = new ArrayList<>();
+        this.contributorRoles = new ArrayList<>();
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public String getEditionId() {
         return editionId;
     }
 
-    public ArrayList<String> getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
@@ -60,7 +79,7 @@ public class Edition {
         return language;
     }
 
-    public ArrayList<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
@@ -68,7 +87,19 @@ public class Edition {
         return format;
     }
 
-    public ArrayList<Contributor> getContributors() {
-        return contributors;
+    public void addGenre(Genre genre) {
+        this.genres.add(genre);
+    }
+
+    public void addTag(String tag) {
+        this.tags.add(tag);
+    }
+
+    public void addBook(Book book) {
+        this.books.add(book);
+    }
+
+    public void addContributorRole(ContributorRole role) {
+        this.contributorRoles.add(role);
     }
 }

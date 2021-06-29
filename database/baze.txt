@@ -1,0 +1,107 @@
+INSERT INTO bookFormats VALUES (1,10, 7, 3);
+INSERT INTO bookFormats VALUES (2, 12, 6, 5);
+INSERT INTO bookFormats VALUES (3, 14, 5, 6);
+
+INSERT INTO contributors VALUES (1, 'Jane', 'Austen', 'Jane Austen (16 December 1775 – 18 July 1817) was an English novelist known primarily for her six major novels, which interpret, critique and comment upon the British landed gentry at the end of the 18th century. Austen's plots often explore the dependence of women on marriage in the pursuit of favourable social standing and economic security. Her works critique the novels of sensibility of the second half of the 18th century and are part of the transition to 19th-century literary realism.[2][b] Her use of biting irony, along with her realism, humour, and social commentary, have long earned her acclaim among critics, scholars, and popular audiences alike.');
+INSERT INTO contributors VALUES (2, 'Harper', 'Lee', 'Nelle Harper Lee (April 28, 1926 – February 19, 2016) was an American novelist best known for her 1960 novel To Kill a Mockingbird. It won the 1961 Pulitzer Prize and has become a classic of modern American literature. Lee has received numerous accolades and honorary degrees, including the Presidential Medal of Freedom in 2007 which was awarded for her contribution to literature.');
+INSERT INTO contributors VALUES (3, 'Fitzgerald', 'F. Scott', 'Francis Scott Key Fitzgerald (September 24, 1896 – December 21, 1940) was an American novelist, essayist, screenwriter, and short story writer. He was best known for his novels depicting the flamboyance and excess of the Jazz Age—a term which he popularized. During his lifetime, he published four novels, four collections of short stories, and 164 short stories. Although he temporarily achieved popular success and fortune in the 1920s, Fitzgerald only received wide critical and popular acclaim after his death. He is widely regarded as one of the greatest American writers of the 20th century.');
+INSERT INTO contributors VALUES (4, 'Truman', 'Capote', 'Truman Garcia Capote (born Truman Streckfus Persons, September 30, 1924 – August 25, 1984) was an American novelist, screenwriter, playwright, and actor. Several of his short stories, novels, and plays have been praised as literary classics, including the novella Breakfast at Tiffany's (1958) and the true crime novel In Cold Blood (1966), which he labeled a "nonfiction novel". His works have been adapted into more than 20 films and television dramas.');
+INSERT INTO contributors VALUES (5, 'Aldous', 'Huxley', 'Aldous Leonard Huxley (26 July 1894 – 22 November 1963) was an English writer and philosopher. He wrote nearly 50 books[5][6]—both novels and non-fiction works—as well as wide-ranging essays, narratives, and poems.');
+INSERT INTO contributors VALUES (5, 'Aldous', 'Huxley', 'Aldous');
+
+
+INSERT INTO edition VALUES (1, 'Pride and Prejudice', 'Laguna', 456, 'Pride and Prejudice follows the turbulent relationship between Elizabeth Bennet, the daughter of a country gentleman, and Fitzwilliam Darcy, a rich aristocratic landowner. They must overcome the titular sins of pride and prejudice in order to fall in love and marry.', );
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (2, 'To Kill a Mockingbird', 'Laguna', 234, 'A novel before its time, Harper Lee’s Pulitzer-prize winner addresses issues of race, inequality and segregation with both levity and compassion. Told through the eyes of loveable rogues Scout and Jem, it also created one of literature’s most beloved heroes – Atticus Finch, a man determined to right the racial wrongs of the Deep South.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (3, 'The Great Gatsby', 'Laguna', 133, 'Jay Gatsby, the enigmatic millionaire who throws decadent parties but doesn’t attend them, is one of the great characters of American literature. This is F. Scott Fitzgerald at his most sparkling and devastating.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (4, 'In Cold Blood', 'Laguna', 230, 'The ‘true crime’ TV show / podcast you’re obsessed with probably owes a debt to this masterpiece of reportage by Truman Capote. Chilling and brilliant.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (5, 'Brave New World', 'Laguna', 260, 'One of the greatest and most prescient dystopian novels ever written, this should be on everyone’s must-read list.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (6, 'The Lord of the Rings', 'Laguna', 2260, 'The Lord of the Rings tells of the great quest undertaken by Frodo and the Fellowship of the Ring.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (7, 'The Great Gatsby', 'Vulkan', 360, 'The Great Gatsby is one of the great classics of twentieth-century literature.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (8, 'The Lion, the Witch and the Wardrobe', 'Vulkan', 360, 'Narnia… the land beyond the wardrobe door, a secret place frozen in eternal winter, a magical country waiting to be set free.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (9, 'Animal Farm', 'Vulkan', 150, 'George Orwell's timeless and timely allegorical novel—a scathing satire on a downtrodden society’s blind march towards totalitarianism.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (10, 'The Grapes of Wrath', 'Vulkan', 150, 'Out of their trials and their repeated collisions against the hard realities of an America divided into Haves and Have-Nots evolves a drama that is intensely human yet majestic in its scale and moral vision, elemental yet plainspoken, tragic but ultimately stirring in its human dignity.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (11, 'Gone with the Wind', 'Vulkan', 250, 'Scarlett O'Hara, the beautiful, spoiled daughter of a well-to-do Georgia plantation owner, must use every means at her disposal to claw her way out of the poverty she finds herself in after Sherman's March to the Sea. ');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (12, 'Lolita', 'Vulkan', 350, 'Humbert Humbert - scholar, aesthete and romantic - has fallen completely and utterly in love with Lolita Haze, his landlady's gum-snapping, silky skinned twelve-year-old daughter.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (13, 'Never Let Me Go', 'Vulkan', 230, 'Never Let Me Go breaks through the boundaries of the literary novel.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (14, 'On the Road', 'Vulkan', 240, 'A quintessential novel of America & the Beat Generation On the Road chronicles Jack Kerouac's years traveling the N. American continent with his friend Neal Cassady, "a sideburned hero of the snowy West."');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (15, 'All the King's Men', 'BlueBook', 290, 'More than just a classic political novel, Warren’s tale of power and corruption in the Depression-era South is a sustained meditation on the unforeseen consequences of every human act, the vexing connectedness of all people and the possibility.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (16, 'Native Son', 'BlueBook', 314, 'Set in Chicago in the 1930s, Wright's powerful novel is an unsparing reflection on the poverty and feelings of hopelessness experienced by people in inner cities across the country and of what it means to be black in America.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (17, 'To the Lighthouse', 'BlueBook', 150, 'As time winds its way through their lives, the Ramsays face, alone and simultaneously, the greatest of human challenges and its greatest triumph—the human capacity for change.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (18, 'The Bridge on the Drina', 'BlueBook', 260, 'Andric was the only Yugoslav to win the Nobel Prize in Literature, and it was his iconic telling of life in Ottoman Bosnia that brought the prize to his home in Belgrade.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (18, 'A Tomb for Boris Davidovic', 'BlueBook', 310, 'A collection of seven short stories all about political betrayal and murder in Eastern Europe. ');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (19, 'Dictionary of the Khazars', 'BlueBook', 360, 'Milorad Pavics 1984 publication takes a historic event and imbues it with life through mostly fictional characters, creating three encyclopaedias from three different viewpoints that often contradict each other.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (20, 'The Mountain Wreath', 'BlueBook', 190, 'The epic poem was written in 1846 and tells the story of an ancestor of Njegos trying to bring together the warring tribes of the area.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (21, 'The Houses of Belgrade', 'BlueBook', 150, 'It looks at unrest throughout various points in 20th century Serbia and the way all of the riots are linked. A Belgrade house builder plays the primary role, a man whose deep love for the houses of the city is all that stands between him and insanity.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (22, 'Travnik Chronicle', 'BlueBook', 210, 'Travnik Chronicle is all about great powers struggling for supremacy in a region that stubbornly refuses to conform to its ordained position as an occupied territory, creating a piece of work that is massive in its psychological ambition. ');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (23, 'The Encyclopaedia of the Dead', 'BlueBook', 210, ' The Encyclopaedia of the Dead isn’t quite as miserable as the title suggests, and its curious blend of fiction and fact make for an innovative and invigorating read. The human condition is a constant factor in the themes, along with the typically cheery subjects of death, loss, indifference, and betrayal.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (24, 'Death and the Dervish', 'RedCow', 320, 'Nurudin Ahmed (main character) reveals all obstacles to spiritual and moral turmoil inherent in a human being. Extremely well observed, the analytical, and respectful to himself, and to others as well, breaks up everything into smallest peaces and analyze them, as well as Mesa Selimovic while writing his masterpiece.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (25, 'King Radovan’s treasure', 'RedCow', 230, 'Treasure of poetic and philosophical reflections of the issues of the destiny of every man. Source of knowledge and inspiration of life.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (26, 'Signs by the roadside ', 'RedCow', 236, 'A series of short stories that can be written in the course of a single day, reflecting the writers mood at the time, opinion on a particular topic or person, an impression from a trip or a thought that preoccupied him. ');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (27, 'From immigrant to Inventor', 'RedCow', 314,  'The book consists of collected and selected works of Mihajlo Pupin. ');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (28, 'The Scent of Rain in the Balkans', 'RedCow', 286, 'In an effort to portray the fate of a Jewish family from our soils, the author Mirjana Kuic is, in fact, went much further: she showed the inevitability of history can not be escaped. The Scent of Rain in the Balkans is a significant contribution to the meager Jewish literature in our culture, and gives the facts of turning points in the history of the local Jewish community, and at the same time turning points for our entire country to its history. ');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (29, 'Revolutionary Road', 'RedCow', 362,  'In the hopeful 1950s, Frank and April Wheeler appear to be a model American couple: bright, beautiful, talented, with two young children and a starter home in the suburbs. Perhaps they married too young and started a family too early.');
+INSERT INTO editionContributor VALUES ();
+
+INSERT INTO edition VALUES (30, 'The Bridge of San Luis Rey', 'RedCow', 349, 'On Friday noon, July the twentieth, 1714, the finest bridge in all Peru broke and precipitated five travelers into the gulf below.');
+INSERT INTO editionContributor VALUES ();
+
+commit;
+

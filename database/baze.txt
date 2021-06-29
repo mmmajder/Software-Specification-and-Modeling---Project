@@ -26,12 +26,20 @@ INSERT INTO contributors VALUES (21, 'Borislav', 'Pekic', 'A Serbian and Yugosla
 INSERT INTO contributors VALUES (22, 'Jovan', 'Ducic', 'A Herzegovinian Serb poet-diplomat and academic.');
 INSERT INTO contributors VALUES (23, 'Mihajlo', 'Pupin', 'A Serbian physicist, physical chemist and philanthropist based in the United States.');
 INSERT INTO contributors VALUES (24, 'Gordana', 'Kuic', 'A Serbian novelist.');
-INSERT INTO contributors VALUES (25, 'Richard', 'Yates', 'An American fiction writer');
+INSERT INTO contributors VALUES (25, 'Richard', 'Yates', 'An American fiction writer.');
+INSERT INTO contributors VALUES (26, 'Berny', 'Howkeys', 'An American illustrator.');
+INSERT INTO contributors VALUES (27, 'Loana', 'Ditlan', 'An American illustrator.');
+INSERT INTO contributors VALUES (28, 'Milica', 'Uzbukic', 'An Anglo-Serbian translator.');
+INSERT INTO contributors VALUES (29, 'Jelena', 'Tatulovic', 'An Anglo-Serbian translator.');
+INSERT INTO contributors VALUES (30, 'Harold', 'Bloom', 'Harold Bloom (July 11, 1930 – October 14, 2019) was an American literary critic and the Sterling Professor of Humanities at Yale University.');
+INSERT INTO contributors VALUES (31, 'Elaine', 'Showalter', 'Elaine Showalter (born January 21, 1941) is an American literary critic, feminist, and writer on cultural and social issues.');
+INSERT INTO contributors VALUES (32, 'Terence Francis', 'Eagleton', 'Terence Francis Eagleton (born 1943) is an English literary theorist, critic, and public intellectual.');
 
 
 INSERT INTO edition VALUES (1, 'Pride and Prejudice', 'Laguna', 456, 'Pride and Prejudice follows the turbulent relationship between Elizabeth Bennet, the daughter of a country gentleman, and Fitzwilliam Darcy, a rich aristocratic landowner. They must overcome the titular sins of pride and prejudice in order to fall in love and marry.', );
-// idEdition, idContr, typeContr
 INSERT INTO editionContributor VALUES (1, 1, AUTHOR);
+INSERT INTO editionContributor VALUES (1, 27, ILLUSTRATOR);
+INSERT INTO editionContributor VALUES (1, 32, CRITIC);
 
 INSERT INTO edition VALUES (2, 'To Kill a Mockingbird', 'Laguna', 234, 'A novel before its time, Harper Lee’s Pulitzer-prize winner addresses issues of race, inequality and segregation with both levity and compassion. Told through the eyes of loveable rogues Scout and Jem, it also created one of literature’s most beloved heroes – Atticus Finch, a man determined to right the racial wrongs of the Deep South.');
 INSERT INTO editionContributor VALUES (2, 2, AUTHOR);
@@ -41,84 +49,108 @@ INSERT INTO editionContributor VALUES (3, 3, AUTHOR);
 
 INSERT INTO edition VALUES (4, 'In Cold Blood', 'Laguna', 230, 'The ‘true crime’ TV show / podcast you’re obsessed with probably owes a debt to this masterpiece of reportage by Truman Capote. Chilling and brilliant.');
 INSERT INTO editionContributor VALUES (4, 4, AUTHOR);
+INSERT INTO editionContributor VALUES (4, 27, ILLUSTRATOR);
+INSERT INTO editionContributor VALUES (4, 32, CRITIC);
 
 INSERT INTO edition VALUES (5, 'Brave New World', 'Laguna', 260, 'One of the greatest and most prescient dystopian novels ever written, this should be on everyone’s must-read list.');
 INSERT INTO editionContributor VALUES (5, 5, AUTHOR);
+INSERT INTO editionContributor VALUES (5, 30, CRITIC);
 
 INSERT INTO edition VALUES (6, 'The Lord of the Rings', 'Laguna', 2260, 'The Lord of the Rings tells of the great quest undertaken by Frodo and the Fellowship of the Ring.');
 INSERT INTO editionContributor VALUES (6, 6, AUTHOR);
 
 INSERT INTO edition VALUES (7, 'The Great Gatsby', 'Vulkan', 360, 'The Great Gatsby is one of the great classics of twentieth-century literature.');
-INSERT INTO editionContributor VALUES (1, 3, AUTHOR);
+INSERT INTO editionContributor VALUES (7, 3, AUTHOR);
+INSERT INTO editionContributor VALUES (7, 30, CRITIC);
 
 INSERT INTO edition VALUES (8, 'The Lion, the Witch and the Wardrobe', 'Vulkan', 360, 'Narnia… the land beyond the wardrobe door, a secret place frozen in eternal winter, a magical country waiting to be set free.');
-INSERT INTO editionContributor VALUES (1, 7, AUTHOR);
+INSERT INTO editionContributor VALUES (8, 7, AUTHOR);
 
 INSERT INTO edition VALUES (9, 'Animal Farm', 'Vulkan', 150, 'George Orwell's timeless and timely allegorical novel—a scathing satire on a downtrodden society’s blind march towards totalitarianism.');
-INSERT INTO editionContributor VALUES (1, 8, AUTHOR);
+INSERT INTO editionContributor VALUES (9, 8, AUTHOR);
+INSERT INTO editionContributor VALUES (9, 30, CRITIC);
 
 INSERT INTO edition VALUES (10, 'The Grapes of Wrath', 'Vulkan', 150, 'Out of their trials and their repeated collisions against the hard realities of an America divided into Haves and Have-Nots evolves a drama that is intensely human yet majestic in its scale and moral vision, elemental yet plainspoken, tragic but ultimately stirring in its human dignity.');
-INSERT INTO editionContributor VALUES (1, 9, AUTHOR);
+INSERT INTO editionContributor VALUES (10, 9, AUTHOR);
+INSERT INTO editionContributor VALUES (10, 30, CRITIC);
 
 INSERT INTO edition VALUES (11, 'Gone with the Wind', 'Vulkan', 250, 'Scarlett O'Hara, the beautiful, spoiled daughter of a well-to-do Georgia plantation owner, must use every means at her disposal to claw her way out of the poverty she finds herself in after Sherman's March to the Sea. ');
-INSERT INTO editionContributor VALUES (1, 10, AUTHOR);
+INSERT INTO editionContributor VALUES (11, 10, AUTHOR);
+INSERT INTO editionContributor VALUES (11, 31, CRITIC);
 
 INSERT INTO edition VALUES (12, 'Lolita', 'Vulkan', 350, 'Humbert Humbert - scholar, aesthete and romantic - has fallen completely and utterly in love with Lolita Haze, his landlady's gum-snapping, silky skinned twelve-year-old daughter.');
-INSERT INTO editionContributor VALUES (1, 11, AUTHOR);
+INSERT INTO editionContributor VALUES (12, 11, AUTHOR);
+INSERT INTO editionContributor VALUES (12, 31, CRITIC);
 
 INSERT INTO edition VALUES (13, 'Never Let Me Go', 'Vulkan', 230, 'Never Let Me Go breaks through the boundaries of the literary novel.');
-INSERT INTO editionContributor VALUES (1, 12, AUTHOR);
+INSERT INTO editionContributor VALUES (13, 12, AUTHOR);
 
 INSERT INTO edition VALUES (14, 'On the Road', 'Vulkan', 240, 'A quintessential novel of America & the Beat Generation On the Road chronicles Jack Kerouac's years traveling the N. American continent with his friend Neal Cassady, "a sideburned hero of the snowy West."');
-INSERT INTO editionContributor VALUES (1, 13, AUTHOR);
+INSERT INTO editionContributor VALUES (14, 13, AUTHOR);
 
 INSERT INTO edition VALUES (15, 'All the King's Men', 'BlueBook', 290, 'More than just a classic political novel, Warren’s tale of power and corruption in the Depression-era South is a sustained meditation on the unforeseen consequences of every human act, the vexing connectedness of all people and the possibility.');
-INSERT INTO editionContributor VALUES (1, 14, AUTHOR);
+INSERT INTO editionContributor VALUES (15, 14, AUTHOR);
 
 INSERT INTO edition VALUES (16, 'Native Son', 'BlueBook', 314, 'Set in Chicago in the 1930s, Wright's powerful novel is an unsparing reflection on the poverty and feelings of hopelessness experienced by people in inner cities across the country and of what it means to be black in America.');
-INSERT INTO editionContributor VALUES (1, 15, AUTHOR);
+INSERT INTO editionContributor VALUES (16, 15, AUTHOR);
+INSERT INTO editionContributor VALUES (16, 31, CRITIC);
 
 INSERT INTO edition VALUES (17, 'To the Lighthouse', 'BlueBook', 150, 'As time winds its way through their lives, the Ramsays face, alone and simultaneously, the greatest of human challenges and its greatest triumph—the human capacity for change.');
-INSERT INTO editionContributor VALUES (1, 16, AUTHOR);
+INSERT INTO editionContributor VALUES (17, 16, AUTHOR);
 
 INSERT INTO edition VALUES (18, 'The Bridge on the Drina', 'BlueBook', 260, 'Andric was the only Yugoslav to win the Nobel Prize in Literature, and it was his iconic telling of life in Ottoman Bosnia that brought the prize to his home in Belgrade.');
-INSERT INTO editionContributor VALUES (1, 17, AUTHOR);
+INSERT INTO editionContributor VALUES (18, 17, AUTHOR);
+INSERT INTO editionContributor VALUES (18, 29, TRANSLATOR);
 
 INSERT INTO edition VALUES (19, 'Dictionary of the Khazars', 'BlueBook', 360, 'Milorad Pavics 1984 publication takes a historic event and imbues it with life through mostly fictional characters, creating three encyclopaedias from three different viewpoints that often contradict each other.');
-INSERT INTO editionContributor VALUES (1, 19, AUTHOR);
+INSERT INTO editionContributor VALUES (19, 19, AUTHOR);
+INSERT INTO editionContributor VALUES (19, 31, CRITIC);
+INSERT INTO editionContributor VALUES (19, 29, TRANSLATOR);
 
 INSERT INTO edition VALUES (20, 'The Mountain Wreath', 'BlueBook', 190, 'The epic poem was written in 1846 and tells the story of an ancestor of Njegos trying to bring together the warring tribes of the area.');
-INSERT INTO editionContributor VALUES (1, 20, AUTHOR);
+INSERT INTO editionContributor VALUES (20, 20, AUTHOR);
+INSERT INTO editionContributor VALUES (20, 29, TRANSLATOR);
 
 INSERT INTO edition VALUES (21, 'The Houses of Belgrade', 'BlueBook', 150, 'It looks at unrest throughout various points in 20th century Serbia and the way all of the riots are linked. A Belgrade house builder plays the primary role, a man whose deep love for the houses of the city is all that stands between him and insanity.');
-INSERT INTO editionContributor VALUES (1, 21, AUTHOR);
+INSERT INTO editionContributor VALUES (21, 21, AUTHOR);
+INSERT INTO editionContributor VALUES (22, 29, TRANSLATOR);
 
 INSERT INTO edition VALUES (22, 'Travnik Chronicle', 'BlueBook', 210, 'Travnik Chronicle is all about great powers struggling for supremacy in a region that stubbornly refuses to conform to its ordained position as an occupied territory, creating a piece of work that is massive in its psychological ambition. ');
-INSERT INTO editionContributor VALUES (1, 17, AUTHOR);
+INSERT INTO editionContributor VALUES (22, 17, AUTHOR);
+INSERT INTO editionContributor VALUES (22, 29, TRANSLATOR);
 
 INSERT INTO edition VALUES (23, 'The Encyclopaedia of the Dead', 'BlueBook', 210, ' The Encyclopaedia of the Dead isn’t quite as miserable as the title suggests, and its curious blend of fiction and fact make for an innovative and invigorating read. The human condition is a constant factor in the themes, along with the typically cheery subjects of death, loss, indifference, and betrayal.');
-INSERT INTO editionContributor VALUES (1, 18, AUTHOR);
+INSERT INTO editionContributor VALUES (23, 18, AUTHOR);
+INSERT INTO editionContributor VALUES (23, 29, TRANSLATOR);
 
 INSERT INTO edition VALUES (24, 'Death and the Dervish', 'RedCow', 320, 'Nurudin Ahmed (main character) reveals all obstacles to spiritual and moral turmoil inherent in a human being. Extremely well observed, the analytical, and respectful to himself, and to others as well, breaks up everything into smallest peaces and analyze them, as well as Mesa Selimovic while writing his masterpiece.');
-INSERT INTO editionContributor VALUES (1, 17, AUTHOR);
+INSERT INTO editionContributor VALUES (24, 17, AUTHOR);
+INSERT INTO editionContributor VALUES (24, 29, TRANSLATOR);
 
 INSERT INTO edition VALUES (25, 'King Radovan’s treasure', 'RedCow', 230, 'Treasure of poetic and philosophical reflections of the issues of the destiny of every man. Source of knowledge and inspiration of life.');
-INSERT INTO editionContributor VALUES (1, 22, AUTHOR);
+INSERT INTO editionContributor VALUES (25, 22, AUTHOR);
+INSERT INTO editionContributor VALUES (25, 28, TRANSLATOR);
 
 INSERT INTO edition VALUES (26, 'Signs by the roadside ', 'RedCow', 236, 'A series of short stories that can be written in the course of a single day, reflecting the writers mood at the time, opinion on a particular topic or person, an impression from a trip or a thought that preoccupied him. ');
-INSERT INTO editionContributor VALUES (1, 17, AUTHOR);
+INSERT INTO editionContributor VALUES (26, 17, AUTHOR);
+INSERT INTO editionContributor VALUES (26, 31, CRITIC);
+INSERT INTO editionContributor VALUES (26, 28, TRANSLATOR);
 
 INSERT INTO edition VALUES (27, 'From immigrant to Inventor', 'RedCow', 314,  'The book consists of collected and selected works of Mihajlo Pupin. ');
-INSERT INTO editionContributor VALUES (1, 23, AUTHOR);
+INSERT INTO editionContributor VALUES (27, 23, AUTHOR);
+INSERT INTO editionContributor VALUES (27, 28, TRANSLATOR);
 
 INSERT INTO edition VALUES (28, 'The Scent of Rain in the Balkans', 'RedCow', 286, 'In an effort to portray the fate of a Jewish family from our soils, the author Mirjana Kuic is, in fact, went much further: she showed the inevitability of history can not be escaped. The Scent of Rain in the Balkans is a significant contribution to the meager Jewish literature in our culture, and gives the facts of turning points in the history of the local Jewish community, and at the same time turning points for our entire country to its history. ');
-INSERT INTO editionContributor VALUES (1, 24, AUTHOR);
+INSERT INTO editionContributor VALUES (28, 24, AUTHOR);
+INSERT INTO editionContributor VALUES (28, 28, TRANSLATOR);
 
 INSERT INTO edition VALUES (29, 'Revolutionary Road', 'RedCow', 362,  'In the hopeful 1950s, Frank and April Wheeler appear to be a model American couple: bright, beautiful, talented, with two young children and a starter home in the suburbs. Perhaps they married too young and started a family too early.');
-INSERT INTO editionContributor VALUES (1, 25, AUTHOR);
+INSERT INTO editionContributor VALUES (29, 25, AUTHOR);
+INSERT INTO editionContributor VALUES (29, 31, CRITIC);
 
 INSERT INTO edition VALUES (30, 'A Tomb for Boris Davidovic', 'BlueBook', 310, 'A collection of seven short stories all about political betrayal and murder in Eastern Europe. ');
-INSERT INTO editionContributor VALUES (1, 18, AUTHOR);
+INSERT INTO editionContributor VALUES (30, 18, AUTHOR);
+INSERT INTO editionContributor VALUES (30, 28, TRANSLATOR);
 
 commit;
 

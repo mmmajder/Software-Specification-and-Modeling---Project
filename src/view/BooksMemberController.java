@@ -9,6 +9,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Edition;
 import model.Genre;
+import model.Librarian;
+import model.Library;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ public class BooksMemberController {
     public List<BookPane> bookPanes;
     public GridPane grid;
     private Scene bookScene;
+    private Library library;
 
     public void setSecondScene(Scene scene) {
         this.bookScene = scene;

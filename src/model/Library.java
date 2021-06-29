@@ -21,6 +21,7 @@ public class Library implements Publisher {
     private List<BookSection> sections;
 
     private ArrayList<Edition> editions;
+    private ArrayList<Person> persons;
 
     private List<Observer> observers;
 

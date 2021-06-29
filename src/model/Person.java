@@ -11,6 +11,14 @@ public abstract class Person {
     private LocalDate birthDate;
     private Account account;
 
+    public Person(String name, String surname, String JMBG, String phoneNumber, LocalDate birthDate) {
+        this.name = name;
+        this.surname = surname;
+        this.JMBG = JMBG;
+        this.phoneNumber = phoneNumber;
+        this.birthDate = birthDate;
+    }
+
     public Person(String name, String surname, String JMBG, String phoneNumber, LocalDate birthDate, Account account) {
         this.name = name;
         this.surname = surname;

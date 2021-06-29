@@ -25,6 +25,7 @@ public class LoginController {
         final Parent root = (Parent) loader.load();
         final UserController controller = loader.getController();
         controller.initData();
+
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -33,8 +34,6 @@ public class LoginController {
         stage.setMinHeight(600);
         stage.setTitle("SIMS Library");
         stage.show();
-        System.out.println(usernameTextField.getText());
-        System.out.println(passwordField.getText());
     }
 
     @FXML

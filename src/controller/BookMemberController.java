@@ -2,7 +2,6 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,9 +11,8 @@ import javafx.stage.Stage;
 import model.Edition;
 
 import java.awt.*;
-import java.io.IOException;
 
-public class BookController {
+public class BookMemberController {
     public Label lblTitle;
     public Label lblAuthor;
     public Label lblPublishedDate;
@@ -29,6 +27,15 @@ public class BookController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    public void setSecondScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    public void backToBooks(ActionEvent actionEvent) {
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(scene);
+    }
 
     @FXML
     private void alert(ActionEvent event) {

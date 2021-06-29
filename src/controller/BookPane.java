@@ -1,10 +1,9 @@
 package controller;
 
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.Edition;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import java.awt.*;
 
 public class BookPane extends Pane {

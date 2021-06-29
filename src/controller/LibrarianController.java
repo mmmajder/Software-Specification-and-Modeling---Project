@@ -12,11 +12,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class UserController {
-    public Label lblNotifications;
+public class LibrarianController {
+    public Label lblReservations;
     public Label lblBooks;
-    public Label lblHistory;
-    public Label lblMembership;
+    public Label lblRentedBooks;
+    public Label lblMembers;
     public Label lblUsername;
 
     public BorderPane borderPane;
@@ -52,7 +52,7 @@ public class UserController {
         notificationsScene = notificationsLoader.load();
         //NotificationsController notificationsController = (NotificationsController) notificationsLoader.getController();
 
-        switchToBooks();
+        //switchToBooks();
     }
 
     @FXML
@@ -66,44 +66,44 @@ public class UserController {
         stage.show();
     }
 
-    @FXML
-    private void switchToNotifications(MouseEvent event) {
-        borderPane.setCenter(notificationsScene);
-        lblNotifications.setUnderline(true);
-        lblHistory.setUnderline(false);
-        lblMembership.setUnderline(false);
-        lblBooks.setUnderline(false);
-    }
-
-    @FXML
-    private void switchToBooks(MouseEvent event) throws IOException {
-        switchToBooks();
-    }
-
-    public void switchToBooks() {
-        borderPane.setCenter(booksScene);
-        lblNotifications.setUnderline(false);
-        lblHistory.setUnderline(false);
-        lblMembership.setUnderline(false);
-        lblBooks.setUnderline(true);
-    }
-
-    @FXML
-    private void switchToHistory(MouseEvent event) {
-        borderPane.setCenter(historyScene);
-        lblNotifications.setUnderline(false);
-        lblHistory.setUnderline(true);
-        lblMembership.setUnderline(false);
-        lblBooks.setUnderline(false);
-    }
-
-    @FXML
-    private void switchToMembership(MouseEvent event) {
-        borderPane.setCenter(membershipScene);
-        lblNotifications.setUnderline(false);
-        lblHistory.setUnderline(false);
-        lblMembership.setUnderline(true);
-        lblBooks.setUnderline(false);
-    }
+//    @FXML
+//    private void switchToNotifications(MouseEvent event) {
+//        borderPane.setCenter(notificationsScene);
+//        lblNotifications.setUnderline(true);
+//        lblHistory.setUnderline(false);
+//        lblMembership.setUnderline(false);
+//        lblBooks.setUnderline(false);
+//    }
+//
+//    @FXML
+//    private void switchToBooks(MouseEvent event) throws IOException {
+//        switchToBooks();
+//    }
+//
+//    public void switchToBooks() {
+//        borderPane.setCenter(booksScene);
+//        lblNotifications.setUnderline(false);
+//        lblHistory.setUnderline(false);
+//        lblMembership.setUnderline(false);
+//        lblBooks.setUnderline(true);
+//    }
+//
+//    @FXML
+//    private void switchToHistory(MouseEvent event) {
+//        borderPane.setCenter(historyScene);
+//        lblNotifications.setUnderline(false);
+//        lblHistory.setUnderline(true);
+//        lblMembership.setUnderline(false);
+//        lblBooks.setUnderline(false);
+//    }
+//
+//    @FXML
+//    private void switchToMembership(MouseEvent event) {
+//        borderPane.setCenter(membershipScene);
+//        lblNotifications.setUnderline(false);
+//        lblHistory.setUnderline(false);
+//        lblMembership.setUnderline(true);
+//        lblBooks.setUnderline(false);
+//    }
 
 }

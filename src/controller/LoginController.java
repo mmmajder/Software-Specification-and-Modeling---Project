@@ -16,8 +16,6 @@ import java.io.IOException;
 public class LoginController {
     public TextField usernameTextField;
     public PasswordField passwordField;
-    private Stage stage;
-    private Scene scene;
 
     @FXML
     private void switchToUser(ActionEvent event) throws IOException {
@@ -26,8 +24,8 @@ public class LoginController {
         final UserController controller = loader.getController();
         controller.initData();
 
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(true);
         stage.setMinWidth(900);

@@ -10,6 +10,7 @@ import java.util.List;
 
 public class Library implements Publisher {
 
+    private List<Person> persons;
     private List<Book> books;
     private List<Edition> editions;
     private List<Genre> genres;
@@ -25,6 +26,7 @@ public class Library implements Publisher {
     private List<Observer> observers;
 
     public Library() {
+        this.persons = new ArrayList<>();
         this.books = new ArrayList<>();
         this.genres = new ArrayList<>();
         this.contributors = new ArrayList<>();
@@ -40,6 +42,10 @@ public class Library implements Publisher {
 
     public List<Account> getAccounts() {
         return this.accounts;
+    }
+
+    public void addPerson(Person person) {
+        this.persons.add(person);
     }
     
     public void addAccount(Account account) {
@@ -80,6 +86,14 @@ public class Library implements Publisher {
             }
         }
         return null;
+    }
+
+    public void addIssueDayConstraint (MemberType type, int days) {
+        this.maxIssueDays.put(type, days);
+    }
+
+    public void addIssuedBooksConstraint(MemberType type, int limit) {
+        this.maxIssuedBooks.put(type, limit);
     }
 
     @Override

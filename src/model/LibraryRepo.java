@@ -2,6 +2,7 @@ package model;
 
 import model.enums.AccountType;
 import model.enums.ContributorType;
+import model.enums.MemberType;
 import model.enums.SampleState;
 
 import java.sql.*;
@@ -93,6 +94,7 @@ public class LibraryRepo implements ILibraryRepo {
                         break;
                 }
 
+                library.addPerson(person);
                 account.setPerson(person);
                 person.setAccount(account);
 
@@ -272,6 +274,48 @@ public class LibraryRepo implements ILibraryRepo {
                 edition.addBook(book);
 
                 library.addBook(book);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void loadMaxIssueDays(Library library) {
+
+        String query = "SELECT * FROM maxIssueDays";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+
+                String memberType = resultSet.getString("type");
+                int days = resultSet.getInt("days");
+
+                library.addIssueDayConstraint(MemberType.valueOf(memberType), days);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void loadMaxIssuedBooks(Library library) {
+
+        String query = "SELECT * FROM maxIssuedBooks";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+
+                String memberType = resultSet.getString("type");
+                int limit = resultSet.getInt("limit");
+
+                library.addIssuedBooksConstraint(MemberType.valueOf(memberType), limit);
             }
 
         } catch (SQLException e) {

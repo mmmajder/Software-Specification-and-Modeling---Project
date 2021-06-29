@@ -9,4 +9,6 @@ public interface ILibraryRepo {
     void loadTags(Library library);
     void loadGenres(Library library);
     void loadBooks(Library library);
+    void loadMaxIssueDays(Library library);
+    void loadMaxIssuedBooks(Library library);
 }

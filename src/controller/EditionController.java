@@ -1,32 +1,32 @@
 package controller;
 
 import model.*;
-import model.enums.Genre;
-import services.EditionService;
 import utils.StringUtils;
 import utils.exceptions.IdAlreadyExistsException;
 import utils.exceptions.MissingValueException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EditionController {
 
-    private ArrayList<Edition> editions;
+    private Library library;
 
-    public EditionController(ArrayList<Edition> editions){
-        this.editions = editions;
+    public EditionController(Library library){
+        this.library = library;
     }
 
     //TODO kako je uradjen izbor Genre, Date, itd
     //da li se prebacuju ovde u stringu?
-    public void create(String editionId, ArrayList<String> tags, String title, String publisher, int numberOfPages,
-                              String description, Genre genre, LocalDate publishedDate, String language, ArrayList<Book> books,
-                              BookFormat format, ArrayList<Contributor> contributors) throws MissingValueException, IdAlreadyExistsException {
+    public void create(String editionId, List<String> tags, String title, String publisher, int numberOfPages,
+                       String description, Genre genre, LocalDate publishedDate, String language, ArrayList<Book> books,
+                       BookFormat format, List<Contributor> contributors) throws MissingValueException, IdAlreadyExistsException {
+
         validateInputValues(editionId, title, publisher, genre, language, format, contributors);
-        Edition e = EditionService.create(editionId, tags, title, publisher, numberOfPages,
+        Edition e = EditionController.create(editionId, tags, title, publisher, numberOfPages,
                 description, genre, publishedDate, language, books, format, contributors);
-        editions.add(e);
+        library.addEdition(e);
     }
 
     private void validateInputValues(String editionId, String title, String publisher,
@@ -42,6 +42,27 @@ public class EditionController {
     }
 
     private void validateId(String editionId) throws IdAlreadyExistsException {
-        if (EditionService.doesEditionIdExist(editions, editionId)){ throw new IdAlreadyExistsException(); }
+        if (EditionController.editionIdExists(library.getEditions(), editionId)) {
+            throw new IdAlreadyExistsException();
+        }
+    }
+
+    static public Edition create(String editionId, List<String> tags, String title, String publisher, int numberOfPages,
+                                     String description, Genre genre, LocalDate publishedDate, String language, List<Book> books,
+                                     BookFormat format, List<Contributor> contributors) throws MissingValueException {
+        Edition e = new Edition(editionId, title, publisher, genre, language, format, contributors);
+        //e.addOtherAttributes(tags, numberOfPages, description, publishedDate);
+
+        return e;
+    }
+
+    public static boolean editionIdExists(List<Edition> editions, String editionId){
+        for (Edition e : editions){
+            if (e.getEditionId().equals(editionId)){
+                return true;
+            }
+        }
+
+        return false;
     }
 }

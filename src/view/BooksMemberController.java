@@ -1,20 +1,15 @@
-package controller;
+package view;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Edition;
-import model.enums.Genre;
+import model.Genre;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,8 +41,8 @@ public class BooksMemberController {
     @FXML
     public void setGenres() {
         genres.getItems().add("GENRES");
-        for (Genre genre : Genre.values()) {
-            genres.getItems().add(genre.label);
+        for (Genre genre : library.getGenres()) {
+            genres.getItems().add(genre.getName());
         }
     }
 

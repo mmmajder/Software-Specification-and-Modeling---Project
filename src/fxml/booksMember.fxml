@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<Pane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controller.BooksMemberController" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="view.BooksMemberController" xmlns:fx="http://javafx.com/fxml/1">
     <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
         <HBox minHeight="40.0" prefHeight="40.0" prefWidth="700.0" style="-fx-background-color: #abc82e;">
             <Pane prefHeight="50.0" prefWidth="436.0">

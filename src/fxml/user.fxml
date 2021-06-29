@@ -10,7 +10,7 @@
 <BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0"
             minWidth="900.0" prefHeight="600.0" prefWidth="900.0" stylesheets="@user.css"
             xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.UserController">
+            fx:controller="view.UserController">
     <top>
         <HBox prefHeight="26.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
             <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false"/>

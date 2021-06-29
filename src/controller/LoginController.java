@@ -1,36 +1,45 @@
 package controller;
 
-import model.Account;
-import model.Library;
-import services.AccountService;
-import services.LibraryService;
-import utils.StringUtils;
-import utils.exceptions.InvalidAccountPassword;
-import utils.exceptions.MissingValueException;
-import utils.exceptions.NoAccountWithThatUsername;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 public class LoginController {
+    public TextField usernameTextField;
+    public PasswordField passwordField;
 
-    private ArrayList<Account> accounts;
+    @FXML
+    private void switchToUser(ActionEvent event) throws IOException {
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/user.fxml"));
+        final Parent root = (Parent) loader.load();
+        final UserController controller = loader.getController();
+        controller.initData();
 
-    public LoginController(ArrayList<Account> accounts){
-        this.accounts = accounts;
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setResizable(true);
+        stage.setMinWidth(900);
+        stage.setMinHeight(600);
+        stage.setTitle("SIMS Library");
+        stage.show();
     }
 
-    public void login(String username, String password) throws MissingValueException, NoAccountWithThatUsername, InvalidAccountPassword {
-        validateInputValues(username, password);
-        Account a = AccountService.getAccount(accounts, username, password);
-        //TODO what should be done with the Account a?
-    }
-
-    private void validateInputValues(String username, String password) throws MissingValueException {
-        if (StringUtils.isNullOrEmpty(username)) {
-            throw new MissingValueException("username");
-        }
-        if (StringUtils.isNullOrEmpty(password)) {
-            throw new MissingValueException("password");
-        }
+    @FXML
+    private void alert(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("I have a great message for you!");
+        alert.showAndWait();
     }
 }

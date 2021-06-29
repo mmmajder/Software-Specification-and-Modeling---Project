@@ -4,5 +4,6 @@ public enum ContributorType {
     AUTHOR,
     ILLUSTRATOR,
     TRANSLATOR,
-    CRITIC
+    CRITIC,
+    EDITOR
 }

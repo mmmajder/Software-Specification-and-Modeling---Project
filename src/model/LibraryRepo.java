@@ -62,7 +62,7 @@ public class LibraryRepo implements ILibraryRepo {
 
                 account = new Account(username, password, email, type, null);
                 loadPerson(account, jmbg, type);
-                library.addAccount(account);
+                //library.addAccount(account);
             }
 
         } catch (SQLException e) {
@@ -101,8 +101,8 @@ public class LibraryRepo implements ILibraryRepo {
                         break;
                 }
 
-                account.setPerson(person);
-                person.setAccount(account);
+                //account.setPerson(person);
+                //person.setAccount(account);
             }
 
         } catch (SQLException e) {

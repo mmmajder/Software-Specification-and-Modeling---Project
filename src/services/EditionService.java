@@ -16,7 +16,7 @@ public class EditionService {
                                      String description, Genre genre, LocalDate publishedDate, String language, ArrayList<Book> books,
                                      BookFormat format, ArrayList<Contributor> contributors) throws MissingValueException {
         Edition e = new Edition(editionId, title, publisher, genre, language, format, contributors);
-        e.addOtherAttributes(tags, numberOfPages, description, publishedDate);
+        //e.addOtherAttributes(tags, numberOfPages, description, publishedDate);
 
         return e;
     }

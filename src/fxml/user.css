@@ -1,0 +1,19 @@
+.list-view {
+    -fx-selection-bar:green ;
+    -fx-selection-bar-non-focused: green ;
+    -fx-text-fill: green ;
+}
+.list-cell:empty {
+    -fx-background-color: white;
+}
+.list-cell:inactive {
+    -fx-text-fill: green ;
+}
+.bookPane {
+    -fx-background-color: white;
+    -fx-background-radius: 5.0;
+    -fx-background-insets: 7.0 7.0 7.0 7.0;
+    -fx-padding: 20;
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}

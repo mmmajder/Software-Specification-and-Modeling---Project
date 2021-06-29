@@ -43,6 +43,10 @@ public class Edition {
         this.contributorRoles = new ArrayList<>();
     }
 
+    public Edition(String editionId, String title, String publisher, Genre genre, String language, BookFormat format, List<Contributor> contributors) {
+        // fill constructor
+    }
+
     public String getImage() {
         return image;
     }

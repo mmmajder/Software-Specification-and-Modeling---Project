@@ -23,10 +23,10 @@ public class EditionController {
                        String description, Genre genre, LocalDate publishedDate, String language, ArrayList<Book> books,
                        BookFormat format, List<Contributor> contributors) throws MissingValueException, IdAlreadyExistsException {
 
-        validateInputValues(editionId, title, publisher, genre, language, format, contributors);
-        Edition e = EditionController.create(editionId, tags, title, publisher, numberOfPages,
-                description, genre, publishedDate, language, books, format, contributors);
-        library.addEdition(e);
+//        validateInputValues(editionId, title, publisher, genre, language, format, contributors);
+//        Edition e = EditionController.create(editionId, tags, title, publisher, numberOfPages,
+//                description, genre, publishedDate, language, books, format, contributors);
+//        library.addEdition(e);
     }
 
     private void validateInputValues(String editionId, String title, String publisher,

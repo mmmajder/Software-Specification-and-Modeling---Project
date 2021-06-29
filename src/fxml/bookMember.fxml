@@ -76,7 +76,7 @@
             <VBox prefHeight="478.0" prefWidth="629.0" style="-fx-background-color: ffffff;"
                   BorderPane.alignment="CENTER">
                 <Separator prefHeight="28.0" prefWidth="608.0" visible="false"/>
-                <Label fx:id="lblTitle" text="Title" textFill="#63ac29">
+                <Label onMouseClicked="#openWritter" text="Title" textFill="#63ac29" >
                     <font>
                         <Font name="System Bold" size="24.0"/>
                     </font>

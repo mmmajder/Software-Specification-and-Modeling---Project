@@ -1,5 +1,6 @@
 package view;
 
+import controller.AccountController;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -9,6 +10,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Edition;
 import model.Genre;
+import model.ILibraryRepo;
+import model.Library;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +20,13 @@ public class BooksMemberController {
     public ListView<String> genres;
     public List<BookPane> bookPanes;
     public GridPane grid;
+    public ListView listView;
     private Scene bookScene;
+
+    ILibraryRepo libraryRepo;
+    Library library;
+    AccountController controller;
+
 
     public void setSecondScene(Scene scene) {
         this.bookScene = scene;

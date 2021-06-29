@@ -2,10 +2,12 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Edition;
@@ -33,7 +35,7 @@ public class BookMemberController {
     }
 
     public void backToBooks(ActionEvent actionEvent) {
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(scene);
     }
 
@@ -55,8 +57,15 @@ public class BookMemberController {
         lblNumberOfPages.setText("Name of pages: " + edition.getNumberOfPages());
         //lblTranslation.setText("Translation: " + edition.getTranslator());
         //lblIllustration.setText("Illustration: " + edition.getIllustrator());
-        lblGenre.setText("Genre " + edition.getGenre());
+//        lblGenre.setText("Genre " + edition.getGenre());
         txtTags.setText("Tags: " + edition.getTags());
         // TODO add needed getters
+    }
+
+    @FXML
+    private void openWritter(MouseEvent event) {
+//        FXMLLoader writter = new FXMLLoader(getClass().getResource("../fxml/writter.fxml"));
+//        writtetScene = writter.load();
+
     }
 }

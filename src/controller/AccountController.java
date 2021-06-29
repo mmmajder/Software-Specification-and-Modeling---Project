@@ -5,8 +5,6 @@ import model.Library;
 import utils.exceptions.InvalidAccountPassword;
 import utils.exceptions.NoAccountWithThatUsername;
 
-import java.util.ArrayList;
-
 public class AccountController {
 
     private Library library;
@@ -15,23 +13,21 @@ public class AccountController {
         this.library = library;
     }
 
-    public Account getAccount(ArrayList<Account> accounts, String username, String password) throws NoAccountWithThatUsername, InvalidAccountPassword {
-        Account a = getAccount(accounts, username);
+    public boolean usernameExists(String username) throws NoAccountWithThatUsername {
+        for (Account account : library.getAccounts()) {
+            if (account.getUsername().equalsIgnoreCase(username)) {
+                return true;
+            }
+        }
+        throw new NoAccountWithThatUsername();
+    }
 
-        if (a.getPassword().equals(password)){
-            return a;
+    public boolean passwordValid(Account account, String password) throws InvalidAccountPassword {
+
+        if (account.getPassword().equals(password)){
+            return true;
         }
 
         throw new InvalidAccountPassword();
-    }
-
-    public Account getAccount(ArrayList<Account> accounts, String username) throws NoAccountWithThatUsername {
-        for (Account a : accounts){
-            if (a.getUsername().equals(username)){
-                return a;
-            }
-        }
-
-        throw new NoAccountWithThatUsername();
     }
 }

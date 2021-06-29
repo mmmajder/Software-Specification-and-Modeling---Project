@@ -104,6 +104,15 @@ public class Library implements Publisher {
         this.maxIssuedBooks.put(type, limit);
     }
 
+    public Account getAccount(String username) {
+        for (Account account : this.accounts) {
+            if (account.getUsername().equalsIgnoreCase(username)) {
+                return account;
+            }
+        }
+        return null;
+    }
+
     @Override
     public void addObserver(Observer observer) {
 

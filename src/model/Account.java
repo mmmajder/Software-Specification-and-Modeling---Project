@@ -8,13 +8,15 @@ public class Account {
     private String email;
     private AccountType type;
     private Person person;
+    private boolean isActive;
 
-    public Account(String username, String password, String email, AccountType type, Person person) {
+    public Account(String username, String password, String email, AccountType type, Person person, boolean isActive) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.type = type;
         this.person = person;
+        this.isActive = isActive;
     }
 
     public Person getPerson() {
@@ -41,13 +43,7 @@ public class Account {
         this.person = person;
     }
 
-    // TODO: NE VALJA
     public String getFullName() {
-        try {
-            System.out.println(person.getName());
-            return this.person.getName() + " " + this.person.getSurname();
-        } catch (Exception e) {
-            return "error";
-        }
+        return this.person.getName() + " " + this.person.getSurname();
     }
 }

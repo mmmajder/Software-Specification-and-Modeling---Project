@@ -20,7 +20,7 @@ public class MembershipControler {
 
         if (contactBankingSystem()) {
             createPayment(m, numOfMonths);
-            m.prolongSubscription();
+            m.extendMembership();
         } else{
             throw new InvalidTransactionException();
         }

@@ -126,7 +126,8 @@ public class LibraryRepo implements ILibraryRepo {
                 String image = editions.getString("image");
 
                 query = "SELECT * FROM bookFormats WHERE idbf = " + format;
-                ResultSet formats = statement.executeQuery(query);
+                PreparedStatement bookFormatStatement = connection.prepareStatement(query);
+                ResultSet formats = bookFormatStatement.executeQuery(query);
                 formats.next();
 
                 double height = formats.getDouble("height");
@@ -182,6 +183,7 @@ public class LibraryRepo implements ILibraryRepo {
             while (contributorRoles.next()) {
 
                 String editionId = contributorRoles.getString("ide");
+                System.out.println(editionId);
                 int contributorId = contributorRoles.getInt("idc");
                 String contributorType = contributorRoles.getString("type");
 
@@ -234,8 +236,8 @@ public class LibraryRepo implements ILibraryRepo {
                 int genreId = genres.getInt("genre");
 
                 query = "SELECT * FROM genres WHERE idg = " + genreId;
-                statement = connection.prepareStatement(query);
-                ResultSet result = statement.executeQuery();
+                PreparedStatement genreStatement = connection.prepareStatement(query);
+                ResultSet result = genreStatement.executeQuery();
                 result.next();
 
                 String genreName = genres.getString("name");

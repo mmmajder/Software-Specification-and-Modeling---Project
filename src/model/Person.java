@@ -9,6 +9,7 @@ public abstract class Person {
     private String phoneNumber;
     private LocalDate birthDate;
     private Account account;
+    private boolean status;
 
     public Person() {
     }

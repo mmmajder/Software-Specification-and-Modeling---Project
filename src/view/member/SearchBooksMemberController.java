@@ -8,7 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Edition;
-import view.member.BookPane;
+import model.LibraryRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,7 @@ public class SearchBooksMemberController {
     public List<BookPane> bookPanes;
     public GridPane grid;
     private Scene bookScene;
+    private LibraryRepo libraryRepo;
 
     public void setSecondScene(Scene scene) {
         this.bookScene = scene;

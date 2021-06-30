@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import model.Account;
+import model.ILibraryRepo;
 import model.Library;
 import model.LibraryRepo;
 import utils.exceptions.InvalidAccountPassword;
@@ -29,7 +30,7 @@ public class LoginController {
     public Label lblError;
     AccountController accountController;
     Library library;
-    LibraryRepo libraryRepo;
+    ILibraryRepo libraryRepo;
 
     private String getFileName(Account account) {
         switch (account.getType()) {

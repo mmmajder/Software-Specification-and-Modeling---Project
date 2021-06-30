@@ -32,6 +32,12 @@ public class MemberController {
     public Parent membershipScene;
     public Parent notificationsScene;
 
+    BookMemberController bookMemberController;
+    MembershipController membershipController;
+    NotificationsController notificationsController;
+    SearchBooksMemberController searchBooksMemberController;
+    HistoryController historyController;
+
     AccountController controller;
     Library library;
     Account account;
@@ -54,26 +60,26 @@ public class MemberController {
 
         FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../../fxml/member/searchBooksMember.fxml"));
         booksScene = booksLoader.load();
-        SearchBooksMemberController searchBooksMemberController = (SearchBooksMemberController) booksLoader.getController();
+        searchBooksMemberController = booksLoader.getController();
 
         FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/member/reservationMember.fxml"));
         bookScene = bookLoader.load();
-        BookMemberController bookMemberController = (BookMemberController) bookLoader.getController();
+        bookMemberController = bookLoader.getController();
 
         bookMemberController.setSecondScene(new Scene(booksScene));
         searchBooksMemberController.setSecondScene(new Scene(bookScene));
 
         FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../../fxml/member/history.fxml"));
         historyScene = historyLoader.load();
-        //HistoryController historyController = (HistoryController) historyLoader.getController();
+        historyController = historyLoader.getController();
 
         FXMLLoader membershipLoader = new FXMLLoader(getClass().getResource("../../fxml/member/membership.fxml"));
         membershipScene = membershipLoader.load();
-        //MembershipController membershipController = (MembershipController) membershipLoader.getController();
+        membershipController = membershipLoader.getController();
 
         FXMLLoader notificationsLoader = new FXMLLoader(getClass().getResource("../../fxml/member/notifications.fxml"));
         notificationsScene = notificationsLoader.load();
-        //NotificationsController notificationsController = (NotificationsController) notificationsLoader.getController();
+        notificationsController = notificationsLoader.getController();
 
         switchToBooks();
     }
@@ -123,6 +129,7 @@ public class MemberController {
     @FXML
     private void switchToMembership(MouseEvent event) {
         borderPane.setCenter(membershipScene);
+        membershipController.initData(account);
         lblNotifications.setUnderline(false);
         lblHistory.setUnderline(false);
         lblMembership.setUnderline(true);

@@ -31,4 +31,5 @@ public class Book {
     public boolean getIsRestricted() { return this.isRestricted; }
     public void addIssueHistory(IssuedBook issuedBook) { this.issueHistory.add(issuedBook); }
     public Edition getEdition() { return edition; }
+    public List<IssuedBook> getIssueHistory() { return issueHistory; }
 }

@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="550.0" minWidth="900.0" prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #63AC29;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.librarian.BookCRUDController">
+<BorderPane minHeight="550.0" minWidth="900.0" prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #63AC29;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.librarian.BookCRUDController">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #63AC29;" BorderPane.alignment="CENTER">
          <children>
             <TableView fx:id="editionTable" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn prefWidth="241.0" text="ID" />
-                <TableColumn prefWidth="431.0" text="State" />
-                  <TableColumn prefWidth="187.0" text="Restricted" />
+                <TableColumn fx:id="id" prefWidth="241.0" text="ID" />
+                <TableColumn fx:id="state" prefWidth="431.0" text="State" />
+                  <TableColumn fx:id="restricted" prefWidth="187.0" text="Restricted" />
               </columns>
                <VBox.margin>
                   <Insets left="20.0" right="20.0" top="30.0" />
@@ -52,23 +57,17 @@
                   <Insets left="20.0" />
                </VBox.margin>
             </Label>
-            <TreeTableView fx:id="sampleTable" prefHeight="200.0" prefWidth="200.0">
-              <columns>
-                <TreeTableColumn prefWidth="167.0" text="Issue date" />
-                <TreeTableColumn prefWidth="206.0" text="Returned date" />
-                  <TreeTableColumn prefWidth="151.0" text="Status" />
-                  <TreeTableColumn prefWidth="335.0" text="Member">
-                     <columns>
-                        <TreeTableColumn prefWidth="75.0" text="ID" />
-                        <TreeTableColumn prefWidth="115.0" text="Name" />
-                        <TreeTableColumn prefWidth="145.0" text="Surname" />
-                     </columns>
-                  </TreeTableColumn>
-              </columns>
+            <TableView fx:id="sampleTable" prefHeight="200.0" prefWidth="200.0">
+               <columns>
+                  <TableColumn fx:id="issueDate" prefWidth="241.0" text="Issue date" />
+                  <TableColumn fx:id="returnedDate" prefWidth="140.0" text="Returned date" />
+                  <TableColumn fx:id="status" prefWidth="180.0" text="Status" />
+                  <TableColumn fx:id="member" minWidth="3.0" prefWidth="338.0" text="Member" />
+               </columns>
                <VBox.margin>
                   <Insets left="20.0" right="20.0" top="10.0" />
                </VBox.margin>
-            </TreeTableView>
+            </TableView>
          </children>
       </VBox>
    </center>

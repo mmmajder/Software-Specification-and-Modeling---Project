@@ -64,43 +64,52 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void loadPersons(Library library) {
 
-        for (Account account : library.getAccounts()) {
-            String query = "SELECT * FROM persons WHERE account = ?";
+        String query = "SELECT * FROM persons";
 
-            try {
+        try {
 
-                PreparedStatement statement = connection.prepareStatement(query);
-                statement.setString(1, account.getEmail());
-                ResultSet persons = statement.executeQuery();
-                persons.next();
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet persons = statement.executeQuery();
+            while (persons.next()) {
 
                 String jmbg = persons.getString("jmbg");
                 String name = persons.getString("name");
                 String surname = persons.getString("surname");
                 String phoneNumber = persons.getString("phoneNumber");
                 LocalDate birthDate = persons.getDate("dateOfBirth").toLocalDate();
+                String email = persons.getString("account");
 
                 Person person = null;
 
-                switch(account.getType()) {
-                    case ADMIN:
-                        person = new Admin(name, surname, jmbg, phoneNumber, birthDate, null);
-                        break;
-                    case MEMBER:
-                        person = new Member(name, surname, jmbg, phoneNumber, birthDate, null);
-                        break;
-                    case LIBRARIAN:
-                        person = new Librarian(name, surname, jmbg, phoneNumber, birthDate, null);
-                        break;
+                if (email == null) {
+
+                    person = new Member(name, surname, jmbg, phoneNumber, birthDate, null);
+
+                } else {
+
+                    Account account = library.getAccountByEmail(email);
+
+                    switch(account.getType()) {
+                        case ADMIN:
+                            person = new Admin(name, surname, jmbg, phoneNumber, birthDate, null);
+                            break;
+                        case MEMBER:
+                            person = new Member(name, surname, jmbg, phoneNumber, birthDate, null);
+                            break;
+                        case LIBRARIAN:
+                            person = new Librarian(name, surname, jmbg, phoneNumber, birthDate, null);
+                            break;
+                    }
+
+                    account.setPerson(person);
+                    person.setAccount(account);
                 }
 
                 library.addPerson(person);
-                account.setPerson(person);
-                person.setAccount(account);
-
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

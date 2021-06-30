@@ -41,9 +41,9 @@ public class BooksMemberController {
     @FXML
     public void setGenres() {
         genres.getItems().add("GENRES");
-        for (Genre genre : library.getGenres()) {
-            genres.getItems().add(genre.getName());
-        }
+//        for (Genre genre : library.getGenres()) {
+//            genres.getItems().add(genre.getName());
+//        }
     }
 
     @FXML

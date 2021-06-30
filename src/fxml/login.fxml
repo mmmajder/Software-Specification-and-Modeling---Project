@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            prefWidth="900.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.LoginController">
     <children>
         <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
@@ -36,26 +36,27 @@
             <children>
                 <Label text="USERNAME" textFill="#abc82e">
                     <font>
-                        <Font name="Roboto Bold" size="12.0"/>
+                        <Font name="Roboto Bold" size="14.0"/>
                     </font>
                 </Label>
                 <Label text="PASSWORD" textFill="#abc82e" GridPane.rowIndex="2">
                     <font>
-                        <Font name="Roboto Bold" size="12.0"/>
+                        <Font name="Roboto Bold" size="14.0"/>
                     </font>
                 </Label>
                 <Button defaultButton="true" mnemonicParsing="false" onAction="#switchToUser" prefHeight="30.0"
                         prefWidth="309.0" style="-fx-background-color: #abcb2e;" text="LOGIN" textFill="WHITE"
                         GridPane.rowIndex="5">
                     <font>
-                        <Font name="Roboto Bold" size="12.0"/>
+                        <Font name="Roboto Bold" size="14.0"/>
                     </font>
                 </Button>
                 <PasswordField fx:id="passwordField" GridPane.rowIndex="3"/>
                 <TextField fx:id="usernameTextField" GridPane.rowIndex="1"/>
-                <Label text="Username or password are not valid." textFill="RED" visible="false" GridPane.rowIndex="4">
+                <Label text="Username or password are not valid." textFill="#800e24" visible="false"
+                       GridPane.rowIndex="4" fx:id="lblError">
                     <font>
-                        <Font size="10.0"/>
+                        <Font name="Roboto Bold" size="14.0"/>
                     </font>
                 </Label>
             </children>

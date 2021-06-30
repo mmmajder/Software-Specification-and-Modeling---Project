@@ -13,7 +13,7 @@ public class EditionController {
 
     private Library library;
 
-    public EditionController(Library library){
+    public EditionController(Library library) {
         this.library = library;
     }
 
@@ -23,22 +23,36 @@ public class EditionController {
                        String description, Genre genre, LocalDate publishedDate, String language, List<Book> books,
                        BookFormat format, List<Contributor> contributors) throws MissingValueException, IdAlreadyExistsException {
 
-        validateInputValues(editionId, title, publisher, genre, language, format, contributors);
-        Edition e = EditionController.create(editionId, tags, title, publisher, numberOfPages,
-                description, genre, publishedDate, language, books, format, contributors);
-        library.addEdition(e);
+//        validateInputValues(editionId, title, publisher, genre, language, format, contributors);
+//        Edition e = EditionController.create(editionId, tags, title, publisher, numberOfPages,
+//                description, genre, publishedDate, language, books, format, contributors);
+//        library.addEdition(e);
     }
 
     private void validateInputValues(String editionId, String title, String publisher,
                                      Genre genre, String language, BookFormat format, ArrayList<Contributor> contributors) throws MissingValueException, IdAlreadyExistsException {
-        if (StringUtils.isNullOrEmpty(editionId)) { throw new MissingValueException("editionId"); }
+        if (StringUtils.isNullOrEmpty(editionId)) {
+            throw new MissingValueException("editionId");
+        }
         validateId(editionId);
-        if (StringUtils.isNullOrEmpty(title)) { throw new MissingValueException("title"); }
-        if (StringUtils.isNullOrEmpty(publisher)) { throw new MissingValueException("publisher"); }
-        if (genre == null) { throw new MissingValueException("genre"); }
-        if (StringUtils.isNullOrEmpty(language)) { throw new MissingValueException("language"); }
-        if (format == null) { throw new MissingValueException("format"); }
-        if (contributors.size() == 0) { throw new MissingValueException("contributors"); }
+        if (StringUtils.isNullOrEmpty(title)) {
+            throw new MissingValueException("title");
+        }
+        if (StringUtils.isNullOrEmpty(publisher)) {
+            throw new MissingValueException("publisher");
+        }
+        if (genre == null) {
+            throw new MissingValueException("genre");
+        }
+        if (StringUtils.isNullOrEmpty(language)) {
+            throw new MissingValueException("language");
+        }
+        if (format == null) {
+            throw new MissingValueException("format");
+        }
+        if (contributors.size() == 0) {
+            throw new MissingValueException("contributors");
+        }
     }
 
     private void validateId(String editionId) throws IdAlreadyExistsException {
@@ -48,17 +62,17 @@ public class EditionController {
     }
 
     static public Edition create(String editionId, List<String> tags, String title, String publisher, int numberOfPages,
-                                     String description, Genre genre, LocalDate publishedDate, String language, List<Book> books,
-                                     BookFormat format, List<Contributor> contributors) throws MissingValueException {
+                                 String description, Genre genre, LocalDate publishedDate, String language, List<Book> books,
+                                 BookFormat format, List<Contributor> contributors) throws MissingValueException {
         Edition e = new Edition(editionId, title, publisher, genre, language, format, contributors);
-        //e.addOtherAttributes(tags, numberOfPages, description, publishedDate);
+       // e.addOtherAttributes(tags, numberOfPages, description, publishedDate);
 
         return e;
     }
 
-    public static boolean editionIdExists(List<Edition> editions, String editionId){
-        for (Edition e : editions){
-            if (e.getEditionId().equals(editionId)){
+    public static boolean editionIdExists(List<Edition> editions, String editionId) {
+        for (Edition e : editions) {
+            if (e.getEditionId().equals(editionId)) {
                 return true;
             }
         }

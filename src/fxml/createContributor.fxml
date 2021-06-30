@@ -14,35 +14,42 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="416.0" minWidth="638.0" prefHeight="416.0" prefWidth="639.0" style="-fx-background-color: #63AC29;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane minHeight="416.0" minWidth="638.0" prefHeight="416.0" prefWidth="639.0"
+            style="-fx-background-color: #63AC29;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <top>
-        <HBox prefHeight="26.0" style="-fx-background-color: #ffffff; -fx-border-color: #7AB12B;" BorderPane.alignment="CENTER">
+        <HBox prefHeight="26.0" style="-fx-background-color: #ffffff; -fx-border-color: #7AB12B;"
+              BorderPane.alignment="CENTER">
             <children>
-                <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false" />
+                <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false"/>
                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../fxml/logo.png" />
+                        <Image url="@../fxml/logo.png"/>
                     </image>
                 </ImageView>
-                <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="75.0" visible="false" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="281.0" text="CREATION OF CONTRIBUTOR" textFill="#63ac29">
+                <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="75.0" visible="false"/>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="281.0"
+                       text="CREATION OF CONTRIBUTOR" textFill="#63ac29">
                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
+                        <Font name="SansSerif Bold" size="15.0"/>
                     </font>
                 </Label>
             </children>
         </HBox>
     </top>
     <bottom>
-        <BorderPane prefHeight="62.0" prefWidth="658.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+        <BorderPane prefHeight="62.0" prefWidth="658.0" style="-fx-background-color: #ffffff;"
+                    BorderPane.alignment="CENTER">
             <right>
                 <Pane prefHeight="62.0" prefWidth="392.0" BorderPane.alignment="CENTER">
                     <BorderPane.margin>
-                        <Insets right="30.0" />
+                        <Insets right="30.0"/>
                     </BorderPane.margin>
                     <children>
-                        <Button layoutX="238.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #63ac29;" text="ACCEPT" textFill="WHITE" />
-                        <Button layoutX="68.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #FF0000;" text="RESET" textFill="WHITE" />
+                        <Button layoutX="238.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0"
+                                prefWidth="154.0" style="-fx-background-color: #63ac29;" text="ACCEPT"
+                                textFill="WHITE"/>
+                        <Button layoutX="68.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0"
+                                prefWidth="154.0" style="-fx-background-color: #FF0000;" text="RESET" textFill="WHITE"/>
                     </children>
                 </Pane>
             </right>
@@ -53,9 +60,10 @@
             <children>
                 <Pane prefHeight="324.0" prefWidth="900.0">
                     <children>
-                        <TextField layoutX="14.0" layoutY="14.0" promptText="Name" />
-                        <TextField layoutX="184.0" layoutY="14.0" promptText="Surname" />
-                  <TextArea layoutX="14.0" layoutY="62.0" prefHeight="228.0" prefWidth="598.0" promptText="Biography" />
+                        <TextField layoutX="14.0" layoutY="14.0" promptText="Name"/>
+                        <TextField layoutX="184.0" layoutY="14.0" promptText="Surname"/>
+                        <TextArea layoutX="14.0" layoutY="62.0" prefHeight="228.0" prefWidth="598.0"
+                                  promptText="Biography"/>
                     </children>
                 </Pane>
             </children>

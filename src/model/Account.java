@@ -40,4 +40,12 @@ public class Account {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    public String getFullName() {
+        try {
+            return this.person.getName() + " " + this.person.getSurname();
+        } catch (Exception e) {
+            return "error";
+        }
+    }
 }

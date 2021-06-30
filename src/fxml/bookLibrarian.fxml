@@ -12,145 +12,160 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0">
-          <left>
-              <VBox prefHeight="469.0" prefWidth="295.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
-                  <children>
-                      <Pane prefHeight="261.0" prefWidth="288.0">
-                          <children>
-                              <ImageView fitHeight="216.0" fitWidth="194.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
-                                  <image>
-                                      <Image url="@../fxml/TheLittlePrince.jpg" />
-                                  </image>
-                              </ImageView>
-                          </children>
-                      </Pane>
-                      <Label fx:id="lblPublishedDate" text="Published date:">
-                          <padding>
-                              <Insets left="20.0" />
-                          </padding>
-                      </Label>
-                      <Label fx:id="lblLanguage" text="Language:">
-                          <padding>
-                              <Insets left="20.0" />
-                          </padding>
-                      </Label>
-                      <Label fx:id="lblPublisher" text="Publisher:">
-                          <padding>
-                              <Insets left="20.0" />
-                          </padding>
-                      </Label>
-                      <Label fx:id="lblNumberOfPages" text="Number of pages:">
-                          <padding>
-                              <Insets left="20.0" />
-                          </padding>
-                      </Label>
-                      <Label fx:id="lblTranslation" text="Translation:">
-                          <padding>
-                              <Insets left="20.0" />
-                          </padding>
-                      </Label>
-                      <Label fx:id="lblIllustration" text="Illustration:">
-                          <padding>
-                              <Insets left="20.0" />
-                          </padding>
-                      </Label>
-                  <Label text="Editor:">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-                      <Label fx:id="lblGenre" text="Genre:">
-                          <padding>
-                              <Insets left="20.0" />
-                          </padding>
-                      </Label>
-                      <Text fx:id="txtTags" strokeType="OUTSIDE" strokeWidth="0.0" text="Tags:">
-                          <VBox.margin>
-                              <Insets left="20.0" />
-                          </VBox.margin>
-                      </Text>
-                  </children>
-              </VBox>
-          </left>
-          <center>
-              <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
-                  <children>
-                      <Separator prefHeight="28.0" prefWidth="608.0" visible="false" />
-                      <Label fx:id="lblTitle" text="Title" textFill="#63ac29">
-                          <font>
-                              <Font name="System Bold" size="24.0" />
-                          </font>
-                      </Label>
-                      <Label fx:id="lblAuthor" text="Author" textFill="#63ac29">
-                          <font>
-                              <Font name="System Italic" size="18.0" />
-                          </font>
-                      </Label>
-                      <Separator prefHeight="20.0" prefWidth="608.0" visible="false" />
-                      <Text fx:id="txtDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="594.13671875" />
-                  </children>
-              </VBox>
-          </center>
-          <bottom>
-              <BorderPane prefHeight="116.0" prefWidth="900.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
-                  <right>
-                      <Pane prefHeight="116.0" prefWidth="498.0" BorderPane.alignment="CENTER">
-                          <children>
-                              <Button layoutX="330.0" layoutY="58.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #7AB12B;" text="EDIT SAMPLES" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button layoutX="14.0" layoutY="58.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #FF0000;" text="RENT" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button layoutX="172.0" layoutY="58.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #7AB12B;" text="EDIT EDITION" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                          </children>
-                      </Pane>
-                  </right>
-               <center>
-                  <Pane prefHeight="116.0" prefWidth="491.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label fx:id="lblAuthor1" layoutX="240.0" layoutY="38.0" text="Available:" textFill="#63ac29">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
+<Pane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0">
+            <left>
+                <VBox prefHeight="469.0" prefWidth="295.0" style="-fx-background-color: ffffff;"
+                      BorderPane.alignment="CENTER">
+                    <children>
+                        <Pane prefHeight="261.0" prefWidth="288.0">
+                            <children>
+                                <ImageView fitHeight="216.0" fitWidth="194.0" layoutX="14.0" layoutY="23.0"
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../fxml/TheLittlePrince.jpg"/>
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </Pane>
+                        <Label fx:id="lblPublishedDate" text="Published date:">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
                         </Label>
-                        <Label fx:id="lblAuthor11" layoutX="240.0" layoutY="58.0" text="Taken or reserved:" textFill="RED">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
+                        <Label fx:id="lblLanguage" text="Language:">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
                         </Label>
-                        <Label fx:id="lblAuthor12" layoutX="240.0" layoutY="78.0" text="RESTRICTED" textFill="#63ac29">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
+                        <Label fx:id="lblPublisher" text="Publisher:">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
                         </Label>
-                     </children>
-                  </Pane>
-               </center>
-              </BorderPane>
-          </bottom>
-         <right>
-            <Pane prefHeight="432.0" prefWidth="143.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
-               <children>
-                  <Label layoutX="52.0" layoutY="30.0" text="Shelf" textFill="#f1a350" underline="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-         </right>
-      </BorderPane>
-   </children>
+                        <Label fx:id="lblNumberOfPages" text="Number of pages:">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </Label>
+                        <Label fx:id="lblTranslation" text="Translation:">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </Label>
+                        <Label fx:id="lblIllustration" text="Illustration:">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </Label>
+                        <Label text="Editor:">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </Label>
+                        <Label fx:id="lblGenre" text="Genre:">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </Label>
+                        <Text fx:id="txtTags" strokeType="OUTSIDE" strokeWidth="0.0" text="Tags:">
+                            <VBox.margin>
+                                <Insets left="20.0"/>
+                            </VBox.margin>
+                        </Text>
+                    </children>
+                </VBox>
+            </left>
+            <center>
+                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: ffffff;"
+                      BorderPane.alignment="CENTER">
+                    <children>
+                        <Separator prefHeight="28.0" prefWidth="608.0" visible="false"/>
+                        <Label fx:id="lblTitle" text="Title" textFill="#63ac29">
+                            <font>
+                                <Font name="System Bold" size="24.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="lblAuthor" text="Author" textFill="#63ac29">
+                            <font>
+                                <Font name="System Italic" size="18.0"/>
+                            </font>
+                        </Label>
+                        <Separator prefHeight="20.0" prefWidth="608.0" visible="false"/>
+                        <Text fx:id="txtDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                              wrappingWidth="594.13671875"/>
+                    </children>
+                </VBox>
+            </center>
+            <bottom>
+                <BorderPane prefHeight="116.0" prefWidth="900.0" style="-fx-background-color: ffffff;"
+                            BorderPane.alignment="CENTER">
+                    <right>
+                        <Pane prefHeight="116.0" prefWidth="498.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Button layoutX="330.0" layoutY="58.0" mnemonicParsing="false" prefHeight="30.0"
+                                        prefWidth="154.0" style="-fx-background-color: #7AB12B;" text="EDIT SAMPLES"
+                                        textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Button>
+                                <Button layoutX="14.0" layoutY="58.0" mnemonicParsing="false" prefHeight="30.0"
+                                        prefWidth="154.0" style="-fx-background-color: #FF0000;" text="RENT"
+                                        textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Button>
+                                <Button layoutX="172.0" layoutY="58.0" mnemonicParsing="false" prefHeight="30.0"
+                                        prefWidth="154.0" style="-fx-background-color: #7AB12B;" text="EDIT EDITION"
+                                        textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Button>
+                            </children>
+                        </Pane>
+                    </right>
+                    <center>
+                        <Pane prefHeight="116.0" prefWidth="491.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Label fx:id="lblAuthor1" layoutX="240.0" layoutY="38.0" text="Available:"
+                                       textFill="#63ac29">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="lblAuthor11" layoutX="240.0" layoutY="58.0" text="Taken or reserved:"
+                                       textFill="RED">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="lblAuthor12" layoutX="240.0" layoutY="78.0" text="RESTRICTED"
+                                       textFill="#63ac29">
+                                    <font>
+                                        <Font name="System Bold" size="14.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+                    </center>
+                </BorderPane>
+            </bottom>
+            <right>
+                <Pane prefHeight="432.0" prefWidth="143.0" style="-fx-background-color: ffffff;"
+                      BorderPane.alignment="CENTER">
+                    <children>
+                        <Label layoutX="52.0" layoutY="30.0" text="Shelf" textFill="#f1a350" underline="true">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+            </right>
+        </BorderPane>
+    </children>
 </Pane>

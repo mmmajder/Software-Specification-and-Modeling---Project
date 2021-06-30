@@ -6,215 +6,243 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="600.0" maxWidth="900.0" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #63AC29;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="600.0" maxWidth="900.0" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0"
+            style="-fx-background-color: #63AC29;" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1">
     <top>
-        <HBox prefHeight="26.0" prefWidth="900.0" style="-fx-background-color: #ffffff; -fx-border-color: #7AB12B;" BorderPane.alignment="CENTER">
+        <HBox prefHeight="26.0" prefWidth="900.0" style="-fx-background-color: #ffffff; -fx-border-color: #7AB12B;"
+              BorderPane.alignment="CENTER">
             <children>
-                <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false" />
+                <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false"/>
                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../fxml/logo.png" />
+                        <Image url="@../fxml/logo.png"/>
                     </image>
                 </ImageView>
-                <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="75.0" visible="false" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="514.0" text="SELECTION OF CONTRIBUTORS" textFill="#63ac29">
+                <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="75.0" visible="false"/>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="514.0"
+                       text="SELECTION OF CONTRIBUTORS" textFill="#63ac29">
                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
+                        <Font name="SansSerif Bold" size="15.0"/>
                     </font>
                 </Label>
             </children>
         </HBox>
     </top>
-   <bottom>
-      <BorderPane prefHeight="62.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
-         <right>
-            <Pane prefHeight="62.0" prefWidth="392.0" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets right="30.0" />
-               </BorderPane.margin>
-               <children>
-                  <Button layoutX="222.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #63ac29;" text="ACCEPT" textFill="WHITE" />
-                  <Button layoutX="54.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: #FF0000;" text="RESET" textFill="WHITE" />
-               </children>
-            </Pane>
-         </right>
-      </BorderPane>
-   </bottom>
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <Pane prefHeight="52.0" prefWidth="900.0">
-               <children>
-                  <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type" />
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png" />
-                     </image>
-                  </ImageView>
-                  <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor" />
-               </children>
-            </Pane>
-            <Pane prefHeight="52.0" prefWidth="900.0">
-               <children>
-                  <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type" />
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png" />
-                     </image>
-                  </ImageView>
-                  <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor" />
-               </children>
-            </Pane>
-            <Pane prefHeight="52.0" prefWidth="900.0">
-               <children>
-                  <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type" />
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png" />
-                     </image>
-                  </ImageView>
-                  <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor" />
-               </children>
-            </Pane>
-            <Pane prefHeight="52.0" prefWidth="900.0">
-               <children>
-                  <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type" />
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png" />
-                     </image>
-                  </ImageView>
-                  <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor" />
-               </children>
-            </Pane>
-            <Pane prefHeight="52.0" prefWidth="900.0">
-               <children>
-                  <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type" />
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png" />
-                     </image>
-                  </ImageView>
-                  <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor" />
-               </children>
-            </Pane>
-            <Pane prefHeight="52.0" prefWidth="900.0">
-               <children>
-                  <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type" />
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png" />
-                     </image>
-                  </ImageView>
-                  <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor" />
-               </children>
-            </Pane>
-            <Pane prefHeight="52.0" prefWidth="900.0">
-               <children>
-                  <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type" />
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png" />
-                     </image>
-                  </ImageView>
-                  <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor" />
-               </children>
-            </Pane>
-            <Pane prefHeight="52.0" prefWidth="900.0">
-               <children>
-                  <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type" />
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png" />
-                     </image>
-                  </ImageView>
-                  <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor" />
-               </children>
-            </Pane>
-            <Pane prefHeight="52.0" prefWidth="900.0">
-               <children>
-                  <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type" />
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png" />
-                     </image>
-                  </ImageView>
-                  <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor" />
-               </children>
-            </Pane>
-            <Pane prefHeight="52.0" prefWidth="900.0">
-               <children>
-                  <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type" />
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png" />
-                     </image>
-                  </ImageView>
-                  <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor" />
-               </children>
-            </Pane>
-         </children>
-      </VBox>
-   </center>
-   <right>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="13.0" layoutY="25.0" text="+ ADD NEW CONTRIBUTOR" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-   </right>
+    <bottom>
+        <BorderPane prefHeight="62.0" prefWidth="900.0" style="-fx-background-color: #ffffff;"
+                    BorderPane.alignment="CENTER">
+            <right>
+                <Pane prefHeight="62.0" prefWidth="392.0" BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets right="30.0"/>
+                    </BorderPane.margin>
+                    <children>
+                        <Button layoutX="222.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0"
+                                prefWidth="154.0" style="-fx-background-color: #63ac29;" text="ACCEPT"
+                                textFill="WHITE"/>
+                        <Button layoutX="54.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0"
+                                prefWidth="154.0" style="-fx-background-color: #FF0000;" text="RESET" textFill="WHITE"/>
+                    </children>
+                </Pane>
+            </right>
+        </BorderPane>
+    </bottom>
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <Pane prefHeight="52.0" prefWidth="900.0">
+                    <children>
+                        <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type"/>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                            </image>
+                        </ImageView>
+                        <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
+                    </children>
+                </Pane>
+                <Pane prefHeight="52.0" prefWidth="900.0">
+                    <children>
+                        <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type"/>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                            </image>
+                        </ImageView>
+                        <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
+                    </children>
+                </Pane>
+                <Pane prefHeight="52.0" prefWidth="900.0">
+                    <children>
+                        <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type"/>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                            </image>
+                        </ImageView>
+                        <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
+                    </children>
+                </Pane>
+                <Pane prefHeight="52.0" prefWidth="900.0">
+                    <children>
+                        <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type"/>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                            </image>
+                        </ImageView>
+                        <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
+                    </children>
+                </Pane>
+                <Pane prefHeight="52.0" prefWidth="900.0">
+                    <children>
+                        <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type"/>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                            </image>
+                        </ImageView>
+                        <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
+                    </children>
+                </Pane>
+                <Pane prefHeight="52.0" prefWidth="900.0">
+                    <children>
+                        <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type"/>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                            </image>
+                        </ImageView>
+                        <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
+                    </children>
+                </Pane>
+                <Pane prefHeight="52.0" prefWidth="900.0">
+                    <children>
+                        <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type"/>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                            </image>
+                        </ImageView>
+                        <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
+                    </children>
+                </Pane>
+                <Pane prefHeight="52.0" prefWidth="900.0">
+                    <children>
+                        <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type"/>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                            </image>
+                        </ImageView>
+                        <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
+                    </children>
+                </Pane>
+                <Pane prefHeight="52.0" prefWidth="900.0">
+                    <children>
+                        <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type"/>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                            </image>
+                        </ImageView>
+                        <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
+                    </children>
+                </Pane>
+                <Pane prefHeight="52.0" prefWidth="900.0">
+                    <children>
+                        <ComboBox layoutX="183.0" layoutY="13.0" prefWidth="150.0" promptText="Contributor type"/>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                            </image>
+                        </ImageView>
+                        <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
+                    </children>
+                </Pane>
+            </children>
+        </VBox>
+    </center>
+    <right>
+        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="13.0" layoutY="25.0" text="+ ADD NEW CONTRIBUTOR" textFill="WHITE">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+    </right>
 </BorderPane>

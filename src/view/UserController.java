@@ -1,5 +1,6 @@
 package view;
 
+import controller.AccountController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,6 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Account;
+import model.Library;
+import model.LibraryRepo;
 
 import java.io.IOException;
 
@@ -27,18 +31,33 @@ public class UserController {
     public Parent membershipScene;
     public Parent notificationsScene;
 
-    public void initData() throws IOException {
+    AccountController controller;
+    Library library;
+    Account account;
+
+    public void initData(Account account) throws IOException {
+        this.account = account;
+        this.library = new Library();
+        this.controller = new AccountController(library);
+//        LibraryRepo libraryRepo = new LibraryRepo();
+//        libraryRepo.loadBooks(library);
+//        libraryRepo.loadTags(library);
+//        libraryRepo.loadContributors(library);
+//        libraryRepo.loadEditions(library);
+//        libraryRepo.loadContributorRoles(library);
+//        libraryRepo.loadGenres(library);
+        lblUsername.setText(account.getFullName());
+
         FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../fxml/booksMember.fxml"));
         booksScene = booksLoader.load();
         BooksMemberController booksMemberController = (BooksMemberController) booksLoader.getController();
 
+        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../fxml/bookMember.fxml"));
+        bookScene = bookLoader.load();
+        BookMemberController bookMemberController = (BookMemberController) bookLoader.getController();
 
-        //FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../fxml/bookMember.fxml"));
-        //bookScene = bookLoader.load();
-        //BookMemberController bookMemberController = (BookMemberController) bookLoader.getController();
-
-        //bookMemberController.setSecondScene(new Scene(booksScene));
-        //booksMemberController.setSecondScene(new Scene(bookScene));
+        bookMemberController.setSecondScene(new Scene(booksScene));
+        booksMemberController.setSecondScene(new Scene(bookScene));
 
         FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../fxml/history.fxml"));
         historyScene = historyLoader.load();

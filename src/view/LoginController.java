@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.control.Label;
 import model.Account;
 import model.Library;
 import model.LibraryRepo;
@@ -18,17 +19,19 @@ import utils.exceptions.InvalidAccountPassword;
 import utils.exceptions.NoAccountWithThatUsername;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class LoginController {
     public TextField usernameTextField;
     public PasswordField passwordField;
+    public Label lblError;
     AccountController controller;
     Library library;
 
     private String getFileName(Account account) {
         switch (account.getType()) {
             case ADMIN:
-                return "../fxml/user.fxml";
+                return "../fxml/admin.fxml";
             case MEMBER:
                 return "../fxml/user.fxml";
             case LIBRARIAN:
@@ -45,14 +48,13 @@ public class LoginController {
             this.controller = new AccountController(library);
             LibraryRepo libraryRepo = new LibraryRepo();
             libraryRepo.loadAccounts(library);
-            System.out.println(usernameTextField.getText().toString());
-            if (controller.usernameExists(usernameTextField.getText().toString())) {
-                Account account = library.getAccount(usernameTextField.getText().toString());
-                if (controller.passwordValid(account, passwordField.getText().toString())) {
-                    final FXMLLoader loader = new FXMLLoader(getClass().getResource(getFileName(account)));
+            if (controller.usernameExists(usernameTextField.getText())) {
+                Account account = library.getAccount(usernameTextField.getText());
+                if (controller.passwordValid(account, passwordField.getText())) {
+                    final FXMLLoader loader = new FXMLLoader(getClass().getResource(Objects.requireNonNull(getFileName(account))));
                     final Parent root = (Parent) loader.load();
                     final UserController controller = loader.getController();
-                    controller.initData();
+                    controller.initData(account);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
@@ -63,19 +65,8 @@ public class LoginController {
                     stage.show();
                 }
             }
-        } catch (NoAccountWithThatUsername noAccountWithThatUsername) {
-            noAccountWithThatUsername.printStackTrace();
-        } catch (InvalidAccountPassword invalidAccountPassword) {
-            invalidAccountPassword.printStackTrace();
+        } catch (NoAccountWithThatUsername | InvalidAccountPassword noAccountWithThatUsername) {
+            lblError.setVisible(true);
         }
-    }
-
-    @FXML
-    private void alert(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText(null);
-        alert.setContentText("I have a great message for you!");
-        alert.showAndWait();
     }
 }

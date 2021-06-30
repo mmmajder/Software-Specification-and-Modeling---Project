@@ -11,6 +11,7 @@ public class Member extends Person {
     private List<Payment> payments;
     private List<IssuedBook> returnedBooks;
     private List<IssuedBook> currentlyTaken;
+    private boolean subscriptionValid;
 
     public Member() {
         super();
@@ -29,4 +30,7 @@ public class Member extends Person {
     public MemberType getType() {
         return type;
     }
+    public void addPayment(Payment p){ this.payments.add(p); }
+    public void prolongSubscription(){ this.subscriptionValid = true; }
+    public void ceaseSubscription(){ this.subscriptionValid = false; }
 }

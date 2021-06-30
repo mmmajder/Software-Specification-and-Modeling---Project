@@ -11,4 +11,8 @@ public class PriceCatalog {
     private LocalDate fromDate;
     private LocalDate toDate = null;
     private HashMap<MemberType, Double> prices;
+
+    public double getPrice(MemberType type){
+        return prices.get(type);
+    }
 }

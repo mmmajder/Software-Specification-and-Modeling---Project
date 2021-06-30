@@ -241,4 +241,7 @@ CREATE TABLE maxIssueDays (
     CONSTRAINT maxIssueDays_PK PRIMARY KEY (Type)
 );
 
+ALTER TABLE contributors MODIFY Biography VARCHAR(2500);
+ALTER TABLE editions MODIFY Description VARCHAR(2500);
+
 COMMIT;

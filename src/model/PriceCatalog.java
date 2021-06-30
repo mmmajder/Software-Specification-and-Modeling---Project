@@ -28,4 +28,12 @@ public class PriceCatalog {
     public HashMap<MemberType, Double> getFullYearPrices() {
         return fullYearPrices;
     }
+
+    public double getPrice(MemberType type, int numOfMonths) {
+        if (numOfMonths == 6) {
+            return halfAYearPrices.get(type);
+        }
+
+        return fullYearPrices.get(type);
+    }
 }

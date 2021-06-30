@@ -53,16 +53,34 @@ public class Library implements Publisher {
         return editions;
     }
 
+    public HashMap<MemberType, Integer> getMaxIssuedBooks() {
+        return maxIssuedBooks;
+    }
+
+    public HashMap<MemberType, Integer> getMaxIssueDays() {
+        return maxIssueDays;
+    }
+
+    public void setMaxIssueDays(HashMap<MemberType, Integer> maxIssueDays) {
+        this.maxIssueDays = maxIssueDays;
+    }
+
+    public void setMaxIssuedBooks(HashMap<MemberType, Integer> maxIssuedBooks) {
+        this.maxIssuedBooks = maxIssuedBooks;
+    }
+
     public List<Account> getAccounts() {
         return this.accounts;
     }
 
-    public PriceCatalog getCurrentCatalog(){ return this.currentCatalog; }
+    public PriceCatalog getCurrentCatalog() {
+        return this.currentCatalog;
+    }
 
     public void addPerson(Person person) {
         this.persons.add(person);
     }
-    
+
     public void addAccount(Account account) {
         this.accounts.add(account);
     }
@@ -83,7 +101,9 @@ public class Library implements Publisher {
         this.genres.add(genre);
     }
 
-    public void addIssuedBook(IssuedBook issuedBook) { this.issuedBooks.add(issuedBook); }
+    public void addIssuedBook(IssuedBook issuedBook) {
+        this.issuedBooks.add(issuedBook);
+    }
 
     public Edition getEdition(String editionId) {
 

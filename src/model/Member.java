@@ -52,6 +52,16 @@ public class Member extends Person {
         this.pendingReservation = pendingReservation;
     }
 
+    public LocalDate getMembershipExpirationDate(){
+        LocalDate expirationDate = null;
+        if (!payments.isEmpty()){
+            Payment lastPayment = payments.get(payments.size()-1);
+            expirationDate = lastPayment.getValidToDate();
+        }
+
+        return  expirationDate;
+    }
+
     public void reserveBook(ReservedBook reservedBook) {
         this.reservedBook = reservedBook;
     }
@@ -76,6 +86,8 @@ public class Member extends Person {
         this.isMembershipPaid = false;
     }
 
+    public boolean getIsMembershipPaid() { return this.isMembershipPaid; }
+
     public boolean hasAlreadyReserved() {
         return pendingReservation != null && reservedBook != null;
     }
@@ -83,4 +95,10 @@ public class Member extends Person {
     public void addTakenBook(IssuedBook issuedBook) {
         this.currentlyTaken.add(issuedBook);
     }
+
+    public ReservedBook getReservedBook() { return reservedBook; }
+
+    public PendingReservation getPendingReservation() { return pendingReservation; }
+
+    public List<IssuedBook> getCurrentlyTaken() { return currentlyTaken; }
 }

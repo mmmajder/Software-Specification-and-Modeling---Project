@@ -12,4 +12,6 @@ public class Payment {
         this.validToDate = validToDate;
         this.member = member;
     }
+
+    public LocalDate getValidToDate() { return validToDate; }
 }

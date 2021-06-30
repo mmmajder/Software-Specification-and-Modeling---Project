@@ -69,8 +69,9 @@ public class LoginController {
             this.accountController = new AccountController(library);
             libraryRepo = new LibraryRepo();
             libraryRepo.loadAccounts(library);
+            libraryRepo.loadPersons(library);
             if (accountController.usernameExists(usernameTextField.getText())) {
-                Account account = library.getAccount(usernameTextField.getText());
+                Account account = library.getAccountByUsername(usernameTextField.getText());
                 if (accountController.passwordValid(account, passwordField.getText())) {
                     libraryRepo.loadPersons(library);
                     final FXMLLoader loader = new FXMLLoader(getClass().getResource(Objects.requireNonNull(getFileName(account))));

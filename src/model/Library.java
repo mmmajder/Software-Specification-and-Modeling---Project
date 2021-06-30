@@ -23,6 +23,8 @@ public class Library implements Publisher {
     private HashMap<MemberType, Integer> maxIssuedBooks;
     private List<BookSection> sections;
     private List<IssuedBook> issuedBooks;
+    private List<PendingReservation> pendingReservations;
+    private List<ReservedBook> reservedBooks;
 
     private List<Observer> observers;
 
@@ -39,6 +41,8 @@ public class Library implements Publisher {
         this.maxIssuedBooks = new HashMap<>();
         this.sections = new ArrayList<>();
         this.observers = new ArrayList<>();
+        this.pendingReservations = new ArrayList<>();
+        this.reservedBooks = new ArrayList<>();
     }
 
     public List<Genre> getGenres() {
@@ -49,16 +53,34 @@ public class Library implements Publisher {
         return editions;
     }
 
+    public HashMap<MemberType, Integer> getMaxIssuedBooks() {
+        return maxIssuedBooks;
+    }
+
+    public HashMap<MemberType, Integer> getMaxIssueDays() {
+        return maxIssueDays;
+    }
+
+    public void setMaxIssueDays(HashMap<MemberType, Integer> maxIssueDays) {
+        this.maxIssueDays = maxIssueDays;
+    }
+
+    public void setMaxIssuedBooks(HashMap<MemberType, Integer> maxIssuedBooks) {
+        this.maxIssuedBooks = maxIssuedBooks;
+    }
+
     public List<Account> getAccounts() {
         return this.accounts;
     }
 
-    public PriceCatalog getCurrentCatalog(){ return this.currentCatalog; }
+    public PriceCatalog getCurrentCatalog() {
+        return this.currentCatalog;
+    }
 
     public void addPerson(Person person) {
         this.persons.add(person);
     }
-    
+
     public void addAccount(Account account) {
         this.accounts.add(account);
     }
@@ -79,7 +101,9 @@ public class Library implements Publisher {
         this.genres.add(genre);
     }
 
-    public void addIssuedBook(IssuedBook issuedBook) { this.issuedBooks.add(issuedBook); }
+    public void addIssuedBook(IssuedBook issuedBook) {
+        this.issuedBooks.add(issuedBook);
+    }
 
     public Edition getEdition(String editionId) {
 
@@ -101,7 +125,6 @@ public class Library implements Publisher {
         return null;
     }
 
-
     public void addIssueDayConstraint (MemberType type, int days) {
         this.maxIssueDays.put(type, days);
     }
@@ -110,12 +133,73 @@ public class Library implements Publisher {
         this.maxIssuedBooks.put(type, limit);
     }
 
-    public Account getAccount(String username) {
+    public Account getAccountByUsername(String username) {
         for (Account account : this.accounts) {
             if (account.getUsername().equalsIgnoreCase(username)) {
                 return account;
             }
         }
+        return null;
+    }
+
+    public Account getAccountByEmail(String email) {
+
+        for (Account account : this.accounts) {
+            if (account.getEmail().equalsIgnoreCase(email)) {
+                return account;
+            }
+        }
+
+        return null;
+    }
+
+    public Person getPerson(String jmbg) {
+        for (Person person : this.persons) {
+            if (person.getJMBG().equalsIgnoreCase(jmbg)) {
+                return person;
+            }
+        }
+        return null;
+    }
+
+    public void addPendingReservation(PendingReservation pendingReservation) {
+        this.pendingReservations.add(pendingReservation);
+    }
+
+    public void addReservedBook(ReservedBook reservedBook) {
+        this.reservedBooks.add(reservedBook);
+    }
+
+    public Book getBook(String bookId) {
+
+        for (Book book : this.books) {
+
+            if (book.getBookId().equalsIgnoreCase(bookId)) {
+                return book;
+            }
+        }
+
+        return null;
+    }
+
+    public void addCatalog(PriceCatalog catalog) {
+        this.priceCatalogs.add(catalog);
+    }
+
+    public void setCurrentPriceCatalog() {
+        int indexOfLastCatalog = this.priceCatalogs.size() - 1;
+        this.currentCatalog = this.priceCatalogs.get(indexOfLastCatalog);
+    }
+
+    public PriceCatalog getPriceCatalog(int catalogId) {
+
+        for (PriceCatalog catalog : this.priceCatalogs) {
+
+            if (catalog.getCatalogId() == catalogId) {
+                return catalog;
+            }
+        }
+
         return null;
     }
 

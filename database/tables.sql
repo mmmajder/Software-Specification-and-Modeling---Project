@@ -158,6 +158,8 @@ CREATE TABLE bookSections (
     CONSTRAINT bookSection_PK PRIMARY KEY (Section)
 );
 
+ALTER TABLE bookSections MODIFY Section CHAR(3);
+
 CREATE TABLE bookShelves (
     Shelf INTEGER NOT NULL,
     CONSTRAINT bookShelf_PK PRIMARY KEY (Shelf)
@@ -243,5 +245,64 @@ CREATE TABLE maxIssueDays (
 
 ALTER TABLE contributors MODIFY Biography VARCHAR(2500);
 ALTER TABLE editions MODIFY Description VARCHAR(2500);
+
+ALTER TABLE accounts ADD Active INTEGER default 1 NOT NULL;
+ALTER TABLE accounts ADD CONSTRAINT accounts_CHK CHECK ( Active IN (0, 1) );
+
+CREATE TABLE pendingReservations (
+    Idpr INTEGER NOT NULL,
+    Member CHAR(13) NOT NULL,
+    Edition VARCHAR(50),
+    CONSTRAINT pendingReservations_PK PRIMARY KEY (Idpr),
+    CONSTRAINT pendingReservations_FK1 FOREIGN KEY (Member) REFERENCES members (JMBG),
+    CONSTRAINT pendingReservations_FK2 FOREIGN KEY (Edition) REFERENCES editions (Ide)
+);
+
+CREATE TABLE reservedBooks (
+    Idrb INTEGER NOT NULL,
+    Member CHAR(13) NOT NULL,
+    Book VARCHAR(50) NOT NULL,
+    CONSTRAINT reservedBooks_PK PRIMARY KEY (Idrb),
+    CONSTRAINT reservedBooks_FK1 FOREIGN KEY (Member) REFERENCES members (JMBG),
+    CONSTRAINT reservedBooks_FK2 FOREIGN KEY (Book) REFERENCES books (Idb)
+);
+
+ALTER TABLE members ADD pendingReservation INTEGER NOT NULL;
+ALTER TABLE members ADD CONSTRAINT members_FK1 FOREIGN KEY (pendingReservation) REFERENCES pendingReservations (Idpr);
+ALTER TABLE members ADD reservedBook INTEGER NOT NULL;
+ALTER TABLE members ADD CONSTRAINT members_FK2 FOREIGN KEY (reservedBook) REFERENCES reservedBooks (Idrb);
+ALTER TABLE members ADD membershipPaid INTEGER default 1 NOT NULL;
+ALTER TABLE members ADD CONSTRAINT members_CHK1 CHECK ( membershipPaid IN (0, 1) );
+ALTER TABLE members ADD Active INTEGER default 1 NOT NULL;
+ALTER TABLE members ADD CONSTRAINT members_CHK2 CHECK ( Active IN (0, 1) );
+
+DROP TABLE catalogPrices;
+
+RENAME prices TO halfAYearPrices;
+
+CREATE TABLE fullYearPrices (
+    Type VARCHAR(12) NOT NULL,
+    Price NUMBER(5, 2) NOT NULL,
+    CONSTRAINT fullYearPrices_PK PRIMARY KEY (Type)
+);
+
+DROP TABLE halfAYearPrices;
+DROP TABLE fullYearPrices;
+
+CREATE TABLE catalogHalfAYearPrices (
+    Catalog INTEGER NOT NULL,
+    Type VARCHAR(12) NOT NULL,
+    Price NUMBER(5, 2) NOT NULL,
+    CONSTRAINT catalogHalfAYearPrices_PK PRIMARY KEY (Catalog, Type),
+    CONSTRAINT catalogHalfAYearPrices_FK FOREIGN KEY (Catalog) REFERENCES priceCatalogs (CatalogId)
+);
+
+CREATE TABLE catalogFullYearPrices (
+    Catalog INTEGER NOT NULL,
+    Type VARCHAR(12) NOT NULL,
+    Price NUMBER(5, 2) NOT NULL,
+    CONSTRAINT catalogFullYearPrices_PK PRIMARY KEY (Catalog, Type),
+    CONSTRAINT catalogFullYearPrices_FK FOREIGN KEY (Catalog) REFERENCES priceCatalogs (CatalogId)
+);
 
 COMMIT;

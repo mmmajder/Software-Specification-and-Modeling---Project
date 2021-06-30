@@ -1,6 +1,9 @@
 package model;
 
 import model.enums.AccountType;
+import utils.StringUtils;
+
+import java.time.LocalDate;
 
 public class Account {
     private String username;
@@ -18,6 +21,20 @@ public class Account {
         this.person = person;
         this.isActive = isActive;
     }
+
+    public String getMembershipExpirationDateStr(){
+        String expirationDateStr = null;
+        Member member = (Member) person;
+        LocalDate expirationDate = member.getMembershipExpirationDate();
+
+        if (expirationDate != null){
+            expirationDateStr = StringUtils.dateToString(expirationDate, "dd.mm.yyyy.");
+        }
+
+        return expirationDateStr;
+    }
+
+
 
     public Person getPerson() {
         return person;

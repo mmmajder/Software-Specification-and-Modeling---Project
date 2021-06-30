@@ -1,4 +1,4 @@
-package view;
+package view.librarian;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -8,12 +8,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Edition;
-import model.Genre;
+import view.member.BookPane;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchBooksMemberController {
+public class SearchBooksLibrarianController {
     public ListView<String> genres;
     public List<BookPane> bookPanes;
     public GridPane grid;

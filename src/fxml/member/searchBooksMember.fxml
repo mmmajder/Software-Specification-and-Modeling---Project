@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 
 <Pane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="view.SearchBooksMemberController">
+      fx:controller="view.member.SearchBooksMemberController">
     <HBox BorderPane.alignment="CENTER">
         <BorderPane style="-fx-background-color: #ffffff;">
             <center>

@@ -1,4 +1,4 @@
-package view;
+package view.member;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

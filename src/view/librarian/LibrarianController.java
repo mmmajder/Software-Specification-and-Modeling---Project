@@ -1,4 +1,4 @@
-package view;
+package view.librarian;
 
 import controller.AccountController;
 import javafx.fxml.FXML;
@@ -16,13 +16,12 @@ import model.LibraryRepo;
 
 import java.io.IOException;
 
-public class AdminController {
+public class LibrarianController {
     public Label lblBooks;
     public Label lblReservations;
     public Label lblMembers;
     public Label lblUsername;
     public Label lblRentedBooks;
-    public Label lblSettings;
 
     public BorderPane borderPane;
 
@@ -31,7 +30,6 @@ public class AdminController {
     public Parent reservationsScene;
     public Parent membersScene;
     public Parent rentedBooksScene;
-    public Parent settingsScene;
 
     AccountController controller;
     Library library;
@@ -53,7 +51,7 @@ public class AdminController {
 
         FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../fxml/librarian/searchBooksLibrarian.fxml"));
         booksScene = booksLoader.load();
-        //SearchBooksLibrarianController searchBooksLibrarianController = (SearchBooksLibrarianController) booksLoader.getController();
+        SearchBooksLibrarianController searchBooksLibrarianController = (SearchBooksLibrarianController) booksLoader.getController();
 
         FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../fxml/librarian/bookLibrarian.fxml"));
         bookScene = bookLoader.load();
@@ -72,10 +70,6 @@ public class AdminController {
 
         FXMLLoader rentedBooksLoader = new FXMLLoader(getClass().getResource("../fxml/librarian/rentedBooks.fxml"));
         rentedBooksScene = rentedBooksLoader.load();
-
-        FXMLLoader settingsLoader = new FXMLLoader(getClass().getResource("../fxml/admin/settings.fxml"));
-        settingsScene = settingsLoader.load();
-        //NotificationsController notificationsController = (NotificationsController) notificationsLoader.getController();
 
         switchToBooks();
     }
@@ -98,7 +92,6 @@ public class AdminController {
         lblMembers.setUnderline(false);
         lblReservations.setUnderline(false);
         lblBooks.setUnderline(false);
-        lblSettings.setUnderline(false);
     }
 
     @FXML
@@ -112,17 +105,6 @@ public class AdminController {
         lblMembers.setUnderline(false);
         lblReservations.setUnderline(false);
         lblBooks.setUnderline(true);
-        lblSettings.setUnderline(false);
-    }
-
-    @FXML
-    private void switchToSettings(MouseEvent event) {
-        borderPane.setCenter(settingsScene);
-        lblRentedBooks.setUnderline(false);
-        lblMembers.setUnderline(false);
-        lblReservations.setUnderline(false);
-        lblBooks.setUnderline(false);
-        lblSettings.setUnderline(true);
     }
 
     @FXML
@@ -132,7 +114,6 @@ public class AdminController {
         lblMembers.setUnderline(true);
         lblReservations.setUnderline(false);
         lblBooks.setUnderline(false);
-        lblSettings.setUnderline(false);
     }
 
     @FXML
@@ -142,7 +123,6 @@ public class AdminController {
         lblMembers.setUnderline(false);
         lblReservations.setUnderline(true);
         lblBooks.setUnderline(false);
-        lblSettings.setUnderline(false);
     }
 
 }

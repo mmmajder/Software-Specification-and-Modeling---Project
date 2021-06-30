@@ -52,6 +52,16 @@ public class Member extends Person {
         this.pendingReservation = pendingReservation;
     }
 
+    public LocalDate getMembershipExpirationDate(){
+        LocalDate expirationDate = null;
+        if (!payments.isEmpty()){
+            Payment lastPayment = payments.get(payments.size()-1);
+            expirationDate = lastPayment.getValidToDate();
+        }
+
+        return  expirationDate;
+    }
+
     public void reserveBook(ReservedBook reservedBook) {
         this.reservedBook = reservedBook;
     }

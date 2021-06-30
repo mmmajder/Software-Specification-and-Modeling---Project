@@ -13,7 +13,7 @@ import model.Genre;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BooksMemberController {
+public class SearchBooksMemberController {
     public ListView<String> genres;
     public List<BookPane> bookPanes;
     public GridPane grid;

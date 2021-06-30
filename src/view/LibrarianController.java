@@ -28,12 +28,12 @@ public class LibrarianController {
     public Parent notificationsScene;
 
     public void initData() throws IOException {
-        FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../fxml/booksMember.fxml"));
+        FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../fxml/searchBooksMember.fxml"));
         booksScene = booksLoader.load();
-        BooksMemberController booksMemberController = (BooksMemberController) booksLoader.getController();
+        SearchBooksMemberController searchBooksMemberController = (SearchBooksMemberController) booksLoader.getController();
 
 
-        //FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../fxml/bookMember.fxml"));
+        //FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../fxml/reservationMember.fxml"));
         //bookScene = bookLoader.load();
         //BookMemberController bookMemberController = (BookMemberController) bookLoader.getController();
 

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="view.SearchBooksMemberController">
+    <HBox BorderPane.alignment="CENTER">
+        <BorderPane style="-fx-background-color: #ffffff;">
+            <center>
+                <ListView fx:id="genres" prefHeight="200.0" prefWidth="200.0"/>
+            </center>
+        </BorderPane>
+        <VBox prefHeight="200.0" prefWidth="100.0">
+            <HBox minHeight="40.0" prefHeight="40.0" prefWidth="700.0" style="-fx-background-color: #abc82e;">
+                <Pane prefHeight="50.0" prefWidth="436.0">
+                    <TextField layoutX="20.0" layoutY="8.0" prefHeight="25.0" prefWidth="401.0"
+                               promptText="Search..."/>
+                </Pane>
+                <Label prefHeight="44.0" prefWidth="42.0" text="Sort by:" textFill="WHITE">
+                    <font>
+                        <Font name="SansSerif Regular" size="12.0"/>
+                    </font>
+                </Label>
+                <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
+                <Label prefHeight="42.0" prefWidth="30.0" text="Title" textFill="WHITE">
+                    <font>
+                        <Font name="SansSerif Regular" size="12.0"/>
+                    </font>
+                </Label>
+                <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
+                <Label prefHeight="40.0" prefWidth="86.0" text="Published Date" textFill="WHITE">
+                    <font>
+                        <Font name="SansSerif Regular" size="12.0"/>
+                    </font>
+                </Label>
+                <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
+                <ImageView fitHeight="40.0" fitWidth="26.0">
+                    <Image url="@asc.png"/>
+                </ImageView>
+                <ImageView fitHeight="40.0" fitWidth="26.0">
+                    <Image url="@desc.png"/>
+                </ImageView>
+            </HBox>
+            <GridPane fx:id="grid" minHeight="490.0" minWidth="700.0" prefHeight="490.0" prefWidth="700.0"
+                      style="-fx-background-color: #7ab12b;">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+            </GridPane>
+            <HBox prefHeight="45.0" prefWidth="700.0" style="-fx-background-color: white;">
+                <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false"/>
+                <Label text="1" textFill="#7ab12b">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                </Label>
+                <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false"/>
+                <Label text="2" textFill="#7ab12b">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                </Label>
+                <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false"/>
+                <Label text="3" textFill="#7ab12b">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                </Label>
+                <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false"/>
+                <Label text="4" textFill="#7ab12b">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                </Label>
+                <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false"/>
+                <Label text="5" textFill="#7ab12b">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                </Label>
+                <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false"/>
+                <Label text="6" textFill="#7ab12b">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                </Label>
+                <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false"/>
+                <Label text="7" textFill="#7ab12b">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                </Label>
+                <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false"/>
+                <Label text="8" textFill="#7ab12b">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                </Label>
+                <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false"/>
+                <Label text="9" textFill="#7ab12b">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                </Label>
+                <Separator orientation="VERTICAL" prefHeight="20.0" prefWidth="10.0" visible="false"/>
+                <Label text="10" textFill="#7ab12b">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                </Label>
+            </HBox>
+        </VBox>
+    </HBox>
+</Pane>

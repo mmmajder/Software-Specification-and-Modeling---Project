@@ -12,6 +12,7 @@ public class Member extends Person {
     private List<IssuedBook> returnedBooks;
     private List<IssuedBook> currentlyTaken;
     private boolean subscriptionValid;
+    private String reservedBookId;
 
     public Member() {
         super();
@@ -33,4 +34,6 @@ public class Member extends Person {
     public void addPayment(Payment p){ this.payments.add(p); }
     public void prolongSubscription(){ this.subscriptionValid = true; }
     public void ceaseSubscription(){ this.subscriptionValid = false; }
+    public boolean getSubscriptionValid() { return this.subscriptionValid;}
+    public String getReservedBookId() { return this.reservedBookId; }
 }

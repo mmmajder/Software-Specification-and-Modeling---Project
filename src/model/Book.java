@@ -23,4 +23,8 @@ public class Book {
         this.isRestricted = isRestricted;
         this.issueHistory = new ArrayList<>();
     }
+
+    public SampleState getState() { return this.state; }
+    public boolean isAvailable() { return this.state == SampleState.AVAILABLE; }
+    public String getBookId() { return  this.bookId; }
 }

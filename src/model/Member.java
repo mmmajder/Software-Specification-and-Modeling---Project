@@ -6,7 +6,13 @@ import java.util.List;
 
 import model.enums.MemberType;
 
+
+
 public class Member extends Person {
+
+    //TODO move MAX_NUM_OF_CURRENTLY_TAKEN_BOOKS into Constants
+    static int MAX_NUM_OF_CURRENTLY_TAKEN_BOOKS = 3;
+
     private MemberType type;
     private List<Payment> payments;
     private List<IssuedBook> returnedBooks;
@@ -36,4 +42,6 @@ public class Member extends Person {
     public void ceaseSubscription(){ this.subscriptionValid = false; }
     public boolean getSubscriptionValid() { return this.subscriptionValid;}
     public String getReservedBookId() { return this.reservedBookId; }
+    public void addTakenBook(IssuedBook issuedBook) { this.currentlyTaken.add(issuedBook); }
+    public boolean isAbleToRent(){ return this.currentlyTaken.size() < MAX_NUM_OF_CURRENTLY_TAKEN_BOOKS;}
 }

@@ -158,8 +158,6 @@ CREATE TABLE bookSections (
     CONSTRAINT bookSection_PK PRIMARY KEY (Section)
 );
 
-ALTER TABLE bookSections MODIFY Section CHAR(3);
-
 CREATE TABLE bookShelves (
     Shelf INTEGER NOT NULL,
     CONSTRAINT bookShelf_PK PRIMARY KEY (Shelf)
@@ -303,6 +301,30 @@ CREATE TABLE catalogFullYearPrices (
     Price NUMBER(5, 2) NOT NULL,
     CONSTRAINT catalogFullYearPrices_PK PRIMARY KEY (Catalog, Type),
     CONSTRAINT catalogFullYearPrices_FK FOREIGN KEY (Catalog) REFERENCES priceCatalogs (CatalogId)
+);
+
+DROP TABLE booksInRow;
+DROP TABLE shelfRow;
+DROP TABLE bookShelfRows;
+DROP TABLE sectionShelf;
+DROP TABLE bookShelves;
+DROP TABLE bookSections;
+
+CREATE TABLE bookSections (
+    Section CHAR(3) NOT NULL,
+    Shelf INTEGER NOT NULL,
+    "Row" INTEGER NOT NULL,
+    CONSTRAINT bookSections_PK PRIMARY KEY (Section, Shelf, "Row")
+);
+
+CREATE TABLE booksInRow (
+    Section CHAR(3) NOT NULL,
+    Shelf INTEGER NOT NULL,
+    "Row" INTEGER NOT NULL,
+    Book VARCHAR(50) NOT NULL,
+    CONSTRAINT booksInRow_PK PRIMARY KEY (Section, Shelf, "Row", Book),
+    CONSTRAINT booksInRow_FK1 FOREIGN KEY (Section, Shelf, "Row") REFERENCES bookSections (Section, Shelf, "Row"),
+    CONSTRAINT booksInRow_FK2 FOREIGN KEY (Book) REFERENCES books (Idb)
 );
 
 COMMIT;

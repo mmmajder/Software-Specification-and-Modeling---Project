@@ -52,6 +52,8 @@ public class Library implements Publisher {
         return this.accounts;
     }
 
+    public PriceCatalog getCurrentCatalog(){ return this.currentCatalog; }
+
     public void addPerson(Person person) {
         this.persons.add(person);
     }
@@ -95,6 +97,7 @@ public class Library implements Publisher {
         }
         return null;
     }
+
 
     public void addIssueDayConstraint (MemberType type, int days) {
         this.maxIssueDays.put(type, days);

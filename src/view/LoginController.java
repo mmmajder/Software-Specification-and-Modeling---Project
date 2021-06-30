@@ -33,11 +33,11 @@ public class LoginController {
     private String getFileName(Account account) {
         switch (account.getType()) {
             case ADMIN:
-                return "../fxml/admin.fxml";
+                return "../fxml/admin/admin.fxml";
             case MEMBER:
-                return "../fxml/user.fxml";
+                return "../fxml/member/user.fxml";
             case LIBRARIAN:
-                return "../fxml/librarian.fxml";
+                return "../fxml/librarian/librarian.fxml";
             default:
                 return null;
         }

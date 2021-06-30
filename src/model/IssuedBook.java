@@ -9,10 +9,10 @@ public class IssuedBook {
     private  Book book;
     private Member member;
 
-//    public IssuedBook(LocalDate issueDate, Book book){
-//        this.issueDate = issueDate;
-//        this.returnDate = null;
-//        this.prolongedIssue = false;
-//        this.book = book;
-//    }
+    public IssuedBook(LocalDate issueDate, Book book){
+        this.issueDate = issueDate;
+        this.returnDate = null;
+        this.prolongedIssue = false;
+        this.book = book;
+    }
 }

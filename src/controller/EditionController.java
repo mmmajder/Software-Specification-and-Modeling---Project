@@ -20,7 +20,7 @@ public class EditionController {
     //TODO kako je uradjen izbor Genre, Date, itd
     //da li se prebacuju ovde u stringu?
     public void create(String editionId, List<String> tags, String title, String publisher, int numberOfPages,
-                       String description, Genre genre, LocalDate publishedDate, String language, ArrayList<Book> books,
+                       String description, Genre genre, LocalDate publishedDate, String language, List<Book> books,
                        BookFormat format, List<Contributor> contributors) throws MissingValueException, IdAlreadyExistsException {
 
         validateInputValues(editionId, title, publisher, genre, language, format, contributors);

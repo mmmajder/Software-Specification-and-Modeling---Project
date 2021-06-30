@@ -115,16 +115,18 @@ public class Library implements Publisher {
 
     @Override
     public void addObserver(Observer observer) {
-
+        this.observers.add(observer);
     }
 
     @Override
     public void removeObserver(Observer observer) {
-
+        this.observers.add(observer);
     }
 
     @Override
-    public void notifyObserver() {
-
+    public void notifyObservers() {
+        for (Observer observer : this.observers) {
+            observer.updatePerformed();
+        }
     }
 }

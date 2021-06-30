@@ -9,14 +9,14 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0"
-            minWidth="900.0" prefHeight="600.0" prefWidth="900.0" stylesheets="@user.css"
+            minWidth="900.0" prefHeight="600.0" prefWidth="900.0" stylesheets="@../user.css"
             xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.UserController">
     <top>
         <HBox prefHeight="26.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
             <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false"/>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../fxml/logo.png"/>
+                <Image url="@../logo.png"/>
             </ImageView>
             <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="100.0" visible="false"/>
             <Label fx:id="lblBooks" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#switchToBooks"
@@ -48,13 +48,6 @@
                 </font>
             </Label>
             <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="20.0" visible="false"/>
-            <Label fx:id="lblNotifications1" alignment="CENTER" contentDisplay="CENTER"
-                   onMouseClicked="#switchToNotifications" prefHeight="79.0" prefWidth="122.0" text="SETTINGS"
-                   textFill="#63ac29">
-                <font>
-                    <Font name="SansSerif Bold" size="12.0"/>
-                </font>
-            </Label>
             <Label fx:id="lblUsername" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="50.0"
                    prefWidth="311.0" text="Pera Perić" textFill="#63ac29">
                 <font>
@@ -64,7 +57,7 @@
             <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="40.0" visible="false"/>
             <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#logOut" pickOnBounds="true"
                        preserveRatio="true">
-                <Image url="@../fxml/logout.png"/>
+                <Image url="@../logout.png"/>
             </ImageView>
         </HBox>
     </top>

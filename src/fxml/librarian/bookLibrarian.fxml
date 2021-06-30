@@ -24,7 +24,7 @@
                                 <ImageView fitHeight="216.0" fitWidth="194.0" layoutX="14.0" layoutY="23.0"
                                            pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../fxml/TheLittlePrince.jpg"/>
+                                        <Image url="@../TheLittlePrince.jpg"/>
                                     </image>
                                 </ImageView>
                             </children>

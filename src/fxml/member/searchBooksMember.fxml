@@ -17,18 +17,11 @@
 
 <Pane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="view.SearchBooksMemberController">
-    <HBox BorderPane.alignment="CENTER" style="-fx-background-color: #ffffff;">
-        <BorderPane>
+    <HBox BorderPane.alignment="CENTER">
+        <BorderPane style="-fx-background-color: #ffffff;">
             <center>
                 <ListView fx:id="genres" prefHeight="200.0" prefWidth="200.0"/>
             </center>
-            <bottom>
-                <Label text="+ADD NEW GENRE" textFill="#7ab12b" BorderPane.alignment="CENTER">
-                    <font>
-                        <Font name="System Bold" size="16.0"/>
-                    </font>
-                </Label>
-            </bottom>
         </BorderPane>
         <VBox prefHeight="200.0" prefWidth="100.0">
             <HBox minHeight="40.0" prefHeight="40.0" prefWidth="700.0" style="-fx-background-color: #abc82e;">
@@ -55,10 +48,10 @@
                 </Label>
                 <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
                 <ImageView fitHeight="40.0" fitWidth="26.0">
-                    <Image url="@asc.png"/>
+                    <Image url="@../asc.png"/>
                 </ImageView>
                 <ImageView fitHeight="40.0" fitWidth="26.0">
-                    <Image url="@desc.png"/>
+                    <Image url="@../desc.png"/>
                 </ImageView>
             </HBox>
             <GridPane fx:id="grid" minHeight="490.0" minWidth="700.0" prefHeight="490.0" prefWidth="700.0"
@@ -134,11 +127,6 @@
                 <Label text="10" textFill="#7ab12b">
                     <font>
                         <Font name="System Bold" size="12.0"/>
-                    </font>
-                </Label>
-                <Label text="+ADD NEW EDITION" textFill="#7ab12b">
-                    <font>
-                        <Font name="System Bold" size="16.0"/>
                     </font>
                 </Label>
             </HBox>

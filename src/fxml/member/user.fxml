@@ -8,14 +8,14 @@
 <?import javafx.scene.text.*?>
 
 <BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0"
-            minWidth="900.0" prefHeight="600.0" prefWidth="900.0" stylesheets="@user.css"
+            minWidth="900.0" prefHeight="600.0" prefWidth="900.0" stylesheets="@../user.css"
             xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.UserController">
     <top>
         <HBox prefHeight="26.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
             <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false"/>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../fxml/logo.png"/>
+                <Image url="@../logo.png"/>
             </ImageView>
             <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="100.0" visible="false"/>
             <Label fx:id="lblBooks" alignment="CENTER" contentDisplay="CENTER" prefHeight="99.0" prefWidth="99.0"
@@ -55,7 +55,7 @@
             <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="40.0" visible="false"/>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" onMouseClicked="#logOut"
                        preserveRatio="true">
-                <Image url="@../fxml/logout.png"/>
+                <Image url="@../logout.png"/>
             </ImageView>
         </HBox>
     </top>

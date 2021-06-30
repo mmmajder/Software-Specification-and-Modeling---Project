@@ -61,14 +61,14 @@ public class EditionController {
         }
     }
 
-    static public Edition create(String editionId, List<String> tags, String title, String publisher, int numberOfPages,
-                                 String description, Genre genre, LocalDate publishedDate, String language, List<Book> books,
-                                 BookFormat format, List<Contributor> contributors) throws MissingValueException {
-        Edition e = new Edition(editionId, title, publisher, genre, language, format, contributors);
-       // e.addOtherAttributes(tags, numberOfPages, description, publishedDate);
-
-        return e;
-    }
+//    static public Edition create(String editionId, List<String> tags, String title, String publisher, int numberOfPages,
+//                                 String description, Genre genre, LocalDate publishedDate, String language, List<Book> books,
+//                                 BookFormat format, List<Contributor> contributors) throws MissingValueException {
+//        Edition e = new Edition(editionId, title, publisher, genre, language, format, contributors);
+//        e.addOtherAttributes(tags, numberOfPages, description, publishedDate);
+//
+//        return e;
+//    }
 
     public static boolean editionIdExists(List<Edition> editions, String editionId) {
         for (Edition e : editions) {

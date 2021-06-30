@@ -16,7 +16,7 @@
                 <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false"/>
                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../fxml/logo.png"/>
+                        <Image url="@../logo.png"/>
                     </image>
                 </ImageView>
                 <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="75.0" visible="false"/>
@@ -57,13 +57,13 @@
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                                <Image url="@../../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                                <Image url="@../../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
                             </image>
                         </ImageView>
                         <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
@@ -75,13 +75,13 @@
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                                <Image url="@../../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                                <Image url="@../../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
                             </image>
                         </ImageView>
                         <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
@@ -93,13 +93,13 @@
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                                <Image url="@../../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                                <Image url="@../../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
                             </image>
                         </ImageView>
                         <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
@@ -111,13 +111,13 @@
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                                <Image url="@../../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                                <Image url="@../../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
                             </image>
                         </ImageView>
                         <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
@@ -129,13 +129,13 @@
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                                <Image url="@../../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                                <Image url="@../../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
                             </image>
                         </ImageView>
                         <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
@@ -147,13 +147,13 @@
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                                <Image url="@../../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                                <Image url="@../../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
                             </image>
                         </ImageView>
                         <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
@@ -165,13 +165,13 @@
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                                <Image url="@../../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                                <Image url="@../../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
                             </image>
                         </ImageView>
                         <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
@@ -183,13 +183,13 @@
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                                <Image url="@../../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                                <Image url="@../../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
                             </image>
                         </ImageView>
                         <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
@@ -201,13 +201,13 @@
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                                <Image url="@../../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                                <Image url="@../../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
                             </image>
                         </ImageView>
                         <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>
@@ -219,13 +219,13 @@
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="353.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
+                                <Image url="@../../../../../../Downloads/flat-round-plus-sign-green-260nw-652023094.jpg"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="395.0" layoutY="16.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
+                                <Image url="@../../../../../../Downloads/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag-thumbnail.png"/>
                             </image>
                         </ImageView>
                         <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Contributor"/>

@@ -21,7 +21,7 @@
                 <Pane prefHeight="261.0" prefWidth="288.0">
                     <ImageView fitHeight="216.0" fitWidth="194.0" layoutX="14.0" layoutY="23.0"
                                pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../fxml/TheLittlePrince.jpg"/>
+                        <Image url="@../TheLittlePrince.jpg"/>
                     </ImageView>
                 </Pane>
                 <Label fx:id="lblPublishedDate" style="-fx-text-fill: #707070;" text="Published date:">

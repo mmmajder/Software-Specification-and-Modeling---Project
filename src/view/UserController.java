@@ -48,26 +48,26 @@ public class UserController {
 //        lblUsername.setText(account.getPerson().getName() + " " + account.getPerson().getSurname());
         lblUsername.setText(account.getUsername());
 
-        FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../fxml/searchBooksMember.fxml"));
+        FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../fxml/member/searchBooksMember.fxml"));
         booksScene = booksLoader.load();
         SearchBooksMemberController searchBooksMemberController = (SearchBooksMemberController) booksLoader.getController();
 
-        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../fxml/reservationMember.fxml"));
+        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../fxml/member/reservationMember.fxml"));
         bookScene = bookLoader.load();
         BookMemberController bookMemberController = (BookMemberController) bookLoader.getController();
 
         bookMemberController.setSecondScene(new Scene(booksScene));
         searchBooksMemberController.setSecondScene(new Scene(bookScene));
 
-        FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../fxml/history.fxml"));
+        FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../fxml/member/history.fxml"));
         historyScene = historyLoader.load();
         //HistoryController historyController = (HistoryController) historyLoader.getController();
 
-        FXMLLoader membershipLoader = new FXMLLoader(getClass().getResource("../fxml/membership.fxml"));
+        FXMLLoader membershipLoader = new FXMLLoader(getClass().getResource("../fxml/member/membership.fxml"));
         membershipScene = membershipLoader.load();
         //MembershipController membershipController = (MembershipController) membershipLoader.getController();
 
-        FXMLLoader notificationsLoader = new FXMLLoader(getClass().getResource("../fxml/notifications.fxml"));
+        FXMLLoader notificationsLoader = new FXMLLoader(getClass().getResource("../fxml/member/notifications.fxml"));
         notificationsScene = notificationsLoader.load();
         //NotificationsController notificationsController = (NotificationsController) notificationsLoader.getController();
 

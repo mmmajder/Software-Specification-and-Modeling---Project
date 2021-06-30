@@ -28,7 +28,7 @@ public class LibrarianController {
     public Parent notificationsScene;
 
     public void initData() throws IOException {
-        FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../fxml/searchBooksMember.fxml"));
+        FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../fxml/member/searchBooksMember.fxml"));
         booksScene = booksLoader.load();
         SearchBooksMemberController searchBooksMemberController = (SearchBooksMemberController) booksLoader.getController();
 
@@ -40,15 +40,15 @@ public class LibrarianController {
         //bookMemberController.setSecondScene(new Scene(booksScene));
         //booksMemberController.setSecondScene(new Scene(bookScene));
 
-        FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../fxml/history.fxml"));
+        FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../fxml/member/history.fxml"));
         historyScene = historyLoader.load();
         //HistoryController historyController = (HistoryController) historyLoader.getController();
 
-        FXMLLoader membershipLoader = new FXMLLoader(getClass().getResource("../fxml/membership.fxml"));
+        FXMLLoader membershipLoader = new FXMLLoader(getClass().getResource("../fxml/member/membership.fxml"));
         membershipScene = membershipLoader.load();
         //MembershipController membershipController = (MembershipController) membershipLoader.getController();
 
-        FXMLLoader notificationsLoader = new FXMLLoader(getClass().getResource("../fxml/notifications.fxml"));
+        FXMLLoader notificationsLoader = new FXMLLoader(getClass().getResource("../fxml/member/notifications.fxml"));
         notificationsScene = notificationsLoader.load();
         //NotificationsController notificationsController = (NotificationsController) notificationsLoader.getController();
 

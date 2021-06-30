@@ -17,25 +17,29 @@ public class RentingController {
     }
 
     public void rent(Member member, Book book) throws BookRentingIsInvalidException, MemberUnableToRentException {
-       // validateMemberRent(member);
-        //validateBookRent(member, book);
+        validateMemberRent(member);
+        validateBookRent(member, book);
         createIssue(member, book);
     }
 
-//    private void validateMemberRent(Member member) throws MemberUnableToRentException {
-//        if (!member.getMembershipPaid()) { throw new MemberUnableToRentException("subscription");}
-//        if (!member.isAbleToRent()) { throw new MemberUnableToRentException("maxNumberOfTakenBooksReached"); }
-//    }
+    private void validateMemberRent(Member member) throws MemberUnableToRentException {
+        if (!member.getIsMembershipPaid()) { throw new MemberUnableToRentException("subscription");}
+        if (!isAbleToRent(member)) { throw new MemberUnableToRentException("maxNumberOfTakenBooksReached"); }
+    }
 
-//    private void validateBookRent(Member member, Book book) throws BookRentingIsInvalidException {
-//        if (!(book.isAvailable() || isReservedForMember(member, book)) || book.getIsRestricted()){
-//            throw new BookRentingIsInvalidException();
-//        }
-//    }
+    private boolean isAbleToRent(Member member){
+        return member.getCurrentlyTaken().size() < library.getMaxIssuedBooks(member.getType());
+    }
 
-//    private boolean isReservedForMember(Member member, Book book){
-//        return member.getReservedBookId() == book.getBookId();
-//    }
+    private void validateBookRent(Member member, Book book) throws BookRentingIsInvalidException {
+        if (!(book.isAvailable() || isReservedForMember(member, book)) || book.getIsRestricted()){
+            throw new BookRentingIsInvalidException();
+        }
+    }
+
+    private boolean isReservedForMember(Member member, Book book){
+        return member.getReservedBook().getBook().getBookId() == book.getBookId();
+    }
 
     private void createIssue(Member member, Book book){
         IssuedBook issuedBook = new IssuedBook(member, book);

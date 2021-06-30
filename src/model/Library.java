@@ -57,6 +57,10 @@ public class Library implements Publisher {
         return maxIssuedBooks;
     }
 
+    public int getMaxIssuedBooks(MemberType type) {
+        return maxIssuedBooks.get(type);
+    }
+
     public HashMap<MemberType, Integer> getMaxIssueDays() {
         return maxIssueDays;
     }

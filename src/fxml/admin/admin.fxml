@@ -40,7 +40,7 @@
                 </font>
             </Label>
             <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="20.0" visible="false"/>
-            <Label fx:id="lblNotifications" alignment="CENTER" contentDisplay="CENTER"
+            <Label fx:id="lblRentedBooks" alignment="CENTER" contentDisplay="CENTER"
                    onMouseClicked="#switchToNotifications" prefHeight="79.0" prefWidth="150.0" text="RENTED BOOKS"
                    textFill="#63ac29">
                 <font>
@@ -48,7 +48,7 @@
                 </font>
             </Label>
             <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="20.0" visible="false"/>
-            <Label fx:id="lblNotifications1" alignment="CENTER" contentDisplay="CENTER"
+            <Label fx:id="lblSettings" alignment="CENTER" contentDisplay="CENTER"
                    onMouseClicked="#switchToNotifications" prefHeight="79.0" prefWidth="122.0" text="SETTINGS"
                    textFill="#63ac29">
                 <font>

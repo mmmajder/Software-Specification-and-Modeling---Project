@@ -19,21 +19,17 @@
     <top>
         <HBox prefHeight="26.0" style="-fx-background-color: #ffffff; -fx-border-color: #7AB12B;"
               BorderPane.alignment="CENTER">
-            <children>
-                <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false"/>
-                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../logo.png"/>
-                    </image>
-                </ImageView>
-                <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="75.0" visible="false"/>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="281.0"
-                       text="CREATION OF CONTRIBUTOR" textFill="#63ac29">
-                    <font>
-                        <Font name="SansSerif Bold" size="15.0"/>
-                    </font>
-                </Label>
-            </children>
+            <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false"/>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../logo.png"/>
+            </ImageView>
+            <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="75.0" visible="false"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="281.0"
+                   text="CREATION OF CONTRIBUTOR" textFill="#63ac29">
+                <font>
+                    <Font name="SansSerif Bold" size="15.0"/>
+                </font>
+            </Label>
         </HBox>
     </top>
     <bottom>
@@ -44,29 +40,23 @@
                     <BorderPane.margin>
                         <Insets right="30.0"/>
                     </BorderPane.margin>
-                    <children>
-                        <Button layoutX="238.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0"
-                                prefWidth="154.0" style="-fx-background-color: #63ac29;" text="ACCEPT"
-                                textFill="WHITE"/>
-                        <Button layoutX="68.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0"
-                                prefWidth="154.0" style="-fx-background-color: #FF0000;" text="RESET" textFill="WHITE"/>
-                    </children>
+                    <Button layoutX="238.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0"
+                            prefWidth="154.0" style="-fx-background-color: #63ac29;" text="ACCEPT"
+                            textFill="WHITE"/>
+                    <Button layoutX="68.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0"
+                            prefWidth="154.0" style="-fx-background-color: #FF0000;" text="RESET" textFill="WHITE"/>
                 </Pane>
             </right>
         </BorderPane>
     </bottom>
     <center>
         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-            <children>
-                <Pane prefHeight="324.0" prefWidth="900.0">
-                    <children>
-                        <TextField layoutX="14.0" layoutY="14.0" promptText="Name"/>
-                        <TextField layoutX="184.0" layoutY="14.0" promptText="Surname"/>
-                        <TextArea layoutX="14.0" layoutY="62.0" prefHeight="228.0" prefWidth="598.0"
-                                  promptText="Biography"/>
-                    </children>
-                </Pane>
-            </children>
+            <Pane prefHeight="324.0" prefWidth="900.0">
+                <TextField layoutX="14.0" layoutY="14.0" promptText="Name"/>
+                <TextField layoutX="184.0" layoutY="14.0" promptText="Surname"/>
+                <TextArea layoutX="14.0" layoutY="62.0" prefHeight="228.0" prefWidth="598.0"
+                          promptText="Biography"/>
+            </Pane>
         </VBox>
     </center>
 </BorderPane>

@@ -46,12 +46,15 @@ public class LoginController {
             case ADMIN:
                 final AdminController adminController = loader.getController();
                 adminController.initData(account);
+                break;
             case MEMBER:
                 final MemberController memberController = loader.getController();
                 memberController.initData(account);
+                break;
             case LIBRARIAN:
                 final LibrarianController librarianController = loader.getController();
                 librarianController.initData(account);
+                break;
         }
     }
 
@@ -68,20 +71,7 @@ public class LoginController {
                     libraryRepo.loadPersons(library);
                     final FXMLLoader loader = new FXMLLoader(getClass().getResource(Objects.requireNonNull(getFileName(account))));
                     final Parent root = (Parent) loader.load();
-                    switch (account.getType()) {
-                        case ADMIN:
-                            final AdminController adminController = loader.getController();
-                            adminController.initData(account);
-                            break;
-                        case MEMBER:
-                            final MemberController memberController = loader.getController();
-                            memberController.initData(account);
-                            break;
-                        case LIBRARIAN:
-                            final LibrarianController librarianController = loader.getController();
-                            librarianController.initData(account);
-                            break;
-                    }
+                    setController(account, loader);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);

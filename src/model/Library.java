@@ -130,12 +130,23 @@ public class Library implements Publisher {
         this.maxIssuedBooks.put(type, limit);
     }
 
-    public Account getAccount(String username) {
+    public Account getAccountByUsername(String username) {
         for (Account account : this.accounts) {
             if (account.getUsername().equalsIgnoreCase(username)) {
                 return account;
             }
         }
+        return null;
+    }
+
+    public Account getAccountByEmail(String email) {
+
+        for (Account account : this.accounts) {
+            if (account.getEmail().equalsIgnoreCase(email)) {
+                return account;
+            }
+        }
+
         return null;
     }
 

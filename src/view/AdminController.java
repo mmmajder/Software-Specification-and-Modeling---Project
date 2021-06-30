@@ -43,12 +43,14 @@ public class AdminController {
         this.library = new Library();
         this.controller = new AccountController(library);
         libraryRepo = new LibraryRepo();
-        libraryRepo.loadBooks(library);
-        libraryRepo.loadTags(library);
         libraryRepo.loadContributors(library);
         libraryRepo.loadEditions(library);
         libraryRepo.loadContributorRoles(library);
         libraryRepo.loadGenres(library);
+        libraryRepo.loadBooks(library);
+        libraryRepo.loadTags(library);
+        libraryRepo.loadMaxIssueDays(library);
+        libraryRepo.loadMaxIssuedBooks(library);
         lblUsername.setText(account.getFullName());
 
         FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../fxml/librarian/searchBooksLibrarian.fxml"));

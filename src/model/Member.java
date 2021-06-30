@@ -76,6 +76,8 @@ public class Member extends Person {
         this.isMembershipPaid = false;
     }
 
+    public boolean getIsMembershipPaid() { return this.isMembershipPaid; }
+
     public boolean hasAlreadyReserved() {
         return pendingReservation != null && reservedBook != null;
     }
@@ -83,4 +85,10 @@ public class Member extends Person {
     public void addTakenBook(IssuedBook issuedBook) {
         this.currentlyTaken.add(issuedBook);
     }
+
+    public ReservedBook getReservedBook() { return reservedBook; }
+
+    public PendingReservation getPendingReservation() { return pendingReservation; }
+
+    public List<IssuedBook> getCurrentlyTaken() { return currentlyTaken; }
 }

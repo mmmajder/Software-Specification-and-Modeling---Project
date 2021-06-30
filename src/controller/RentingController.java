@@ -23,8 +23,12 @@ public class RentingController {
     }
 
     private void validateMemberRent(Member member) throws MemberUnableToRentException {
-        if (!member.getMembershipPaid()) { throw new MemberUnableToRentException("subscription");}
-        if (!member.isAbleToRent()) { throw new MemberUnableToRentException("maxNumberOfTakenBooksReached"); }
+        if (!member.getIsMembershipPaid()) { throw new MemberUnableToRentException("subscription");}
+        if (!isAbleToRent(member)) { throw new MemberUnableToRentException("maxNumberOfTakenBooksReached"); }
+    }
+
+    private boolean isAbleToRent(Member member){
+        return member.getCurrentlyTaken().size() < library.getMaxIssuedBooks(member.getType());
     }
 
     private void validateBookRent(Member member, Book book) throws BookRentingIsInvalidException {
@@ -34,7 +38,7 @@ public class RentingController {
     }
 
     private boolean isReservedForMember(Member member, Book book){
-        return member.getReservedBookId() == book.getBookId();
+        return member.getReservedBook().getBook().getBookId() == book.getBookId();
     }
 
     private void createIssue(Member member, Book book){

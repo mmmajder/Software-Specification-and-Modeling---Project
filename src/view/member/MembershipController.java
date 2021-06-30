@@ -1,14 +1,12 @@
 package view.member;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import model.Account;
 import model.ILibraryRepo;
 import model.Library;
@@ -25,6 +23,7 @@ public class MembershipController {
 
     public Label maxNumberOfBooks;
     public Label maxNumberOfDays;
+    public Label status;
 
     public RadioButton regularRB;
     public RadioButton studentRB;
@@ -47,6 +46,14 @@ public class MembershipController {
         libraryRepo.loadMaxIssueDays(library);
         libraryRepo.loadMaxIssuedBooks(library);
 
+        if (!account.getMembershipExpirationDate()) {
+            status.setText("NOT ACTIVE");
+            status.setTextFill(Paint.valueOf("#CD113B"));
+        } else {
+            status.setText("ACTIVE UNTIL " + account.getMembershipExpirationDate());
+            status.setTextFill(Paint.valueOf("#ffffff"));
+        }
+
         DropShadow dropShadow = new DropShadow(6, 0, 5, Color.GRAY);
         panel6.setEffect(dropShadow);
         panel12.setEffect(dropShadow);
@@ -62,19 +69,15 @@ public class MembershipController {
         HashMap<MemberType, Integer> maxIssueDays = library.getMaxIssueDays();
         HashMap<MemberType, Integer> maxIssuedBooks = library.getMaxIssuedBooks();
 
-        group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            public void changed(ObservableValue<? extends Toggle> ov,
-                                Toggle old_toggle, Toggle new_toggle) {
-                if (group.getSelectedToggle() != null) {
-                    //TODO kad Bubi doda cenovnik ovde da idu cene
-                    MemberType memberType = MemberType.valueOf(group.getSelectedToggle().toString());
+        group.selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
+            if (group.getSelectedToggle() != null) {
+                MemberType memberType = MemberType.valueOf(group.getSelectedToggle().toString());
 
-                    price6months.setText(group.getSelectedToggle().toString());
-                    price12months.setText(group.getSelectedToggle().toString());
+                price6months.setText(library.getCurrentCatalog().getPrice(memberType, 6) + "$");
+                price12months.setText(library.getCurrentCatalog().getPrice(memberType, 12) + "$");
 
-                    maxNumberOfBooks.setText("Number of books you can issue is " + maxIssuedBooks.get(memberType) + ".");
-                    maxNumberOfDays.setText("Number of days you can keep your books is " + maxIssueDays.get(memberType) + ".");
-                }
+                maxNumberOfBooks.setText("Number of books you can issue is " + maxIssuedBooks.get(memberType) + ".");
+                maxNumberOfDays.setText("Number of days you can keep your books is " + maxIssueDays.get(memberType) + ".");
             }
         });
 

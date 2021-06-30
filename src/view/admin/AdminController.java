@@ -1,4 +1,4 @@
-package view;
+package view.admin;
 
 import controller.AccountController;
 import javafx.fxml.FXML;
@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Account;
+import model.ILibraryRepo;
 import model.Library;
 import model.LibraryRepo;
 
@@ -36,7 +37,7 @@ public class AdminController {
     AccountController controller;
     Library library;
     Account account;
-    LibraryRepo libraryRepo;
+    ILibraryRepo libraryRepo;
 
     public void initData(Account account) throws IOException {
         this.account = account;
@@ -53,29 +54,29 @@ public class AdminController {
         libraryRepo.loadMaxIssuedBooks(library);
         lblUsername.setText(account.getFullName());
 
-        FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../fxml/librarian/searchBooksLibrarian.fxml"));
+        FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/searchBooksLibrarian.fxml"));
         booksScene = booksLoader.load();
         //SearchBooksLibrarianController searchBooksLibrarianController = (SearchBooksLibrarianController) booksLoader.getController();
 
-        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../fxml/librarian/bookLibrarian.fxml"));
+        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookLibrarian.fxml"));
         bookScene = bookLoader.load();
         //BookLibrarianController bookLibrarianController = (BookLibrarianController) bookLoader.getController();
         // TODO
         //bookLibrarianController.setSecondScene(new Scene(booksScene));
         //searchBooksLibrarianController.setSecondScene(new Scene(bookScene));
 
-        FXMLLoader reservationsLoader = new FXMLLoader(getClass().getResource("../fxml/librarian/reservationsLibrarian.fxml"));
+        FXMLLoader reservationsLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/reservationsLibrarian.fxml"));
         reservationsScene = reservationsLoader.load();
         //HistoryController historyController = (HistoryController) historyLoader.getController();
 
-        FXMLLoader membersLoader = new FXMLLoader(getClass().getResource("../fxml/librarian/memberCRUD.fxml"));
+        FXMLLoader membersLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/memberCRUD.fxml"));
         membersScene = membersLoader.load();
         //MembershipController membershipController = (MembershipController) membershipLoader.getController();
 
-        FXMLLoader rentedBooksLoader = new FXMLLoader(getClass().getResource("../fxml/librarian/rentedBooks.fxml"));
+        FXMLLoader rentedBooksLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/rentedBooks.fxml"));
         rentedBooksScene = rentedBooksLoader.load();
 
-        FXMLLoader settingsLoader = new FXMLLoader(getClass().getResource("../fxml/admin/settings.fxml"));
+        FXMLLoader settingsLoader = new FXMLLoader(getClass().getResource("../../fxml/admin/settings.fxml"));
         settingsScene = settingsLoader.load();
         //NotificationsController notificationsController = (NotificationsController) notificationsLoader.getController();
 
@@ -84,7 +85,7 @@ public class AdminController {
 
     @FXML
     private void logOut(MouseEvent event) throws IOException {
-        final FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/login.fxml"));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/login.fxml"));
         final Parent root = (Parent) loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);

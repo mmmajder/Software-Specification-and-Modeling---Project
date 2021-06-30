@@ -1,4 +1,4 @@
-package view;
+package view.member;
 
 import com.sun.xml.internal.bind.v2.TODO;
 import javafx.scene.image.ImageView;

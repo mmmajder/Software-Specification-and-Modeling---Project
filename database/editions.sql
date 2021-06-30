@@ -85,7 +85,7 @@ INSERT INTO editions VALUES (13, 'Never Let Me Go', 'Vulkan', 230, 'Never Let Me
                                                                    'the literary novel.',
                              TO_DATE('2002/12/09', 'yyyy/mm/dd'), 'English', 1, 'image');
 
-INSERT INTO editions VALUES (14, 'On the Road', 'Vulkan', 240, 'A quintessential novel of America & the Beat Generation' ||
+INSERT INTO editions VALUES (14, 'On the Road', 'Vulkan', 240, 'A quintessential novel of America and the Beat Generation' ||
                                                                ' On the Road chronicles Jack Kerouacs years ' ||
                                                                'traveling the N. American continent with his ' ||
                                                                'friend Neal Cassady, "a sideburned hero of the ' ||

@@ -1,4 +1,4 @@
-package view;
+package view.librarian;
 
 import controller.AccountController;
 import javafx.fxml.FXML;
@@ -17,20 +17,20 @@ import model.LibraryRepo;
 
 import java.io.IOException;
 
-public class MemberController {
-    public Label lblNotifications;
+public class LibrarianController {
     public Label lblBooks;
-    public Label lblHistory;
-    public Label lblMembership;
+    public Label lblReservations;
+    public Label lblMembers;
     public Label lblUsername;
+    public Label lblRentedBooks;
 
     public BorderPane borderPane;
 
     public Parent booksScene;
     public Parent bookScene;
-    public Parent historyScene;
-    public Parent membershipScene;
-    public Parent notificationsScene;
+    public Parent reservationsScene;
+    public Parent membersScene;
+    public Parent rentedBooksScene;
 
     AccountController controller;
     Library library;
@@ -52,35 +52,34 @@ public class MemberController {
         libraryRepo.loadMaxIssuedBooks(library);
         lblUsername.setText(account.getFullName());
 
-        FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../fxml/member/searchBooksMember.fxml"));
+        FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/searchBooksLibrarian.fxml"));
         booksScene = booksLoader.load();
-        SearchBooksMemberController searchBooksMemberController = (SearchBooksMemberController) booksLoader.getController();
+        //SearchBooksLibrarianController searchBooksLibrarianController = (SearchBooksLibrarianController) booksLoader.getController();
 
-        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../fxml/member/reservationMember.fxml"));
+        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookLibrarian.fxml"));
         bookScene = bookLoader.load();
-        BookMemberController bookMemberController = (BookMemberController) bookLoader.getController();
+        //BookLibrarianController bookLibrarianController = (BookLibrarianController) bookLoader.getController();
+        // TODO
+        //bookLibrarianController.setSecondScene(new Scene(booksScene));
+        //searchBooksLibrarianController.setSecondScene(new Scene(bookScene));
 
-        bookMemberController.setSecondScene(new Scene(booksScene));
-        searchBooksMemberController.setSecondScene(new Scene(bookScene));
-
-        FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../fxml/member/history.fxml"));
-        historyScene = historyLoader.load();
+        FXMLLoader reservationsLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/reservationsLibrarian.fxml"));
+        reservationsScene = reservationsLoader.load();
         //HistoryController historyController = (HistoryController) historyLoader.getController();
 
-        FXMLLoader membershipLoader = new FXMLLoader(getClass().getResource("../fxml/member/membership.fxml"));
-        membershipScene = membershipLoader.load();
+        FXMLLoader membersLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/memberCRUD.fxml"));
+        membersScene = membersLoader.load();
         //MembershipController membershipController = (MembershipController) membershipLoader.getController();
 
-        FXMLLoader notificationsLoader = new FXMLLoader(getClass().getResource("../fxml/member/notifications.fxml"));
-        notificationsScene = notificationsLoader.load();
-        //NotificationsController notificationsController = (NotificationsController) notificationsLoader.getController();
+        FXMLLoader rentedBooksLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/rentedBooks.fxml"));
+        rentedBooksScene = rentedBooksLoader.load();
 
         switchToBooks();
     }
 
     @FXML
     private void logOut(MouseEvent event) throws IOException {
-        final FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/login.fxml"));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/login.fxml"));
         final Parent root = (Parent) loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -90,11 +89,11 @@ public class MemberController {
     }
 
     @FXML
-    private void switchToNotifications(MouseEvent event) {
-        borderPane.setCenter(notificationsScene);
-        lblNotifications.setUnderline(true);
-        lblHistory.setUnderline(false);
-        lblMembership.setUnderline(false);
+    private void switchToRentedBooks(MouseEvent event) {
+        borderPane.setCenter(rentedBooksScene);
+        lblRentedBooks.setUnderline(true);
+        lblMembers.setUnderline(false);
+        lblReservations.setUnderline(false);
         lblBooks.setUnderline(false);
     }
 
@@ -105,27 +104,27 @@ public class MemberController {
 
     public void switchToBooks() {
         borderPane.setCenter(booksScene);
-        lblNotifications.setUnderline(false);
-        lblHistory.setUnderline(false);
-        lblMembership.setUnderline(false);
+        lblRentedBooks.setUnderline(false);
+        lblMembers.setUnderline(false);
+        lblReservations.setUnderline(false);
         lblBooks.setUnderline(true);
     }
 
     @FXML
-    private void switchToHistory(MouseEvent event) {
-        borderPane.setCenter(historyScene);
-        lblNotifications.setUnderline(false);
-        lblHistory.setUnderline(true);
-        lblMembership.setUnderline(false);
+    private void switchToMembers(MouseEvent event) {
+        borderPane.setCenter(membersScene);
+        lblRentedBooks.setUnderline(false);
+        lblMembers.setUnderline(true);
+        lblReservations.setUnderline(false);
         lblBooks.setUnderline(false);
     }
 
     @FXML
-    private void switchToMembership(MouseEvent event) {
-        borderPane.setCenter(membershipScene);
-        lblNotifications.setUnderline(false);
-        lblHistory.setUnderline(false);
-        lblMembership.setUnderline(true);
+    private void switchToReservations(MouseEvent event) {
+        borderPane.setCenter(reservationsScene);
+        lblRentedBooks.setUnderline(false);
+        lblMembers.setUnderline(false);
+        lblReservations.setUnderline(true);
         lblBooks.setUnderline(false);
     }
 

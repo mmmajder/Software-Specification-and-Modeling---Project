@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Text?>
 
 <Pane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="view.BookMemberController">
+      fx:controller="view.member.BookMemberController">
     <BorderPane prefHeight="550.0" prefWidth="900.0">
         <left>
             <VBox prefHeight="478.0" prefWidth="270.0" style="-fx-background-color: ffffff;"

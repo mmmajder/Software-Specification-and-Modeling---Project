@@ -45,6 +45,7 @@ public class UserController {
 //        libraryRepo.loadEditions(library);
 //        libraryRepo.loadContributorRoles(library);
 //        libraryRepo.loadGenres(library);
+//        lblUsername.setText(account.getPerson().getName() + " " + account.getPerson().getSurname());
         lblUsername.setText(account.getUsername());
 
         FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../fxml/searchBooksMember.fxml"));

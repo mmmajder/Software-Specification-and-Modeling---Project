@@ -16,12 +16,13 @@ import model.LibraryRepo;
 
 import java.io.IOException;
 
-public class LibrarianController {
+public class AdminController {
     public Label lblBooks;
     public Label lblReservations;
     public Label lblMembers;
     public Label lblUsername;
     public Label lblRentedBooks;
+    public Label lblSettings;
 
     public BorderPane borderPane;
 
@@ -30,6 +31,7 @@ public class LibrarianController {
     public Parent reservationsScene;
     public Parent membersScene;
     public Parent rentedBooksScene;
+    public Parent settingsScene;
 
     AccountController controller;
     Library library;
@@ -71,6 +73,10 @@ public class LibrarianController {
         FXMLLoader rentedBooksLoader = new FXMLLoader(getClass().getResource("../fxml/librarian/rentedBooks.fxml"));
         rentedBooksScene = rentedBooksLoader.load();
 
+        FXMLLoader settingsLoader = new FXMLLoader(getClass().getResource("../fxml/admin/settings.fxml"));
+        settingsScene = settingsLoader.load();
+        //NotificationsController notificationsController = (NotificationsController) notificationsLoader.getController();
+
         switchToBooks();
     }
 
@@ -92,6 +98,7 @@ public class LibrarianController {
         lblMembers.setUnderline(false);
         lblReservations.setUnderline(false);
         lblBooks.setUnderline(false);
+        lblSettings.setUnderline(false);
     }
 
     @FXML
@@ -105,6 +112,17 @@ public class LibrarianController {
         lblMembers.setUnderline(false);
         lblReservations.setUnderline(false);
         lblBooks.setUnderline(true);
+        lblSettings.setUnderline(false);
+    }
+
+    @FXML
+    private void switchToSettings(MouseEvent event) {
+        borderPane.setCenter(settingsScene);
+        lblRentedBooks.setUnderline(false);
+        lblMembers.setUnderline(false);
+        lblReservations.setUnderline(false);
+        lblBooks.setUnderline(false);
+        lblSettings.setUnderline(true);
     }
 
     @FXML
@@ -114,6 +132,7 @@ public class LibrarianController {
         lblMembers.setUnderline(true);
         lblReservations.setUnderline(false);
         lblBooks.setUnderline(false);
+        lblSettings.setUnderline(false);
     }
 
     @FXML
@@ -123,6 +142,7 @@ public class LibrarianController {
         lblMembers.setUnderline(false);
         lblReservations.setUnderline(true);
         lblBooks.setUnderline(false);
+        lblSettings.setUnderline(false);
     }
 
 }

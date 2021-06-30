@@ -12,10 +12,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Account;
 import model.Library;
+import model.LibraryRepo;
 
 import java.io.IOException;
 
-public class UserController {
+public class MemberController {
     public Label lblNotifications;
     public Label lblBooks;
     public Label lblHistory;
@@ -33,20 +34,20 @@ public class UserController {
     AccountController controller;
     Library library;
     Account account;
+    LibraryRepo libraryRepo;
 
     public void initData(Account account) throws IOException {
         this.account = account;
         this.library = new Library();
         this.controller = new AccountController(library);
-//        LibraryRepo libraryRepo = new LibraryRepo();
-//        libraryRepo.loadBooks(library);
-//        libraryRepo.loadTags(library);
-//        libraryRepo.loadContributors(library);
-//        libraryRepo.loadEditions(library);
-//        libraryRepo.loadContributorRoles(library);
-//        libraryRepo.loadGenres(library);
-//        lblUsername.setText(account.getPerson().getName() + " " + account.getPerson().getSurname());
-        lblUsername.setText(account.getUsername());
+        libraryRepo = new LibraryRepo();
+        libraryRepo.loadBooks(library);
+        libraryRepo.loadTags(library);
+        libraryRepo.loadContributors(library);
+        libraryRepo.loadEditions(library);
+        libraryRepo.loadContributorRoles(library);
+        libraryRepo.loadGenres(library);
+        lblUsername.setText(account.getFullName());
 
         FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../fxml/member/searchBooksMember.fxml"));
         booksScene = booksLoader.load();

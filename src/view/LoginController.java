@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -25,15 +24,16 @@ public class LoginController {
     public TextField usernameTextField;
     public PasswordField passwordField;
     public Label lblError;
-    AccountController controller;
+    AccountController accountController;
     Library library;
+    LibraryRepo libraryRepo;
 
     private String getFileName(Account account) {
         switch (account.getType()) {
             case ADMIN:
                 return "../fxml/admin/admin.fxml";
             case MEMBER:
-                return "../fxml/member/user.fxml";
+                return "../fxml/member/member.fxml";
             case LIBRARIAN:
                 return "../fxml/librarian/librarian.fxml";
             default:
@@ -41,20 +41,47 @@ public class LoginController {
         }
     }
 
+    private void setController(Account account, FXMLLoader loader) throws IOException {
+        switch (account.getType()) {
+            case ADMIN:
+                final AdminController adminController = loader.getController();
+                adminController.initData(account);
+            case MEMBER:
+                final MemberController memberController = loader.getController();
+                memberController.initData(account);
+            case LIBRARIAN:
+                final LibrarianController librarianController = loader.getController();
+                librarianController.initData(account);
+        }
+    }
+
     @FXML
     private void switchToUser(ActionEvent event) throws IOException {
         try {
             this.library = new Library();
-            this.controller = new AccountController(library);
-            LibraryRepo libraryRepo = new LibraryRepo();
+            this.accountController = new AccountController(library);
+            libraryRepo = new LibraryRepo();
             libraryRepo.loadAccounts(library);
-            if (controller.usernameExists(usernameTextField.getText())) {
+            if (accountController.usernameExists(usernameTextField.getText())) {
                 Account account = library.getAccount(usernameTextField.getText());
-                if (controller.passwordValid(account, passwordField.getText())) {
+                if (accountController.passwordValid(account, passwordField.getText())) {
+                    libraryRepo.loadPersons(library);
                     final FXMLLoader loader = new FXMLLoader(getClass().getResource(Objects.requireNonNull(getFileName(account))));
                     final Parent root = (Parent) loader.load();
-                    final UserController controller = loader.getController();
-                    controller.initData(account);
+                    switch (account.getType()) {
+                        case ADMIN:
+                            final AdminController adminController = loader.getController();
+                            adminController.initData(account);
+                            break;
+                        case MEMBER:
+                            final MemberController memberController = loader.getController();
+                            memberController.initData(account);
+                            break;
+                        case LIBRARIAN:
+                            final LibrarianController librarianController = loader.getController();
+                            librarianController.initData(account);
+                            break;
+                    }
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);

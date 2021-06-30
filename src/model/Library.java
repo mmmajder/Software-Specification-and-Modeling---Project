@@ -23,6 +23,8 @@ public class Library implements Publisher {
     private HashMap<MemberType, Integer> maxIssuedBooks;
     private List<BookSection> sections;
     private List<IssuedBook> issuedBooks;
+    private List<PendingReservation> pendingReservations;
+    private List<ReservedBook> reservedBooks;
 
     private List<Observer> observers;
 
@@ -39,6 +41,8 @@ public class Library implements Publisher {
         this.maxIssuedBooks = new HashMap<>();
         this.sections = new ArrayList<>();
         this.observers = new ArrayList<>();
+        this.pendingReservations = new ArrayList<>();
+        this.reservedBooks = new ArrayList<>();
     }
 
     public List<Genre> getGenres() {
@@ -121,8 +125,7 @@ public class Library implements Publisher {
         return null;
     }
 
-
-    public void addIssueDayConstraint(MemberType type, int days) {
+    public void addIssueDayConstraint (MemberType type, int days) {
         this.maxIssueDays.put(type, days);
     }
 
@@ -144,6 +147,35 @@ public class Library implements Publisher {
         for (Account account : this.accounts) {
             if (account.getEmail().equalsIgnoreCase(email)) {
                 return account;
+            }
+        }
+
+        return null;
+    }
+
+    public Person getPerson(String jmbg) {
+        for (Person person : this.persons) {
+            if (person.getJMBG().equalsIgnoreCase(jmbg)) {
+                return person;
+            }
+        }
+        return null;
+    }
+
+    public void addPendingReservation(PendingReservation pendingReservation) {
+        this.pendingReservations.add(pendingReservation);
+    }
+
+    public void addReservedBook(ReservedBook reservedBook) {
+        this.reservedBooks.add(reservedBook);
+    }
+
+    public Book getBook(String bookId) {
+
+        for (Book book : this.books) {
+
+            if (book.getBookId().equalsIgnoreCase(bookId)) {
+                return book;
             }
         }
 

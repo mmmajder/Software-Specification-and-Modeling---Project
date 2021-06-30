@@ -11,4 +11,6 @@ public interface ILibraryRepo {
     void loadBooks(Library library);
     void loadMaxIssueDays(Library library);
     void loadMaxIssuedBooks(Library library);
+    void loadPendingReservations(Library library);
+    void loadReservedBooks(Library library);
 }

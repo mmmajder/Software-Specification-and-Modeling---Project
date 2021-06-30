@@ -23,7 +23,7 @@ public class RentingController {
     }
 
     private void validateMemberRent(Member member) throws MemberUnableToRentException {
-        if (!member.getSubscriptionValid()) { throw new MemberUnableToRentException("subscription");}
+        if (!member.getMembershipPaid()) { throw new MemberUnableToRentException("subscription");}
         if (!member.isAbleToRent()) { throw new MemberUnableToRentException("maxNumberOfTakenBooksReached"); }
     }
 

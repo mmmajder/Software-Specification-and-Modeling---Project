@@ -48,12 +48,15 @@ public class LibraryRepo implements ILibraryRepo {
                 String username = accounts.getString("username");
                 String password = accounts.getString("password");
                 String accType = accounts.getString("type");
+                int active = accounts.getInt("active");
 
-                Account account;
-                AccountType type = AccountType.valueOf(accType);
+                if (active == 1) {
+                    Account account;
+                    AccountType type = AccountType.valueOf(accType);
 
-                account = new Account(username, password, email, type, null);
-                library.addAccount(account);
+                    account = new Account(username, password, email, type, null, true);
+                    library.addAccount(account);
+                }
             }
 
         } catch (SQLException e) {
@@ -83,7 +86,7 @@ public class LibraryRepo implements ILibraryRepo {
 
                 if (email == null) {
 
-                    person = new Member(name, surname, jmbg, phoneNumber, birthDate, null);
+                    person = loadMember(jmbg, name, surname, phoneNumber, birthDate);
 
                 } else {
 
@@ -94,7 +97,7 @@ public class LibraryRepo implements ILibraryRepo {
                             person = new Admin(name, surname, jmbg, phoneNumber, birthDate, null);
                             break;
                         case MEMBER:
-                            person = new Member(name, surname, jmbg, phoneNumber, birthDate, null);
+                            person = loadMember(jmbg, name, surname, phoneNumber, birthDate);
                             break;
                         case LIBRARIAN:
                             person = new Librarian(name, surname, jmbg, phoneNumber, birthDate, null);
@@ -111,6 +114,29 @@ public class LibraryRepo implements ILibraryRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private Person loadMember(String jmbg, String name, String surname, String phoneNumber, LocalDate birthDate) {
+        try {
+            String query = "SELECT * FROM members WHERE jmbg = " + jmbg;
+            PreparedStatement memberStatement = connection.prepareStatement(query);
+            ResultSet member = memberStatement.executeQuery();
+            member.next();
+
+            String type = member.getString("type");
+            double debt = member.getDouble("debt");
+            int memberShipPaid = member.getInt("memberShipPaid");
+            int active = member.getInt("active");
+            boolean isMembershipPaid = memberShipPaid == 1;
+            boolean isActive = active == 1;
+
+            return new Member(name, surname, jmbg, phoneNumber, birthDate, null,
+                    MemberType.valueOf(type), debt, isMembershipPaid, isActive);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -328,6 +354,57 @@ public class LibraryRepo implements ILibraryRepo {
                 int limit = resultSet.getInt("limit");
 
                 library.addIssuedBooksConstraint(MemberType.valueOf(memberType), limit);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void loadPendingReservations(Library library) {
+
+        String query = "SELECT * FROM pendingReservations";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet pendingReservations = statement.executeQuery();
+
+            while (pendingReservations.next()) {
+
+                int pendingReservationsId = pendingReservations.getInt("idpr");
+                String member = pendingReservations.getString("member");
+                String edition = pendingReservations.getString("edition");
+
+                Member m = (Member) library.getPerson(member);
+                Edition e = library.getEdition(edition);
+                PendingReservation pendingReservation = new PendingReservation(pendingReservationsId, m, e);
+                library.addPendingReservation(pendingReservation);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void loadReservedBooks(Library library) {
+        String query = "SELECT * FROM reservedBooks";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet reservedBooks = statement.executeQuery();
+
+            while (reservedBooks.next()) {
+
+                int reservedBooksId = reservedBooks.getInt("idpr");
+                String member = reservedBooks.getString("member");
+                String book = reservedBooks.getString("book");
+
+                Member m = (Member) library.getPerson(member);
+                Book b = library.getBook(book);
+                ReservedBook reservedBook = new ReservedBook(reservedBooksId, m, b);
+                library.addReservedBook(reservedBook);
             }
 
         } catch (SQLException e) {

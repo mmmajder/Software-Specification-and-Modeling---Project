@@ -106,4 +106,5 @@ public class Edition {
     public void addContributorRole(ContributorRole role) {
         this.contributorRoles.add(role);
     }
+
 }

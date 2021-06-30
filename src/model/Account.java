@@ -41,8 +41,10 @@ public class Account {
         this.person = person;
     }
 
+    // TODO: NE VALJA
     public String getFullName() {
         try {
+            System.out.println(person.getName());
             return this.person.getName() + " " + this.person.getSurname();
         } catch (Exception e) {
             return "error";

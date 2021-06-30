@@ -411,4 +411,74 @@ public class LibraryRepo implements ILibraryRepo {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void loadPriceCatalogs(Library library) {
+        String query = "SELECT * FROM priceCatalogs";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet priceCatalogs = statement.executeQuery();
+
+            while (priceCatalogs.next()) {
+
+                int catalogId = priceCatalogs.getInt("catalogId");
+                LocalDate fromDate = priceCatalogs.getDate("fromDate").toLocalDate();
+                LocalDate toDate = priceCatalogs.getDate("toDate").toLocalDate();
+
+                PriceCatalog catalog = new PriceCatalog(catalogId, fromDate, toDate);
+                library.addCatalog(catalog);
+            }
+
+            library.setCurrentPriceCatalog();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void loadHalfAYearPrices(Library library) {
+
+        String query = "SELECT * FROM catalogHalfAYearPrices";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+
+                int catalogId = resultSet.getInt("catalog");
+                String type = resultSet.getString("type");
+                double price = resultSet.getDouble("price");
+
+                PriceCatalog catalog = library.getPriceCatalog(catalogId);
+                catalog.addHalfAYearPrice(MemberType.valueOf(type), price);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void loadFullYearPrices(Library library) {
+        String query = "SELECT * FROM catalogFullYearPrices";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+
+                int catalogId = resultSet.getInt("catalog");
+                String type = resultSet.getString("type");
+                double price = resultSet.getDouble("price");
+
+                PriceCatalog catalog = library.getPriceCatalog(catalogId);
+                catalog.addFullYearPrice(MemberType.valueOf(type), price);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

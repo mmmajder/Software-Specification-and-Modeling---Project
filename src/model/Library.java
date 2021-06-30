@@ -182,6 +182,27 @@ public class Library implements Publisher {
         return null;
     }
 
+    public void addCatalog(PriceCatalog catalog) {
+        this.priceCatalogs.add(catalog);
+    }
+
+    public void setCurrentPriceCatalog() {
+        int indexOfLastCatalog = this.priceCatalogs.size() - 1;
+        this.currentCatalog = this.priceCatalogs.get(indexOfLastCatalog);
+    }
+
+    public PriceCatalog getPriceCatalog(int catalogId) {
+
+        for (PriceCatalog catalog : this.priceCatalogs) {
+
+            if (catalog.getCatalogId() == catalogId) {
+                return catalog;
+            }
+        }
+
+        return null;
+    }
+
     @Override
     public void addObserver(Observer observer) {
         this.observers.add(observer);

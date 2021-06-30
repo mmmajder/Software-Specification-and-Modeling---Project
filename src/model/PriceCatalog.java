@@ -21,12 +21,16 @@ public class PriceCatalog {
         this.fullYearPrices = new HashMap<>();
     }
 
-    public HashMap<MemberType, Double> getHalfAYearPrices() {
-        return halfAYearPrices;
+    public int getCatalogId() {
+        return catalogId;
     }
 
-    public HashMap<MemberType, Double> getFullYearPrices() {
-        return fullYearPrices;
+    public void addHalfAYearPrice(MemberType type, double price) {
+        halfAYearPrices.put(type, price);
+    }
+
+    public void addFullYearPrice(MemberType type, double price) {
+        fullYearPrices.put(type, price);
     }
 
     public double getPrice(MemberType type, int numOfMonths) {

@@ -160,9 +160,6 @@ CREATE TABLE bookSections (
 
 ALTER TABLE bookSections MODIFY Section CHAR(3);
 
-ALTER TABLE accounts ADD Active INTEGER default 1 NOT NULL;
-ALTER TABLE accounts ADD CONSTRAINT accounts_CHK CHECK ( Active IN (0, 1) );
-
 CREATE TABLE bookShelves (
     Shelf INTEGER NOT NULL,
     CONSTRAINT bookShelf_PK PRIMARY KEY (Shelf)

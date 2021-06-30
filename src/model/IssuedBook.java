@@ -24,4 +24,24 @@ public class IssuedBook {
         this.book = book;
         this.member = member;
     }
+
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public boolean isProlongedIssue() {
+        return prolongedIssue;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public Member getMember() {
+        return member;
+    }
 }

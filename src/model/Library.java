@@ -223,4 +223,21 @@ public class Library implements Publisher {
             observer.updatePerformed();
         }
     }
+
+    //TODO
+    public List<Edition> filterEditions(List<Edition> currentEditions, String filter) {
+        return currentEditions;
+    }
+    //TODO
+    public List<Edition> filterByGenre(List<Edition> currentEditions, String genreString) {
+        return currentEditions;
+    }
+    //TODO
+    public List<Edition> sortByTitle(List<Edition> currentEditions) {
+        return currentEditions;
+    }
+    //TODO
+    public List<Edition> sortByPublishedDate(List<Edition> currentEditions) {
+        return currentEditions;
+    }
 }

@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -48,6 +49,10 @@ public class BookMemberController {
     public void initData(Edition edition) {
         lblTitle.setText(edition.getTitle());
         //lblAuthor.setText(edition.getAuthor());
+        final Tooltip authorBiography = new Tooltip();
+        //authorBiography.setText(edition.getAuthor().getBiography());
+        lblAuthor.setTooltip(authorBiography);
+
         txtDescription.setText(edition.getDescription());
         lblPublishedDate.setText("Published date: " + edition.getPublishedDate());
         lblLanguage.setText("Language: " + edition.getLanguage());
@@ -57,13 +62,8 @@ public class BookMemberController {
         //lblIllustration.setText("Illustration: " + edition.getIllustrator());
 //        lblGenre.setText("Genre " + edition.getGenre());
         txtTags.setText("Tags: " + edition.getTags());
+
         // TODO add needed getters
     }
 
-    @FXML
-    private void openWritter(MouseEvent event) {
-//        FXMLLoader writter = new FXMLLoader(getClass().getResource("../fxml/writter.fxml"));
-//        writtetScene = writter.load();
-
-    }
 }

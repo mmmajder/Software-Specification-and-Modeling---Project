@@ -70,7 +70,7 @@ public class LibrarianController {
 
         FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/history.fxml"));
         historyScene = historyLoader.load();
-        HistoryController historyController = (HistoryController) historyLoader.getController();
+//        HistoryController historyController = (HistoryController) historyLoader.getController();
 
         FXMLLoader membersLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/memberCRUD.fxml"));
         membersScene = membersLoader.load();

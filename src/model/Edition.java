@@ -1,5 +1,7 @@
 package model;
 
+import model.enums.ContributorType;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,17 @@ public class Edition {
 
     public Edition(String editionId, String title, String publisher, Genre genre, String language, BookFormat format, List<Contributor> contributors) {
         // fill constructor
+    }
+
+
+    public Contributor getAuthor(){
+        for (ContributorRole cRole : contributorRoles){
+            if (cRole.getContributorType() == ContributorType.AUTHOR){
+                return cRole.getContributor();
+            }
+        }
+
+        return null;
     }
 
     public String getImage() {

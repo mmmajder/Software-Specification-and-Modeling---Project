@@ -8,6 +8,7 @@ import utils.exceptions.NoSuchPendingRequestException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Library implements Publisher {
 
@@ -65,6 +66,10 @@ public class Library implements Publisher {
 
     public HashMap<MemberType, Integer> getMaxIssueDays() {
         return maxIssueDays;
+    }
+
+    public int getMaxIssueDays(MemberType type) {
+        return maxIssueDays.get(type);
     }
 
     public void setMaxIssueDays(HashMap<MemberType, Integer> maxIssueDays) {
@@ -176,22 +181,9 @@ public class Library implements Publisher {
         this.pendingReservations.add(pendingReservation);
     }
 
-    public void removePendingReservation(int prId) throws NoSuchPendingRequestException {
-        int index = 0;
-        boolean found = false;
+    public List<PendingReservation> getPendingReservations(){ return  pendingReservations; }
 
-        for (PendingReservation pr : pendingReservations){
-            if (pr.getId() == prId){
-                found = true;
-                break;
-            }
-            index++;
-        }
 
-        if (!found){ throw new NoSuchPendingRequestException(); }
-
-        pendingReservations.remove(index);
-    }
 
     public void addReservedBook(ReservedBook reservedBook) {
         this.reservedBooks.add(reservedBook);
@@ -230,6 +222,16 @@ public class Library implements Publisher {
         return null;
     }
 
+    public void removePendingReservation(PendingReservation pendingReservation) {
+        this.pendingReservations.remove(pendingReservation);
+    }
+
+    public List<Edition> getEditions(Genre genre){
+        return  editions.stream()
+                .filter(edition -> edition.getGenres().stream().anyMatch(g -> g.getName() == genre.getName()))
+                .collect(Collectors.toList());
+    }
+
     @Override
     public void addObserver(Observer observer) {
         this.observers.add(observer);
@@ -255,14 +257,7 @@ public class Library implements Publisher {
     public List<Edition> filterByGenre(List<Edition> currentEditions, String genreString) {
         return currentEditions;
     }
-    //TODO
-    public List<Edition> sortByTitle(List<Edition> currentEditions) {
-        return currentEditions;
-    }
-    //TODO
-    public List<Edition> sortByPublishedDate(List<Edition> currentEditions) {
-        return currentEditions;
-    }
+
     //TODO LocalDate getReturnedDate(); za IssuedBook
     //TODO List<IssuedBook> getActiveIssues(String JMBG); za library
     //TODO List<PendingReservation> getReservations(); za library

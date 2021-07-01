@@ -27,8 +27,6 @@ public class LibrarianReservationController {
         //TODO notify the member
     }
 
-
-
     private void setReservation(Member member, ReservedBook reservedBook){
         member.setReservedBook(reservedBook);
         library.addReservedBook(reservedBook);
@@ -36,7 +34,17 @@ public class LibrarianReservationController {
 
     private void removePendingReservation(Member member, int prId) throws NoSuchPendingRequestException {
         member.setPendingReservation(null);
-        library.removePendingReservation(prId);
+        removePendingReservation(prId);
+    }
+
+    public void removePendingReservation(int prId) throws NoSuchPendingRequestException {
+
+        for (PendingReservation pr : library.getPendingReservations()){
+            if (pr.getId() == prId){
+                library.removePendingReservation(pr);
+            }
+        }
+        throw new NoSuchPendingRequestException();
     }
 
 }

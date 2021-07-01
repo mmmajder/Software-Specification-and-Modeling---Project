@@ -27,6 +27,7 @@ public class MemberController {
     public BorderPane borderPane;
 
     public Parent booksScene;
+    public Parent bookScene;
     public Parent historyScene;
     public Parent membershipScene;
     public Parent notificationsScene;
@@ -35,6 +36,7 @@ public class MemberController {
     NotificationsController notificationsController;
     SearchBooksMemberController searchBooksMemberController;
     HistoryController historyController;
+    BookMemberController bookMemberController;
 
     AccountController controller;
     Library library;
@@ -60,6 +62,10 @@ public class MemberController {
         booksScene = booksLoader.load();
         searchBooksMemberController = booksLoader.getController();
 
+        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/member/reservationMember.fxml"));
+        bookScene = bookLoader.load();
+        bookMemberController = bookLoader.getController();
+
         FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../../fxml/member/history.fxml"));
         historyScene = historyLoader.load();
         historyController = historyLoader.getController();
@@ -78,7 +84,7 @@ public class MemberController {
     @FXML
     private void logOut(MouseEvent event) throws IOException {
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/login.fxml"));
-        final Parent root = (Parent) loader.load();
+        final Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -87,7 +93,7 @@ public class MemberController {
     }
 
     @FXML
-    private void switchToNotifications(MouseEvent event) {
+    private void switchToNotifications() {
         borderPane.setCenter(notificationsScene);
         lblNotifications.setUnderline(true);
         lblHistory.setUnderline(false);
@@ -96,13 +102,9 @@ public class MemberController {
     }
 
     @FXML
-    private void switchToBooks(MouseEvent event) throws IOException {
-        switchToBooks();
-    }
-
-    public void switchToBooks() {
+    public void switchToBooks() throws IOException {
         borderPane.setCenter(booksScene);
-        searchBooksMemberController.initData(account, booksScene);
+        searchBooksMemberController.initData(account);
         lblNotifications.setUnderline(false);
         lblHistory.setUnderline(false);
         lblMembership.setUnderline(false);
@@ -110,7 +112,12 @@ public class MemberController {
     }
 
     @FXML
-    private void switchToHistory(MouseEvent event) {
+    public void switchToEditions() throws IOException {
+        borderPane.setCenter(bookScene);
+    }
+
+    @FXML
+    private void switchToHistory() {
         borderPane.setCenter(historyScene);
         lblNotifications.setUnderline(false);
         lblHistory.setUnderline(true);
@@ -119,7 +126,7 @@ public class MemberController {
     }
 
     @FXML
-    private void switchToMembership(MouseEvent event) {
+    private void switchToMembership() {
         borderPane.setCenter(membershipScene);
         membershipController.initData(account);
         lblNotifications.setUnderline(false);

@@ -1,86 +1,83 @@
 package view.member;
 
+import controller.EditionController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SearchBooksMemberController {
     public ListView<String> genres;
-    public List<BookPane> bookPanes;
     public GridPane grid;
     public TextField search;
-    public Parent scene;
-    public List<Edition> currentEditions;
-    public int currentPage;
     public Label titleSort;
     public Label publishedDateSort;
     public ImageView ascSort;
     public ImageView descSort;
+    public BorderPane borderPane;
+    public BorderPane left;
+    public VBox right;
+
+    public List<Edition> currentEditions;
 
     ILibraryRepo libraryRepo;
     Library library;
     Account account;
+    EditionController editionController;
 
     public void switchToBook(MouseEvent actionEvent, Edition edition) throws IOException {
         Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/member/reservationMember.fxml"));
-        Scene bookScene = bookLoader.load();
+        Pane bookScene = bookLoader.load();
         primaryStage.setScene(bookScene);
         BookMemberController bookMemberController = bookLoader.getController();
-        bookMemberController.setSecondScene(this.scene);
         bookMemberController.initData(edition);
     }
 
-    public void initData(Account account, Parent mainScene) {
+    public void initData(Account account) throws IOException {
         library = new Library();
         libraryRepo = new LibraryRepo();
         this.account = account;
         libraryRepo.loadEditions(library);
         libraryRepo.loadContributors(library);
         libraryRepo.loadContributorRoles(library);
-        this.scene = mainScene;
+        editionController = new EditionController(library);
+        left.setPrefWidth(200);
 
-        this.currentPage = 1;
+        currentEditions = editionController.getRandomEditions(50);
+        initializeEditions(currentEditions);
         setGenres();
-        this.bookPanes = new ArrayList<BookPane>();
-        for (int i = 0; i < 12; i++) {
-            bookPanes.add(new BookPane());
-        }
-        //currentEditions = library.getRandomEditions();
-        setBookPanes();
+        BorderPane.setAlignment(left, Pos.TOP_LEFT);
+        BorderPane.setAlignment(right, Pos.CENTER_RIGHT);
 
-        search.textProperty().addListener((observable, oldValue, newValue) -> {
-            updateBooks(library.filterEditions(currentEditions, newValue));
-        });
+        search.textProperty().addListener((observable, oldValue, newValue) -> initializeEditions(library.filterEditions(currentEditions, newValue)));
 
         genres.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-                updateBooks(library.filterByGenre(currentEditions, newValue)));
+                initializeEditions(library.filterByGenre(currentEditions, newValue)));
 
         ascSort.setPickOnBounds(true);
         ascSort.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            //updateBooks(library.sortAsc(currentEditions));
+            //initializeEditions(library.sortAsc(currentEditions));
         });
         descSort.setPickOnBounds(true);
         descSort.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            //updateBooks(library.sortDesc(currentEditions));
+            //initializeEditions(library.sortDesc(currentEditions));
         });
 
-        titleSort.textProperty().addListener((ov, t, t1) -> updateBooks(library.sortByTitle(currentEditions)));
-        publishedDateSort.textProperty().addListener((ov, t, t1) -> updateBooks(library.sortByPublishedDate(currentEditions)));
+        titleSort.textProperty().addListener((ov, t, t1) -> initializeEditions(library.sortByTitle(currentEditions)));
+        publishedDateSort.textProperty().addListener((ov, t, t1) -> initializeEditions(library.sortByPublishedDate(currentEditions)));
     }
 
     @FXML
@@ -88,46 +85,49 @@ public class SearchBooksMemberController {
         genres.getItems().add("GENRES");
         for (Genre genre : library.getGenres()) {
             genres.getItems().add(genre.getName());
+            System.out.println(genre.getName());
         }
     }
 
-    @FXML
-    public void setBookPanes() {
-        int i = 0;
-        for (BookPane bookPane : bookPanes) {
-            bookPane.getStyleClass().add("bookPane");
-            bookPane.setEdition(currentEditions.get(i));
-            bookPane.setVisible(true);
-            bookPane.addEventFilter(MouseEvent.MOUSE_PRESSED, mouseEvent -> {
-                try {
-                    switchToBook(mouseEvent, bookPane.getEdition());
-                } catch (IOException e) {
-                    e.printStackTrace();
+    public void initializeEditions(List<Edition> editions) {
+        int column = 0;
+        int row = 1;
+        try {
+            for (Edition edition : editions) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("../../fxml/member/bookSample.fxml"));
+                AnchorPane bookPane = fxmlLoader.load();
+                bookPane.addEventFilter(MouseEvent.MOUSE_PRESSED, mouseEvent -> {
+                    try {
+                        switchToBook(mouseEvent, edition);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                BookPaneController itemController = fxmlLoader.getController();
+                itemController.setEdition(edition);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
                 }
-            });
-            grid.add(bookPane, i % 3, i % 4);
-            i++;
-        }
-    }
 
-    public void updateBooks(List<Edition> editions) {
-        this.currentEditions = editions;
-        int i = 0;
-        for (BookPane bookPane : bookPanes) {
-            bookPane.setEdition(currentEditions.get(i));
-            i++;
-        }
-        //repaint
-    }
+                grid.add(bookPane, column++, row);
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
 
-    @FXML
-    public void changePage(List<Edition> editions, int page) {
-        for (int i = page * 12; i < page * 13; i++) {
-            if (editions.size() <= i) {
-                bookPanes.get(i % 12).setVisible(false);
-            } else {
-                bookPanes.get(i % 12).setEdition(editions.get(i));
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(bookPane, new Insets(10));
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -108,6 +108,8 @@ public class Edition {
         this.genres.add(genre);
     }
 
+    public List<Genre> getGenres() { return genres;}
+
     public void addTag(String tag) {
         this.tags.add(tag);
     }

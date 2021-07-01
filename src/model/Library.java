@@ -8,6 +8,7 @@ import utils.exceptions.NoSuchPendingRequestException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Library implements Publisher {
 
@@ -215,6 +216,12 @@ public class Library implements Publisher {
         }
 
         return null;
+    }
+
+    public List<Edition> getEditions(Genre genre){
+        return  editions.stream()
+                .filter(edition -> edition.getGenres().stream().anyMatch(g -> g.getName() == genre.getName()))
+                .collect(Collectors.toList());
     }
 
     @Override

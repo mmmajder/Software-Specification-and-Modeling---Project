@@ -8,6 +8,8 @@ import utils.exceptions.MissingValueException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class EditionController {
 
@@ -78,5 +80,21 @@ public class EditionController {
         }
 
         return false;
+    }
+
+    public List<Edition> getRandom(int n){
+        List<String> allEditionIds = library.getEditions().stream().map(edition -> edition.getEditionId()).collect(Collectors.toList());
+        List<String> randomIds = new ArrayList<>();
+        Random r = new Random();
+
+        for (int i = 0; i < n; i++){
+            int randIndex = r.nextInt(allEditionIds.size());
+            String randId = allEditionIds.get(randIndex);
+            randomIds.add(randId);
+        }
+
+        List<Edition> randomEditions = library.getEditions().stream().filter(edition -> randomIds.contains(edition.getEditionId())).collect(Collectors.toList());
+
+        return randomEditions;
     }
 }

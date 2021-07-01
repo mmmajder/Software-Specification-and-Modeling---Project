@@ -47,6 +47,7 @@ public class LibrarianReservationController {
 
                 library.removePendingReservation(pr);
                 pendingReservationExists = true;
+                break;
             }
         }
 

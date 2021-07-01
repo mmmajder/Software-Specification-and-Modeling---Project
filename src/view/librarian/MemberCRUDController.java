@@ -48,7 +48,7 @@ public class MemberCRUDController {
         dataMemberIssuesTable.clear();
         for (MemberTable row : memberTable.getSelectionModel().getSelectedItems()) {
             for (int i = 1; i <= 1; i++) {
-                for (IssuedBook issuedBook : library.getActiveIssues(row.getJMBG())) {
+                for (IssuedBook issuedBook : library.getMemberActiveIssues(row.getJMBG())) {
                     dataMemberIssuesTable.add(new CurrentIssueTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.isProlongedIssue(), issuedBook.getReturnDate());
                 }
             }

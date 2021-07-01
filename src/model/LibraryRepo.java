@@ -505,10 +505,41 @@ public class LibraryRepo implements ILibraryRepo {
                 boolean isProlonged = prolongedIssue == 1;
 
                 IssuedBook issuedBook = new IssuedBook(issueDate, returnDate, isProlonged, book, l, m);
-                library.addIssuedBook(issuedBook);
+
+                l.addIssuedBook(issuedBook);
+                if (book.getState() == SampleState.TAKEN) {
+                    m.addTakenBook(issuedBook);
+                    library.addIssuedBook(issuedBook);
+                } else {
+                    m.addReturnedBook(issuedBook);
+                }
             }
 
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void loadNotifications(Library library) {
+        String query = "SELECT * FROM notifications";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet notifications = statement.executeQuery();
+
+            while (notifications.next()) {
+
+                String notificationId = notifications.getString("idn");
+                String message = notifications.getString("message");
+                LocalDate notiDate = notifications.getDate("notiDate").toLocalDate();
+                String member = notifications.getString("member");
+
+                Member m = (Member) library.getPerson(member);
+                Notification notification = new Notification(notificationId, message, notiDate, m);
+                m.addNotification(notification);
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

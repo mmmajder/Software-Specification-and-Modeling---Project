@@ -3,6 +3,7 @@ package model;
 import model.enums.MemberType;
 import observer.Observer;
 import observer.Publisher;
+import utils.exceptions.NoSuchPendingRequestException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class Library implements Publisher {
     private HashMap<MemberType, Integer> maxIssueDays;
     private HashMap<MemberType, Integer> maxIssuedBooks;
     private List<BookSection> sections;
-    private List<IssuedBook> issuedBooks;
+    private List<IssuedBook> currentlyIssued;
     private List<PendingReservation> pendingReservations;
     private List<ReservedBook> reservedBooks;
 
@@ -43,6 +44,7 @@ public class Library implements Publisher {
         this.observers = new ArrayList<>();
         this.pendingReservations = new ArrayList<>();
         this.reservedBooks = new ArrayList<>();
+        this.currentlyIssued = new ArrayList<>();
     }
 
     public List<Genre> getGenres() {
@@ -106,7 +108,7 @@ public class Library implements Publisher {
     }
 
     public void addIssuedBook(IssuedBook issuedBook) {
-        this.issuedBooks.add(issuedBook);
+        this.currentlyIssued.add(issuedBook);
     }
 
     public Edition getEdition(String editionId) {
@@ -168,6 +170,23 @@ public class Library implements Publisher {
 
     public void addPendingReservation(PendingReservation pendingReservation) {
         this.pendingReservations.add(pendingReservation);
+    }
+
+    public void removePendingReservation(int prId) throws NoSuchPendingRequestException {
+        int index = 0;
+        boolean found = false;
+
+        for (PendingReservation pr : pendingReservations){
+            if (pr.getId() == prId){
+                found = true;
+                break;
+            }
+            index++;
+        }
+
+        if (!found){ throw new NoSuchPendingRequestException(); }
+
+        pendingReservations.remove(index);
     }
 
     public void addReservedBook(ReservedBook reservedBook) {

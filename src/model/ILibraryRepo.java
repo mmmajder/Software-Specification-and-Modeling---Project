@@ -17,4 +17,5 @@ public interface ILibraryRepo {
     void loadHalfAYearPrices(Library library);
     void loadFullYearPrices(Library library);
     void loadIssuedBooks(Library library);
+    void loadNotifications(Library library);
 }

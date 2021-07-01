@@ -13,20 +13,12 @@ public class Member extends Person {
     private double debt;
     private List<Payment> payments;
     private List<IssuedBook> returnedBooks;
-    private List<IssuedBook> currentlyTaken;
+    private List<IssuedBook> currentlyTakenBooks;
     private PendingReservation pendingReservation;
     private ReservedBook reservedBook;
     private boolean isMembershipPaid;
     private boolean isActive;
     private List<Notification> notifications;
-
-    public List<Notification> getNotifications() {
-        return notifications;
-    }
-
-    public void addNotifications(Notification notification) {
-        this.notifications.add(notification);
-    }
 
     public Member() {
         super();
@@ -36,7 +28,8 @@ public class Member extends Person {
         this.isActive = true;
         this.payments = new ArrayList<>();
         this.returnedBooks = new ArrayList<>();
-        this.currentlyTaken = new ArrayList<>();
+        this.currentlyTakenBooks = new ArrayList<>();
+        this.notifications = new ArrayList<>();
     }
 
     public Member(String name, String surname, String JMBG, String phoneNumber, LocalDate birthDate, Account account,
@@ -53,7 +46,8 @@ public class Member extends Person {
         this.isActive = true;
         this.payments = new ArrayList<>();
         this.returnedBooks = new ArrayList<>();
-        this.currentlyTaken = new ArrayList<>();
+        this.currentlyTakenBooks = new ArrayList<>();
+        this.notifications = new ArrayList<>();
     }
 
     public void requestReservation(PendingReservation pendingReservation) {
@@ -102,20 +96,39 @@ public class Member extends Person {
         return pendingReservation != null && reservedBook != null;
     }
 
+    public void addReturnedBook(IssuedBook issuedBook) {
+        this.returnedBooks.add(issuedBook);
+    }
+
     public void addTakenBook(IssuedBook issuedBook) {
-        this.currentlyTaken.add(issuedBook);
+        this.currentlyTakenBooks.add(issuedBook);
     }
 
     public ReservedBook getReservedBook() {
         return reservedBook;
     }
 
+    public void setReservedBook(ReservedBook reservedBook){
+        this.reservedBook = reservedBook;
+    }
+
     public PendingReservation getPendingReservation() {
         return pendingReservation;
     }
 
-    public List<IssuedBook> getCurrentlyTaken() {
-        return currentlyTaken;
+    public void setPendingReservation(PendingReservation pendingReservation){
+        this.pendingReservation = pendingReservation;
     }
 
+    public List<IssuedBook> getCurrentlyTakenBooks() {
+        return currentlyTakenBooks;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void addNotification(Notification notification) {
+        this.notifications.add(notification);
+    }
 }

@@ -1,9 +1,6 @@
 package controller;
 
-import model.Book;
-import model.IssuedBook;
-import model.Library;
-import model.Member;
+import model.*;
 import model.enums.SampleState;
 import utils.exceptions.BookRentingIsInvalidException;
 import utils.exceptions.MemberUnableToRentException;
@@ -16,10 +13,10 @@ public class RentingController {
         this.library = library;
     }
 
-    public void rent(Member member, Book book) throws BookRentingIsInvalidException, MemberUnableToRentException {
+    public void rent(Member member, Book book, Librarian librarian) throws BookRentingIsInvalidException, MemberUnableToRentException {
         validateMemberRent(member);
         validateBookRent(member, book);
-        createIssue(member, book);
+        createIssue(member, book, librarian);
     }
 
     private void validateMemberRent(Member member) throws MemberUnableToRentException {
@@ -41,8 +38,8 @@ public class RentingController {
         return member.getReservedBook().getBook().getBookId().equals(book.getBookId());
     }
 
-    private void createIssue(Member member, Book book){
-        IssuedBook issuedBook = new IssuedBook(member, book);
+    private void createIssue(Member member, Book book, Librarian librarian){
+        IssuedBook issuedBook = new IssuedBook(member, book, librarian);
         member.addTakenBook(issuedBook);
         book.addIssueHistory(issuedBook);
         library.addIssuedBook(issuedBook);

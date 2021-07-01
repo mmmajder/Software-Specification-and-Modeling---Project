@@ -505,7 +505,14 @@ public class LibraryRepo implements ILibraryRepo {
                 boolean isProlonged = prolongedIssue == 1;
 
                 IssuedBook issuedBook = new IssuedBook(issueDate, returnDate, isProlonged, book, l, m);
-                library.addIssuedBook(issuedBook);
+
+                l.addIssuedBook(issuedBook);
+                if (book.getState() == SampleState.TAKEN) {
+                    m.addTakenBook(issuedBook);
+                    library.addIssuedBook(issuedBook);
+                } else {
+                    m.addReturnedBook(issuedBook);
+                }
             }
 
         } catch (SQLException e) {

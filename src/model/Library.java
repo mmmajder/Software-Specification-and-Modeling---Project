@@ -23,7 +23,7 @@ public class Library implements Publisher {
     private HashMap<MemberType, Integer> maxIssueDays;
     private HashMap<MemberType, Integer> maxIssuedBooks;
     private List<BookSection> sections;
-    private List<IssuedBook> issuedBooks;
+    private List<IssuedBook> currentlyIssued;
     private List<PendingReservation> pendingReservations;
     private List<ReservedBook> reservedBooks;
 
@@ -44,6 +44,7 @@ public class Library implements Publisher {
         this.observers = new ArrayList<>();
         this.pendingReservations = new ArrayList<>();
         this.reservedBooks = new ArrayList<>();
+        this.currentlyIssued = new ArrayList<>();
     }
 
     public List<Genre> getGenres() {
@@ -107,7 +108,7 @@ public class Library implements Publisher {
     }
 
     public void addIssuedBook(IssuedBook issuedBook) {
-        this.issuedBooks.add(issuedBook);
+        this.currentlyIssued.add(issuedBook);
     }
 
     public Edition getEdition(String editionId) {

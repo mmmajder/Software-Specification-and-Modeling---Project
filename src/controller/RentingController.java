@@ -25,7 +25,7 @@ public class RentingController {
     }
 
     private boolean isAbleToRent(Member member){
-        return member.getCurrentlyTaken().size() < library.getMaxIssuedBooks(member.getType());
+        return member.getCurrentlyTakenBooks().size() < library.getMaxIssuedBooks(member.getType());
     }
 
     private void validateBookRent(Member member, Book book) throws BookRentingIsInvalidException {

@@ -16,16 +16,18 @@ public class LibrarianReservationController {
         //TODO notify the member
     }
 
-    public void declineReservation(PendingReservation pr) throws NoSuchPendingRequestException {
-        removePendingReservation(pr.getMember(), pr.getId());
-        //TODO notify the member
-    }
-
     private ReservedBook createReservation(Member member, Book book){
         //TODO new id value
         int id = 0;
         return new ReservedBook(id, member, book);
     }
+
+    public void declineReservation(PendingReservation pr) throws NoSuchPendingRequestException {
+        removePendingReservation(pr.getMember(), pr.getId());
+        //TODO notify the member
+    }
+
+
 
     private void setReservation(Member member, ReservedBook reservedBook){
         member.setReservedBook(reservedBook);

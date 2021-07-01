@@ -327,4 +327,15 @@ CREATE TABLE booksInRow (
     CONSTRAINT booksInRow_FK2 FOREIGN KEY (Book) REFERENCES books (Idb)
 );
 
+DROP TABLE LIBRARIANISSUEDBOOKS;
+
+ALTER TABLE members DROP CONSTRAINT members_FK1;
+ALTER TABLE members DROP CONSTRAINT members_FK2;
+ALTER TABLE members DROP COLUMN pendingReservation;
+ALTER TABLE members DROP COLUMN reservedBook;
+ALTER TABLE members ADD pendingReservation INTEGER;
+ALTER TABLE members ADD CONSTRAINT members_FK1 FOREIGN KEY (pendingReservation) REFERENCES pendingReservations (Idpr);
+ALTER TABLE members ADD reservedBook INTEGER;
+ALTER TABLE members ADD CONSTRAINT members_FK2 FOREIGN KEY (reservedBook) REFERENCES reservedBooks (Idrb);
+
 COMMIT;

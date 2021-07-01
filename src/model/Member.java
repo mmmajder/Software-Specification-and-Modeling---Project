@@ -117,4 +117,5 @@ public class Member extends Person {
     public List<IssuedBook> getCurrentlyTaken() {
         return currentlyTaken;
     }
+
 }

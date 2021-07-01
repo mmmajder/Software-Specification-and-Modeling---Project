@@ -55,7 +55,7 @@ public class LibrarianController {
 
         FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/searchBooksLibrarian.fxml"));
         booksScene = booksLoader.load();
-        SearchBooksLibrarianController searchBooksLibrarianController = (SearchBooksLibrarianController) booksLoader.getController();
+//        SearchBooksLibrarianController searchBooksLibrarianController = (SearchBooksLibrarianController) booksLoader.getController();
 
         FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookLibrarian.fxml"));
         bookScene = bookLoader.load();
@@ -67,10 +67,6 @@ public class LibrarianController {
         FXMLLoader reservationsLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/reservationsLibrarian.fxml"));
         reservationsScene = reservationsLoader.load();
         //ResrrvationController historyController = (ResrrvationController) reservationsLoader.getController();
-
-        FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/history.fxml"));
-        historyScene = historyLoader.load();
-//        HistoryController historyController = (HistoryController) historyLoader.getController();
 
         FXMLLoader membersLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/memberCRUD.fxml"));
         membersScene = membersLoader.load();

@@ -1,6 +1,5 @@
-package fxml.librarian.model;
+package view.librarian.model;
 
-import model.Member;
 import model.enums.SampleState;
 
 import java.time.LocalDate;

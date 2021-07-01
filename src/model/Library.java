@@ -68,6 +68,10 @@ public class Library implements Publisher {
         return maxIssueDays;
     }
 
+    public int getMaxIssueDays(MemberType type) {
+        return maxIssueDays.get(type);
+    }
+
     public void setMaxIssueDays(HashMap<MemberType, Integer> maxIssueDays) {
         this.maxIssueDays = maxIssueDays;
     }

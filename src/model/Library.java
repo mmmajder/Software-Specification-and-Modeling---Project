@@ -268,4 +268,7 @@ public class Library implements Publisher {
     //TODO List<PendingReservation> getReservations(); za library
     //TODO List<ReservedBook> getApprovedReservations(); za library
 
+    //TODO calculate state IssuedBook - getState() - reserved, returned, taken
+    //TODO getMemberIssueHistory(Accoutn account) - in library
+    //TODO Notification getNotification(Account account)
 }

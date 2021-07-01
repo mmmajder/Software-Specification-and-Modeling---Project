@@ -1,4 +1,4 @@
-package view.member;
+package view.member.model;
 
 import model.enums.SampleState;
 

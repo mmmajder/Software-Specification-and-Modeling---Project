@@ -338,4 +338,13 @@ ALTER TABLE members ADD CONSTRAINT members_FK1 FOREIGN KEY (pendingReservation) 
 ALTER TABLE members ADD reservedBook INTEGER;
 ALTER TABLE members ADD CONSTRAINT members_FK2 FOREIGN KEY (reservedBook) REFERENCES reservedBooks (Idrb);
 
+CREATE TABLE notifications (
+    Idn VARCHAR(50) NOT NULL,
+    Message VARCHAR(250) NOT NULL,
+    NotiDate DATE NOT NULL,
+    Member CHAR(13) NOT NULL,
+    CONSTRAINT notifications_PK PRIMARY KEY (Idn),
+    CONSTRAINT notifications_FK FOREIGN KEY (Member) REFERENCES members (JMBG)
+);
+
 COMMIT;

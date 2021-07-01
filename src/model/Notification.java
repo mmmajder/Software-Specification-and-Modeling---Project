@@ -47,24 +47,37 @@ public class Notification {
         this.date = date;
     }
 
+    public void setNewNotificationId() {
+        int id = member.getNotifications().size();
+        this.id = String.valueOf(id + 1);
+    }
+
     public Notification reminderToReturnBook(IssuedBook issuedBook) {
-        return new Notification("1", "REMINDER: You should return " +
+        Notification notification = new Notification("1", "REMINDER: You should return " +
                 issuedBook.getBook().getEdition().getTitle() + " by " + issuedBook.getReturnDate(),
                 LocalDate.now(), issuedBook.getMember());
+        notification.setNewNotificationId();
+        return notification;
     }
 
     public Notification reservationApproved(PendingReservation reservation) {
-        return new Notification("1", "Your reservation of " + reservation.getEdition().getTitle() +
+        Notification notification = new Notification("1", "Your reservation of " + reservation.getEdition().getTitle() +
                 " is approved.", LocalDate.now(), reservation.getMember());
+        notification.setNewNotificationId();
+        return notification;
     }
 
     public Notification reservationNotApproved(PendingReservation reservation) {
-        return new Notification("1", "Your reservation of " + reservation.getEdition().getTitle() +
+        Notification notification = new Notification("1", "Your reservation of " + reservation.getEdition().getTitle() +
                 " is not approved. Try again in a few days.", LocalDate.now(), reservation.getMember());
+        notification.setNewNotificationId();
+        return notification;
     }
 
     public Notification reservationExpired(PendingReservation reservation) {
-        return new Notification("1", "Your reservation of " + reservation.getEdition().getTitle() +
+        Notification notification = new Notification("1", "Your reservation of " + reservation.getEdition().getTitle() +
                 " is expired.", LocalDate.now(), reservation.getMember());
+        notification.setNewNotificationId();
+        return notification;
     }
 }

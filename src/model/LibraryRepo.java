@@ -512,4 +512,28 @@ public class LibraryRepo implements ILibraryRepo {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void loadNotifications(Library library) {
+        String query = "SELECT * FROM notifications";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet notifications = statement.executeQuery();
+
+            while (notifications.next()) {
+
+                String notificationId = notifications.getString("idn");
+                String message = notifications.getString("message");
+                LocalDate notiDate = notifications.getDate("notiDate").toLocalDate();
+                String member = notifications.getString("member");
+
+                Member m = (Member) library.getPerson(member);
+                Notification notification = new Notification(notificationId, message, notiDate, m);
+                m.addNotification(notification);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

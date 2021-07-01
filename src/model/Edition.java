@@ -56,7 +56,7 @@ public class Edition {
                 return cRole.getContributor();
             }
         }
-        
+
         return null;
     }
 
@@ -107,6 +107,8 @@ public class Edition {
     public void addGenre(Genre genre) {
         this.genres.add(genre);
     }
+
+    public List<Genre> getGenres() { return genres;}
 
     public void addTag(String tag) {
         this.tags.add(tag);

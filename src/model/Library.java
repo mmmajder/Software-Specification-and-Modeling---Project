@@ -8,6 +8,7 @@ import utils.exceptions.NoSuchPendingRequestException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Library implements Publisher {
 
@@ -65,6 +66,10 @@ public class Library implements Publisher {
 
     public HashMap<MemberType, Integer> getMaxIssueDays() {
         return maxIssueDays;
+    }
+
+    public int getMaxIssueDays(MemberType type) {
+        return maxIssueDays.get(type);
     }
 
     public void setMaxIssueDays(HashMap<MemberType, Integer> maxIssueDays) {
@@ -176,22 +181,9 @@ public class Library implements Publisher {
         this.pendingReservations.add(pendingReservation);
     }
 
-    public void removePendingReservation(int prId) throws NoSuchPendingRequestException {
-        int index = 0;
-        boolean found = false;
+    public List<PendingReservation> getPendingReservations(){ return  pendingReservations; }
 
-        for (PendingReservation pr : pendingReservations){
-            if (pr.getId() == prId){
-                found = true;
-                break;
-            }
-            index++;
-        }
 
-        if (!found){ throw new NoSuchPendingRequestException(); }
-
-        pendingReservations.remove(index);
-    }
 
     public void addReservedBook(ReservedBook reservedBook) {
         this.reservedBooks.add(reservedBook);
@@ -228,6 +220,12 @@ public class Library implements Publisher {
         }
 
         return null;
+    }
+
+    public List<Edition> getEditions(Genre genre){
+        return  editions.stream()
+                .filter(edition -> edition.getGenres().stream().anyMatch(g -> g.getName() == genre.getName()))
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -28,12 +28,13 @@ public class IssuedBook {
         this.member = member;
     }
 
-    public IssuedBook(Member member, Book book){
+    public IssuedBook(Member member, Book book, Librarian librarian){
         this.issueDate = LocalDate.now();
         this.returnDate = null;
         this.prolongedIssue = false;
         this.book = book;
         this.member = member;
+        this.librarian = librarian;
     }
 
     public IssuedBook(LocalDate issueDate, Member member, Book book){

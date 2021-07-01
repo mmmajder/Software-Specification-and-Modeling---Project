@@ -90,6 +90,7 @@ public class EditionController {
         for (int i = 0; i < n; i++){
             int randIndex = r.nextInt(allEditionIds.size());
             String randId = allEditionIds.get(randIndex);
+            allEditionIds.remove(randIndex);
             randomIds.add(randId);
         }
 

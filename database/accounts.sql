@@ -8,4 +8,5 @@ INSERT INTO ACCOUNTS VALUES ('ahmedovski@gmail.com', 'Ipce', 'Bomba?74', 'MEMBER
 INSERT INTO ACCOUNTS VALUES ('kalu@gmail.com', 'Luxon', 'Mornari.00', 'LIBRARIAN', '0104988123540');
 INSERT INTO ACCOUNTS VALUES ('andj.elija@gmail.com', 'Andjj', 'Racici.22', 'MEMBER', '1310996741236');
 INSERT INTO ACCOUNTS VALUES ('alexa@gmail.com', 'Leksa', 'Dostana.55', 'MEMBER', '0501992458700');
+
 COMMIT;

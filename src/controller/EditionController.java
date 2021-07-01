@@ -83,7 +83,7 @@ public class EditionController {
     }
 
     public List<Edition> getRandom(int n){
-        List<String> allEditionIds = library.getEditions().stream().map(edition -> edition.getEditionId()).collect(Collectors.toList());
+        List<String> allEditionIds = library.getEditions().stream().map(Edition::getEditionId).collect(Collectors.toList());
         List<String> randomIds = new ArrayList<>();
         Random r = new Random();
 
@@ -93,8 +93,6 @@ public class EditionController {
             randomIds.add(randId);
         }
 
-        List<Edition> randomEditions = library.getEditions().stream().filter(edition -> randomIds.contains(edition.getEditionId())).collect(Collectors.toList());
-
-        return randomEditions;
+        return library.getEditions().stream().filter(edition -> randomIds.contains(edition.getEditionId())).collect(Collectors.toList());
     }
 }

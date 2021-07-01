@@ -116,8 +116,16 @@ public class Member extends Person {
         return this.reservedBook.getBook().getBookId();
     }
 
+    public void setReservedBook(ReservedBook reservedBook){
+        this.reservedBook = reservedBook;
+    }
+
     public PendingReservation getPendingReservation() {
         return pendingReservation;
+    }
+
+    public void setPendingReservation(PendingReservation pendingReservation){
+        this.pendingReservation = pendingReservation;
     }
 
     public List<IssuedBook> getCurrentlyTakenBooks() {

@@ -24,11 +24,8 @@ public class LibraryRepo implements ILibraryRepo {
         try {
 
             this.connection = DriverManager.getConnection(this.dbURL, this.username, this.password);
-            System.out.println("Connection successful");
 
         } catch (SQLException e) {
-
-            System.out.println("Connection cannot be established");
             e.printStackTrace();
         }
     }

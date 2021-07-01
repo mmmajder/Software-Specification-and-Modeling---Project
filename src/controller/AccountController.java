@@ -14,21 +14,31 @@ public class AccountController {
         this.library = library;
     }
 
-    public boolean usernameExists(String username) throws NoAccountWithThatUsername {
-        for (Account account : library.getAccounts()) {
-            if (account.getUsername().equalsIgnoreCase(username)) {
-                return true;
+    public Account getAccount(String username, String password) throws NoAccountWithThatUsername, InvalidAccountPassword {
+
+        if (usernameExists(username)) {
+            Account account = library.getAccountByUsername(username);
+
+            if (passwordValid(account, password)) {
+                return account;
             }
+            throw new InvalidAccountPassword();
         }
         throw new NoAccountWithThatUsername();
     }
 
+    public boolean usernameExists(String username) {
+
+        for (Account account : library.getAccounts()) {
+            if (account.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean passwordValid(Account account, String password) throws InvalidAccountPassword {
 
-        if (account.getPassword().equals(password)){
-            return true;
-        }
-
-        throw new InvalidAccountPassword();
+        return account.getPassword().equals(password);
     }
 }

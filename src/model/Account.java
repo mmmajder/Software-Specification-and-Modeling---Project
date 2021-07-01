@@ -34,8 +34,6 @@ public class Account {
         return expirationDateStr;
     }
 
-
-
     public Person getPerson() {
         return person;
     }

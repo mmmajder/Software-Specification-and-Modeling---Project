@@ -57,7 +57,7 @@ public class BookCRUDController {
             for (int i = 1; i <= 1; i++) {
                 Book sample = library.getBook(row.getBookId());
                 for (IssuedBook issuedBook : sample.getIssueHistory()) {
-//                    dataSampleTable.add(new BookSampleTable(issuedBook.getIssueDate(), issuedBook.getReturnedDate(), issuedBook, issuedBook.getMember().getName() + " " + issuedBook.getMember().getSurname()))
+                    dataSampleTable.add(new BookSampleTable(issuedBook.getIssueDate(), issuedBook.getReturnedDate(), issuedBook, issuedBook.getMember().getName() + " " + issuedBook.getMember().getSurname()))
                 }
             }
         }

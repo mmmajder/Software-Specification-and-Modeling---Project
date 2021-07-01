@@ -263,4 +263,9 @@ public class Library implements Publisher {
     public List<Edition> sortByPublishedDate(List<Edition> currentEditions) {
         return currentEditions;
     }
+    //TODO LocalDate getReturnedDate(); za IssuedBook
+    //TODO List<IssuedBook> getActiveIssues(String JMBG); za library
+    //TODO List<PendingReservation> getReservations(); za library
+    //TODO List<ReservedBook> getApprovedReservations(); za library
+
 }

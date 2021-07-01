@@ -7,7 +7,26 @@ public class IssuedBook {
     private LocalDate returnDate;
     private boolean prolongedIssue;
     private  Book book;
+    private Librarian librarian;
     private Member member;
+
+    public IssuedBook(LocalDate issueDate, LocalDate returnDate, boolean prolongedIssue, Book book, Librarian librarian,
+                      Member member) {
+        this.issueDate = issueDate;
+        this.returnDate = returnDate;
+        this.prolongedIssue = prolongedIssue;
+        this.book = book;
+        this.librarian = librarian;
+        this.member = member;
+    }
+
+    public IssuedBook(LocalDate issueDate, boolean prolongedIssue, Book book, Librarian librarian, Member member) {
+        this.issueDate = issueDate;
+        this.prolongedIssue = prolongedIssue;
+        this.book = book;
+        this.librarian = librarian;
+        this.member = member;
+    }
 
     public IssuedBook(Member member, Book book){
         this.issueDate = LocalDate.now();
@@ -23,6 +42,10 @@ public class IssuedBook {
         this.prolongedIssue = false;
         this.book = book;
         this.member = member;
+    }
+
+    public Librarian getLibrarian() {
+        return librarian;
     }
 
     public LocalDate getIssueDate() {

@@ -38,7 +38,7 @@ public class RentingController {
     }
 
     private boolean isReservedForMember(Member member, Book book){
-        return member.getReservedBook().getBook().getBookId() == book.getBookId();
+        return member.getReservedBook().getBook().getBookId().equals(book.getBookId());
     }
 
     private void createIssue(Member member, Book book){

@@ -481,4 +481,35 @@ public class LibraryRepo implements ILibraryRepo {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void loadIssuedBooks(Library library) {
+        String query = "SELECT * FROM issuedBooks";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet issuedBooks = statement.executeQuery();
+
+            while (issuedBooks.next()) {
+
+                String bookId = issuedBooks.getString("book");
+                LocalDate issueDate = issuedBooks.getDate("issueDate").toLocalDate();
+                LocalDate returnDate = issuedBooks.getDate("returnDate").toLocalDate();
+                int prolongedIssue = issuedBooks.getInt("prolongedIssue");
+                String librarian = issuedBooks.getString("librarian");
+                String member = issuedBooks.getString("member");
+
+                Book book = library.getBook(bookId);
+                Librarian l = (Librarian) library.getPerson(librarian);
+                Member m = (Member) library.getPerson(member);
+                boolean isProlonged = prolongedIssue == 1;
+
+                IssuedBook issuedBook = new IssuedBook(issueDate, returnDate, isProlonged, book, l, m);
+                library.addIssuedBook(issuedBook);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

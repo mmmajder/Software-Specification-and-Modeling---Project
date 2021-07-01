@@ -222,6 +222,10 @@ public class Library implements Publisher {
         return null;
     }
 
+    public void removePendingReservation(PendingReservation pendingReservation) {
+        this.pendingReservations.remove(pendingReservation);
+    }
+
     public List<Edition> getEditions(Genre genre){
         return  editions.stream()
                 .filter(edition -> edition.getGenres().stream().anyMatch(g -> g.getName() == genre.getName()))

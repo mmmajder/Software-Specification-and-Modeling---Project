@@ -18,12 +18,10 @@ public class RentedBooksController {
     Account account;
     ILibraryRepo libraryRepo;
 
-    @FXML
-    private void initData(Account account) throws IOException {
-        this.account = account;
+    public void initData() throws IOException {
         this.library = new Library();
         libraryRepo = new LibraryRepo();
-//        libraryRepo.loadIssuedBooks(library);
+        libraryRepo.loadIssuedBooks(library);
         libraryRepo.loadAccounts(library);
         libraryRepo.loadPersons(library);
         rentedBooksTable.setItems(getRentedBooks());

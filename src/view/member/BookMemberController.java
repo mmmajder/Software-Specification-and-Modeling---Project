@@ -26,16 +26,17 @@ public class BookMemberController {
     public Text txtTags;
     public Text txtDescription;
     private Stage stage;
-    private Scene scene;
+    private Parent scene;
     private Parent root;
 
-    public void setSecondScene(Scene scene) {
+    public void setSecondScene(Parent scene) {
         this.scene = scene;
     }
 
     public void backToBooks(ActionEvent actionEvent) {
         Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(scene);
+        //TODO set to borderpane center
+        //primaryStage.setScene(scene);
     }
 
     @FXML

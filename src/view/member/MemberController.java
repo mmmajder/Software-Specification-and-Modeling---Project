@@ -27,12 +27,10 @@ public class MemberController {
     public BorderPane borderPane;
 
     public Parent booksScene;
-    public Parent bookScene;
     public Parent historyScene;
     public Parent membershipScene;
     public Parent notificationsScene;
 
-    BookMemberController bookMemberController;
     MembershipController membershipController;
     NotificationsController notificationsController;
     SearchBooksMemberController searchBooksMemberController;
@@ -104,6 +102,7 @@ public class MemberController {
 
     public void switchToBooks() {
         borderPane.setCenter(booksScene);
+        searchBooksMemberController.initData(account, booksScene);
         lblNotifications.setUnderline(false);
         lblHistory.setUnderline(false);
         lblMembership.setUnderline(false);

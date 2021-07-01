@@ -3,6 +3,7 @@ package view.member;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -22,7 +23,7 @@ public class SearchBooksMemberController {
     public List<BookPane> bookPanes;
     public GridPane grid;
     public TextField search;
-    public Scene scene;
+    public Parent scene;
     public List<Edition> currentEditions;
     public int currentPage;
     public Label titleSort;
@@ -44,7 +45,7 @@ public class SearchBooksMemberController {
         bookMemberController.initData(edition);
     }
 
-    public void initData(Account account, Scene mainScene) {
+    public void initData(Account account, Parent mainScene) {
         library = new Library();
         libraryRepo = new LibraryRepo();
         this.account = account;
@@ -53,6 +54,7 @@ public class SearchBooksMemberController {
         libraryRepo.loadContributorRoles(library);
         this.scene = mainScene;
 
+        this.currentPage = 1;
         setGenres();
         this.bookPanes = new ArrayList<BookPane>();
         for (int i = 0; i < 12; i++) {

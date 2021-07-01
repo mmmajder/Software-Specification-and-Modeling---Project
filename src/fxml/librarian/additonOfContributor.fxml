@@ -7,8 +7,7 @@
 <?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="600.0" maxWidth="900.0" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0"
-            style="-fx-background-color: #63AC29;" xmlns="http://javafx.com/javafx/11.0.2"
-            xmlns:fx="http://javafx.com/fxml/1">
+            style="-fx-background-color: #63AC29;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <top>
         <HBox prefHeight="26.0" prefWidth="900.0" style="-fx-background-color: #ffffff; -fx-border-color: #7AB12B;"
               BorderPane.alignment="CENTER">

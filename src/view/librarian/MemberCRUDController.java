@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import model.*;
+import observer.Observer;
 import view.librarian.model.BookEditionTable;
 import view.librarian.model.BookSampleTable;
 import view.librarian.model.CurrentIssueTable;
@@ -12,7 +13,7 @@ import view.librarian.model.MemberTable;
 
 import java.io.IOException;
 
-public class MemberCRUDController {
+public class MemberCRUDController implements Observer {
     ObservableList<MemberTable> dataMemberTable;
     ObservableList<CurrentIssueTable> dataMemberIssuesTable;
     public TableView<MemberTable> memberTable;
@@ -55,5 +56,11 @@ public class MemberCRUDController {
         }
     }
 
-
+    @Override
+    public void updatePerformed() {
+        libraryRepo.loadAccounts(library);
+        libraryRepo.loadPersons(library);
+        memberTable.setItems(getMembers());
+        dataMemberIssuesTable.clear();
+    }
 }

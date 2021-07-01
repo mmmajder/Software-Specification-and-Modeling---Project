@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import model.*;
+import observer.Observer;
 import view.librarian.model.ApprovedReservationTable;
 import view.librarian.model.CurrentIssueTable;
 import view.librarian.model.MemberTable;
@@ -12,7 +13,7 @@ import view.librarian.model.ReservationRequestTable;
 
 import java.io.IOException;
 
-public class ReservationsLibrarianController {
+public class ReservationsLibrarianController implements Observer {
     ObservableList<ReservationRequestTable> dataReservationRequestTable;
     ObservableList<ApprovedReservationTable> dataApprovedReservationsTable;
     public TableView<ReservationRequestTable> reservationRequestTable;
@@ -27,8 +28,7 @@ public class ReservationsLibrarianController {
         this.account = account;
         this.library = new Library();
         libraryRepo = new LibraryRepo();
-        libraryRepo.loadAccounts(library);
-        libraryRepo.loadPersons(library);
+        libraryRepo.loadPendingReservations(library);
         libraryRepo.loadReservedBooks(library);
         reservationRequestTable.setItems(getRequests());
         approvedReservationsTable.setItems(getApproved());
@@ -49,4 +49,11 @@ public class ReservationsLibrarianController {
         return list;
     }
 
+    @Override
+    public void updatePerformed() {
+        libraryRepo.loadPendingReservations(library);
+        libraryRepo.loadReservedBooks(library);
+        reservationRequestTable.setItems(getRequests());
+        approvedReservationsTable.setItems(getApproved());
+    }
 }

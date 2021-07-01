@@ -20,14 +20,6 @@ public class Member extends Person {
     private boolean isActive;
     private List<Notification> notifications;
 
-    public List<Notification> getNotifications() {
-        return notifications;
-    }
-
-    public void addNotifications(Notification notification) {
-        this.notifications.add(notification);
-    }
-
     public Member() {
         super();
         this.pendingReservation = null;
@@ -37,6 +29,7 @@ public class Member extends Person {
         this.payments = new ArrayList<>();
         this.returnedBooks = new ArrayList<>();
         this.currentlyTaken = new ArrayList<>();
+        this.notifications = new ArrayList<>();
     }
 
     public Member(String name, String surname, String JMBG, String phoneNumber, LocalDate birthDate, Account account,
@@ -54,6 +47,7 @@ public class Member extends Person {
         this.payments = new ArrayList<>();
         this.returnedBooks = new ArrayList<>();
         this.currentlyTaken = new ArrayList<>();
+        this.notifications = new ArrayList<>();
     }
 
     public void requestReservation(PendingReservation pendingReservation) {
@@ -118,4 +112,11 @@ public class Member extends Person {
         return currentlyTaken;
     }
 
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void addNotification(Notification notification) {
+        this.notifications.add(notification);
+    }
 }

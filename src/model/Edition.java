@@ -56,7 +56,7 @@ public class Edition {
                 return cRole.getContributor();
             }
         }
-        
+
         return null;
     }
 

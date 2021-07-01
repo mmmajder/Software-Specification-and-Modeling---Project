@@ -176,22 +176,9 @@ public class Library implements Publisher {
         this.pendingReservations.add(pendingReservation);
     }
 
-    public void removePendingReservation(int prId) throws NoSuchPendingRequestException {
-        int index = 0;
-        boolean found = false;
+    public List<PendingReservation> getPendingReservations(){ return  pendingReservations; }
 
-        for (PendingReservation pr : pendingReservations){
-            if (pr.getId() == prId){
-                found = true;
-                break;
-            }
-            index++;
-        }
 
-        if (!found){ throw new NoSuchPendingRequestException(); }
-
-        pendingReservations.remove(index);
-    }
 
     public void addReservedBook(ReservedBook reservedBook) {
         this.reservedBooks.add(reservedBook);

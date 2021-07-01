@@ -32,6 +32,7 @@ public class LibrarianController {
     public Parent membersScene;
     public Parent rentedBooksScene;
     public Parent historyScene;
+    RentedBooksController rentedBooksController;
 
     AccountController controller;
     Library library;
@@ -55,7 +56,7 @@ public class LibrarianController {
 
         FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/searchBooksLibrarian.fxml"));
         booksScene = booksLoader.load();
-        SearchBooksLibrarianController searchBooksLibrarianController = (SearchBooksLibrarianController) booksLoader.getController();
+//        SearchBooksLibrarianController searchBooksLibrarianController = (SearchBooksLibrarianController) booksLoader.getController();
 
         FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookLibrarian.fxml"));
         bookScene = bookLoader.load();
@@ -68,17 +69,13 @@ public class LibrarianController {
         reservationsScene = reservationsLoader.load();
         //ResrrvationController historyController = (ResrrvationController) reservationsLoader.getController();
 
-        FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/history.fxml"));
-        historyScene = historyLoader.load();
-//        HistoryController historyController = (HistoryController) historyLoader.getController();
-
         FXMLLoader membersLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/memberCRUD.fxml"));
         membersScene = membersLoader.load();
         //MembershipController membershipController = (MembershipController) membershipLoader.getController();
 
         FXMLLoader rentedBooksLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/rentedBooks.fxml"));
         rentedBooksScene = rentedBooksLoader.load();
-
+        rentedBooksController =  rentedBooksLoader.getController();
         switchToBooks();
     }
 
@@ -94,8 +91,9 @@ public class LibrarianController {
     }
 
     @FXML
-    private void switchToRentedBooks(MouseEvent event) {
+    private void switchToRentedBooks(MouseEvent event) throws IOException {
         borderPane.setCenter(rentedBooksScene);
+        rentedBooksController.initData();
         lblRentedBooks.setUnderline(true);
         lblMembers.setUnderline(false);
         lblReservations.setUnderline(false);

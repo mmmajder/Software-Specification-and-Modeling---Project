@@ -328,6 +328,22 @@ CREATE TABLE booksInRow (
 );
 
 DROP TABLE LIBRARIANISSUEDBOOKS;
+DROP TABLE booksInRow;
+DROP TABLE bookSections;
+
+CREATE TABLE bookSections (
+  Section CHAR(3) NOT NULL,
+  CONSTRAINT bookSection_PK PRIMARY KEY (Section)
+);
+
+CREATE TABLE booksPosition (
+    Section CHAR(3) NOT NULL,
+    Shelf INTEGER NOT NULL,
+    "Row" INTEGER NOT NULL,
+    Book VARCHAR(50) NOT NULL,
+    CONSTRAINT booksPosition_FK1 FOREIGN KEY (Book) REFERENCES books (Idb),
+    CONSTRAINT booksPosition_FK2 FOREIGN KEY (Section) REFERENCES bookSections (Section)
+);
 
 ALTER TABLE members DROP CONSTRAINT members_FK1;
 ALTER TABLE members DROP CONSTRAINT members_FK2;

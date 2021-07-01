@@ -275,7 +275,7 @@ public class LibraryRepo implements ILibraryRepo {
                 ResultSet result = genreStatement.executeQuery();
                 result.next();
 
-                String genreName = genres.getString("name");
+                String genreName = result.getString("name");
                 Genre genre = new Genre(genreId, genreName);
                 library.addGenre(genre);
 

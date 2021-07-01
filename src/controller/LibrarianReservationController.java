@@ -37,14 +37,24 @@ public class LibrarianReservationController {
         removePendingReservation(prId);
     }
 
-    public void removePendingReservation(int prId) throws NoSuchPendingRequestException {
+    private void removePendingReservation(int prId) throws NoSuchPendingRequestException {
+
+        boolean pendingReservationExists = false;
 
         for (PendingReservation pr : library.getPendingReservations()){
+
             if (pr.getId() == prId){
+
                 library.removePendingReservation(pr);
+                pendingReservationExists = true;
             }
         }
-        throw new NoSuchPendingRequestException();
+
+        if (!pendingReservationExists) {
+
+            throw new NoSuchPendingRequestException();
+        }
+
     }
 
 }

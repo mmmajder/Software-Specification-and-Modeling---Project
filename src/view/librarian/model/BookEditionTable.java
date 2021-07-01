@@ -1,4 +1,4 @@
-package fxml.librarian.model;
+package view.librarian.model;
 
 import model.enums.SampleState;
 

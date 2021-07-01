@@ -1,5 +1,6 @@
 package view.member;
 
+import controller.SearchBooksController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,12 +13,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.*;
+import observer.Observer;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchBooksMemberController {
+public class SearchBooksMemberController implements Observer {
     public ListView<String> genres;
     public List<BookPane> bookPanes;
     public GridPane grid;
@@ -33,6 +35,7 @@ public class SearchBooksMemberController {
     ILibraryRepo libraryRepo;
     Library library;
     Account account;
+    private SearchBooksController controller;
 
     public void switchToBook(MouseEvent actionEvent, Edition edition) throws IOException {
         Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -47,10 +50,12 @@ public class SearchBooksMemberController {
     public void initData(Account account, Scene mainScene) {
         library = new Library();
         libraryRepo = new LibraryRepo();
+        this.controller = new SearchBooksController(library);
         this.account = account;
         libraryRepo.loadEditions(library);
         libraryRepo.loadContributors(library);
         libraryRepo.loadContributorRoles(library);
+        this.library.addObserver(this);
         this.scene = mainScene;
 
         setGenres();
@@ -77,8 +82,8 @@ public class SearchBooksMemberController {
             //updateBooks(library.sortDesc(currentEditions));
         });
 
-        titleSort.textProperty().addListener((ov, t, t1) -> updateBooks(library.sortByTitle(currentEditions)));
-        publishedDateSort.textProperty().addListener((ov, t, t1) -> updateBooks(library.sortByPublishedDate(currentEditions)));
+        titleSort.textProperty().addListener((ov, t, t1) -> controller.sortByTitleAsc());
+        publishedDateSort.textProperty().addListener((ov, t, t1) -> controller.sortByPublishedDateAsc());
     }
 
     @FXML
@@ -126,6 +131,15 @@ public class SearchBooksMemberController {
             } else {
                 bookPanes.get(i % 12).setEdition(editions.get(i));
             }
+        }
+    }
+
+    @Override
+    public void updatePerformed() {
+        int i = 0;
+        for (BookPane bookPane : bookPanes) {
+            bookPane.setEdition(library.getEditions().get(i));
+            i++;
         }
     }
 }

@@ -255,14 +255,7 @@ public class Library implements Publisher {
     public List<Edition> filterByGenre(List<Edition> currentEditions, String genreString) {
         return currentEditions;
     }
-    //TODO
-    public List<Edition> sortByTitle(List<Edition> currentEditions) {
-        return currentEditions;
-    }
-    //TODO
-    public List<Edition> sortByPublishedDate(List<Edition> currentEditions) {
-        return currentEditions;
-    }
+
     //TODO LocalDate getReturnedDate(); za IssuedBook
     //TODO List<IssuedBook> getActiveIssues(String JMBG); za library
     //TODO List<PendingReservation> getReservations(); za library

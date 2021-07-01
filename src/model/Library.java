@@ -3,6 +3,7 @@ package model;
 import model.enums.MemberType;
 import observer.Observer;
 import observer.Publisher;
+import utils.exceptions.NoSuchPendingRequestException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -168,6 +169,23 @@ public class Library implements Publisher {
 
     public void addPendingReservation(PendingReservation pendingReservation) {
         this.pendingReservations.add(pendingReservation);
+    }
+
+    public void removePendingReservation(int prId) throws NoSuchPendingRequestException {
+        int index = 0;
+        boolean found = false;
+
+        for (PendingReservation pr : pendingReservations){
+            if (pr.getId() == prId){
+                found = true;
+                break;
+            }
+            index++;
+        }
+
+        if (!found){ throw new NoSuchPendingRequestException(); }
+
+        pendingReservations.remove(index);
     }
 
     public void addReservedBook(ReservedBook reservedBook) {

@@ -111,6 +111,10 @@ public class Library implements Publisher {
         this.currentlyIssued.add(issuedBook);
     }
 
+    public List<IssuedBook> getCurrentlyIssued() {
+        return currentlyIssued;
+    }
+
     public Edition getEdition(String editionId) {
 
         for (Edition edition : this.editions) {

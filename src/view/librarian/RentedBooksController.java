@@ -29,9 +29,9 @@ public class RentedBooksController {
 
     private ObservableList<RentedBooksTable> getRentedBooks() {
         ObservableList<RentedBooksTable> list = FXCollections.observableArrayList();
-//        for (IssuedBook issuedBook : library.getActiveIssues()) {
-//            list.add(new RentedBooksTable(issuedBook.getMember().getName()+" "+issuedBook.getMember().getSurname(), issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(), issuedBook.getReturnDate()));
-//        }
+        for (IssuedBook issuedBook : library.getCurrentlyIssued()) {
+            list.add(new RentedBooksTable(issuedBook.getMember().getName()+" "+issuedBook.getMember().getSurname(), issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(), issuedBook.getReturnDate()));
+        }
         return list;
     }
 }

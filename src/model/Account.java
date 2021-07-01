@@ -22,18 +22,16 @@ public class Account {
         this.isActive = isActive;
     }
 
-    public String getMembershipExpirationDateStr(){
-        String expirationDateStr = null;
+    public String getMembershipExpirationDateStr() {
         Member member = (Member) person;
         LocalDate expirationDate = member.getMembershipExpirationDate();
 
-        if (expirationDate != null){
-            expirationDateStr = StringUtils.dateToString(expirationDate, "dd.mm.yyyy.");
+        if (expirationDate != null) {
+            return StringUtils.dateToString(expirationDate, "dd.mm.yyyy.");
         }
 
-        return expirationDateStr;
+        return null;
     }
-
 
 
     public Person getPerson() {

@@ -7,7 +7,6 @@ import java.util.List;
 import model.enums.MemberType;
 
 
-
 public class Member extends Person {
 
     private MemberType type;
@@ -19,6 +18,15 @@ public class Member extends Person {
     private ReservedBook reservedBook;
     private boolean isMembershipPaid;
     private boolean isActive;
+    private List<Notification> notifications;
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void addNotifications(Notification notification) {
+        this.notifications.add(notification);
+    }
 
     public Member() {
         super();
@@ -52,14 +60,14 @@ public class Member extends Person {
         this.pendingReservation = pendingReservation;
     }
 
-    public LocalDate getMembershipExpirationDate(){
+    public LocalDate getMembershipExpirationDate() {
         LocalDate expirationDate = null;
-        if (!payments.isEmpty()){
-            Payment lastPayment = payments.get(payments.size()-1);
+        if (!payments.isEmpty()) {
+            Payment lastPayment = payments.get(payments.size() - 1);
             expirationDate = lastPayment.getValidToDate();
         }
 
-        return  expirationDate;
+        return expirationDate;
     }
 
     public void reserveBook(ReservedBook reservedBook) {
@@ -86,7 +94,9 @@ public class Member extends Person {
         this.isMembershipPaid = false;
     }
 
-    public boolean getIsMembershipPaid() { return this.isMembershipPaid; }
+    public boolean getIsMembershipPaid() {
+        return this.isMembershipPaid;
+    }
 
     public boolean hasAlreadyReserved() {
         return pendingReservation != null && reservedBook != null;
@@ -96,9 +106,15 @@ public class Member extends Person {
         this.currentlyTaken.add(issuedBook);
     }
 
-    public ReservedBook getReservedBook() { return reservedBook; }
+    public ReservedBook getReservedBook() {
+        return reservedBook;
+    }
 
-    public PendingReservation getPendingReservation() { return pendingReservation; }
+    public PendingReservation getPendingReservation() {
+        return pendingReservation;
+    }
 
-    public List<IssuedBook> getCurrentlyTaken() { return currentlyTaken; }
+    public List<IssuedBook> getCurrentlyTaken() {
+        return currentlyTaken;
+    }
 }

@@ -46,11 +46,11 @@ public class MembershipController {
         libraryRepo.loadMaxIssueDays(library);
         libraryRepo.loadMaxIssuedBooks(library);
 
-        if (!account.getMembershipExpirationDate()) {
+        if (account.getMembershipExpirationDateStr() == null) {
             status.setText("NOT ACTIVE");
             status.setTextFill(Paint.valueOf("#CD113B"));
         } else {
-            status.setText("ACTIVE UNTIL " + account.getMembershipExpirationDate());
+            status.setText("ACTIVE UNTIL " + account.getMembershipExpirationDateStr());
             status.setTextFill(Paint.valueOf("#ffffff"));
         }
 

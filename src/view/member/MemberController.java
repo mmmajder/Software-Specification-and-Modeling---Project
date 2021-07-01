@@ -62,13 +62,6 @@ public class MemberController {
         booksScene = booksLoader.load();
         searchBooksMemberController = booksLoader.getController();
 
-        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/member/reservationMember.fxml"));
-        bookScene = bookLoader.load();
-        bookMemberController = bookLoader.getController();
-
-        bookMemberController.setSecondScene(new Scene(booksScene));
-        searchBooksMemberController.setSecondScene(new Scene(bookScene));
-
         FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../../fxml/member/history.fxml"));
         historyScene = historyLoader.load();
         historyController = historyLoader.getController();

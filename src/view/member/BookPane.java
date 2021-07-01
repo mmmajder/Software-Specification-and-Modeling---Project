@@ -37,7 +37,7 @@ public class BookPane extends Pane {
         //TODO: ucitavanje slike
         //ImageView image = new ImageView(new Image(getClass().getResourceAsStream("analog.png")));
         //this.imageView = new ImageView(new Image("src/fxml/images/" + edition.getTitle() + ".jpg", 150, 150, false, true));
-        //title.setText(edition.getTitle());
+        title.setText(edition.getTitle());
         //author.setText(edition.getAuthor());
         boolean isAvailable = false;
 

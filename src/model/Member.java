@@ -64,6 +64,10 @@ public class Member extends Person {
         return expirationDate;
     }
 
+    public ReservedBook getReservation() {
+        return this.reservedBook;
+    }
+
     public void reserveBook(ReservedBook reservedBook) {
         this.reservedBook = reservedBook;
     }
@@ -104,8 +108,12 @@ public class Member extends Person {
         this.currentlyTakenBooks.add(issuedBook);
     }
 
-    public ReservedBook getReservedBook() {
-        return reservedBook;
+    public Book getReservedBook() {
+        return reservedBook.getBook();
+    }
+
+    public String getReservedBookId() {
+        return this.reservedBook.getBook().getBookId();
     }
 
     public PendingReservation getPendingReservation() {

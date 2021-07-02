@@ -265,13 +265,6 @@ public class Library implements Publisher {
         return member.getReturnedBooks();
     }
 
-    public List<Edition> getEditions(Genre genre) {
-        //TODO: napraviti lepse
-        return editions.stream()
-                .filter(edition -> edition.getGenres().stream().anyMatch(g -> g.getName().equals(genre.getName())))
-                .collect(Collectors.toList());
-    }
-
     public void addFormat(BookFormat format) {
         formats.add(format);
     }
@@ -296,17 +289,4 @@ public class Library implements Publisher {
             observer.updatePerformed();
         }
     }
-
-    //TODO
-    public List<Edition> filterEditions(List<Edition> currentEditions, String filter) {
-        return currentEditions;
-    }
-
-    //TODO
-    public List<Edition> filterByGenre(List<Edition> currentEditions, String genreString) {
-        return currentEditions;
-    }
-
-    //TODO calculate state IssuedBook - getState() - returned, taken
-    //TODO Notification getNotification(Account account)
 }

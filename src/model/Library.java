@@ -213,18 +213,6 @@ public class Library implements Publisher {
         return null;
     }
 
-    public Book getMemberReservedBook(Account account) throws PersonIsNotAMemberException {
-        if (!(account.getPerson() instanceof Member)) {
-            throw new PersonIsNotAMemberException();
-        }
-        for (Reservation reservedBook : this.reservations) {
-            if (reservedBook.getMember().getAccount() == account) {
-                return reservedBook.getBook();
-            }
-        }
-        return null;
-    }
-
     public void addCatalog(PriceCatalog catalog) {
         this.priceCatalogs.add(catalog);
     }

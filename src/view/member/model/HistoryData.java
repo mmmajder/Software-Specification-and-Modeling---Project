@@ -29,7 +29,7 @@ public class HistoryData {
         return returnDate;
     }
 
-    public SampleState getState() {
+    public BookState getState() {
         return state;
     }
 }

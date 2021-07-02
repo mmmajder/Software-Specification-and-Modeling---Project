@@ -5,11 +5,11 @@ import model.Library;
 
 import java.time.LocalDate;
 
-public class IssuedBookControler {
+public class IssuedBookController {
 
     private Library library;
 
-    public IssuedBookControler(Library library) {
+    public IssuedBookController(Library library) {
         this.library = library;
     }
 

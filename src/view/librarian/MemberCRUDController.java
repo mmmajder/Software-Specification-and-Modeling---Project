@@ -1,27 +1,23 @@
 package view.librarian;
 
-import com.sun.xml.internal.bind.v2.runtime.property.PropertyFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import model.*;
 import observer.Observer;
-import view.librarian.model.BookEditionTable;
-import view.librarian.model.BookSampleTable;
 import view.librarian.model.CurrentIssueTable;
 import view.librarian.model.MemberTable;
 
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
 
 public class MemberCRUDController implements Observer {
+    public Label removeMemberLbl;
+    public Label addMemberLbl;
     ObservableList<MemberTable> dataMemberTable;
     ObservableList<CurrentIssueTable> dataMemberIssuesTable;
     public TableView<MemberTable> memberTable;
@@ -49,8 +45,8 @@ public class MemberCRUDController implements Observer {
         colEmail.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("email"));
         colBirthDate.setCellValueFactory(new PropertyValueFactory<MemberTable, LocalDate>("birthDate"));
         colMembershipEndDate.setCellValueFactory(new PropertyValueFactory<MemberTable, LocalDate>("membershipEndDate"));
-
-        memberTable.setItems(getMembers());
+        dataMemberTable = getMembers();
+        memberTable.setItems(dataMemberTable);
         dataMemberIssuesTable = FXCollections.observableArrayList();
 
         memberTable.setEditable(true);
@@ -68,6 +64,17 @@ public class MemberCRUDController implements Observer {
             memberIssuesTable.setItems(dataMemberIssuesTable);
         });
 
+        removeMemberLbl.setOnMouseClicked(e -> {
+            MemberTable selectedItem = memberTable.getSelectionModel().getSelectedItem();
+            memberTable.getItems().remove(selectedItem);
+        });
+
+        addMemberLbl.setOnMouseClicked(e -> {
+            dataMemberTable.add(new MemberTable("Name", "Surname", "JMBG", "Phone", "Email", LocalDate.of(2001, 1, 1), LocalDate.of(2001, 1, 1)));
+        });
+
+
+
     }
 
     private ObservableList<MemberTable> getMembers() {
@@ -82,10 +89,14 @@ public class MemberCRUDController implements Observer {
     private void loadCurrentIssues() {
         for (MemberTable row : memberTable.getSelectionModel().getSelectedItems()) {
             for (int i = 1; i <= 1; i++) {
-                System.out.println(library.getMemberActiveIssues(row.getJMBG()));
-                for (IssuedBook issuedBook : library.getMemberActiveIssues(row.getJMBG())) {
-                    System.out.println("Stigao: " + issuedBook.getBook().getBookId() );
-                    dataMemberIssuesTable.add(new CurrentIssueTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.isProlongedIssue(), issuedBook.getReturnDate()));
+                try {
+                    System.out.println(library.getMembersCurrentlyTakenBooks(row.getJMBG()));
+                    for (IssuedBook issuedBook : library.getMembersCurrentlyTakenBooks(row.getJMBG())) {
+                        System.out.println("Stigao: " + issuedBook.getBook().getBookId());
+                        dataMemberIssuesTable.add(new CurrentIssueTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.isProlongedIssue(), issuedBook.getReturnDate()));
+                    }
+                } catch (NullPointerException e) {
+                    return;
                 }
             }
         }

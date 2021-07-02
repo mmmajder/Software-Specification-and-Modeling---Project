@@ -25,7 +25,7 @@ public class BookSampleTable {
         return returnedDate;
     }
 
-    public SampleState getState() {
+    public BookState getState() {
         return state;
     }
 

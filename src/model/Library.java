@@ -27,6 +27,7 @@ public class Library implements Publisher {
     private List<IssuedBook> currentlyIssued;
     private List<PendingReservation> pendingReservations;
     private List<ReservedBook> reservedBooks;
+    private List<BookFormat> formats;
 
     private List<Observer> observers;
 
@@ -231,6 +232,10 @@ public class Library implements Publisher {
                 .filter(edition -> edition.getGenres().stream().anyMatch(g -> g.getName() == genre.getName()))
                 .collect(Collectors.toList());
     }
+
+    public void addFormat(BookFormat format){ formats.add(format); }
+
+    public List<BookFormat> getFormats() { return formats; }
 
     @Override
     public void addObserver(Observer observer) {

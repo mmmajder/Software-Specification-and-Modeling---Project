@@ -12,4 +12,12 @@ public class BookFormat {
         this.width = width;
         this.thickness = thickness;
     }
+
+    public int getBookFormatId() { return bookFormatId; }
+
+    public double getHeight() { return height; }
+
+    public double getWidth() { return width; }
+
+    public double getThickness() { return thickness; }
 }

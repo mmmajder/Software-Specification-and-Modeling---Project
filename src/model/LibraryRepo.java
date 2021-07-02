@@ -385,8 +385,8 @@ public class LibraryRepo implements ILibraryRepo {
     }
 
     @Override
-    public void loadReservedBooks(Library library) {
-        String query = "SELECT * FROM reservedBooks";
+    public void loadReservations(Library library) {
+        String query = "SELECT * FROM reservations";
 
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -394,14 +394,14 @@ public class LibraryRepo implements ILibraryRepo {
 
             while (reservedBooks.next()) {
 
-                int reservedBooksId = reservedBooks.getInt("idpr");
+                int reservationId = reservedBooks.getInt("idpr");
                 String member = reservedBooks.getString("member");
                 String book = reservedBooks.getString("book");
 
                 Member m = (Member) library.getPerson(member);
                 Book b = library.getBook(book);
-                ReservedBook reservedBook = new ReservedBook(reservedBooksId, m, b);
-                library.addReservedBook(reservedBook);
+                Reservation reservation = new Reservation(reservationId, m, b);
+                library.addReservation(reservation);
             }
 
         } catch (SQLException e) {

@@ -7,8 +7,6 @@ import javafx.scene.control.TableView;
 import model.*;
 import observer.Observer;
 import view.librarian.model.ApprovedReservationTable;
-import view.librarian.model.CurrentIssueTable;
-import view.librarian.model.MemberTable;
 import view.librarian.model.ReservationRequestTable;
 
 import java.io.IOException;
@@ -29,7 +27,7 @@ public class ReservationsLibrarianController implements Observer {
         this.library = new Library();
         libraryRepo = new LibraryRepo();
         libraryRepo.loadPendingReservations(library);
-        libraryRepo.loadReservedBooks(library);
+        libraryRepo.loadReservations(library);
         reservationRequestTable.setItems(getRequests());
         approvedReservationsTable.setItems(getApproved());
     }
@@ -43,7 +41,7 @@ public class ReservationsLibrarianController implements Observer {
     }
     private ObservableList<ApprovedReservationTable> getApproved() {
         ObservableList<ApprovedReservationTable> list = FXCollections.observableArrayList();
-        for (ReservedBook reservation : library.getReservedBooks()) {
+        for (Reservation reservation : library.getReservations()) {
 //            list.add(new ApprovedReservationTable(reservation.getMember().getName()+" "+reservation.getMember().getSurname(), reservation.getBook().getBookId(), reservation.getDaysLeft()));
         }
         return list;
@@ -52,7 +50,7 @@ public class ReservationsLibrarianController implements Observer {
     @Override
     public void updatePerformed() {
         libraryRepo.loadPendingReservations(library);
-        libraryRepo.loadReservedBooks(library);
+        libraryRepo.loadReservations(library);
         reservationRequestTable.setItems(getRequests());
         approvedReservationsTable.setItems(getApproved());
     }

@@ -1,7 +1,6 @@
 package controller;
 
 import model.*;
-import utils.exceptions.MissingValueException;
 
 import java.time.LocalDate;
 
@@ -29,7 +28,7 @@ public class NotificationController {
         notify(reservation.getMember(), message);
     }
 
-    public void reservationExpired(ReservedBook reservation) {
+    public void reservationExpired(Reservation reservation) {
         String bookTitle = reservation.getBook().getEdition().getTitle();
         String message = "Your reservation of " + bookTitle + " is expired.";
         notify(reservation.getMember(), message);

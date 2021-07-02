@@ -267,8 +267,8 @@ CREATE TABLE reservedBooks (
 
 ALTER TABLE members ADD pendingReservation INTEGER NOT NULL;
 ALTER TABLE members ADD CONSTRAINT members_FK1 FOREIGN KEY (pendingReservation) REFERENCES pendingReservations (Idpr);
-ALTER TABLE members ADD reservedBook INTEGER NOT NULL;
-ALTER TABLE members ADD CONSTRAINT members_FK2 FOREIGN KEY (reservedBook) REFERENCES reservedBooks (Idrb);
+ALTER TABLE members ADD reservation INTEGER NOT NULL;
+ALTER TABLE members ADD CONSTRAINT members_FK2 FOREIGN KEY (reservation) REFERENCES reservedBooks (Idrb);
 ALTER TABLE members ADD membershipPaid INTEGER default 1 NOT NULL;
 ALTER TABLE members ADD CONSTRAINT members_CHK1 CHECK ( membershipPaid IN (0, 1) );
 ALTER TABLE members ADD Active INTEGER default 1 NOT NULL;
@@ -348,11 +348,11 @@ CREATE TABLE booksPosition (
 ALTER TABLE members DROP CONSTRAINT members_FK1;
 ALTER TABLE members DROP CONSTRAINT members_FK2;
 ALTER TABLE members DROP COLUMN pendingReservation;
-ALTER TABLE members DROP COLUMN reservedBook;
+ALTER TABLE members DROP COLUMN reservation;
 ALTER TABLE members ADD pendingReservation INTEGER;
 ALTER TABLE members ADD CONSTRAINT members_FK1 FOREIGN KEY (pendingReservation) REFERENCES pendingReservations (Idpr);
-ALTER TABLE members ADD reservedBook INTEGER;
-ALTER TABLE members ADD CONSTRAINT members_FK2 FOREIGN KEY (reservedBook) REFERENCES reservedBooks (Idrb);
+ALTER TABLE members ADD reservation INTEGER;
+ALTER TABLE members ADD CONSTRAINT members_FK2 FOREIGN KEY (reservation) REFERENCES reservedBooks (Idrb);
 
 CREATE TABLE notifications (
     Idn VARCHAR(50) NOT NULL,
@@ -362,5 +362,8 @@ CREATE TABLE notifications (
     CONSTRAINT notifications_PK PRIMARY KEY (Idn),
     CONSTRAINT notifications_FK FOREIGN KEY (Member) REFERENCES members (JMBG)
 );
+
+RENAME reservedBooks TO reservations;
+ALTER TABLE members RENAME COLUMN reservedBook TO reservation;
 
 COMMIT;

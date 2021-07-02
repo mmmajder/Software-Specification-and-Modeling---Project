@@ -6,44 +6,22 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="550.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="view.member.MembershipController">
+<AnchorPane prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #7AB12B;" AnchorPane.bottomAnchor="0.0"
+            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+            BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.member.MembershipController">
     <BorderPane prefHeight="550.0" prefWidth="900.0">
         <center>
             <VBox BorderPane.alignment="CENTER">
-                <BorderPane prefHeight="286.0" prefWidth="900.0" style="-fx-background-color: #7AB12B;">
-                    <right>
-                        <Pane prefHeight="200.0" prefWidth="529.0" style="-fx-background-color: #7AB12B;"
-                              BorderPane.alignment="CENTER">
-                            <BorderPane.margin>
-                                <Insets/>
-                            </BorderPane.margin>
-                            <Label layoutX="22.0" layoutY="26.0" text="Your current account status:" textFill="WHITE">
-                                <font>
-                                    <Font size="14.0"/>
-                                </font>
-                                <padding>
-                                    <Insets left="150.0"/>
-                                </padding>
-                            </Label>
-                            <Label fx:id="status" layoutX="202.0" layoutY="26.0" text="Status" textFill="WHITE">
-                                <font>
-                                    <Font size="14.0"/>
-                                </font>
-                                <padding>
-                                    <Insets left="150.0"/>
-                                </padding>
-                            </Label>
-                        </Pane>
-                    </right>
-                </BorderPane>
-                <Pane prefHeight="520.0" prefWidth="900.0" style="-fx-background-color: #7AB12B;">
+                <Pane prefHeight="520.0" prefWidth="900.0" style="-fx-background-color: #7AB12B;"
+                      BorderPane.alignment="CENTER">
                     <HBox layoutY="22.0" prefHeight="44.0" prefWidth="900.0">
                         <Label text="ACCOUNT TYPE:" textFill="WHITE">
                             <font>
@@ -61,8 +39,7 @@
                                 <Insets left="30.0"/>
                             </padding>
                         </RadioButton>
-                        <RadioButton fx:id="preschoolerRB" mnemonicParsing="false" text="PRESCHOOLER"
-                                     textFill="WHITE">
+                        <RadioButton fx:id="preschoolerRB" mnemonicParsing="false" text="PRESCHOOLER" textFill="WHITE">
                             <font>
                                 <Font size="14.0"/>
                             </font>
@@ -70,7 +47,7 @@
                                 <Insets left="30.0"/>
                             </padding>
                         </RadioButton>
-                        <RadioButton fx:id="pupilRB" mnemonicParsing="false" text="PUPILS" textFill="WHITE">
+                        <RadioButton fx:id="pupilRB" mnemonicParsing="false" text="PUPIL" textFill="WHITE">
                             <font>
                                 <Font size="14.0"/>
                             </font>
@@ -78,7 +55,7 @@
                                 <Insets left="30.0"/>
                             </padding>
                         </RadioButton>
-                        <RadioButton fx:id="studentRB" mnemonicParsing="false" text="STUDENTS" textFill="WHITE">
+                        <RadioButton fx:id="studentRB" mnemonicParsing="false" text="STUDENT" textFill="WHITE">
                             <font>
                                 <Font size="14.0"/>
                             </font>
@@ -94,8 +71,7 @@
                                 <Insets left="30.0"/>
                             </padding>
                         </RadioButton>
-                        <RadioButton fx:id="privilegedRB" mnemonicParsing="false" text="PRIVILEGED"
-                                     textFill="WHITE">
+                        <RadioButton fx:id="privilegedRB" mnemonicParsing="false" text="PRIVILEGED" textFill="WHITE">
                             <font>
                                 <Font size="14.0"/>
                             </font>
@@ -104,58 +80,69 @@
                             </padding>
                         </RadioButton>
                     </HBox>
-                    <HBox layoutX="1.0" layoutY="76.0" prefHeight="174.0" prefWidth="884.0">
+                    <HBox alignment="CENTER" layoutX="1.0" layoutY="76.0" prefHeight="176.0" prefWidth="877.0"
+                          BorderPane.alignment="CENTER">
                         <Pane fx:id="panel6" prefHeight="174.0" prefWidth="417.0"
                               style="-fx-background-color: #ABC82E;">
                             <HBox.margin>
                                 <Insets left="20.0"/>
                             </HBox.margin>
-                            <Label layoutX="103.0" text="6 months" textFill="WHITE">
-                                <font>
-                                    <Font name="System Bold" size="48.0"/>
-                                </font>
-                            </Label>
-                            <Label fx:id="price6months" layoutX="164.0" layoutY="70.0" text="\$120.00"
-                                   textFill="#2b903a">
-                                <font>
-                                    <Font size="24.0"/>
-                                </font>
-                            </Label>
-                            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="130.0" layoutY="115.0"
-                                       pickOnBounds="true" preserveRatio="true">
-                                <Image url="@../credit-card.png"/>
-                            </ImageView>
-                            <Label fx:id="pay6months" layoutX="163.0" layoutY="118.0" text="PAY MEMBERSHIP"
-                                   textFill="WHITE">
-                                <font>
-                                    <Font size="14.0"/>
-                                </font>
-                            </Label>
+                            <VBox prefHeight="176.0" prefWidth="418.0">
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="418.0"
+                                       text="6 months" textAlignment="CENTER" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="48.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="price6months" alignment="CENTER" prefHeight="50.0" prefWidth="418.0"
+                                       text="\$120.00" textAlignment="CENTER" textFill="#2b903a">
+                                    <font>
+                                        <Font size="24.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="pay6months" alignment="CENTER" prefHeight="54.0" prefWidth="419.0"
+                                       text="PAY MEMBERSHIP" textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <Image url="@../credit-card.png"/>
+                                        </ImageView>
+                                    </graphic>
+                                </Label>
+                            </VBox>
                         </Pane>
                         <Separator orientation="VERTICAL" prefHeight="229.0" prefWidth="30.0" visible="false"/>
                         <Pane fx:id="panel12" prefHeight="174.0" prefWidth="417.0"
                               style="-fx-background-color: #ABC82E;">
-                            <Label layoutX="89.0" text="12 months" textFill="WHITE">
-                                <font>
-                                    <Font name="System Bold" size="48.0"/>
-                                </font>
-                            </Label>
-                            <Label fx:id="price12months" layoutX="164.0" layoutY="70.0" text="\$200.00"
-                                   textFill="#2b903a">
-                                <font>
-                                    <Font size="24.0"/>
-                                </font>
-                            </Label>
-                            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="130.0" layoutY="115.0"
-                                       pickOnBounds="true" preserveRatio="true">
-                                <Image url="@../credit-card.png"/>
-                            </ImageView>
-                            <Label fx:id="pay12months" layoutX="163.0" layoutY="118.0" text="PAY MEMBERSHIP"
-                                   textFill="WHITE">
-                                <font>
-                                    <Font size="14.0"/>
-                                </font>
-                            </Label>
+                            <VBox prefHeight="176.0" prefWidth="418.0">
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="418.0"
+                                       text="12 months" textAlignment="CENTER" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="48.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="price12months" alignment="CENTER" prefHeight="50.0" prefWidth="418.0"
+                                       text="\$200.00" textAlignment="CENTER" textFill="#2b903a">
+                                    <font>
+                                        <Font size="24.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="pay12months" alignment="CENTER" prefHeight="54.0" prefWidth="419.0"
+                                       text="PAY MEMBERSHIP" textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <Image url="@../credit-card.png"/>
+                                        </ImageView>
+                                    </graphic>
+                                </Label>
+                            </VBox>
                         </Pane>
                     </HBox>
                 </Pane>
@@ -214,5 +201,23 @@
                 </BorderPane>
             </VBox>
         </center>
+        <top>
+            <AnchorPane prefHeight="60.0" prefWidth="900.0" style="-fx-background-color: #7AB12B;"
+                        BorderPane.alignment="CENTER">
+                <BorderPane prefHeight="71.0" prefWidth="900.0">
+                    <center>
+                        <Label fx:id="status" prefHeight="62.0" prefWidth="900.0" text="Label" textFill="WHITE"
+                               BorderPane.alignment="CENTER">
+                            <font>
+                                <Font size="16.0"/>
+                            </font>
+                            <graphic>
+                                <Separator orientation="VERTICAL" prefHeight="68.0" prefWidth="54.0" visible="false"/>
+                            </graphic>
+                        </Label>
+                    </center>
+                </BorderPane>
+            </AnchorPane>
+        </top>
     </BorderPane>
-</Pane>
+</AnchorPane>

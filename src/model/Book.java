@@ -1,13 +1,13 @@
 package model;
 
-import model.enums.SampleState;
+import model.enums.BookState;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Book {
     private String bookId;
-    private SampleState state;
+    private BookState state;
     private List<IssuedBook> issueHistory;
     private Edition edition;
     private boolean isRestricted;
@@ -16,7 +16,7 @@ public class Book {
         this.issueHistory = new ArrayList<>();
     }
 
-    public Book(String bookId, SampleState state, Edition edition, boolean isRestricted) {
+    public Book(String bookId, BookState state, Edition edition, boolean isRestricted) {
         this.bookId = bookId;
         this.state = state;
         this.edition = edition;
@@ -24,13 +24,13 @@ public class Book {
         this.issueHistory = new ArrayList<>();
     }
 
-    public SampleState getState() { return this.state; }
+    public BookState getState() { return this.state; }
 
-    public boolean isAvailable() { return this.state == SampleState.AVAILABLE; }
+    public boolean isAvailable() { return this.state == BookState.AVAILABLE; }
 
     public String getBookId() { return  this.bookId; }
 
-    public void setState(SampleState state) { this.state = state; }
+    public void setState(BookState state) { this.state = state; }
 
     public boolean getIsRestricted() { return this.isRestricted; }
 
@@ -40,7 +40,7 @@ public class Book {
 
     public List<IssuedBook> getIssueHistory() { return issueHistory; }
 
-    public void makeAvailable() { this.state = SampleState.AVAILABLE; }
+    public void makeAvailable() { this.state = BookState.AVAILABLE; }
 
-    public void makeTaken() {this.state = SampleState.TAKEN; }
+    public void makeTaken() {this.state = BookState.TAKEN; }
 }

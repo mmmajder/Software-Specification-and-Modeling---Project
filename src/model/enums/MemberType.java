@@ -2,8 +2,8 @@ package model.enums;
 
 public enum MemberType {
     PRESCHOOLER,
-    PUPILS,
-    STUDENTS,
+    PUPIL,
+    STUDENT,
     REGULAR,
     RETIRED,
     PRIVILEGED

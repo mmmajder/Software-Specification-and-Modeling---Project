@@ -1,6 +1,6 @@
 package model.enums;
 
-public enum SampleState {
+public enum BookState {
     AVAILABLE,
     TAKEN,
     RESERVED,

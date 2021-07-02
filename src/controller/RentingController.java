@@ -1,7 +1,7 @@
 package controller;
 
 import model.*;
-import model.enums.SampleState;
+import model.enums.BookState;
 import utils.exceptions.BookRentingIsInvalidException;
 import utils.exceptions.MemberUnableToRentException;
 
@@ -43,6 +43,6 @@ public class RentingController {
         member.addTakenBook(issuedBook);
         book.addIssueHistory(issuedBook);
         library.addIssuedBook(issuedBook);
-        book.setState(SampleState.TAKEN);
+        book.setState(BookState.TAKEN);
     }
 }

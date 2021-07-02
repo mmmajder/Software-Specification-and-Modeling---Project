@@ -1,6 +1,6 @@
 package view.member.model;
 
-import model.enums.SampleState;
+import model.enums.BookState;
 
 import java.time.LocalDate;
 
@@ -8,9 +8,9 @@ public class HistoryData {
     private String bookTitle;
     private LocalDate issueDate;
     private LocalDate returnDate;
-    private SampleState state;
+    private BookState state;
 
-    public HistoryData(String bookTitle, LocalDate issueDate, LocalDate returnDate, SampleState state) {
+    public HistoryData(String bookTitle, LocalDate issueDate, LocalDate returnDate, BookState state) {
         this.bookTitle = bookTitle;
         this.issueDate = issueDate;
         this.returnDate = returnDate;

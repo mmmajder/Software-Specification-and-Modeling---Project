@@ -1,7 +1,5 @@
 package model;
 
-import model.enums.SampleState;
-
 import java.time.LocalDate;
 
 public class IssuedBook {

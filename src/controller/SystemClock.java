@@ -13,7 +13,7 @@ public class SystemClock {
 
     private Library library;
     private NotificationController notificationController;
-    private IssuedBookControler issuedBookControler;
+    private IssuedBookController issuedBookController;
 
     //TODO move these constants somewhere
     private final int DAYS_UNTIL_RETURN_DATE_TO_NOTIFY = 3;
@@ -22,7 +22,7 @@ public class SystemClock {
     public SystemClock(Library library) {
         this.library = library;
         this.notificationController = new NotificationController(library); // used to send notifications to members
-        this.issuedBookControler = new IssuedBookControler(library);
+        this.issuedBookController = new IssuedBookController(library);
     }
 
     public void runDaily(){
@@ -43,7 +43,7 @@ public class SystemClock {
     }
 
     private int calculateDaysToReturnDate(IssuedBook issuedBook){
-        LocalDate calculatedReturnDate = issuedBookControler.calculateReturnDate(issuedBook);
+        LocalDate calculatedReturnDate = issuedBookController.calculateReturnDate(issuedBook);
         return (int) Duration.between(LocalDate.now(), calculatedReturnDate).toDays();
     }
 

@@ -367,4 +367,11 @@ RENAME reservedBooks TO reservations;
 ALTER TABLE members RENAME COLUMN reservedBook TO reservation;
 DROP TABLE RETURNEDBOOKS;
 
+ALTER TABLE issuedBooks ADD state VARCHAR(10) DEFAULT 'TAKEN';
+
+ALTER TABLE notifications DROP CONSTRAINT notifications_FK;
+ALTER TABLE notifications DROP COLUMN Member;
+ALTER TABLE notifications ADD Account VARCHAR(75) NOT NULL;
+ALTER TABLE notifications ADD CONSTRAINT notifications_FK FOREIGN KEY (Account) REFERENCES accounts (Email);
+
 COMMIT;

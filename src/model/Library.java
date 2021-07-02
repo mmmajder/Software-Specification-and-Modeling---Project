@@ -306,7 +306,4 @@ public class Library implements Publisher {
     public List<Edition> filterByGenre(List<Edition> currentEditions, String genreString) {
         return currentEditions;
     }
-
-    //TODO calculate state IssuedBook - getState() - returned, taken
-    //TODO Notification getNotification(Account account)
 }

@@ -6,21 +6,21 @@ public class Notification {
     private String id;
     private String message;
     private LocalDate date;
-    private Member member;
+    private Account account;
 
-    public Notification(String id, String message, LocalDate date, Member member) {
+    public Notification(String id, String message, LocalDate date, Account account) {
         this.id = id;
         this.message = message;
         this.date = date;
-        this.member = member;
+        this.account = account;
     }
 
-    public Member getMember() {
-        return member;
+    public Account getAccount() {
+        return this.account;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public String getId() {

@@ -4,6 +4,8 @@ import model.enums.AccountType;
 import utils.StringUtils;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Account {
     private String username;
@@ -12,6 +14,7 @@ public class Account {
     private AccountType type;
     private Person person;
     private boolean isActive;
+    private List<Notification> notifications;
 
     public Account(String username, String password, String email, AccountType type, Person person, boolean isActive) {
         this.username = username;
@@ -20,6 +23,7 @@ public class Account {
         this.type = type;
         this.person = person;
         this.isActive = isActive;
+        this.notifications = new ArrayList<>();
     }
 
     public String getMembershipExpirationDateStr() {
@@ -59,5 +63,13 @@ public class Account {
 
     public String getFullName() {
         return this.person.getName() + " " + this.person.getSurname();
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void addNotification(Notification notification) {
+        this.notifications.add(notification);
     }
 }

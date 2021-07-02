@@ -103,7 +103,7 @@ public class SearchBooksLibrarianController {
     public void setGenres() {
         genres.getItems().clear();
         genres.getItems().add("GENRES");
-        genres.getItems().addAll(library.getGenreNamesSorted());
+        genres.getItems().addAll(searchBooksController.getGenreNamesSorted());
     }
 
     public void initializeEditions(List<Edition> editions) {

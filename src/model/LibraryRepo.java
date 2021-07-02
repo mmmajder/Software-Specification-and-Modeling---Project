@@ -1,9 +1,6 @@
 package model;
 
-import model.enums.AccountType;
-import model.enums.ContributorType;
-import model.enums.MemberType;
-import model.enums.BookState;
+import model.enums.*;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -502,6 +499,7 @@ public class LibraryRepo implements ILibraryRepo {
                 int prolongedIssue = issuedBooks.getInt("prolongedIssue");
                 String librarian = issuedBooks.getString("librarian");
                 String member = issuedBooks.getString("member");
+                String state = issuedBooks.getString("state");
 
                 Book book = library.getBook(bookId);
                 Librarian l = (Librarian) library.getPerson(librarian);
@@ -511,12 +509,14 @@ public class LibraryRepo implements ILibraryRepo {
 
                 if (returnDate == null) {
 
-                    issuedBook = new IssuedBook(issueDate, null, isProlonged, book, l, m);
+                    issuedBook = new IssuedBook(issueDate, null, isProlonged, book, l, m,
+                            IssuedBookState.valueOf(state));
                     m.addTakenBook(issuedBook);
                     library.addIssuedBook(issuedBook);
                 } else {
 
-                    issuedBook = new IssuedBook(issueDate, returnDate.toLocalDate(), isProlonged, book, l, m);
+                    issuedBook = new IssuedBook(issueDate, returnDate.toLocalDate(), isProlonged, book, l, m,
+                            IssuedBookState.valueOf(state));
                     m.addReturnedBook(issuedBook);
                 }
                 l.addIssuedBook(issuedBook);
@@ -539,11 +539,11 @@ public class LibraryRepo implements ILibraryRepo {
                 String notificationId = notifications.getString("idn");
                 String message = notifications.getString("message");
                 LocalDate notiDate = notifications.getDate("notiDate").toLocalDate();
-                String member = notifications.getString("member");
+                String email = notifications.getString("account");
 
-                Member m = (Member) library.getPerson(member);
-                Notification notification = new Notification(notificationId, message, notiDate, m);
-                m.addNotification(notification);
+                Account account = library.getAccountByEmail(email);
+                Notification notification = new Notification(notificationId, message, notiDate, account);
+                account.addNotification(notification);
             }
 
         } catch (Exception e) {

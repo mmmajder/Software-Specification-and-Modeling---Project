@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0"
-            minWidth="900.0" prefHeight="600.0" prefWidth="900.0" stylesheets="@../user.css"
+<BorderPane fx:id="borderPane" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0"
             xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.member.MemberController">
     <top>

@@ -12,7 +12,7 @@ public interface ILibraryRepo {
     void loadMaxIssueDays(Library library);
     void loadMaxIssuedBooks(Library library);
     void loadPendingReservations(Library library);
-    void loadReservedBooks(Library library);
+    void loadReservations(Library library);
     void loadPriceCatalogs(Library library);
     void loadHalfAYearPrices(Library library);
     void loadFullYearPrices(Library library);

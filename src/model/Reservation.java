@@ -1,21 +1,19 @@
 package model;
 
-import com.sun.swing.internal.plaf.synth.resources.synth_sv;
-
 import java.time.Duration;
 import java.time.LocalDate;
 
-public class ReservedBook {
+public class Reservation {
 
     private int id;
     private Member member;
     private Book book;
     private LocalDate reservedOn;
 
-    public ReservedBook() {
+    public Reservation() {
     }
 
-    public ReservedBook(int id, Member member, Book book) {
+    public Reservation(int id, Member member, Book book) {
         this.id = id;
         this.member = member;
         this.book = book;

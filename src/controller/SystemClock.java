@@ -2,9 +2,7 @@ package controller;
 
 import model.IssuedBook;
 import model.Library;
-import model.Notification;
-import model.ReservedBook;
-import model.enums.SampleState;
+import model.Reservation;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -57,10 +55,10 @@ public class SystemClock {
     private List<Integer> getIndexesToRemove(){
         List<Integer> indexesToRemove = new ArrayList<>();
 
-        for (int i = 0; i < library.getReservedBooks().size(); i++){
+        for (int i = 0; i < library.getReservations().size(); i++){
             // or < 0, depending if it will be run in the evening(after the work day) or tomorrow morning (before the work day)
             // == is for evening
-            if (library.getReservedBooks().get(i).getDaysLeft() == 0){
+            if (library.getReservations().get(i).getDaysLeft() == 0){
                 indexesToRemove.add(i);
             }
         }
@@ -73,17 +71,17 @@ public class SystemClock {
 
         for (Integer i : indexesToRemove){
             int indexToRemove = i-alreadyRemoved; // list shrinks every time an element is removed
-            ReservedBook reservedBook = library.getReservedBooks().get(indexToRemove);
-            removeExpiredReservation(reservedBook, indexToRemove);
+            Reservation reservation = library.getReservations().get(indexToRemove);
+            removeExpiredReservation(reservation, indexToRemove);
             alreadyRemoved++;
         }
     }
 
-    private void removeExpiredReservation(ReservedBook reservedBook, int indexToRemove){
-        notificationController.reservationExpired(reservedBook);
-        reservedBook.getMember().removeReservedBook();
-        reservedBook.getBook().makeAvailable();
-        library.getReservedBooks().remove(indexToRemove);
+    private void removeExpiredReservation(Reservation reservation, int indexToRemove){
+        notificationController.reservationExpired(reservation);
+        reservation.getMember().removeReservation();
+        reservation.getBook().makeAvailable();
+        library.getReservations().remove(indexToRemove);
     }
 
 

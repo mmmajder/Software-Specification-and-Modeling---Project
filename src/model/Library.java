@@ -234,6 +234,10 @@ public class Library implements Publisher {
         this.pendingReservations.remove(pendingReservation);
     }
 
+    public List<Member> getMembers(){
+        return persons.stream().filter(person -> person instanceof Member).map(person -> (Member) person).collect(Collectors.toList());
+    }
+
     public List<IssuedBook> getMemberIssueHistory(Account account) throws PersonIsNotAMemberException {
         if (!(account.getPerson() instanceof Member)){
             throw new PersonIsNotAMemberException();

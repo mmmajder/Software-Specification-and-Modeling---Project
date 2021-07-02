@@ -39,9 +39,9 @@ public class MemberCRUDController implements Observer {
 
     private ObservableList<MemberTable> getMembers() {
         ObservableList<MemberTable> list = FXCollections.observableArrayList();
-        for (Member member : library.getMembers()) {
-            list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate(), member.getMembershipExpirationDate()));
-        }
+//        for (Member member : library.getMembers()) {
+//            list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate(), member.getMembershipExpirationDate()));
+//        }
         return list;
     }
 
@@ -50,7 +50,7 @@ public class MemberCRUDController implements Observer {
         for (MemberTable row : memberTable.getSelectionModel().getSelectedItems()) {
             for (int i = 1; i <= 1; i++) {
                 for (IssuedBook issuedBook : library.getMemberActiveIssues(row.getJMBG())) {
-                    dataMemberIssuesTable.add(new CurrentIssueTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.isProlongedIssue(), issuedBook.getReturnDate());
+                    dataMemberIssuesTable.add(new CurrentIssueTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.isProlongedIssue(), issuedBook.getReturnDate()));
                 }
             }
         }

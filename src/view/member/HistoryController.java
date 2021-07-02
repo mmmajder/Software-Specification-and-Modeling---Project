@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import model.*;
 import observer.Observer;
+import utils.exceptions.PersonIsNotAMemberException;
 import view.librarian.model.RentedBooksTable;
 import view.member.model.MemberHistoryTable;
 
@@ -27,8 +28,12 @@ public class HistoryController implements Observer {
 
     private ObservableList<MemberHistoryTable> getHistory() {
         ObservableList<MemberHistoryTable> list = FXCollections.observableArrayList();
-        for (IssuedBook issuedBook : library.getMemberIssueHistory(account)) {
-            list.add(new MemberHistoryTable(issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(), issuedBook.getReturnDate(), issuedBook.getState()));
+        try {
+            for (IssuedBook issuedBook : library.getMemberIssueHistory(account)) {
+//                list.add(new MemberHistoryTable(issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(), issuedBook.getReturnDate(), issuedBook.getState()));
+            }
+        } catch (PersonIsNotAMemberException e) {
+            e.printStackTrace();
         }
         return list;
     }

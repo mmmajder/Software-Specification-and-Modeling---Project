@@ -36,15 +36,15 @@ public class ReservationsLibrarianController implements Observer {
 
     private ObservableList<ReservationRequestTable> getRequests() {
         ObservableList<ReservationRequestTable> list = FXCollections.observableArrayList();
-        for (PendingReservation reservation : library.getReservations()) {
+        for (PendingReservation reservation : library.getPendingReservations()) {
             list.add(new ReservationRequestTable(reservation.getMember().getName()+" "+reservation.getMember().getSurname(), reservation.getEdition().getTitle()));
         }
         return list;
     }
     private ObservableList<ApprovedReservationTable> getApproved() {
         ObservableList<ApprovedReservationTable> list = FXCollections.observableArrayList();
-        for (ReservedBook reservation : library.getApprovedReservations()) {
-            list.add(new ApprovedReservationTable(reservation.getMember().getName()+" "+reservation.getMember().getSurname(), reservation.getBook().getBookId(), reservation.getDaysLeft()));
+        for (ReservedBook reservation : library.getReservedBooks()) {
+//            list.add(new ApprovedReservationTable(reservation.getMember().getName()+" "+reservation.getMember().getSurname(), reservation.getBook().getBookId(), reservation.getDaysLeft()));
         }
         return list;
     }

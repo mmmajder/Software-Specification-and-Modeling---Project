@@ -31,6 +31,7 @@ public class SearchBooksMemberController implements Observer {
     public Label publishedDateSort;
     public ImageView ascSort;
     public ImageView descSort;
+    public Label addEdition;
 
     ILibraryRepo libraryRepo;
     Library library;
@@ -141,5 +142,10 @@ public class SearchBooksMemberController implements Observer {
             bookPane.setEdition(library.getEditions().get(i));
             i++;
         }
+    }
+
+    @FXML
+    public void switchToAdditionOfEdition(MouseEvent event) {
+
     }
 }

@@ -26,9 +26,9 @@ public class NotificationsController implements Observer {
 
     private ObservableList<NotificationTable> getNotifications() {
         ObservableList<NotificationTable> list = FXCollections.observableArrayList();
-        for (Notification notification : library.getNotification(account)) {
-            list.add(new NotificationTable(notification.getMessage(), notification.getDate()));
-        }
+//        for (Notification notification : library.getNotifications(account)) {
+//            list.add(new NotificationTable(notification.getMessage(), notification.getDate()));
+//        }
         return list;
     }
 

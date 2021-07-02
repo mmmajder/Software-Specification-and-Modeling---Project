@@ -1,13 +1,13 @@
 package view.librarian.model;
 
-import model.enums.SampleState;
+import model.enums.BookState;
 
 public class BookEditionTable {
     private String bookId;
-    private SampleState state;
+    private BookState state;
     private boolean isRestricted;
 
-    public BookEditionTable(String bookId, SampleState state, boolean isRestricted) {
+    public BookEditionTable(String bookId, BookState state, boolean isRestricted) {
         this.bookId = bookId;
         this.state = state;
         this.isRestricted = isRestricted;
@@ -17,7 +17,7 @@ public class BookEditionTable {
         return bookId;
     }
 
-    public SampleState getState() {
+    public BookState getState() {
         return state;
     }
 

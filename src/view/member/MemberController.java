@@ -34,7 +34,7 @@ public class MemberController {
     MembershipController membershipController;
     NotificationsController notificationsController;
     SearchBooksMemberController searchBooksMemberController;
-    HistoryController historyController;
+    IssuedBooksHistoryController issuedBooksHistoryController;
 
     AccountController controller;
     Library library;
@@ -60,9 +60,9 @@ public class MemberController {
         booksScene = booksLoader.load();
         searchBooksMemberController = booksLoader.getController();
 
-        FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../../fxml/member/history.fxml"));
+        FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../../fxml/member/issuedBooksHistory.fxml"));
         historyScene = historyLoader.load();
-        historyController = historyLoader.getController();
+        issuedBooksHistoryController = historyLoader.getController();
 
         FXMLLoader membershipLoader = new FXMLLoader(getClass().getResource("../../fxml/member/membership.fxml"));
         membershipScene = membershipLoader.load();
@@ -109,7 +109,7 @@ public class MemberController {
     @FXML
     private void switchToHistory() throws IOException {
         borderPane.setCenter(historyScene);
-        historyController.initData(account);
+        issuedBooksHistoryController.initData(account);
         lblNotifications.setUnderline(false);
         lblHistory.setUnderline(true);
         lblMembership.setUnderline(false);

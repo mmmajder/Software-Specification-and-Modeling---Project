@@ -3,7 +3,7 @@ package model;
 import model.enums.AccountType;
 import model.enums.ContributorType;
 import model.enums.MemberType;
-import model.enums.SampleState;
+import model.enums.BookState;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -305,7 +305,7 @@ public class LibraryRepo implements ILibraryRepo {
 
                 Edition edition = library.getEdition(editionId);
 
-                Book book = new Book(bookId, SampleState.valueOf(state), edition, isRestricted);
+                Book book = new Book(bookId, BookState.valueOf(state), edition, isRestricted);
                 edition.addBook(book);
 
                 library.addBook(book);

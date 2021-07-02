@@ -1,5 +1,6 @@
 package model;
 
+import model.enums.AccountType;
 import model.enums.MemberType;
 import observer.Observer;
 import observer.Publisher;
@@ -44,6 +45,7 @@ public class Library implements Publisher {
         this.pendingReservations = new ArrayList<>();
         this.reservations = new ArrayList<>();
         this.currentlyIssued = new ArrayList<>();
+        this.formats = new ArrayList<>();
     }
 
     public List<Genre> getGenres() {
@@ -110,16 +112,6 @@ public class Library implements Publisher {
         this.genres.add(genre);
     }
 
-    //TODO: Smestiti u kontroler
-    public List<String> getGenreNamesSorted() {
-        List<String> genresNames = new ArrayList<>();
-        for (Genre genre : genres) {
-            genresNames.add(genre.getName());
-        }
-        Collections.sort(genresNames);
-        return new ArrayList<>(new HashSet<>(genresNames));
-    }
-
     public void addIssuedBook(IssuedBook issuedBook) {
         this.currentlyIssued.add(issuedBook);
     }
@@ -183,7 +175,7 @@ public class Library implements Publisher {
 
     public Person getPerson(String jmbg) {
         for (Person person : this.persons) {
-            if (person.getJMBG().equalsIgnoreCase(jmbg)) {
+            if (person.getJMBG().equals(jmbg)) {
                 return person;
             }
         }
@@ -213,7 +205,7 @@ public class Library implements Publisher {
 
         for (Book book : this.books) {
 
-            if (book.getBookId().equalsIgnoreCase(bookId)) {
+            if (book.getBookId().equals(bookId)) {
                 return book;
             }
         }
@@ -247,14 +239,28 @@ public class Library implements Publisher {
     }
 
     public List<Member> getMembers() {
-        return persons.stream().filter(person -> person instanceof Member).map(person -> (Member) person).collect(Collectors.toList());
+        List<Member> members = new ArrayList<>();
+
+        for (Account account : accounts) {
+
+            if (account.getType() == AccountType.MEMBER) {
+
+                members.add((Member) account.getPerson());
+            }
+        }
+
+        for (Person person : persons) {
+
+            if (person.getAccount() == null) {
+
+                members.add((Member) person);
+            }
+        }
+
+        return members;
     }
 
     public List<IssuedBook> getMembersReturnedBooks(Account account) {
-        //TODO: smestiti u kontroler
-//        if (!(account.getPerson() instanceof Member)) {
-//            throw new PersonIsNotAMemberException();
-//        }
         Member member = (Member) account.getPerson();
         return member.getReturnedBooks();
     }
@@ -301,6 +307,6 @@ public class Library implements Publisher {
         return currentEditions;
     }
 
-    //TODO calculate state IssuedBook - getState() - reserved, returned, taken
+    //TODO calculate state IssuedBook - getState() - returned, taken
     //TODO Notification getNotification(Account account)
 }

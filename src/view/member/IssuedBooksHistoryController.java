@@ -1,5 +1,6 @@
 package view.member;
 
+import controller.IssuedBookController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -10,32 +11,34 @@ import view.member.model.MemberHistoryTable;
 
 import java.io.IOException;
 
-public class HistoryController implements Observer {
-    public TableView<MemberHistoryTable> historyTable;
+public class IssuedBooksHistoryController implements Observer {
+    public TableView<MemberHistoryTable> issuedBooksHistoryTable;
     ObservableList<MemberHistoryTable> dataHistoryTable;
     Library library;
     Account account;
     ILibraryRepo libraryRepo;
+    private IssuedBookController controller;
 
     public void initData(Account account) throws IOException {
         this.account = account;
         this.library = new Library();
+        controller = new IssuedBookController(library);
         libraryRepo = new LibraryRepo();
-        //libraryRepo.loadIssuedBooks(library);
+        libraryRepo.loadIssuedBooks(library);
 
-        historyTable.getColumns().add(new TableColumn("Title") {
+        issuedBooksHistoryTable.getColumns().add(new TableColumn("Title") {
             {
-                prefWidthProperty().bind(historyTable.widthProperty().multiply(0.45));
+                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.45));
             }
         });
-        historyTable.getColumns().add(new TableColumn("Issue date") {
+        issuedBooksHistoryTable.getColumns().add(new TableColumn("Issue date") {
             {
-                prefWidthProperty().bind(historyTable.widthProperty().multiply(0.2));
+                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.2));
             }
         });
-        historyTable.getColumns().add(new TableColumn("Return date") {
+        issuedBooksHistoryTable.getColumns().add(new TableColumn("Return date") {
             {
-                prefWidthProperty().bind(historyTable.widthProperty().multiply(0.2));
+                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.2));
             }
         });
 //        historyTable.getColumns().add(new TableColumn("Returned date") {
@@ -43,9 +46,9 @@ public class HistoryController implements Observer {
 //                prefWidthProperty().bind(historyTable.widthProperty().multiply(0.2));
 //            }
 //        });
-        historyTable.getColumns().add(new TableColumn("Status") {
+        issuedBooksHistoryTable.getColumns().add(new TableColumn("Status") {
             {
-                prefWidthProperty().bind(historyTable.widthProperty().multiply(0.15));
+                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.15));
             }
         });
         //historyTable.setItems(getHistory());
@@ -53,7 +56,7 @@ public class HistoryController implements Observer {
 
     private ObservableList<MemberHistoryTable> getHistory() {
         ObservableList<MemberHistoryTable> list = FXCollections.observableArrayList();
-//        for (IssuedBook issuedBook : library.getMembersReturnedBooks(account)) {
+//        for (IssuedBook issuedBook : controller.getMembersReturnedBooks(account)) {
 //            list.add(new MemberHistoryTable(issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(), issuedBook.getReturnDate(), issuedBook.getState()));
 //        }
         return list;
@@ -62,6 +65,6 @@ public class HistoryController implements Observer {
     @Override
     public void updatePerformed() {
         libraryRepo.loadIssuedBooks(library);
-        historyTable.setItems(getHistory());
+        issuedBooksHistoryTable.setItems(getHistory());
     }
 }

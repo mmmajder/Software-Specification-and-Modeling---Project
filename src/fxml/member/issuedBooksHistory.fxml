@@ -6,11 +6,11 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.member.HistoryController" style="-fx-background-color: #abc82e;">
+            fx:controller="view.member.IssuedBooksHistoryController" style="-fx-background-color: #abc82e;">
     <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                 AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <center>
-            <TableView fx:id="historyTable">
+            <TableView fx:id="issuedBooksHistoryTable">
             </TableView>
         </center>
         <bottom>

@@ -16,11 +16,6 @@ public class BookPaneController {
         return edition;
     }
 
-//    @FXML
-//    private void click(MouseEvent mouseEvent) {
-//        myListener.onClickListener(fruit);
-//    }
-
     public void setEdition(Edition edition) {
         this.edition = edition;
 //        try (InputStream in = new URL(edition.getImage()).openStream()) {

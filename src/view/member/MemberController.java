@@ -27,7 +27,6 @@ public class MemberController {
     public BorderPane borderPane;
 
     public Parent booksScene;
-    public Parent bookScene;
     public Parent historyScene;
     public Parent membershipScene;
     public Parent notificationsScene;
@@ -36,7 +35,6 @@ public class MemberController {
     NotificationsController notificationsController;
     SearchBooksMemberController searchBooksMemberController;
     HistoryController historyController;
-    BookMemberController bookMemberController;
 
     AccountController controller;
     Library library;
@@ -61,10 +59,6 @@ public class MemberController {
         FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../../fxml/member/searchBooksMember.fxml"));
         booksScene = booksLoader.load();
         searchBooksMemberController = booksLoader.getController();
-
-        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/member/reservationMember.fxml"));
-        bookScene = bookLoader.load();
-        bookMemberController = bookLoader.getController();
 
         FXMLLoader historyLoader = new FXMLLoader(getClass().getResource("../../fxml/member/history.fxml"));
         historyScene = historyLoader.load();
@@ -104,16 +98,11 @@ public class MemberController {
     @FXML
     public void switchToBooks() throws IOException {
         borderPane.setCenter(booksScene);
-        searchBooksMemberController.initData(account);
+        searchBooksMemberController.initData(account, borderPane, this);
         lblNotifications.setUnderline(false);
         lblHistory.setUnderline(false);
         lblMembership.setUnderline(false);
         lblBooks.setUnderline(true);
-    }
-
-    @FXML
-    public void switchToEditions() throws IOException {
-        borderPane.setCenter(bookScene);
     }
 
     @FXML

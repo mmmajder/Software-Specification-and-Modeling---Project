@@ -9,20 +9,9 @@
 .list-cell:inactive {
     -fx-text-fill: green ;
 }
-.bookPane {
-    -fx-background-color: white;
-    -fx-background-radius: 5.0;
-    -fx-background-insets: 7.0 7.0 7.0 7.0;
-    -fx-padding: 20;
-    -fx-hgap: 10;
-    -fx-vgap: 10;
-}
 .search-box{
     -fx-background-color:#FFFFFF;
     -fx-background-radius: 100;
-}
-.transparent{
-    -fx-background-color: rgba(0,0,0,0);
 }
 .right-bar{
     -fx-background-color: #D3D3D3;

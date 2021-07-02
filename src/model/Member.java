@@ -141,4 +141,8 @@ public class Member extends Person {
     public void addNotification(Notification notification) {
         this.notifications.add(notification);
     }
+
+    public Payment getLastPayment() { return payments.get(payments.size()-1); }
+
+    public List<Payment> getPayments() { return payments; }
 }

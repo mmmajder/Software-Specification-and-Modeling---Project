@@ -29,8 +29,32 @@ public class MembershipControler {
     private void createPayment(Member m, int numOfMonths){
         //TODO nextId value
         int nextId = 0;
-        Payment newPayment = new Payment(nextId, LocalDate.now().plusMonths(numOfMonths), m);
+        LocalDate fromDate = calculateFromDate(m);
+        Payment newPayment = new Payment(nextId, fromDate.plusMonths(numOfMonths), m);
         m.addPayment(newPayment);
+    }
+
+    private LocalDate calculateFromDate(Member member){
+        LocalDate fromDate;
+
+        if (isPayingFirstTime(member)){
+            fromDate = LocalDate.now();
+        } else {
+            Payment lastPayment = member.getLastPayment();
+
+            if (lastPayment.getValidToDate().isBefore(LocalDate.now())){
+                fromDate = LocalDate.now();
+            }
+            // if member paid membership before it was cancelled, his membership is prolonged
+            // as if he paid it on the last day of his current membership
+            else { fromDate = lastPayment.getValidToDate(); }
+        }
+
+        return fromDate;
+    }
+
+    private boolean isPayingFirstTime(Member member){
+        return member.getPayments().size() == 0;
     }
 
     private boolean contactBankingSystem() {

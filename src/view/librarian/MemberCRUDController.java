@@ -1,24 +1,17 @@
 package view.librarian;
 
-import com.sun.xml.internal.bind.v2.runtime.property.PropertyFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 import observer.Observer;
-import view.librarian.model.BookEditionTable;
-import view.librarian.model.BookSampleTable;
 import view.librarian.model.CurrentIssueTable;
 import view.librarian.model.MemberTable;
 
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
 
 public class MemberCRUDController implements Observer {
     ObservableList<MemberTable> dataMemberTable;
@@ -75,7 +68,7 @@ public class MemberCRUDController implements Observer {
         dataMemberIssuesTable = FXCollections.observableArrayList();
         for (MemberTable row : memberTable.getSelectionModel().getSelectedItems()) {
             for (int i = 1; i <= 1; i++) {
-                for (IssuedBook issuedBook : library.getMemberActiveIssues(row.getJMBG())) {
+                for (IssuedBook issuedBook : library.getMembersCurrentlyTakenBooks(row.getJMBG())) {
                     dataMemberIssuesTable.add(new CurrentIssueTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.isProlongedIssue(), issuedBook.getReturnDate()));
                 }
             }

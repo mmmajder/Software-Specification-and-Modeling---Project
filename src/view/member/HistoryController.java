@@ -53,7 +53,7 @@ public class HistoryController implements Observer {
 
     private ObservableList<MemberHistoryTable> getHistory() {
         ObservableList<MemberHistoryTable> list = FXCollections.observableArrayList();
-//        for (IssuedBook issuedBook : library.getMemberIssueHistory(account)) {
+//        for (IssuedBook issuedBook : library.getMembersReturnedBooks(account)) {
 //            list.add(new MemberHistoryTable(issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(), issuedBook.getReturnDate(), issuedBook.getState()));
 //        }
         return list;

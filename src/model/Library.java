@@ -3,7 +3,6 @@ package model;
 import model.enums.MemberType;
 import observer.Observer;
 import observer.Publisher;
-import utils.exceptions.PersonIsNotAMemberException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -111,13 +110,14 @@ public class Library implements Publisher {
         this.genres.add(genre);
     }
 
+    //TODO: Smestiti u kontroler
     public List<String> getGenreNamesSorted() {
-        List<String> genresNames = new ArrayList<String>();
+        List<String> genresNames = new ArrayList<>();
         for (Genre genre : genres) {
             genresNames.add(genre.getName());
         }
         Collections.sort(genresNames);
-        return new ArrayList<>(new HashSet<String>(genresNames));
+        return new ArrayList<>(new HashSet<>(genresNames));
     }
 
     public void addIssuedBook(IssuedBook issuedBook) {
@@ -131,7 +131,7 @@ public class Library implements Publisher {
     public Edition getEdition(String editionId) {
 
         for (Edition edition : this.editions) {
-            if (edition.getEditionId().equalsIgnoreCase(editionId)) {
+            if (edition.getEditionId().equals(editionId)) {
                 return edition;
             }
         }
@@ -156,13 +156,14 @@ public class Library implements Publisher {
         this.maxIssuedBooks.put(type, limit);
     }
 
-    public List<IssuedBook> getMemberActiveIssues(String jmbg) {
-        return currentlyIssued.stream().filter(issuedBook -> issuedBook.getMember().getJMBG() == jmbg).collect(Collectors.toList());
+    public List<IssuedBook> getMembersCurrentlyTakenBooks(String jmbg) {
+        Member member = (Member) getPerson(jmbg);
+        return member.getCurrentlyTakenBooks();
     }
 
     public Account getAccountByUsername(String username) {
         for (Account account : this.accounts) {
-            if (account.getUsername().equalsIgnoreCase(username)) {
+            if (account.getUsername().equals(username)) {
                 return account;
             }
         }
@@ -172,7 +173,7 @@ public class Library implements Publisher {
     public Account getAccountByEmail(String email) {
 
         for (Account account : this.accounts) {
-            if (account.getEmail().equalsIgnoreCase(email)) {
+            if (account.getEmail().equals(email)) {
                 return account;
             }
         }
@@ -249,16 +250,19 @@ public class Library implements Publisher {
         return persons.stream().filter(person -> person instanceof Member).map(person -> (Member) person).collect(Collectors.toList());
     }
 
-    public List<IssuedBook> getMemberIssueHistory(Account account) throws PersonIsNotAMemberException {
-        if (!(account.getPerson() instanceof Member)) {
-            throw new PersonIsNotAMemberException();
-        }
-        return ((Member) account.getPerson()).getReturnedBooks();
+    public List<IssuedBook> getMembersReturnedBooks(Account account) {
+        //TODO: smestiti u kontroler
+//        if (!(account.getPerson() instanceof Member)) {
+//            throw new PersonIsNotAMemberException();
+//        }
+        Member member = (Member) account.getPerson();
+        return member.getReturnedBooks();
     }
 
     public List<Edition> getEditions(Genre genre) {
+        //TODO: napraviti lepse
         return editions.stream()
-                .filter(edition -> edition.getGenres().stream().anyMatch(g -> g.getName() == genre.getName()))
+                .filter(edition -> edition.getGenres().stream().anyMatch(g -> g.getName().equals(genre.getName())))
                 .collect(Collectors.toList());
     }
 

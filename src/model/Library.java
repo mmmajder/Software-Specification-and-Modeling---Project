@@ -3,12 +3,9 @@ package model;
 import model.enums.MemberType;
 import observer.Observer;
 import observer.Publisher;
-import utils.exceptions.NoSuchPendingRequestException;
 import utils.exceptions.PersonIsNotAMemberException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Library implements Publisher {
@@ -112,6 +109,15 @@ public class Library implements Publisher {
 
     public void addGenre(Genre genre) {
         this.genres.add(genre);
+    }
+
+    public List<String> getGenreNamesSorted() {
+        List<String> genresNames = new ArrayList<String>();
+        for (Genre genre : genres) {
+            genresNames.add(genre.getName());
+        }
+        Collections.sort(genresNames);
+        return new ArrayList<>(new HashSet<String>(genresNames));
     }
 
     public void addIssuedBook(IssuedBook issuedBook) {
@@ -257,7 +263,6 @@ public class Library implements Publisher {
         if (!(account.getPerson() instanceof Member)) {
             throw new PersonIsNotAMemberException();
         }
-
         return ((Member) account.getPerson()).getReturnedBooks();
     }
 

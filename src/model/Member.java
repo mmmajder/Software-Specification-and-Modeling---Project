@@ -15,7 +15,7 @@ public class Member extends Person {
     private List<IssuedBook> returnedBooks;
     private List<IssuedBook> currentlyTakenBooks;
     private PendingReservation pendingReservation;
-    private ReservedBook reservedBook;
+    private Reservation reservation;
     private boolean isMembershipPaid;
     private boolean isActive;
     private List<Notification> notifications;
@@ -23,7 +23,7 @@ public class Member extends Person {
     public Member() {
         super();
         this.pendingReservation = null;
-        this.reservedBook = null;
+        this.reservation = null;
         this.isMembershipPaid = true;
         this.isActive = true;
         this.payments = new ArrayList<>();
@@ -41,7 +41,7 @@ public class Member extends Person {
         this.isMembershipPaid = isMembershipPaid;
         this.isActive = isActive;
         this.pendingReservation = null;
-        this.reservedBook = null;
+        this.reservation = null;
         this.isMembershipPaid = true;
         this.isActive = true;
         this.payments = new ArrayList<>();
@@ -64,12 +64,8 @@ public class Member extends Person {
         return expirationDate;
     }
 
-    public ReservedBook getReservation() {
-        return this.reservedBook;
-    }
-
-    public void reserveBook(ReservedBook reservedBook) {
-        this.reservedBook = reservedBook;
+    public Reservation getReservation() {
+        return this.reservation;
     }
 
     public boolean isMembershipPaid() {
@@ -97,7 +93,7 @@ public class Member extends Person {
     }
 
     public boolean hasAlreadyReserved() {
-        return pendingReservation != null && reservedBook != null;
+        return pendingReservation != null && reservation != null;
     }
 
     public void addReturnedBook(IssuedBook issuedBook) {
@@ -111,20 +107,20 @@ public class Member extends Person {
     }
 
     public Book getReservedBook() {
-        return reservedBook.getBook();
+        return reservation.getBook();
     }
 
     public String getReservedBookId() {
-        return this.reservedBook.getBook().getBookId();
+        return this.reservation.getBook().getBookId();
     }
 
-    public void setReservedBook(ReservedBook reservedBook){
-        this.reservedBook = reservedBook;
+    public void setReservation(Reservation reservation){
+        this.reservation = reservation;
     }
 
     public void removePendingReservation() { this.pendingReservation = null; }
 
-    public void removeReservedBook() { this.reservedBook = null; }
+    public void removeReservation() { this.reservation = null; }
 
     public PendingReservation getPendingReservation() {
         return pendingReservation;

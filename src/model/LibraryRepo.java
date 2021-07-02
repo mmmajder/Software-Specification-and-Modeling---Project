@@ -421,9 +421,16 @@ public class LibraryRepo implements ILibraryRepo {
 
                 int catalogId = priceCatalogs.getInt("catalogId");
                 LocalDate fromDate = priceCatalogs.getDate("fromDate").toLocalDate();
-                LocalDate toDate = priceCatalogs.getDate("toDate").toLocalDate();
+                Date toDate = priceCatalogs.getDate("toDate");
 
-                PriceCatalog catalog = new PriceCatalog(catalogId, fromDate, toDate);
+                PriceCatalog catalog;
+                if (toDate == null) {
+
+                    catalog = new PriceCatalog(catalogId, fromDate, null);
+                } else {
+                    catalog = new PriceCatalog(catalogId, fromDate, toDate.toLocalDate());
+
+                }
                 library.addCatalog(catalog);
             }
 
@@ -491,7 +498,7 @@ public class LibraryRepo implements ILibraryRepo {
 
                 String bookId = issuedBooks.getString("book");
                 LocalDate issueDate = issuedBooks.getDate("issueDate").toLocalDate();
-                LocalDate returnDate = issuedBooks.getDate("returnDate").toLocalDate();
+                Date returnDate = issuedBooks.getDate("returnDate");
                 int prolongedIssue = issuedBooks.getInt("prolongedIssue");
                 String librarian = issuedBooks.getString("librarian");
                 String member = issuedBooks.getString("member");
@@ -500,16 +507,19 @@ public class LibraryRepo implements ILibraryRepo {
                 Librarian l = (Librarian) library.getPerson(librarian);
                 Member m = (Member) library.getPerson(member);
                 boolean isProlonged = prolongedIssue == 1;
+                IssuedBook issuedBook;
 
-                IssuedBook issuedBook = new IssuedBook(issueDate, returnDate, isProlonged, book, l, m);
+                if (returnDate == null) {
 
-                l.addIssuedBook(issuedBook);
-                if (book.getState() == SampleState.TAKEN) {
+                    issuedBook = new IssuedBook(issueDate, null, isProlonged, book, l, m);
                     m.addTakenBook(issuedBook);
                     library.addIssuedBook(issuedBook);
                 } else {
+
+                    issuedBook = new IssuedBook(issueDate, returnDate.toLocalDate(), isProlonged, book, l, m);
                     m.addReturnedBook(issuedBook);
                 }
+                l.addIssuedBook(issuedBook);
             }
 
         } catch (SQLException e) {

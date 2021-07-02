@@ -365,5 +365,6 @@ CREATE TABLE notifications (
 
 RENAME reservedBooks TO reservations;
 ALTER TABLE members RENAME COLUMN reservedBook TO reservation;
+DROP TABLE RETURNEDBOOKS;
 
 COMMIT;

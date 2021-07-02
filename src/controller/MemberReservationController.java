@@ -23,7 +23,7 @@ public class MemberReservationController {
         if (member.getPendingReservation() != null) {
             throw new MemberAlreadyHasPendingRequestException();
         }
-        if (member.getReservedBook() != null) {
+        if (member.getReservation() != null) {
             throw new MemberAlreadyHasReservedBook();
         }
     }

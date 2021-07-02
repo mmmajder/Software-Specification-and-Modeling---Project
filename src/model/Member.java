@@ -64,6 +64,10 @@ public class Member extends Person {
         return expirationDate;
     }
 
+    public ReservedBook getReservation() {
+        return this.reservedBook;
+    }
+
     public void reserveBook(ReservedBook reservedBook) {
         this.reservedBook = reservedBook;
     }
@@ -100,17 +104,27 @@ public class Member extends Person {
         this.returnedBooks.add(issuedBook);
     }
 
+    public List<IssuedBook> getReturnedBooks() { return returnedBooks; }
+
     public void addTakenBook(IssuedBook issuedBook) {
         this.currentlyTakenBooks.add(issuedBook);
     }
 
-    public ReservedBook getReservedBook() {
-        return reservedBook;
+    public Book getReservedBook() {
+        return reservedBook.getBook();
+    }
+
+    public String getReservedBookId() {
+        return this.reservedBook.getBook().getBookId();
     }
 
     public void setReservedBook(ReservedBook reservedBook){
         this.reservedBook = reservedBook;
     }
+
+    public void removePendingReservation() { this.pendingReservation = null; }
+
+    public void removeReservedBook() { this.reservedBook = null; }
 
     public PendingReservation getPendingReservation() {
         return pendingReservation;
@@ -131,4 +145,8 @@ public class Member extends Person {
     public void addNotification(Notification notification) {
         this.notifications.add(notification);
     }
+
+    public Payment getLastPayment() { return payments.get(payments.size()-1); }
+
+    public List<Payment> getPayments() { return payments; }
 }

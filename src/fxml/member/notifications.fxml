@@ -11,7 +11,7 @@
       fx:controller="view.member.NotificationsController">
     <BorderPane prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #63AC29;">
         <center>
-            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="notificationTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                 <columns>
                     <TableColumn prefWidth="700.0" text="Notification"/>
                     <TableColumn prefWidth="159.0" text="Date"/>

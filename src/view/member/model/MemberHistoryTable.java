@@ -1,16 +1,14 @@
-package view.member;
-
-import model.enums.SampleState;
+package view.member.model;
 
 import java.time.LocalDate;
 
-public class HistoryData {
+public class MemberHistoryTable {
     private String bookTitle;
     private LocalDate issueDate;
     private LocalDate returnDate;
-    private SampleState state;
+    private String state;
 
-    public HistoryData(String bookTitle, LocalDate issueDate, LocalDate returnDate, SampleState state) {
+    public MemberHistoryTable(String bookTitle, LocalDate issueDate, LocalDate returnDate, String state) {
         this.bookTitle = bookTitle;
         this.issueDate = issueDate;
         this.returnDate = returnDate;

@@ -4,10 +4,12 @@ import model.enums.MemberType;
 import observer.Observer;
 import observer.Publisher;
 import utils.exceptions.NoSuchPendingRequestException;
+import utils.exceptions.PersonIsNotAMemberException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Library implements Publisher {
 
@@ -26,6 +28,7 @@ public class Library implements Publisher {
     private List<IssuedBook> currentlyIssued;
     private List<PendingReservation> pendingReservations;
     private List<ReservedBook> reservedBooks;
+    private List<BookFormat> formats;
 
     private List<Observer> observers;
 
@@ -65,6 +68,10 @@ public class Library implements Publisher {
 
     public HashMap<MemberType, Integer> getMaxIssueDays() {
         return maxIssueDays;
+    }
+
+    public int getMaxIssueDays(MemberType type) {
+        return maxIssueDays.get(type);
     }
 
     public void setMaxIssueDays(HashMap<MemberType, Integer> maxIssueDays) {
@@ -111,6 +118,10 @@ public class Library implements Publisher {
         this.currentlyIssued.add(issuedBook);
     }
 
+    public List<IssuedBook> getCurrentlyIssued() {
+        return currentlyIssued;
+    }
+
     public Edition getEdition(String editionId) {
 
         for (Edition edition : this.editions) {
@@ -137,6 +148,10 @@ public class Library implements Publisher {
 
     public void addIssuedBooksConstraint(MemberType type, int limit) {
         this.maxIssuedBooks.put(type, limit);
+    }
+
+    public List<IssuedBook> getActiveIssues(String jmbg){
+        return currentlyIssued.stream().filter(issuedBook -> issuedBook.getMember().getJMBG() == jmbg).collect(Collectors.toList());
     }
 
     public Account getAccountByUsername(String username) {
@@ -172,26 +187,15 @@ public class Library implements Publisher {
         this.pendingReservations.add(pendingReservation);
     }
 
-    public void removePendingReservation(int prId) throws NoSuchPendingRequestException {
-        int index = 0;
-        boolean found = false;
+    public List<PendingReservation> getPendingReservations(){ return  pendingReservations; }
 
-        for (PendingReservation pr : pendingReservations){
-            if (pr.getId() == prId){
-                found = true;
-                break;
-            }
-            index++;
-        }
 
-        if (!found){ throw new NoSuchPendingRequestException(); }
-
-        pendingReservations.remove(index);
-    }
 
     public void addReservedBook(ReservedBook reservedBook) {
         this.reservedBooks.add(reservedBook);
     }
+
+    public List<ReservedBook> getReservedBooks() { return reservedBooks; }
 
     public Book getBook(String bookId) {
 
@@ -226,6 +230,32 @@ public class Library implements Publisher {
         return null;
     }
 
+    public void removePendingReservation(PendingReservation pendingReservation) {
+        this.pendingReservations.remove(pendingReservation);
+    }
+
+    public List<Member> getMembers(){
+        return persons.stream().filter(person -> person instanceof Member).map(person -> (Member) person).collect(Collectors.toList());
+    }
+
+    public List<IssuedBook> getMemberIssueHistory(Account account) throws PersonIsNotAMemberException {
+        if (!(account.getPerson() instanceof Member)){
+            throw new PersonIsNotAMemberException();
+        }
+
+        return ((Member) account.getPerson()).getReturnedBooks();
+    }
+
+    public List<Edition> getEditions(Genre genre){
+        return  editions.stream()
+                .filter(edition -> edition.getGenres().stream().anyMatch(g -> g.getName() == genre.getName()))
+                .collect(Collectors.toList());
+    }
+
+    public void addFormat(BookFormat format){ formats.add(format); }
+
+    public List<BookFormat> getFormats() { return formats; }
+
     @Override
     public void addObserver(Observer observer) {
         this.observers.add(observer);
@@ -251,12 +281,7 @@ public class Library implements Publisher {
     public List<Edition> filterByGenre(List<Edition> currentEditions, String genreString) {
         return currentEditions;
     }
-    //TODO
-    public List<Edition> sortByTitle(List<Edition> currentEditions) {
-        return currentEditions;
-    }
-    //TODO
-    public List<Edition> sortByPublishedDate(List<Edition> currentEditions) {
-        return currentEditions;
-    }
+
+    //TODO calculate state IssuedBook - getState() - reserved, returned, taken
+    //TODO Notification getNotification(Account account)
 }

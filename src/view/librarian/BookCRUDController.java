@@ -1,5 +1,6 @@
 package view.librarian;
 
+import observer.Observer;
 import view.librarian.model.BookEditionTable;
 import view.librarian.model.BookSampleTable;
 import javafx.collections.FXCollections;
@@ -11,7 +12,7 @@ import model.*;
 
 import java.io.IOException;
 
-public class BookCRUDController {
+public class BookCRUDController implements Observer {
     ObservableList<BookEditionTable> dataEditionTable;
     ObservableList<BookSampleTable> dataSampleTable;
     public TableView<BookEditionTable> editionTable;
@@ -36,11 +37,9 @@ public class BookCRUDController {
         libraryRepo = new LibraryRepo();
         libraryRepo.loadBooks(library);
         editionTable.setItems(getSamples());
-
         editionTable.setOnMouseClicked(e -> {
             loadSamples();
         });
-
     }
 
     private ObservableList<BookEditionTable> getSamples() {
@@ -57,9 +56,17 @@ public class BookCRUDController {
             for (int i = 1; i <= 1; i++) {
                 Book sample = library.getBook(row.getBookId());
                 for (IssuedBook issuedBook : sample.getIssueHistory()) {
-//                    dataSampleTable.add(new BookSampleTable(issuedBook.getIssueDate(), issuedBook.getReturnedDate(), issuedBook, issuedBook.getMember().getName() + " " + issuedBook.getMember().getSurname()))
+                    dataSampleTable.add(new BookSampleTable(issuedBook.getIssueDate(), issuedBook.getReturnDate(), issuedBook.getState(), issuedBook.getMember().getName() + " " + issuedBook.getMember().getSurname()))
                 }
             }
         }
+    }
+
+    @Override
+    public void updatePerformed() {
+        libraryRepo.loadBooks(library);
+        editionTable.setItems(getSamples());
+        dataSampleTable.clear();
+
     }
 }

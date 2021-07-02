@@ -5,12 +5,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import model.*;
+import observer.Observer;
 import view.librarian.model.MemberTable;
 import view.librarian.model.RentedBooksTable;
 
 import java.io.IOException;
 
-public class RentedBooksController {
+public class RentedBooksController implements Observer {
     public TableView<RentedBooksTable> rentedBooksTable;
     ObservableList<RentedBooksTable> dataRentedBooksTable;
 
@@ -22,16 +23,20 @@ public class RentedBooksController {
         this.library = new Library();
         libraryRepo = new LibraryRepo();
         libraryRepo.loadIssuedBooks(library);
-        libraryRepo.loadAccounts(library);
-        libraryRepo.loadPersons(library);
         rentedBooksTable.setItems(getRentedBooks());
     }
 
     private ObservableList<RentedBooksTable> getRentedBooks() {
         ObservableList<RentedBooksTable> list = FXCollections.observableArrayList();
-//        for (IssuedBook issuedBook : library.getActiveIssues()) {
-//            list.add(new RentedBooksTable(issuedBook.getMember().getName()+" "+issuedBook.getMember().getSurname(), issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(), issuedBook.getReturnDate()));
-//        }
+        for (IssuedBook issuedBook : library.getCurrentlyIssued()) {
+            list.add(new RentedBooksTable(issuedBook.getMember().getName()+" "+issuedBook.getMember().getSurname(), issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(), issuedBook.getReturnDate()));
+        }
         return list;
+    }
+
+    @Override
+    public void updatePerformed() {
+        libraryRepo.loadIssuedBooks(library);
+        rentedBooksTable.setItems(getRentedBooks());
     }
 }

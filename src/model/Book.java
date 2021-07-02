@@ -25,11 +25,22 @@ public class Book {
     }
 
     public SampleState getState() { return this.state; }
+
     public boolean isAvailable() { return this.state == SampleState.AVAILABLE; }
+
     public String getBookId() { return  this.bookId; }
+
     public void setState(SampleState state) { this.state = state; }
+
     public boolean getIsRestricted() { return this.isRestricted; }
+
     public void addIssueHistory(IssuedBook issuedBook) { this.issueHistory.add(issuedBook); }
+
     public Edition getEdition() { return edition; }
+
     public List<IssuedBook> getIssueHistory() { return issueHistory; }
+
+    public void makeAvailable() { this.state = SampleState.AVAILABLE; }
+
+    public void makeTaken() {this.state = SampleState.TAKEN; }
 }

@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import model.*;
+import observer.Observer;
 import view.librarian.model.BookEditionTable;
 import view.librarian.model.BookSampleTable;
 import view.librarian.model.CurrentIssueTable;
@@ -12,7 +13,7 @@ import view.librarian.model.MemberTable;
 
 import java.io.IOException;
 
-public class MemberCRUDController {
+public class MemberCRUDController implements Observer {
     ObservableList<MemberTable> dataMemberTable;
     ObservableList<CurrentIssueTable> dataMemberIssuesTable;
     public TableView<MemberTable> memberTable;
@@ -38,9 +39,9 @@ public class MemberCRUDController {
 
     private ObservableList<MemberTable> getMembers() {
         ObservableList<MemberTable> list = FXCollections.observableArrayList();
-//        for (Member member : library.getMembers()) {
-//            list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate(), member.getMembershipExpirationDate()));
-//        }
+        for (Member member : library.getMembers()) {
+            list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate(), member.getMembershipExpirationDate()));
+        }
         return list;
     }
 
@@ -48,12 +49,18 @@ public class MemberCRUDController {
         dataMemberIssuesTable.clear();
         for (MemberTable row : memberTable.getSelectionModel().getSelectedItems()) {
             for (int i = 1; i <= 1; i++) {
-//                for (IssuedBook issuedBook : library.getActiveIssues(row.getJMBG())) {
-//                    dataMemberIssuesTable.add(new CurrentIssueTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.isProlongedIssue(), issuedBook.getReturnDate());
-//                }
+                for (IssuedBook issuedBook : library.getMemberActiveIssues(row.getJMBG())) {
+                    dataMemberIssuesTable.add(new CurrentIssueTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.isProlongedIssue(), issuedBook.getReturnDate());
+                }
             }
         }
     }
 
-
+    @Override
+    public void updatePerformed() {
+        libraryRepo.loadAccounts(library);
+        libraryRepo.loadPersons(library);
+        memberTable.setItems(getMembers());
+        dataMemberIssuesTable.clear();
+    }
 }

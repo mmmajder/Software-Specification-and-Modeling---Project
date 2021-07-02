@@ -70,23 +70,19 @@ public class LoginController {
             libraryRepo = new LibraryRepo();
             libraryRepo.loadAccounts(library);
             libraryRepo.loadPersons(library);
-            if (accountController.usernameExists(usernameTextField.getText())) {
-                Account account = library.getAccountByUsername(usernameTextField.getText());
-                if (accountController.passwordValid(account, passwordField.getText())) {
-                    libraryRepo.loadPersons(library);
-                    final FXMLLoader loader = new FXMLLoader(getClass().getResource(Objects.requireNonNull(getFileName(account))));
-                    final Parent root = loader.load();
-                    setController(account, loader);
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.setResizable(true);
-                    stage.setMinWidth(900);
-                    stage.setMinHeight(600);
-                    stage.setTitle("SIMS Library");
-                    stage.show();
-                }
-            }
+            Account account = accountController.getAccount(usernameTextField.getText(), passwordField.getText());
+            libraryRepo.loadPersons(library);
+            final FXMLLoader loader = new FXMLLoader(getClass().getResource(Objects.requireNonNull(getFileName(account))));
+            final Parent root = (Parent) loader.load();
+            setController(account, loader);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(true);
+            stage.setMinWidth(900);
+            stage.setMinHeight(600);
+            stage.setTitle("SIMS Library");
+            stage.show();
         } catch (NoAccountWithThatUsername | InvalidAccountPassword noAccountWithThatUsername) {
             lblError.setVisible(true);
         }

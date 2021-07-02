@@ -81,10 +81,11 @@ public class SearchBooksLibrarianController {
         initializeEditions(currentEditions);
         setGenres();
 
-        search.textProperty().addListener((observable, oldValue, newValue) -> initializeEditions(library.filterEditions(currentEditions, newValue)));
+        search.textProperty().addListener((observable, oldValue, newValue) -> initializeEditions(
+                searchBooksController.filterEditions(currentEditions, newValue)));
 
         genres.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-                initializeEditions(library.filterByGenre(currentEditions, newValue)));
+                initializeEditions(searchBooksController.filterByGenre(currentEditions, newValue)));
 
         ascSort.setPickOnBounds(true);
         ascSort.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -95,8 +96,10 @@ public class SearchBooksLibrarianController {
             //initializeEditions(library.sortDesc(currentEditions));
         });
 
-        //titleSort.textProperty().addListener((ov, t, t1) -> initializeEditions(searchBooksController.sortByTitleAsc(currentEditions);));
-        //publishedDateSort.textProperty().addListener((ov, t, t1) -> initializeEditions(library.sortByPublishedDate(currentEditions)));
+        titleSort.textProperty().addListener((ov, t, t1) -> initializeEditions(
+                searchBooksController.sortByTitleAsc(currentEditions)));
+        publishedDateSort.textProperty().addListener((ov, t, t1) -> initializeEditions(
+                searchBooksController.sortByPublishedDateAsc(currentEditions)));
     }
 
     @FXML

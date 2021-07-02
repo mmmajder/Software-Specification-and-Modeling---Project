@@ -1,5 +1,6 @@
 package controller;
 
+import model.Edition;
 import model.Genre;
 import model.Library;
 import model.Sorter;
@@ -26,13 +27,33 @@ public class SearchBooksController {
         return new ArrayList<>(new HashSet<>(genresNames));
     }
 
-    public void sortByTitleAsc() {
-        this.library.getEditions().sort(Sorter.EditionTitleAscComparator);
-        this.library.notifyObservers();
+    public List<Edition> sortByTitleAsc(List<Edition> currentEditions) {
+        currentEditions.sort(Sorter.EditionTitleAscComparator);
+        return currentEditions;
     }
 
-    public void sortByPublishedDateAsc() {
-        this.library.getEditions().sort(Sorter.EditionPublishedDateAscComparator);
-        this.library.notifyObservers();
+    public List<Edition> sortByPublishedDateAsc(List<Edition> currentEditions) {
+        currentEditions.sort(Sorter.EditionPublishedDateAscComparator);
+        return currentEditions;
+    }
+
+    public List<Edition> filterByGenre(List<Edition> currentEditions, String genreName) {
+        List<Edition> editions = new ArrayList<>();
+        for (Edition edition : currentEditions) {
+
+            for (Genre genre : edition.getGenres()) {
+
+                if (genre.getName().equals(genreName)) {
+                    editions.add(edition);
+                    break;
+                }
+            }
+        }
+
+        return editions;
+    }
+
+    public List<Edition> filterEditions(List<Edition> currentEditions, String filter) {
+        return currentEditions;
     }
 }

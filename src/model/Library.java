@@ -149,6 +149,10 @@ public class Library implements Publisher {
         this.maxIssuedBooks.put(type, limit);
     }
 
+    public List<IssuedBook> getActiveIssues(String jmbg){
+        return currentlyIssued.stream().filter(issuedBook -> issuedBook.getMember().getJMBG() == jmbg).collect(Collectors.toList());
+    }
+
     public Account getAccountByUsername(String username) {
         for (Account account : this.accounts) {
             if (account.getUsername().equalsIgnoreCase(username)) {
@@ -189,6 +193,8 @@ public class Library implements Publisher {
     public void addReservedBook(ReservedBook reservedBook) {
         this.reservedBooks.add(reservedBook);
     }
+
+    public List<ReservedBook> getReservedBooks() { return reservedBooks; }
 
     public Book getBook(String bookId) {
 
@@ -262,11 +268,6 @@ public class Library implements Publisher {
     public List<Edition> filterByGenre(List<Edition> currentEditions, String genreString) {
         return currentEditions;
     }
-
-    //TODO LocalDate getReturnedDate(); za IssuedBook
-    //TODO List<IssuedBook> getActiveIssues(String JMBG); za library
-    //TODO List<PendingReservation> getReservations(); za library
-    //TODO List<ReservedBook> getApprovedReservations(); za library
 
     //TODO calculate state IssuedBook - getState() - reserved, returned, taken
     //TODO getMemberIssueHistory(Accoutn account) - in library

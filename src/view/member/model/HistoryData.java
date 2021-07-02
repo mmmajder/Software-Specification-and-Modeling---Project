@@ -16,4 +16,20 @@ public class HistoryData {
         this.returnDate = returnDate;
         this.state = state;
     }
+
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public BookState getState() {
+        return state;
+    }
 }

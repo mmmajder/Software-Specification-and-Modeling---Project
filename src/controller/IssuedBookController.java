@@ -1,16 +1,9 @@
 package controller;
 
-import model.Account;
 import model.IssuedBook;
 import model.Library;
-import model.Member;
-import model.enums.AccountType;
-import model.enums.BookState;
-import model.enums.IssuedBookState;
-import utils.exceptions.PersonIsNotAMemberException;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class IssuedBookController {
 
@@ -18,14 +11,6 @@ public class IssuedBookController {
 
     public IssuedBookController(Library library) {
         this.library = library;
-    }
-
-    public List<IssuedBook> getMembersReturnedBooks(Account account) throws PersonIsNotAMemberException {
-        if (account.getType() != AccountType.MEMBER) {
-            throw new PersonIsNotAMemberException();
-        }
-
-        return library.getMembersReturnedBooks(account);
     }
 
     public LocalDate calculateReturnDate(IssuedBook issuedBook){

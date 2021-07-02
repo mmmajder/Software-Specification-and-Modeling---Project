@@ -72,4 +72,8 @@ public class Account {
     public void addNotification(Notification notification) {
         this.notifications.add(notification);
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

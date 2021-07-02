@@ -10,4 +10,12 @@ public class NotificationTable {
         this.notification = notification;
         this.date = date;
     }
+
+    public String getNotification() {
+        return notification;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
 }

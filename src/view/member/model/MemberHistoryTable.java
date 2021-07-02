@@ -14,4 +14,20 @@ public class MemberHistoryTable {
         this.returnDate = returnDate;
         this.state = state;
     }
+
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public String getState() {
+        return state;
+    }
 }

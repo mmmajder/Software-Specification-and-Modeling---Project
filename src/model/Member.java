@@ -104,6 +104,8 @@ public class Member extends Person {
         this.returnedBooks.add(issuedBook);
     }
 
+    public List<IssuedBook> getReturnedBooks() { return returnedBooks; }
+
     public void addTakenBook(IssuedBook issuedBook) {
         this.currentlyTakenBooks.add(issuedBook);
     }

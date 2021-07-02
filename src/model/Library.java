@@ -4,6 +4,7 @@ import model.enums.MemberType;
 import observer.Observer;
 import observer.Publisher;
 import utils.exceptions.NoSuchPendingRequestException;
+import utils.exceptions.PersonIsNotAMemberException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -233,6 +234,14 @@ public class Library implements Publisher {
         this.pendingReservations.remove(pendingReservation);
     }
 
+    public List<IssuedBook> getMemberIssueHistory(Account account) throws PersonIsNotAMemberException {
+        if (!(account.getPerson() instanceof Member)){
+            throw new PersonIsNotAMemberException();
+        }
+
+        return ((Member) account.getPerson()).getReturnedBooks();
+    }
+
     public List<Edition> getEditions(Genre genre){
         return  editions.stream()
                 .filter(edition -> edition.getGenres().stream().anyMatch(g -> g.getName() == genre.getName()))
@@ -270,6 +279,5 @@ public class Library implements Publisher {
     }
 
     //TODO calculate state IssuedBook - getState() - reserved, returned, taken
-    //TODO getMemberIssueHistory(Accoutn account) - in library
     //TODO Notification getNotification(Account account)
 }

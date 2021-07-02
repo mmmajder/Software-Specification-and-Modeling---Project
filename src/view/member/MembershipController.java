@@ -45,6 +45,9 @@ public class MembershipController {
         this.account = account;
         libraryRepo.loadMaxIssueDays(library);
         libraryRepo.loadMaxIssuedBooks(library);
+        libraryRepo.loadPriceCatalogs(library);
+        libraryRepo.loadFullYearPrices(library);
+        libraryRepo.loadHalfAYearPrices(library);
 
         if (account.getMembershipExpirationDateStr() == null) {
             status.setText("NOT ACTIVE");
@@ -71,7 +74,7 @@ public class MembershipController {
 
         group.selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
             if (group.getSelectedToggle() != null) {
-                MemberType memberType = MemberType.valueOf(group.getSelectedToggle().toString());
+                MemberType memberType = MemberType.valueOf(((RadioButton) group.getSelectedToggle()).getText());
 
                 price6months.setText(library.getCurrentCatalog().getPrice(memberType, 6) + "$");
                 price12months.setText(library.getCurrentCatalog().getPrice(memberType, 12) + "$");

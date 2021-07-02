@@ -1,5 +1,7 @@
 package model;
 
+import model.enums.SampleState;
+
 import java.time.LocalDate;
 
 public class IssuedBook {
@@ -68,4 +70,5 @@ public class IssuedBook {
     public Member getMember() {
         return member;
     }
+
 }

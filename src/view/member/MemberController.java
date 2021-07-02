@@ -87,8 +87,9 @@ public class MemberController {
     }
 
     @FXML
-    private void switchToNotifications() {
+    private void switchToNotifications() throws IOException {
         borderPane.setCenter(notificationsScene);
+        notificationsController.initData(account);
         lblNotifications.setUnderline(true);
         lblHistory.setUnderline(false);
         lblMembership.setUnderline(false);

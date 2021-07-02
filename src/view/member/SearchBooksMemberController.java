@@ -61,6 +61,8 @@ public class SearchBooksMemberController {
         libraryRepo.loadEditions(library);
         libraryRepo.loadContributors(library);
         libraryRepo.loadContributorRoles(library);
+        libraryRepo.loadGenres(library);
+
         editionController = new EditionController(library);
         left.setPrefWidth(200);
         this.mainBorderPane = mainBorderPane;
@@ -69,18 +71,6 @@ public class SearchBooksMemberController {
         right.prefHeightProperty().bind(mainBorderPane.heightProperty());
 
         tilePane = new TilePane();
-//        ColumnConstraints column1 = new ColumnConstraints();
-//        column1.setPercentWidth(30);
-//        column1.setHgrow(Priority.ALWAYS);
-//        ColumnConstraints column2 = new ColumnConstraints();
-//        column2.setPercentWidth(30);
-//        column2.setHgrow(Priority.ALWAYS);
-//        ColumnConstraints column3 = new ColumnConstraints();
-//        column3.setPercentWidth(30);
-//        column3.setHgrow(Priority.ALWAYS);
-//        grid.getColumnConstraints().addAll(column1, column2, column3);
-//        grid.prefWidthProperty().bind(scrollPane.widthProperty());
-//        grid.prefHeightProperty().bind(scrollPane.heightProperty());
         tilePane.setStyle("-fx-background-color: #63ac29;");
         scrollPane.setContent(tilePane);
         anchorPane.prefWidthProperty().bind(right.widthProperty());

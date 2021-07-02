@@ -2,7 +2,9 @@ package view.member;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.BorderPane;
 import model.*;
 import observer.Observer;
 import view.member.model.NotificationTable;
@@ -22,13 +24,23 @@ public class NotificationsController implements Observer {
         this.library = new Library();
         libraryRepo = new LibraryRepo();
         libraryRepo.loadNotifications(library);
+        notificationTable.getColumns().add(new TableColumn("Notification") {
+            {
+                prefWidthProperty().bind(notificationTable.widthProperty().multiply(0.7));
+            }
+        });
+        notificationTable.getColumns().add(new TableColumn("Date") {
+            {
+                prefWidthProperty().bind(notificationTable.widthProperty().multiply(0.3));
+            }
+        });
     }
 
     private ObservableList<NotificationTable> getNotifications() {
         ObservableList<NotificationTable> list = FXCollections.observableArrayList();
-        for (Notification notification : library.getNotification(account)) {
-            list.add(new NotificationTable(notification.getMessage(), notification.getDate()));
-        }
+//        for (Notification notification : library.getNotification(account)) {
+//            list.add(new NotificationTable(notification.getMessage(), notification.getDate()));
+//        }
         return list;
     }
 

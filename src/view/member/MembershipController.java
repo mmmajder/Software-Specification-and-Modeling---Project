@@ -50,10 +50,10 @@ public class MembershipController {
         libraryRepo.loadHalfAYearPrices(library);
 
         if (account.getMembershipExpirationDateStr() == null) {
-            status.setText("NOT ACTIVE");
+            status.setText("Membership status: NOT ACTIVE");
             status.setTextFill(Paint.valueOf("#CD113B"));
         } else {
-            status.setText("ACTIVE UNTIL " + account.getMembershipExpirationDateStr());
+            status.setText("Membership status: ACTIVE UNTIL " + account.getMembershipExpirationDateStr());
             status.setTextFill(Paint.valueOf("#ffffff"));
         }
 
@@ -83,8 +83,5 @@ public class MembershipController {
                 maxNumberOfDays.setText("Number of days you can keep your books is " + maxIssueDays.get(memberType) + ".");
             }
         });
-
     }
-
-
 }

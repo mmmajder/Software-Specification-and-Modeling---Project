@@ -60,4 +60,8 @@ public class Account {
     public String getFullName() {
         return this.person.getName() + " " + this.person.getSurname();
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

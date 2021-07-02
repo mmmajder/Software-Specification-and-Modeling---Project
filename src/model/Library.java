@@ -224,7 +224,7 @@ public class Library implements Publisher {
         if (!(account.getPerson() instanceof Member)) {
             throw new PersonIsNotAMemberException();
         }
-        for (ReservedBook reservedBook : this.reservedBooks) {
+        for (Reservation reservedBook : this.reservations) {
             if (reservedBook.getMember().getAccount() == account) {
                 return reservedBook.getBook();
             }

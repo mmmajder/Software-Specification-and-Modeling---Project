@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import model.*;
 import observer.Observer;
 import view.librarian.model.BookEditionTable;
@@ -40,6 +41,7 @@ public class MemberCRUDController implements Observer {
         libraryRepo = new LibraryRepo();
         libraryRepo.loadAccounts(library);
         libraryRepo.loadPersons(library);
+        libraryRepo.loadIssuedBooks(library);
         colName.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("name"));
         colSurname.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("surname"));
         colJMBG.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("JMBG"));
@@ -47,9 +49,17 @@ public class MemberCRUDController implements Observer {
         colEmail.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("email"));
         colBirthDate.setCellValueFactory(new PropertyValueFactory<MemberTable, LocalDate>("birthDate"));
         colMembershipEndDate.setCellValueFactory(new PropertyValueFactory<MemberTable, LocalDate>("membershipEndDate"));
+
         memberTable.setItems(getMembers());
         dataMemberIssuesTable = FXCollections.observableArrayList();
-//        memberTable.setItems(getMembers());
+
+        memberTable.setEditable(true);
+        colName.setCellFactory(TextFieldTableCell.forTableColumn());
+        colJMBG.setCellFactory(TextFieldTableCell.forTableColumn());
+        colPhone.setCellFactory(TextFieldTableCell.forTableColumn());
+        colEmail.setCellFactory(TextFieldTableCell.forTableColumn());
+//        colBirthDate.setCellFactory(TextFieldTableCell.forTableColumn());
+//        colMembershipEndDate.setCellFactory(TextFieldTableCell.forTableColumn());
 
         memberTable.setOnMouseClicked(e -> {
             System.out.println(memberTable.getSelectionModel().getSelectedItems());
@@ -74,6 +84,7 @@ public class MemberCRUDController implements Observer {
             for (int i = 1; i <= 1; i++) {
                 System.out.println(library.getMemberActiveIssues(row.getJMBG()));
                 for (IssuedBook issuedBook : library.getMemberActiveIssues(row.getJMBG())) {
+                    System.out.println("Stigao: " + issuedBook.getBook().getBookId() );
                     dataMemberIssuesTable.add(new CurrentIssueTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.isProlongedIssue(), issuedBook.getReturnDate()));
                 }
             }
@@ -88,4 +99,33 @@ public class MemberCRUDController implements Observer {
             e.printStackTrace();
         }
     }
+
+    public void editNameChanged(TableColumn.CellEditEvent<MemberTable, String> memberTableStringCellEditEvent) {
+        MemberTable member = memberTable.getSelectionModel().getSelectedItem();
+        member.setName(memberTableStringCellEditEvent.getNewValue());
+//        Member member1 = (Member) library.getPerson(member.getJMBG());
+//        member1.setName(member.getName());
+    }
+
+    public void editSurnameChanged(TableColumn.CellEditEvent<MemberTable, String> memberTableStringCellEditEvent) {
+        MemberTable member = memberTable.getSelectionModel().getSelectedItem();
+        member.setSurname(memberTableStringCellEditEvent.getNewValue());
+//        Member member1 = (Member) library.getPerson(member.getJMBG());
+//        member1.setSurname(member.getSurname());
+    }
+
+    public void editPhoneNumberChanged(TableColumn.CellEditEvent<MemberTable, String> memberTableStringCellEditEvent) {
+        MemberTable member = memberTable.getSelectionModel().getSelectedItem();
+        member.setPhoneNumber(memberTableStringCellEditEvent.getNewValue());
+//        Member member1 = (Member) library.getPerson(member.getJMBG());
+//        member1.setPhoneNumber(member.getPhoneNumber());
+    }
+
+    public void editEmailChanged(TableColumn.CellEditEvent<MemberTable, String> memberTableStringCellEditEvent) {
+        MemberTable member = memberTable.getSelectionModel().getSelectedItem();
+        member.setEmail(memberTableStringCellEditEvent.getNewValue());
+//        Member member1 = (Member) library.getPerson(member.getJMBG());
+//        member1.getAccount().setEmail(member.getEmail());
+    }
+
 }

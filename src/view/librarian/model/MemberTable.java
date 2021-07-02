@@ -48,4 +48,32 @@ public class MemberTable {
     public LocalDate getMembershipEndDate() {
         return membershipEndDate;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setJMBG(String JMBG) {
+        this.JMBG = JMBG;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setMembershipEndDate(LocalDate membershipEndDate) {
+        this.membershipEndDate = membershipEndDate;
+    }
 }

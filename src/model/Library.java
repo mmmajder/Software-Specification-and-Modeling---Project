@@ -150,7 +150,7 @@ public class Library implements Publisher {
         this.maxIssuedBooks.put(type, limit);
     }
 
-    public List<IssuedBook> getActiveIssues(String jmbg){
+    public List<IssuedBook> getMemberActiveIssues(String jmbg){
         return currentlyIssued.stream().filter(issuedBook -> issuedBook.getMember().getJMBG() == jmbg).collect(Collectors.toList());
     }
 

@@ -10,4 +10,16 @@ public class ApprovedReservationTable {
         this.bookID = bookID;
         this.daysLeft = daysLeft;
     }
+
+    public String getMember() {
+        return member;
+    }
+
+    public String getBookID() {
+        return bookID;
+    }
+
+    public int getDaysLeft() {
+        return daysLeft;
+    }
 }

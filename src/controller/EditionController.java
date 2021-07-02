@@ -82,7 +82,7 @@ public class EditionController {
         return false;
     }
 
-    public List<Edition> getRandom(int n){
+    public List<Edition> getRandomEditions(int n){
         List<String> allEditionIds = library.getEditions().stream().map(Edition::getEditionId).collect(Collectors.toList());
         List<String> randomIds = new ArrayList<>();
         Random r = new Random();

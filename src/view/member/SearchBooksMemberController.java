@@ -1,6 +1,7 @@
 package view.member;
 
 import controller.EditionController;
+import controller.SearchBooksController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -41,6 +42,8 @@ public class SearchBooksMemberController {
     EditionController editionController;
     MemberController memberController;
 
+    SearchBooksController searchBooksController;
+
     public void switchToBook(Edition edition) throws IOException {
         FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/member/reservationMember.fxml"));
         Parent bookScene = bookLoader.load();
@@ -51,6 +54,7 @@ public class SearchBooksMemberController {
 
     public void initData(Account account, BorderPane mainBorderPane, MemberController memberController) throws IOException {
         library = new Library();
+        searchBooksController = new SearchBooksController(library);
         libraryRepo = new LibraryRepo();
         this.account = account;
         this.memberController = memberController;
@@ -109,8 +113,8 @@ public class SearchBooksMemberController {
             //initializeEditions(library.sortDesc(currentEditions));
         });
 
-        titleSort.textProperty().addListener((ov, t, t1) -> initializeEditions(library.sortByTitle(currentEditions)));
-        publishedDateSort.textProperty().addListener((ov, t, t1) -> initializeEditions(library.sortByPublishedDate(currentEditions)));
+        //titleSort.textProperty().addListener((ov, t, t1) -> initializeEditions(searchBooksController.sortByTitleAsc(currentEditions);));
+        //publishedDateSort.textProperty().addListener((ov, t, t1) -> initializeEditions(library.sortByPublishedDate(currentEditions)));
     }
 
     @FXML

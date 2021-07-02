@@ -69,8 +69,6 @@ public class SearchBooksMemberController {
         tilePane = new TilePane();
         tilePane.setStyle("-fx-background-color: #63ac29;");
         scrollPane.setContent(tilePane);
-//        scrollPane.prefWidthProperty().bind(anchorPane.widthProperty());
-//        scrollPane.prefHeightProperty().bind(anchorPane.heightProperty());
         tilePane.prefWidthProperty().bind(scrollPane.widthProperty());
         tilePane.prefHeightProperty().bind(scrollPane.heightProperty());
         tilePane.setPrefColumns(4);

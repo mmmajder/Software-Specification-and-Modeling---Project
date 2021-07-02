@@ -13,66 +13,71 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0"
-      xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml" stylesheets="@../style.css"
-      fx:controller="view.member.SearchBooksMemberController" BorderPane.alignment="CENTER">
-    <BorderPane fx:id="borderPane" prefHeight="550.0" prefWidth="900.0">
+<AnchorPane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@../style.css"
+            fx:controller="view.member.SearchBooksMemberController" BorderPane.alignment="CENTER">
+    <BorderPane fx:id="borderPane" prefHeight="550.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0"
+                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <left>
-            <BorderPane fx:id="left" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
-                <center>
-                    <ListView fx:id="genres" prefHeight="200.0" prefWidth="200.0"/>
-                </center>
-            </BorderPane>
+            <ListView fx:id="genres" style="-fx-background-color: #ffffff;" prefHeight="200.0"
+                      prefWidth="200.0"/>
         </left>
-        <right>
-            <BorderPane fx:id="right" prefHeight="550.0" prefWidth="700.0">
-                <top>
-                    <HBox minHeight="40.0" prefHeight="40.0" prefWidth="700.0" style="-fx-background-color: #abc82e;"
-                          BorderPane.alignment="CENTER">
-                        <Pane minHeight="50.0" minWidth="440.0">
-                            <TextField fx:id="search" layoutX="20.0" layoutY="8.0" prefHeight="22.0" prefWidth="400.0"
-                                       promptText="Search..."/>
-                        </Pane>
-                        <Label prefHeight="44.0" prefWidth="42.0" text="Sort by:" textFill="WHITE">
-                            <font>
-                                <Font name="SansSerif Regular" size="12.0"/>
-                            </font>
-                        </Label>
-                        <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
-                        <Label fx:id="titleSort" prefHeight="42.0" prefWidth="30.0" text="Title" textFill="WHITE">
-                            <font>
-                                <Font name="SansSerif Regular" size="12.0"/>
-                            </font>
-                        </Label>
-                        <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
-                        <Label fx:id="publishedDateSort" prefHeight="40.0" prefWidth="86.0" text="Published Date"
-                               textFill="WHITE">
-                            <font>
-                                <Font name="SansSerif Regular" size="12.0"/>
-                            </font>
-                        </Label>
-                        <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
-                        <ImageView fx:id="ascSort" fitHeight="40.0" fitWidth="26.0">
-                            <Image url="@../asc.png"/>
-                        </ImageView>
-                        <ImageView fx:id="descSort" fitHeight="40.0" fitWidth="26.0">
-                            <Image url="@../desc.png"/>
-                        </ImageView>
-                    </HBox>
-                </top>
-                <bottom>
-                    <AnchorPane fx:id="anchorPane" prefHeight="513.0" prefWidth="700.0"
-                                style="-fx-background-color: #63ac29;" BorderPane.alignment="CENTER">
-                        <ScrollPane fx:id="scrollPane" fitToHeight="true" hbarPolicy="AS_NEEDED"
-                                    prefHeight="513.0" prefWidth="701.0" style="-fx-background-color: #63ac29;"
-                                    vbarPolicy="AS_NEEDED" fitToWidth="true"
-                                    AnchorPane.leftAnchor="10"
-                                    AnchorPane.rightAnchor="10"
-                                    AnchorPane.topAnchor="10"
-                                    AnchorPane.bottomAnchor="10"/>
-                    </AnchorPane>
-                </bottom>
-            </BorderPane>
-        </right>
+        <center>
+            <AnchorPane fx:id="right" BorderPane.alignment="CENTER">
+                <BorderPane minHeight="550.0" minWidth="700.0" AnchorPane.bottomAnchor="0.0"
+                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <top>
+                        <HBox minHeight="40.0" prefHeight="40.0" prefWidth="700.0"
+                              style="-fx-background-color: #abc82e;"
+                              BorderPane.alignment="CENTER">
+                            <Pane minHeight="50.0" minWidth="440.0">
+                                <TextField fx:id="search" layoutX="20.0" layoutY="8.0" prefHeight="22.0"
+                                           prefWidth="400.0"
+                                           promptText="Search..."/>
+                            </Pane>
+                            <Label prefHeight="44.0" prefWidth="42.0" text="Sort by:" textFill="WHITE">
+                                <font>
+                                    <Font name="SansSerif Regular" size="12.0"/>
+                                </font>
+                            </Label>
+                            <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
+                            <Label fx:id="titleSort" prefHeight="42.0" prefWidth="30.0" text="Title" textFill="WHITE">
+                                <font>
+                                    <Font name="SansSerif Regular" size="12.0"/>
+                                </font>
+                            </Label>
+                            <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
+                            <Label fx:id="publishedDateSort" prefHeight="40.0" prefWidth="86.0" text="Published Date"
+                                   textFill="WHITE">
+                                <font>
+                                    <Font name="SansSerif Regular" size="12.0"/>
+                                </font>
+                            </Label>
+                            <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
+                            <ImageView fx:id="ascSort" fitHeight="40.0" fitWidth="26.0">
+                                <Image url="@../asc.png"/>
+                            </ImageView>
+                            <ImageView fx:id="descSort" fitHeight="40.0" fitWidth="26.0">
+                                <Image url="@../desc.png"/>
+                            </ImageView>
+                        </HBox>
+                    </top>
+                    <center>
+                        <AnchorPane fx:id="anchorPane" minHeight="513.0" minWidth="700.0"
+                                    style="-fx-background-color: #63ac29;">
+                            <ScrollPane fx:id="scrollPane" fitToHeight="true"
+                                        prefHeight="513.0"
+                                        prefWidth="701.0"
+                                        style="-fx-background-color: #63ac29;"
+                                        fitToWidth="true"
+                                        AnchorPane.leftAnchor="10"
+                                        AnchorPane.rightAnchor="10"
+                                        AnchorPane.topAnchor="10"
+                                        AnchorPane.bottomAnchor="10"/>
+                        </AnchorPane>
+                    </center>
+                </BorderPane>
+            </AnchorPane>
+        </center>
     </BorderPane>
-</Pane>
+</AnchorPane>

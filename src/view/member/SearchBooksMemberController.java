@@ -29,7 +29,7 @@ public class SearchBooksMemberController {
     public ImageView descSort;
     public BorderPane borderPane;
     public BorderPane left;
-    public BorderPane right;
+    public AnchorPane right;
 
     public List<Edition> currentEditions;
     public BorderPane mainBorderPane;
@@ -64,19 +64,11 @@ public class SearchBooksMemberController {
         libraryRepo.loadGenres(library);
 
         editionController = new EditionController(library);
-        left.setPrefWidth(200);
         this.mainBorderPane = mainBorderPane;
-        left.prefHeightProperty().bind(mainBorderPane.heightProperty());
-        right.prefWidthProperty().bind(mainBorderPane.widthProperty());
-        right.prefHeightProperty().bind(mainBorderPane.heightProperty());
 
         tilePane = new TilePane();
         tilePane.setStyle("-fx-background-color: #63ac29;");
         scrollPane.setContent(tilePane);
-        anchorPane.prefWidthProperty().bind(right.widthProperty());
-        anchorPane.prefHeightProperty().bind(right.heightProperty());
-        scrollPane.prefWidthProperty().bind(anchorPane.widthProperty());
-        scrollPane.prefHeightProperty().bind(anchorPane.heightProperty());
         tilePane.prefWidthProperty().bind(scrollPane.widthProperty());
         tilePane.prefHeightProperty().bind(scrollPane.heightProperty());
         tilePane.setPrefColumns(4);
@@ -111,9 +103,7 @@ public class SearchBooksMemberController {
     public void setGenres() {
         genres.getItems().clear();
         genres.getItems().add("GENRES");
-        for (Genre genre : library.getGenres()) {
-            genres.getItems().add(genre.getName());
-        }
+        genres.getItems().addAll(library.getGenreNamesSorted());
     }
 
     public void initializeEditions(List<Edition> editions) {

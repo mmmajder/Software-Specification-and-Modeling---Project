@@ -12,24 +12,33 @@ public class NotificationController {
     public NotificationController(Library library){ this.library = library; }
 
     public void reminderToReturnBook(IssuedBook issuedBook) {
-        String message = "REMINDER: You should return " + issuedBook.getBook().getEdition().getTitle()
-                + " by " + issuedBook.getReturnDate();
+        String bookTitle = issuedBook.getBook().getEdition().getTitle();
+        String message = "REMINDER: You should return " + bookTitle + " by " + issuedBook.getReturnDate();
         notify(issuedBook.getMember(), message);
     }
 
     public void reservationApproved(PendingReservation reservation) {
-        String message = "Your reservation of " + reservation.getEdition().getTitle() + " is approved.";
+        String bookTitle = reservation.getEdition().getTitle();
+        String message = "Your reservation of " + bookTitle + " is approved.";
         notify(reservation.getMember(), message);
     }
 
     public void reservationNotApproved(PendingReservation reservation) {
-        String message = "Your reservation of " + reservation.getEdition().getTitle() + " is not approved. Try again in a few days.";
+        String bookTitle = reservation.getEdition().getTitle();
+        String message = "Your reservation of " + bookTitle + " is not approved. Try again in a few days.";
         notify(reservation.getMember(), message);
     }
 
     public void reservationExpired(ReservedBook reservation) {
-        String message = "Your reservation of " + reservation.getBook().getEdition().getTitle() + " is expired.";
+        String bookTitle = reservation.getBook().getEdition().getTitle();
+        String message = "Your reservation of " + bookTitle + " is expired.";
         notify(reservation.getMember(), message);
+    }
+
+    public void sendFine(IssuedBook issuedBook) {
+        String bookTitle = issuedBook.getBook().getEdition().getTitle();
+        String message = "You have got fined for not returning the " + bookTitle + " on time.";
+        notify(issuedBook.getMember(), message);
     }
 
     private void notify(Member member, String message) {

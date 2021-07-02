@@ -24,7 +24,7 @@ public class Library implements Publisher {
     private List<BookSection> sections;
     private List<IssuedBook> currentlyIssued;
     private List<PendingReservation> pendingReservations;
-    private List<ReservedBook> reservedBooks;
+    private List<Reservation> reservations;
     private List<BookFormat> formats;
 
     private List<Observer> observers;
@@ -43,7 +43,7 @@ public class Library implements Publisher {
         this.sections = new ArrayList<>();
         this.observers = new ArrayList<>();
         this.pendingReservations = new ArrayList<>();
-        this.reservedBooks = new ArrayList<>();
+        this.reservations = new ArrayList<>();
         this.currentlyIssued = new ArrayList<>();
     }
 
@@ -198,13 +198,15 @@ public class Library implements Publisher {
     }
 
 
-    public void addReservedBook(ReservedBook reservedBook) {
-        this.reservedBooks.add(reservedBook);
+    public void addReservation(Reservation reservation) {
+        this.reservations.add(reservation);
     }
 
-    public List<ReservedBook> getReservedBooks() {
-        return reservedBooks;
+
+    public List<Reservation> getReservations() {
+        return reservations;
     }
+
 
     public Book getBook(String bookId) {
 

@@ -11,9 +11,11 @@ import java.util.List;
 public class SystemClock {
 
     private Library library;
+    private NotificationController notificationController;
 
     public SystemClock(Library library) {
         this.library = library;
+        this.notificationController = new NotificationController(library); // used to send notifications to members
     }
 
     public void runDaily(){
@@ -51,16 +53,10 @@ public class SystemClock {
     }
 
     private void removeExpiredReservation(ReservedBook reservedBook, int indexToRemove){
-//        notifyExpiredReservation(reservedBook);
+        notificationController.reservationExpired(reservedBook);
         reservedBook.getMember().removeReservedBook();
         reservedBook.getBook().makeAvailable();
         library.getReservedBooks().remove(indexToRemove);
     }
-
-//    private void notifyExpiredReservation(ReservedBook reservedBook){
-//        Notification notification = reservationExpired(reservedBook);
-//    }
-
-
 
 }

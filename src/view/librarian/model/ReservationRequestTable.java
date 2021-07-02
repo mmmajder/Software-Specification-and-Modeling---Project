@@ -8,4 +8,12 @@ public class ReservationRequestTable {
         this.member = member;
         this.edition = edition;
     }
+
+    public String getMember() {
+        return member;
+    }
+
+    public String getEdition() {
+        return edition;
+    }
 }

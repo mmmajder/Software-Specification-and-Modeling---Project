@@ -14,4 +14,20 @@ public class RentedBooksTable {
         this.issuedDate = issuedDate;
         this.returnDate = returnDate;
     }
+
+    public String getMember() {
+        return member;
+    }
+
+    public String getBook() {
+        return book;
+    }
+
+    public LocalDate getIssuedDate() {
+        return issuedDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
 }

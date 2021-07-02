@@ -16,4 +16,20 @@ public class BookSampleTable {
         this.state = state;
         this.member = member;
     }
+
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
+
+    public LocalDate getReturnedDate() {
+        return returnedDate;
+    }
+
+    public SampleState getState() {
+        return state;
+    }
+
+    public String getMember() {
+        return member;
+    }
 }

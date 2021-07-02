@@ -22,6 +22,7 @@ public class NotificationsController implements Observer {
         this.account = account;
         this.library = new Library();
         libraryRepo = new LibraryRepo();
+        libraryRepo.loadAccounts(library);
         libraryRepo.loadNotifications(library);
         notificationTable.getColumns().add(new TableColumn("Notification") {
             {
@@ -37,7 +38,7 @@ public class NotificationsController implements Observer {
 
     private ObservableList<NotificationTable> getNotifications() {
         ObservableList<NotificationTable> list = FXCollections.observableArrayList();
-//        for (Notification notification : library.getNotification(account)) {
+//        for (Notification notification : library.) {
 //            list.add(new NotificationTable(notification.getMessage(), notification.getDate()));
 //        }
         return list;

@@ -14,4 +14,20 @@ public class CurrentIssueTable {
         this.prolonged = prolonged;
         this.returnDate = returnDate;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public boolean isProlonged() {
+        return prolonged;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
 }

@@ -142,7 +142,7 @@ public class Library implements Publisher {
         return null;
     }
 
-    public void addIssueDayConstraint (MemberType type, int days) {
+    public void addIssueDayConstraint(MemberType type, int days) {
         this.maxIssueDays.put(type, days);
     }
 
@@ -150,7 +150,7 @@ public class Library implements Publisher {
         this.maxIssuedBooks.put(type, limit);
     }
 
-    public List<IssuedBook> getMemberActiveIssues(String jmbg){
+    public List<IssuedBook> getMemberActiveIssues(String jmbg) {
         return currentlyIssued.stream().filter(issuedBook -> issuedBook.getMember().getJMBG() == jmbg).collect(Collectors.toList());
     }
 
@@ -187,15 +187,18 @@ public class Library implements Publisher {
         this.pendingReservations.add(pendingReservation);
     }
 
-    public List<PendingReservation> getPendingReservations(){ return  pendingReservations; }
-
+    public List<PendingReservation> getPendingReservations() {
+        return pendingReservations;
+    }
 
 
     public void addReservedBook(ReservedBook reservedBook) {
         this.reservedBooks.add(reservedBook);
     }
 
-    public List<ReservedBook> getReservedBooks() { return reservedBooks; }
+    public List<ReservedBook> getReservedBooks() {
+        return reservedBooks;
+    }
 
     public Book getBook(String bookId) {
 
@@ -206,6 +209,18 @@ public class Library implements Publisher {
             }
         }
 
+        return null;
+    }
+
+    public Book getMemberReservedBook(Account account) throws PersonIsNotAMemberException {
+        if (!(account.getPerson() instanceof Member)) {
+            throw new PersonIsNotAMemberException();
+        }
+        for (ReservedBook reservedBook : this.reservedBooks) {
+            if (reservedBook.getMember().getAccount() == account) {
+                return reservedBook.getBook();
+            }
+        }
         return null;
     }
 
@@ -234,27 +249,31 @@ public class Library implements Publisher {
         this.pendingReservations.remove(pendingReservation);
     }
 
-    public List<Member> getMembers(){
+    public List<Member> getMembers() {
         return persons.stream().filter(person -> person instanceof Member).map(person -> (Member) person).collect(Collectors.toList());
     }
 
     public List<IssuedBook> getMemberIssueHistory(Account account) throws PersonIsNotAMemberException {
-        if (!(account.getPerson() instanceof Member)){
+        if (!(account.getPerson() instanceof Member)) {
             throw new PersonIsNotAMemberException();
         }
 
         return ((Member) account.getPerson()).getReturnedBooks();
     }
 
-    public List<Edition> getEditions(Genre genre){
-        return  editions.stream()
+    public List<Edition> getEditions(Genre genre) {
+        return editions.stream()
                 .filter(edition -> edition.getGenres().stream().anyMatch(g -> g.getName() == genre.getName()))
                 .collect(Collectors.toList());
     }
 
-    public void addFormat(BookFormat format){ formats.add(format); }
+    public void addFormat(BookFormat format) {
+        formats.add(format);
+    }
 
-    public List<BookFormat> getFormats() { return formats; }
+    public List<BookFormat> getFormats() {
+        return formats;
+    }
 
     @Override
     public void addObserver(Observer observer) {
@@ -277,6 +296,7 @@ public class Library implements Publisher {
     public List<Edition> filterEditions(List<Edition> currentEditions, String filter) {
         return currentEditions;
     }
+
     //TODO
     public List<Edition> filterByGenre(List<Edition> currentEditions, String genreString) {
         return currentEditions;

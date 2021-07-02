@@ -48,15 +48,13 @@ public class MemberCRUDController implements Observer {
         colBirthDate.setCellValueFactory(new PropertyValueFactory<MemberTable, LocalDate>("birthDate"));
         colMembershipEndDate.setCellValueFactory(new PropertyValueFactory<MemberTable, LocalDate>("membershipEndDate"));
         memberTable.setItems(getMembers());
-
-//        MemberTable member = new MemberTable("Milan", "Ajder", "member.getJMBG()", "member.getPhoneNumber()", "member.getAccount().getEmail()", "member.getBirthDate().toString()", "member.getMembershipExpirationDate().toString()");
-//        memberTable.getItems().add(member);
-
+        dataMemberIssuesTable = FXCollections.observableArrayList();
 //        memberTable.setItems(getMembers());
 
         memberTable.setOnMouseClicked(e -> {
             System.out.println(memberTable.getSelectionModel().getSelectedItems());
             loadCurrentIssues();
+            System.out.println(dataMemberIssuesTable);
             memberIssuesTable.setItems(dataMemberIssuesTable);
         });
 
@@ -72,9 +70,9 @@ public class MemberCRUDController implements Observer {
     }
 
     private void loadCurrentIssues() {
-        dataMemberIssuesTable = FXCollections.observableArrayList();
         for (MemberTable row : memberTable.getSelectionModel().getSelectedItems()) {
             for (int i = 1; i <= 1; i++) {
+                System.out.println(library.getMemberActiveIssues(row.getJMBG()));
                 for (IssuedBook issuedBook : library.getMemberActiveIssues(row.getJMBG())) {
                     dataMemberIssuesTable.add(new CurrentIssueTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.isProlongedIssue(), issuedBook.getReturnDate()));
                 }

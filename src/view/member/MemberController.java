@@ -107,8 +107,9 @@ public class MemberController {
     }
 
     @FXML
-    private void switchToHistory() {
+    private void switchToHistory() throws IOException {
         borderPane.setCenter(historyScene);
+        historyController.initData(account);
         lblNotifications.setUnderline(false);
         lblHistory.setUnderline(true);
         lblMembership.setUnderline(false);

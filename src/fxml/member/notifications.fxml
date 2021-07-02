@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.*?>
 
@@ -8,7 +7,5 @@
             xmlns:fx="http://javafx.com/fxml" fx:controller="view.member.NotificationsController">
     <TableView fx:id="notificationTable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <columns>
-        </columns>
     </TableView>
 </AnchorPane>

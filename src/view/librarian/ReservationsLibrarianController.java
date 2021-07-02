@@ -21,9 +21,7 @@ public class ReservationsLibrarianController implements Observer {
     Account account;
     ILibraryRepo libraryRepo;
 
-    @FXML
-    private void initData(Account account) throws IOException {
-        this.account = account;
+    public void initData() throws IOException {
         this.library = new Library();
         libraryRepo = new LibraryRepo();
         libraryRepo.loadPendingReservations(library);
@@ -34,6 +32,7 @@ public class ReservationsLibrarianController implements Observer {
 
     private ObservableList<ReservationRequestTable> getRequests() {
         ObservableList<ReservationRequestTable> list = FXCollections.observableArrayList();
+        System.out.println(library.getPendingReservations());
         for (PendingReservation reservation : library.getPendingReservations()) {
             list.add(new ReservationRequestTable(reservation.getMember().getName()+" "+reservation.getMember().getSurname(), reservation.getEdition().getTitle()));
         }

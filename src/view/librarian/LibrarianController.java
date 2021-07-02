@@ -34,6 +34,7 @@ public class LibrarianController {
     public Parent historyScene;
     RentedBooksController rentedBooksController;
     MemberCRUDController membershipController;
+    ReservationsLibrarianController reservationsLibrarianController;
 
     AccountController controller;
     Library library;
@@ -68,7 +69,7 @@ public class LibrarianController {
 
         FXMLLoader reservationsLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/reservationsLibrarian.fxml"));
         reservationsScene = reservationsLoader.load();
-        //ResrrvationController historyController = (ResrrvationController) reservationsLoader.getController();
+        reservationsLibrarianController = (ReservationsLibrarianController) reservationsLoader.getController();
 
         FXMLLoader membersLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/memberCRUD.fxml"));
         membersScene = membersLoader.load();
@@ -125,8 +126,9 @@ public class LibrarianController {
     }
 
     @FXML
-    private void switchToReservations(MouseEvent event) {
+    private void switchToReservations(MouseEvent event) throws IOException {
         borderPane.setCenter(reservationsScene);
+        reservationsLibrarianController.initData();
         lblRentedBooks.setUnderline(false);
         lblMembers.setUnderline(false);
         lblReservations.setUnderline(true);

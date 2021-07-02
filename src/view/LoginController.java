@@ -73,7 +73,7 @@ public class LoginController {
             Account account = accountController.getAccount(usernameTextField.getText(), passwordField.getText());
             libraryRepo.loadPersons(library);
             final FXMLLoader loader = new FXMLLoader(getClass().getResource(Objects.requireNonNull(getFileName(account))));
-            final Parent root = (Parent) loader.load();
+            final Parent root = loader.load();
             setController(account, loader);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);

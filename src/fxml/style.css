@@ -1,0 +1,25 @@
+.list-view {
+    -fx-selection-bar:green ;
+    -fx-selection-bar-non-focused: green ;
+    -fx-text-fill: green ;
+}
+.list-cell:empty {
+    -fx-background-color: white;
+}
+.list-cell:inactive {
+    -fx-text-fill: green ;
+}
+.search-box{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+}
+.right-bar{
+    -fx-background-color: #D3D3D3;
+}
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+.comboBox{
+    -fx-background-color: rgba(255,255,255,0.3);
+    -fx-background-radius: 30;
+}

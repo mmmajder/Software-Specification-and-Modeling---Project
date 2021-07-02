@@ -122,6 +122,10 @@ public class Member extends Person {
         this.reservedBook = reservedBook;
     }
 
+    public void removePendingReservation() { this.pendingReservation = null; }
+
+    public void removeReservedBook() { this.reservedBook = null; }
+
     public PendingReservation getPendingReservation() {
         return pendingReservation;
     }

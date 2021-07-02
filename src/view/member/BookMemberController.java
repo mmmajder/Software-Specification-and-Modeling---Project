@@ -1,5 +1,6 @@
 package view.member;
 
+import controller.AccountController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,9 +10,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Account;
 import model.Edition;
+import model.ILibraryRepo;
+import model.Library;
+
+import java.io.IOException;
 
 public class BookMemberController {
     public Label lblTitle;
@@ -25,17 +32,16 @@ public class BookMemberController {
     public Label lblGenre;
     public Text txtTags;
     public Text txtDescription;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
 
-    public void setSecondScene(Scene scene) {
-        this.scene = scene;
-    }
+    AccountController controller;
+    MemberController memberController;
+    Library library;
+    Account account;
+    ILibraryRepo libraryRepo;
 
-    public void backToBooks(ActionEvent actionEvent) {
-        Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(scene);
+    @FXML
+    public void backToBooks() throws IOException {
+        memberController.switchToBooks();
     }
 
     @FXML
@@ -46,7 +52,8 @@ public class BookMemberController {
     }
 
     @FXML
-    public void initData(Edition edition) {
+    public void initData(Edition edition, MemberController memberController) {
+        this.memberController = memberController;
         lblTitle.setText(edition.getTitle());
         //lblAuthor.setText(edition.getAuthor());
         final Tooltip authorBiography = new Tooltip();

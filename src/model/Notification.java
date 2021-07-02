@@ -46,38 +46,4 @@ public class Notification {
     public void setDate(LocalDate date) {
         this.date = date;
     }
-
-    public void setNewNotificationId() {
-        int id = member.getNotifications().size();
-        this.id = String.valueOf(id + 1);
-    }
-
-    public Notification reminderToReturnBook(IssuedBook issuedBook) {
-        Notification notification = new Notification("1", "REMINDER: You should return " +
-                issuedBook.getBook().getEdition().getTitle() + " by " + issuedBook.getReturnDate(),
-                LocalDate.now(), issuedBook.getMember());
-        notification.setNewNotificationId();
-        return notification;
-    }
-
-    public Notification reservationApproved(PendingReservation reservation) {
-        Notification notification = new Notification("1", "Your reservation of " + reservation.getEdition().getTitle() +
-                " is approved.", LocalDate.now(), reservation.getMember());
-        notification.setNewNotificationId();
-        return notification;
-    }
-
-    public Notification reservationNotApproved(PendingReservation reservation) {
-        Notification notification = new Notification("1", "Your reservation of " + reservation.getEdition().getTitle() +
-                " is not approved. Try again in a few days.", LocalDate.now(), reservation.getMember());
-        notification.setNewNotificationId();
-        return notification;
-    }
-
-    public Notification reservationExpired(PendingReservation reservation) {
-        Notification notification = new Notification("1", "Your reservation of " + reservation.getEdition().getTitle() +
-                " is expired.", LocalDate.now(), reservation.getMember());
-        notification.setNewNotificationId();
-        return notification;
-    }
 }

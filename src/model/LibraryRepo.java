@@ -102,6 +102,7 @@ public class LibraryRepo implements ILibraryRepo {
                     }
 
                     account.setPerson(person);
+                    assert person != null;
                     person.setAccount(account);
                 }
 
@@ -215,7 +216,6 @@ public class LibraryRepo implements ILibraryRepo {
             while (contributorRoles.next()) {
 
                 String editionId = contributorRoles.getString("ide");
-                System.out.println(editionId);
                 int contributorId = contributorRoles.getInt("idc");
                 String contributorType = contributorRoles.getString("type");
 

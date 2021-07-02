@@ -1,5 +1,7 @@
 package model;
 
+import com.sun.swing.internal.plaf.synth.resources.synth_sv;
+
 import java.time.Duration;
 import java.time.LocalDate;
 
@@ -34,6 +36,6 @@ public class ReservedBook {
     public LocalDate getReservedOn() { return reservedOn; }
 
     public int getDaysLeft(){
-        return (int) Duration.between(LocalDate.now(), reservedOn).toDays();
+        return 3 - (int) Duration.between(reservedOn, LocalDate.now()).toDays();
     }
 }

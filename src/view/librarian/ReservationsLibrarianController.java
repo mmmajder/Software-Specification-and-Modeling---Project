@@ -40,17 +40,23 @@ public class ReservationsLibrarianController implements Observer {
     }
     private ObservableList<ApprovedReservationTable> getApproved() {
         ObservableList<ApprovedReservationTable> list = FXCollections.observableArrayList();
+        System.out.println(library.getReservations());
         for (Reservation reservation : library.getReservations()) {
-//            list.add(new ApprovedReservationTable(reservation.getMember().getName()+" "+reservation.getMember().getSurname(), reservation.getBook().getBookId(), reservation.getDaysLeft()));
+            list.add(new ApprovedReservationTable(reservation.getMember().getName()+" "+reservation.getMember().getSurname(), reservation.getBook().getBookId(), reservation.getDaysLeft()));
         }
         return list;
     }
 
     @Override
     public void updatePerformed() {
-        libraryRepo.loadPendingReservations(library);
-        libraryRepo.loadReservations(library);
-        reservationRequestTable.setItems(getRequests());
-        approvedReservationsTable.setItems(getApproved());
+        try {
+            initData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        libraryRepo.loadPendingReservations(library);
+//        libraryRepo.loadReservations(library);
+//        reservationRequestTable.setItems(getRequests());
+//        approvedReservationsTable.setItems(getApproved());
     }
 }

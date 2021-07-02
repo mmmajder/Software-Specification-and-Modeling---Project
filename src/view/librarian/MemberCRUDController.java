@@ -20,6 +20,7 @@ public class MemberCRUDController implements Observer {
     public Label addMemberLbl;
     ObservableList<MemberTable> dataMemberTable;
     ObservableList<CurrentIssueTable> dataMemberIssuesTable;
+
     public TableView<MemberTable> memberTable;
     public TableColumn<MemberTable, String> colName;
     public TableColumn<MemberTable, String> colSurname;
@@ -28,16 +29,25 @@ public class MemberCRUDController implements Observer {
     public TableColumn<MemberTable, String> colEmail;
     public TableColumn<MemberTable, LocalDate> colBirthDate;
     public TableColumn<MemberTable, LocalDate> colMembershipEndDate;
+
     public TableView<CurrentIssueTable> memberIssuesTable;
+    public TableColumn<CurrentIssueTable, String> id;
+    public TableColumn<CurrentIssueTable, String> title;
+    public TableColumn<CurrentIssueTable, Boolean> prolonged;
+    public TableColumn<CurrentIssueTable, LocalDate> returnDate;
     Library library;
     ILibraryRepo libraryRepo;
 
     public void initData() throws IOException  {
         this.library = new Library();
         libraryRepo = new LibraryRepo();
+        libraryRepo.loadContributors(library);
         libraryRepo.loadAccounts(library);
         libraryRepo.loadPersons(library);
+        libraryRepo.loadEditions(library);
+        libraryRepo.loadBooks(library);
         libraryRepo.loadIssuedBooks(library);
+
         colName.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("name"));
         colSurname.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("surname"));
         colJMBG.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("JMBG"));
@@ -45,6 +55,12 @@ public class MemberCRUDController implements Observer {
         colEmail.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("email"));
         colBirthDate.setCellValueFactory(new PropertyValueFactory<MemberTable, LocalDate>("birthDate"));
         colMembershipEndDate.setCellValueFactory(new PropertyValueFactory<MemberTable, LocalDate>("membershipEndDate"));
+
+        id.setCellValueFactory(new PropertyValueFactory<CurrentIssueTable, String>("id"));
+        title.setCellValueFactory(new PropertyValueFactory<CurrentIssueTable, String>("title"));
+        prolonged.setCellValueFactory(new PropertyValueFactory<CurrentIssueTable, Boolean>("prolonged"));
+        returnDate.setCellValueFactory(new PropertyValueFactory<CurrentIssueTable, LocalDate>("returnDate"));
+
         dataMemberTable = getMembers();
         memberTable.setItems(dataMemberTable);
         dataMemberIssuesTable = FXCollections.observableArrayList();

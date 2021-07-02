@@ -77,7 +77,7 @@ public class LibrarianController {
 
         FXMLLoader rentedBooksLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/rentedBooks.fxml"));
         rentedBooksScene = rentedBooksLoader.load();
-        rentedBooksController =  rentedBooksLoader.getController();
+        rentedBooksController = (RentedBooksController) rentedBooksLoader.getController();
         switchToBooks();
     }
 

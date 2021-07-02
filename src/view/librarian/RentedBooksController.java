@@ -16,7 +16,6 @@ public class RentedBooksController implements Observer {
     ObservableList<RentedBooksTable> dataRentedBooksTable;
 
     Library library;
-    Account account;
     ILibraryRepo libraryRepo;
 
     public void initData() throws IOException {
@@ -36,7 +35,12 @@ public class RentedBooksController implements Observer {
 
     @Override
     public void updatePerformed() {
-        libraryRepo.loadIssuedBooks(library);
-        rentedBooksTable.setItems(getRentedBooks());
+        try {
+            initData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        libraryRepo.loadIssuedBooks(library);
+//        rentedBooksTable.setItems(getRentedBooks());
     }
 }

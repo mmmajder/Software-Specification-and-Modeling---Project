@@ -24,4 +24,28 @@ public class MemberTable {
     public String getJMBG() {
         return JMBG;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public LocalDate getMembershipEndDate() {
+        return membershipEndDate;
+    }
 }

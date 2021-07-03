@@ -21,15 +21,9 @@ public class Payment {
 
     public int getPaymentId() { return paymentId; }
 
-    public void setPaymentId(int paymentId) { this.paymentId = paymentId; }
-
     public LocalDate getPaymentDate() { return paymentDate; }
-
-    public void setPaymentDate(LocalDate paymentDate) { this.paymentDate = paymentDate; }
-
-    public void setValidToDate(LocalDate validToDate) { this.validToDate = validToDate; }
 
     public Member getMember() { return member; }
 
-    public void setMember(Member member) { this.member = member; }
+    public int getNumOfMonths() { return numOfMonths; }
 }

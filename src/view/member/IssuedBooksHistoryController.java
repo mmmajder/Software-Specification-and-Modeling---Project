@@ -91,8 +91,8 @@ public class IssuedBooksHistoryController implements Observer {
 
     @Override
     public void updatePerformed() {
-        this.library = new Library();
-        libraryRepo.loadIssuedBooks(library);
+//        this.library = new Library();
+//        libraryRepo.loadIssuedBooks(library);
         issuedBooksHistoryTable.setItems(getHistory());
     }
 }

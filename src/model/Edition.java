@@ -64,10 +64,6 @@ public class Edition {
         return this.getAuthor().getBiography();
     }
 
-    public String getAuthorName() {
-        return this.getAuthor().getName() + " " + this.getAuthor().getSurname();
-    }
-
     public String getImage() {
         return image;
     }

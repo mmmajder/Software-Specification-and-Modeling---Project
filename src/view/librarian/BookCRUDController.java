@@ -54,18 +54,18 @@ public class BookCRUDController implements Observer {
         for (BookEditionTable row : editionTable.getSelectionModel().getSelectedItems()) {
             for (int i = 1; i <= 1; i++) {
                 Book sample = library.getBook(row.getBookId());
-                for (IssuedBook issuedBook : sample.getIssueHistory()) {
+//                for (IssuedBook issuedBook : sample.getIssueHistory()) {
 //                    dataSampleTable.add(new BookSampleTable(issuedBook.getIssueDate(), issuedBook.getReturnDate(), issuedBook.getState(), issuedBook.getMember().getName() + " " + issuedBook.getMember().getSurname()))
-                }
+//                }
             }
         }
     }
 
     @Override
     public void updatePerformed() {
-        libraryRepo.loadBooks(library);
         editionTable.setItems(getSamples());
         dataSampleTable.clear();
+        sampleTable.setItems(dataSampleTable);
 
     }
 }

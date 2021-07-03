@@ -298,6 +298,24 @@ public class Library implements Publisher {
         this.payments.add(payment);
     }
 
+    public int getMaxNumberOfTakenBooks(MemberType memberType) {
+        return this.maxIssuedBooks.get(memberType);
+    }
+
+    public int getMaxNumberOfIssueDays(MemberType memberType) {
+        return this.maxIssueDays.get(memberType);
+    }
+
+    public double getHalfAYearPrice(MemberType memberType) {
+        return this.currentCatalog.getPrice(memberType, 6);
+    }
+
+    public double getFullYearPrice(MemberType memberType) {
+        return this.currentCatalog.getPrice(memberType, 12);
+    }
+
+    public List<Payment> getPayments(){ return payments;}
+
     public void addFormat(BookFormat format) {
         formats.add(format);
     }

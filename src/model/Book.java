@@ -10,17 +10,17 @@ public class Book {
     private BookState state;
     private List<IssuedBook> issueHistory;
     private Edition edition;
-    private boolean isRestricted;
+    private boolean restricted;
 
     public Book() {
         this.issueHistory = new ArrayList<>();
     }
 
-    public Book(String bookId, BookState state, Edition edition, boolean isRestricted) {
+    public Book(String bookId, BookState state, Edition edition, boolean restricted) {
         this.bookId = bookId;
         this.state = state;
         this.edition = edition;
-        this.isRestricted = isRestricted;
+        this.restricted = restricted;
         this.issueHistory = new ArrayList<>();
     }
 
@@ -32,7 +32,7 @@ public class Book {
 
     public void setState(BookState state) { this.state = state; }
 
-    public boolean getIsRestricted() { return this.isRestricted; }
+    public boolean isRestricted() { return this.restricted; }
 
     public void addIssueHistory(IssuedBook issuedBook) { this.issueHistory.add(issuedBook); }
 

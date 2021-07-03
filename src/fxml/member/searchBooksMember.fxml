@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="900.0" stylesheets="@../style.css" BorderPane.alignment="CENTER"
+<AnchorPane prefHeight="600.0" prefWidth="950.0" stylesheets="@../style.css" BorderPane.alignment="CENTER"
             xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.member.SearchBooksMemberController">
     <BorderPane fx:id="borderPane" prefHeight="550.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0"

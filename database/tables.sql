@@ -381,5 +381,6 @@ ALTER TABLE payments ADD paymentDate DATE NOT NULL;
 DROP TABLE memberPayments;
 DROP TABLE currentlyTakenBooks;
 RENAME editionContributors TO contributorRoles;
+ALTER TABLE reservations RENAME COLUMN idrb TO idr;
 
 COMMIT;

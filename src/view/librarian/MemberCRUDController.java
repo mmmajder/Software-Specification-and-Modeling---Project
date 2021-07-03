@@ -20,14 +20,8 @@ public class MemberCRUDController implements Observer {
     public Label addMemberLbl;
     ObservableList<MemberTable> dataMemberTable;
     ObservableList<CurrentIssueTable> dataMemberIssuesTable;
+
     public TableView<MemberTable> memberTable;
-    public TableColumn<MemberTable, String> colName;
-    public TableColumn<MemberTable, String> colSurname;
-    public TableColumn<MemberTable, String> colJMBG;
-    public TableColumn<MemberTable, String> colPhone;
-    public TableColumn<MemberTable, String> colEmail;
-    public TableColumn<MemberTable, LocalDate> colBirthDate;
-    public TableColumn<MemberTable, LocalDate> colMembershipEndDate;
     public TableView<CurrentIssueTable> memberIssuesTable;
     Library library;
     ILibraryRepo libraryRepo;
@@ -35,9 +29,92 @@ public class MemberCRUDController implements Observer {
     public void initData() throws IOException  {
         this.library = new Library();
         libraryRepo = new LibraryRepo();
+        libraryRepo.loadContributors(library);
         libraryRepo.loadAccounts(library);
         libraryRepo.loadPersons(library);
+        libraryRepo.loadEditions(library);
+        libraryRepo.loadBooks(library);
         libraryRepo.loadIssuedBooks(library);
+
+        TableColumn colName = new TableColumn("Name"){
+            {
+                prefWidthProperty().bind(memberTable.widthProperty().multiply(0.15));
+            }
+        };
+        memberTable.getColumns().add(colName);
+
+        TableColumn colSurname = new TableColumn("Surname") {
+            {
+                prefWidthProperty().bind(memberTable.widthProperty().multiply(0.15));
+            }
+        };
+        memberTable.getColumns().add(colSurname);
+
+        TableColumn colJMBG = new TableColumn("JMBG") {
+            {
+                prefWidthProperty().bind(memberTable.widthProperty().multiply(0.1));
+            }
+        };
+        memberTable.getColumns().add(colJMBG);
+
+        TableColumn colPhone = new TableColumn("Phone number") {
+            {
+                prefWidthProperty().bind(memberTable.widthProperty().multiply(0.15));
+            }
+        };
+        memberTable.getColumns().add(colPhone);
+
+        TableColumn colEmail = new TableColumn("Email") {
+            {
+                prefWidthProperty().bind(memberTable.widthProperty().multiply(0.15));
+            }
+        };
+        memberTable.getColumns().add(colEmail);
+
+        TableColumn colBirthDate = new TableColumn("Birth date") {
+            {
+                prefWidthProperty().bind(memberTable.widthProperty().multiply(0.1));
+            }
+        };
+        memberTable.getColumns().add(colBirthDate);
+
+        TableColumn colMembershipEndDate = new TableColumn("Membership end date") {
+            {
+                prefWidthProperty().bind(memberTable.widthProperty().multiply(0.2));
+            }
+        };
+        memberTable.getColumns().add(colMembershipEndDate);
+
+
+        TableColumn colID = new TableColumn("ID") {
+            {
+                prefWidthProperty().bind(memberIssuesTable.widthProperty().multiply(0.2));
+            }
+        };
+        memberIssuesTable.getColumns().add(colID);
+
+        TableColumn colTitle = new TableColumn("Title") {
+            {
+                prefWidthProperty().bind(memberIssuesTable.widthProperty().multiply(0.3));
+            }
+        };
+        memberIssuesTable.getColumns().add(colTitle);
+
+        TableColumn colProlonged = new TableColumn("Prolonged") {
+            {
+                prefWidthProperty().bind(memberIssuesTable.widthProperty().multiply(0.2));
+            }
+        };
+        memberIssuesTable.getColumns().add(colProlonged);
+
+        TableColumn colReturnDate = new TableColumn("Return date") {
+            {
+                prefWidthProperty().bind(memberIssuesTable.widthProperty().multiply(0.3));
+            }
+        };
+        memberIssuesTable.getColumns().add(colReturnDate);
+
+
         colName.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("name"));
         colSurname.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("surname"));
         colJMBG.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("JMBG"));
@@ -45,6 +122,12 @@ public class MemberCRUDController implements Observer {
         colEmail.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("email"));
         colBirthDate.setCellValueFactory(new PropertyValueFactory<MemberTable, LocalDate>("birthDate"));
         colMembershipEndDate.setCellValueFactory(new PropertyValueFactory<MemberTable, LocalDate>("membershipEndDate"));
+
+        colID.setCellValueFactory(new PropertyValueFactory<CurrentIssueTable, String>("id"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<CurrentIssueTable, String>("title"));
+        colProlonged.setCellValueFactory(new PropertyValueFactory<CurrentIssueTable, Boolean>("prolonged"));
+        colReturnDate.setCellValueFactory(new PropertyValueFactory<CurrentIssueTable, LocalDate>("returnDate"));
+
         dataMemberTable = getMembers();
         memberTable.setItems(dataMemberTable);
         dataMemberIssuesTable = FXCollections.observableArrayList();
@@ -54,13 +137,13 @@ public class MemberCRUDController implements Observer {
         colJMBG.setCellFactory(TextFieldTableCell.forTableColumn());
         colPhone.setCellFactory(TextFieldTableCell.forTableColumn());
         colEmail.setCellFactory(TextFieldTableCell.forTableColumn());
+
 //        colBirthDate.setCellFactory(TextFieldTableCell.forTableColumn());
 //        colMembershipEndDate.setCellFactory(TextFieldTableCell.forTableColumn());
 
         memberTable.setOnMouseClicked(e -> {
             System.out.println(memberTable.getSelectionModel().getSelectedItems());
             loadCurrentIssues();
-            System.out.println(dataMemberIssuesTable);
             memberIssuesTable.setItems(dataMemberIssuesTable);
         });
 
@@ -72,9 +155,6 @@ public class MemberCRUDController implements Observer {
         addMemberLbl.setOnMouseClicked(e -> {
             dataMemberTable.add(new MemberTable("Name", "Surname", "JMBG", "Phone", "Email", LocalDate.of(2001, 1, 1), LocalDate.of(2001, 1, 1)));
         });
-
-
-
     }
 
     private ObservableList<MemberTable> getMembers() {
@@ -90,9 +170,7 @@ public class MemberCRUDController implements Observer {
         for (MemberTable row : memberTable.getSelectionModel().getSelectedItems()) {
             for (int i = 1; i <= 1; i++) {
                 try {
-                    System.out.println(library.getMembersCurrentlyTakenBooks(row.getJMBG()));
                     for (IssuedBook issuedBook : library.getMembersCurrentlyTakenBooks(row.getJMBG())) {
-                        System.out.println("Stigao: " + issuedBook.getBook().getBookId());
                         dataMemberIssuesTable.add(new CurrentIssueTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.isProlongedIssue(), issuedBook.getReturnDate()));
                     }
                 } catch (NullPointerException e) {

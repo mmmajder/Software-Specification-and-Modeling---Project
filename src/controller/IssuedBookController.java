@@ -13,6 +13,19 @@ public class IssuedBookController {
         this.library = library;
     }
 
+    public String getIssuedBookState(IssuedBook issuedBook) {
+
+        if (bookReturned(issuedBook)) {
+            return "RETURNED";
+        }
+
+        return "TAKEN";
+    }
+
+    private boolean bookReturned(IssuedBook issuedBook) {
+        return issuedBook.getReturnDate() == null;
+    }
+
     public LocalDate calculateReturnDate(IssuedBook issuedBook){
         int maxIssueDays = library.getMaxIssueDays(issuedBook.getMember().getType());
 

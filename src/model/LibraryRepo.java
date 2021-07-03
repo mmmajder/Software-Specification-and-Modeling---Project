@@ -499,7 +499,6 @@ public class LibraryRepo implements ILibraryRepo {
                 int prolongedIssue = issuedBooks.getInt("prolongedIssue");
                 String librarian = issuedBooks.getString("librarian");
                 String member = issuedBooks.getString("member");
-                String state = issuedBooks.getString("state");
 
                 Book book = library.getBook(bookId);
                 Librarian l = (Librarian) library.getPerson(librarian);
@@ -509,14 +508,12 @@ public class LibraryRepo implements ILibraryRepo {
 
                 if (returnDate == null) {
 
-                    issuedBook = new IssuedBook(issueDate, null, isProlonged, book, l, m,
-                            IssuedBookState.valueOf(state));
+                    issuedBook = new IssuedBook(issueDate, null, isProlonged, book, l, m);
                     m.addTakenBook(issuedBook);
                     library.addIssuedBook(issuedBook);
                 } else {
 
-                    issuedBook = new IssuedBook(issueDate, returnDate.toLocalDate(), isProlonged, book, l, m,
-                            IssuedBookState.valueOf(state));
+                    issuedBook = new IssuedBook(issueDate, returnDate.toLocalDate(), isProlonged, book, l, m);
                     m.addReturnedBook(issuedBook);
                 }
                 l.addIssuedBook(issuedBook);

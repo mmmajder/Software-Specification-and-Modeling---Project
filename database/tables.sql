@@ -374,4 +374,6 @@ ALTER TABLE notifications DROP COLUMN Member;
 ALTER TABLE notifications ADD Account VARCHAR(75) NOT NULL;
 ALTER TABLE notifications ADD CONSTRAINT notifications_FK FOREIGN KEY (Account) REFERENCES accounts (Email);
 
+ALTER TABLE issuedBooks DROP COLUMN state;
+
 COMMIT;

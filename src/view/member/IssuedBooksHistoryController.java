@@ -41,29 +41,32 @@ public class IssuedBooksHistoryController implements Observer {
                 prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.2));
             }
         });
-//        historyTable.getColumns().add(new TableColumn("Returned date") {
-//            {
-//                prefWidthProperty().bind(historyTable.widthProperty().multiply(0.2));
-//            }
-//        });
+        issuedBooksHistoryTable.getColumns().add(new TableColumn("Returned date") {
+            {
+                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.2));
+            }
+        });
         issuedBooksHistoryTable.getColumns().add(new TableColumn("Status") {
             {
                 prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.15));
             }
         });
-        //historyTable.setItems(getHistory());
+        issuedBooksHistoryTable.setItems(getHistory());
     }
 
     private ObservableList<MemberHistoryTable> getHistory() {
         ObservableList<MemberHistoryTable> list = FXCollections.observableArrayList();
-//        for (IssuedBook issuedBook : controller.getMembersReturnedBooks(account)) {
-//            list.add(new MemberHistoryTable(issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(), issuedBook.getReturnDate(), issuedBook.getState()));
-//        }
+        for (IssuedBook issuedBook : library.getMembersReturnedBooks(account)) {
+            list.add(new MemberHistoryTable(issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(),
+                    issuedBook.getReturnDate(), controller.calculateReturnDate(issuedBook),
+                    controller.getIssuedBookState(issuedBook)));
+        }
         return list;
     }
 
     @Override
     public void updatePerformed() {
+        this.library = new Library();
         libraryRepo.loadIssuedBooks(library);
         issuedBooksHistoryTable.setItems(getHistory());
     }

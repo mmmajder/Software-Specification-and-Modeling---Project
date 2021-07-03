@@ -21,6 +21,19 @@ public class MemberTable {
         this.membershipEndDate = membershipEndDate;
     }
 
+    @Override
+    public String toString() {
+        return "MemberTable{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", JMBG='" + JMBG + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", birthDate=" + birthDate +
+                ", membershipEndDate=" + membershipEndDate +
+                '}';
+    }
+
     public String getJMBG() {
         return JMBG;
     }

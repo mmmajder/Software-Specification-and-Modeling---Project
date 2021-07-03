@@ -1,7 +1,5 @@
 package model;
 
-import model.enums.IssuedBookState;
-
 import java.time.LocalDate;
 
 public class IssuedBook {
@@ -11,17 +9,15 @@ public class IssuedBook {
     private  Book book;
     private Librarian librarian;
     private Member member;
-    private IssuedBookState state;
 
     public IssuedBook(LocalDate issueDate, LocalDate returnDate, boolean prolongedIssue, Book book, Librarian librarian,
-                      Member member, IssuedBookState state) {
+                      Member member) {
         this.issueDate = issueDate;
         this.returnDate = returnDate;
         this.prolongedIssue = prolongedIssue;
         this.book = book;
         this.librarian = librarian;
         this.member = member;
-        this.state = state;
     }
 
     public IssuedBook(LocalDate issueDate, boolean prolongedIssue, Book book, Librarian librarian, Member member) {
@@ -71,9 +67,5 @@ public class IssuedBook {
 
     public Member getMember() {
         return member;
-    }
-
-    public IssuedBookState getState() {
-        return state;
     }
 }

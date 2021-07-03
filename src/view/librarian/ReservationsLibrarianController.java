@@ -21,11 +21,10 @@ public class ReservationsLibrarianController implements Observer {
     Account account;
     ILibraryRepo libraryRepo;
 
-    @FXML
-    private void initData(Account account) throws IOException {
-        this.account = account;
+    public void initData() throws IOException {
         this.library = new Library();
         libraryRepo = new LibraryRepo();
+        libraryRepo.loadPersons(library);
         libraryRepo.loadPendingReservations(library);
         libraryRepo.loadReservations(library);
         reservationRequestTable.setItems(getRequests());
@@ -34,6 +33,7 @@ public class ReservationsLibrarianController implements Observer {
 
     private ObservableList<ReservationRequestTable> getRequests() {
         ObservableList<ReservationRequestTable> list = FXCollections.observableArrayList();
+        System.out.println(library.getPendingReservations());
         for (PendingReservation reservation : library.getPendingReservations()) {
             list.add(new ReservationRequestTable(reservation.getMember().getName()+" "+reservation.getMember().getSurname(), reservation.getEdition().getTitle()));
         }
@@ -41,17 +41,23 @@ public class ReservationsLibrarianController implements Observer {
     }
     private ObservableList<ApprovedReservationTable> getApproved() {
         ObservableList<ApprovedReservationTable> list = FXCollections.observableArrayList();
+        System.out.println(library.getReservations());
         for (Reservation reservation : library.getReservations()) {
-//            list.add(new ApprovedReservationTable(reservation.getMember().getName()+" "+reservation.getMember().getSurname(), reservation.getBook().getBookId(), reservation.getDaysLeft()));
+            list.add(new ApprovedReservationTable(reservation.getMember().getName()+" "+reservation.getMember().getSurname(), reservation.getBook().getBookId(), reservation.getDaysLeft()));
         }
         return list;
     }
 
     @Override
     public void updatePerformed() {
-        libraryRepo.loadPendingReservations(library);
-        libraryRepo.loadReservations(library);
-        reservationRequestTable.setItems(getRequests());
-        approvedReservationsTable.setItems(getApproved());
+        try {
+            initData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        libraryRepo.loadPendingReservations(library);
+//        libraryRepo.loadReservations(library);
+//        reservationRequestTable.setItems(getRequests());
+//        approvedReservationsTable.setItems(getApproved());
     }
 }

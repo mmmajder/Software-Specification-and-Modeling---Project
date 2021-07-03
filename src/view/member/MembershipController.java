@@ -1,5 +1,6 @@
 package view.member;
 
+import controller.AccountController;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -36,6 +37,7 @@ public class MembershipController {
     public Pane panel12;
 
     ILibraryRepo libraryRepo;
+    AccountController accountController;
     Library library;
     Account account;
 
@@ -43,17 +45,18 @@ public class MembershipController {
         library = new Library();
         libraryRepo = new LibraryRepo();
         this.account = account;
+        accountController = new AccountController(library);
         libraryRepo.loadMaxIssueDays(library);
         libraryRepo.loadMaxIssuedBooks(library);
         libraryRepo.loadPriceCatalogs(library);
         libraryRepo.loadFullYearPrices(library);
         libraryRepo.loadHalfAYearPrices(library);
 
-        if (account.getMembershipExpirationDateStr() == null) {
+        if (accountController.getMembershipExpirationDate(account.getPerson()) == null) {
             status.setText("Membership status: NOT ACTIVE");
             status.setTextFill(Paint.valueOf("#CD113B"));
         } else {
-            status.setText("Membership status: ACTIVE UNTIL " + account.getMembershipExpirationDateStr());
+            status.setText("Membership status: ACTIVE UNTIL " + accountController.getMembershipExpirationDate(account.getPerson()));
             status.setTextFill(Paint.valueOf("#ffffff"));
         }
 

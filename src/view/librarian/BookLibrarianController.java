@@ -1,18 +1,10 @@
 package view.librarian;
 
 import controller.AccountController;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import model.Account;
 import model.Edition;
 import model.ILibraryRepo;
@@ -48,9 +40,9 @@ public class BookLibrarianController {
     public void initData(Edition edition, LibrarianController librarianController) {
         this.librarianController = librarianController;
         lblTitle.setText(edition.getTitle());
-        //lblAuthor.setText(edition.getAuthor());
+        lblAuthor.setText(edition.getAuthorName());
         final Tooltip authorBiography = new Tooltip();
-        //authorBiography.setText(edition.getAuthor().getBiography());
+        authorBiography.setText(edition.getAuthorBiography());
         lblAuthor.setTooltip(authorBiography);
 
         txtDescription.setText(edition.getDescription());

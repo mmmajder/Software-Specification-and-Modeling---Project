@@ -78,7 +78,7 @@ public class SearchBooksLibrarianController {
         tilePane.setVgap(8);
         tilePane.setPadding(new Insets(5));
 
-        currentEditions = editionController.getRandomEditions(50);
+        currentEditions = library.getEditions();
         initializeEditions(currentEditions);
         setGenres();
 
@@ -87,12 +87,16 @@ public class SearchBooksLibrarianController {
 
         genres.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 initializeEditions(searchBooksController.filterByGenre(currentEditions, newValue)));
+    }
 
-        titleSort.textProperty().addListener((ov, t, t1) -> initializeEditions(
-                searchBooksController.sortByTitleAsc(currentEditions)));
+    @FXML
+    public void sortByTitle() {
+        initializeEditions(searchBooksController.sortByTitleAsc(currentEditions));
+    }
 
-        publishedDateSort.textProperty().addListener((ov, t, t1) -> initializeEditions(
-                searchBooksController.sortByPublishedDateAsc(currentEditions)));
+    @FXML
+    public void sortByPublishedDate() {
+        initializeEditions(searchBooksController.sortByPublishedDateAsc(currentEditions));
     }
 
     @FXML

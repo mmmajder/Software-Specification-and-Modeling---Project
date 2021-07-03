@@ -34,13 +34,13 @@
                 <Separator prefHeight="10.0" prefWidth="200.0" visible="false" />
                 <TableView fx:id="memberTable" prefHeight="267.0" prefWidth="860.0">
                     <columns>
-                        <TableColumn fx:id="colName" onEditCommit="#editNameChanged" prefWidth="75.0" text="Name" />
-                        <TableColumn fx:id="colSurname" onEditCommit="#editSurnameChanged" prefWidth="101.0" text="Surname" />
-                        <TableColumn fx:id="colJMBG" prefWidth="149.0" text="JMBG" />
-                        <TableColumn fx:id="colPhone" onEditCommit="#editPhoneNumberChanged" prefWidth="138.0" text="Phone number" />
-                        <TableColumn fx:id="colEmail" onEditCommit="#editEmailChanged" prefWidth="142.0" text="Email address" />
-                        <TableColumn fx:id="colBirthDate" prefWidth="108.0" text="Birth date" />
-                        <TableColumn fx:id="colMembershipEndDate" prefWidth="146.0" text="Membership end date" />
+<!--                        <TableColumn fx:id="colName" onEditCommit="#editNameChanged" prefWidth="75.0" text="Name" />-->
+<!--                        <TableColumn fx:id="colSurname" onEditCommit="#editSurnameChanged" prefWidth="101.0" text="Surname" />-->
+<!--                        <TableColumn fx:id="colJMBG" prefWidth="149.0" text="JMBG" />-->
+<!--                        <TableColumn fx:id="colPhone" onEditCommit="#editPhoneNumberChanged" prefWidth="138.0" text="Phone number" />-->
+<!--                        <TableColumn fx:id="colEmail" onEditCommit="#editEmailChanged" prefWidth="142.0" text="Email address" />-->
+<!--                        <TableColumn fx:id="colBirthDate" prefWidth="108.0" text="Birth date" />-->
+<!--                        <TableColumn fx:id="colMembershipEndDate" prefWidth="146.0" text="Membership end date" />-->
                     </columns>
                 </TableView>
                 <Separator prefHeight="30.0" prefWidth="200.0" visible="false" />
@@ -52,10 +52,10 @@
                 <Separator prefHeight="30.0" prefWidth="200.0" visible="false" />
                 <TableView fx:id="memberIssuesTable" prefHeight="155.0" prefWidth="860.0">
                     <columns>
-                        <TableColumn fx:id="id" prefWidth="106.0" text="ID" />
-                        <TableColumn fx:id="title" prefWidth="318.0" text="TITLE" />
-                        <TableColumn fx:id="prolonged" prefWidth="169.0" text="PROLONGED" />
-                        <TableColumn fx:id="returnDate" prefWidth="266.0" text="RETURN DATE" />
+<!--                        <TableColumn fx:id="id" prefWidth="106.0" text="ID" />-->
+<!--                        <TableColumn fx:id="title" prefWidth="318.0" text="TITLE" />-->
+<!--                        <TableColumn fx:id="prolonged" prefWidth="169.0" text="PROLONGED" />-->
+<!--                        <TableColumn fx:id="returnDate" prefWidth="266.0" text="RETURN DATE" />-->
                     </columns>
                 </TableView>
                 <BorderPane prefHeight="58.0" prefWidth="860.0">

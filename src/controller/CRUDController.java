@@ -26,52 +26,29 @@ public class CRUDController {
             Person person = library.getPerson(jmbg);
             person.setName(name);
             libraryRepo.updateName(name, jmbg);
+        } else {
+            throw new InvalidNameFormatException();
         }
-
-        throw new InvalidNameFormatException();
     }
 
     public void changeSurname(String surname, String jmbg) throws InvalidSurnameFormatException {
-
         if (surnameValid(surname)) {
-
             Person person = library.getPerson(jmbg);
             person.setSurname(surname);
             libraryRepo.updateSurname(surname, jmbg);
+        } else {
+            throw new InvalidSurnameFormatException();
         }
-
-        throw new InvalidSurnameFormatException();
     }
 
-    public void changePhoneNumber(String phoneNumber, String jmbg) throws InvalidPhoneNumberFormatException,
-            PhoneNumberAlreadyExistsException {
-
+    public void changePhoneNumber(String phoneNumber, String jmbg) throws InvalidPhoneNumberFormatException {
         if (phoneNumberValid(phoneNumber)) {
-
-            if (!phoneNumberExists(phoneNumber)) {
-
-                Person person = library.getPerson(jmbg);
-                person.setPhoneNumber(phoneNumber);
-                libraryRepo.updatePhoneNumber(phoneNumber, jmbg);
-            }
-
-            throw new PhoneNumberAlreadyExistsException();
+            Person person = library.getPerson(jmbg);
+            person.setPhoneNumber(phoneNumber);
+            libraryRepo.updatePhoneNumber(phoneNumber, jmbg);
+        } else {
+            throw new InvalidPhoneNumberFormatException();
         }
-
-        throw new InvalidPhoneNumberFormatException();
-    }
-
-    private boolean phoneNumberExists(String phoneNumber) {
-
-        for (Person person : library.getPersons()) {
-
-            if (person.getPhoneNumber().equals(phoneNumber)) {
-
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private boolean phoneNumberValid(String phoneNumber) {
@@ -79,7 +56,7 @@ public class CRUDController {
     }
 
     private boolean surnameValid(String surname) {
-        return surname.matches("[A-Z]+([ '-][a-zA-Z]+)*");
+        return surname.matches("[A-Z]+([a-zA-Z]+)*");
     }
 
     private boolean nameValid(String name) {

@@ -142,14 +142,12 @@ public class MemberCRUDController implements Observer {
 //        colMembershipEndDate.setCellFactory(TextFieldTableCell.forTableColumn());
 
         memberTable.setOnMouseClicked(e -> {
-            System.out.println(memberTable.getSelectionModel().getSelectedItems());
             loadCurrentIssues();
             memberIssuesTable.setItems(dataMemberIssuesTable);
         });
 
         removeMemberLbl.setOnMouseClicked(e -> {
-            MemberTable selectedItem = memberTable.getSelectionModel().getSelectedItem();
-            memberTable.getItems().remove(selectedItem);
+            memberTable.getItems().remove(memberTable.getSelectionModel().getSelectedItem());
         });
 
         addMemberLbl.setOnMouseClicked(e -> {
@@ -167,6 +165,7 @@ public class MemberCRUDController implements Observer {
     }
 
     private void loadCurrentIssues() {
+        dataMemberIssuesTable.clear();
         for (MemberTable row : memberTable.getSelectionModel().getSelectedItems()) {
             for (int i = 1; i <= 1; i++) {
                 try {

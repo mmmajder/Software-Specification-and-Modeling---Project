@@ -60,9 +60,10 @@ public class SearchBooksController {
     public List<Edition> filterByTitle(List<Edition> currentEditions, String title) {
 
         List<Edition> editions = new ArrayList<>();
+        title = title.toUpperCase();
         for (Edition edition : currentEditions) {
 
-            if (edition.getTitle().contains(title)) {
+            if ((edition.getTitle().toUpperCase()).contains(title)) {
 
                 editions.add(edition);
             }

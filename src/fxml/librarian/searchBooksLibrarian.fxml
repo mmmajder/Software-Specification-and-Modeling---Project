@@ -1,50 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml"
-            stylesheets="@../style.css"
-            fx:controller="view.member.SearchBooksMemberController" BorderPane.alignment="CENTER">
+<AnchorPane prefHeight="550.0" prefWidth="900.0"
+            stylesheets="@../style.css" BorderPane.alignment="CENTER"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.librarian.SearchBooksLibrarianController">
     <BorderPane fx:id="borderPane" prefHeight="550.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0"
                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <BorderPane>
-            <center>
-                <ListView fx:id="genres" style="-fx-background-color: #ffffff;" prefHeight="200.0"
-                          prefWidth="200.0"/>
-            </center>
-            <bottom>
-                <AnchorPane fx:id="addNewGenre" style="-fx-background-color: #ffffff;">
-                    <Label prefHeight="44.0" prefWidth="42.0" text="+ADD NEW GENRE" textFill="WHITE">
-                        <font>
-                            <Font name="SansSerif Bold" size="12.0"/>
-                        </font>
-                    </Label>
-                </AnchorPane>
-            </bottom>
-        </BorderPane>
         <center>
             <AnchorPane fx:id="right" BorderPane.alignment="CENTER">
-                <BorderPane minHeight="550.0" minWidth="700.0" AnchorPane.bottomAnchor="0.0"
-                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <BorderPane minHeight="550.0" minWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <top>
                         <HBox minHeight="40.0" prefHeight="40.0" prefWidth="700.0"
-                              style="-fx-background-color: #abc82e;"
-                              BorderPane.alignment="CENTER">
-                            <Pane minHeight="50.0" minWidth="440.0">
+                              style="-fx-background-color: #abc82e;" BorderPane.alignment="CENTER">
+                            <Pane minHeight="35.0" minWidth="439.0" prefHeight="35.0" prefWidth="439.0">
                                 <TextField fx:id="search" layoutX="20.0" layoutY="8.0" prefHeight="22.0"
-                                           prefWidth="400.0"
-                                           promptText="Search..."/>
+                                           prefWidth="400.0" promptText="Search..."/>
                             </Pane>
                             <Label prefHeight="44.0" prefWidth="42.0" text="Sort by:" textFill="WHITE">
                                 <font>
@@ -64,31 +39,45 @@
                                     <Font name="SansSerif Regular" size="12.0"/>
                                 </font>
                             </Label>
-                            <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
-                            <ImageView fx:id="ascSort" fitHeight="40.0" fitWidth="26.0">
-                                <Image url="@../asc.png"/>
-                            </ImageView>
-                            <ImageView fx:id="descSort" fitHeight="40.0" fitWidth="26.0">
-                                <Image url="@../desc.png"/>
-                            </ImageView>
                         </HBox>
                     </top>
                     <center>
                         <AnchorPane fx:id="anchorPane" minHeight="513.0" minWidth="700.0"
                                     style="-fx-background-color: #63ac29;">
-                            <ScrollPane fx:id="scrollPane" fitToHeight="true"
-                                        prefHeight="513.0"
-                                        prefWidth="701.0"
-                                        style="-fx-background-color: #63ac29;"
-                                        fitToWidth="true"
-                                        AnchorPane.leftAnchor="10"
-                                        AnchorPane.rightAnchor="10"
-                                        AnchorPane.topAnchor="10"
-                                        AnchorPane.bottomAnchor="10"/>
+                            <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="513.0"
+                                        prefWidth="701.0" style="-fx-background-color: #63ac29;"
+                                        AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10"
+                                        AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10"/>
                         </AnchorPane>
                     </center>
                 </BorderPane>
             </AnchorPane>
         </center>
+        <left>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <center>
+                    <ListView fx:id="genres" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER"/>
+                </center>
+                <bottom>
+                    <AnchorPane prefHeight="67.0" prefWidth="200.0" style="-fx-background-color: #abc82e;"
+                                BorderPane.alignment="CENTER">
+                        <Label fx:id="addNewGenre" alignment="CENTER" layoutY="-1.0" prefHeight="35.0" prefWidth="200.0"
+                               style="-fx-background-color: #abc82e;" text="+ADD NEW GENRE" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="13.0"/>
+                            </font>
+                        </Label>
+                        <Separator layoutX="10.0" opacity="0.5" prefHeight="71.0" prefWidth="182.0"/>
+                        <Label fx:id="addNewEdition" alignment="CENTER" layoutY="32.0" prefHeight="38.0"
+                               prefWidth="199.0"
+                               text="+ADD NEW EDITION" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="13.0"/>
+                            </font>
+                        </Label>
+                    </AnchorPane>
+                </bottom>
+            </BorderPane>
+        </left>
     </BorderPane>
 </AnchorPane>

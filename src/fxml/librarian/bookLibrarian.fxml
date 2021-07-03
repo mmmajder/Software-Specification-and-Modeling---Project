@@ -12,8 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0">
+<Pane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="view.librarian.BookLibrarianController">
+    <BorderPane prefHeight="550.0" prefWidth="900.0">
         <left>
             <VBox prefHeight="469.0" prefWidth="295.0" style="-fx-background-color: ffffff;"
                   BorderPane.alignment="CENTER">

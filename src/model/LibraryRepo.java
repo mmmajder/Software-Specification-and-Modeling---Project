@@ -86,7 +86,7 @@ public class LibraryRepo implements ILibraryRepo {
 
                     Account account = library.getAccountByEmail(email);
 
-                    switch(account.getType()) {
+                    switch (account.getType()) {
                         case ADMIN:
                             person = new Admin(name, surname, jmbg, phoneNumber, birthDate, null);
                             break;

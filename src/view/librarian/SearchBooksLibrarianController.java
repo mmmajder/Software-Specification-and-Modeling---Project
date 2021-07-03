@@ -11,9 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.TilePane;
 import model.*;
 
 import java.io.IOException;
@@ -25,8 +26,8 @@ public class SearchBooksLibrarianController {
     public TextField search;
     public Label titleSort;
     public Label publishedDateSort;
-    public ImageView ascSort;
-    public ImageView descSort;
+    public Label addNewEdition;
+    public Label addNewGenre;
     public BorderPane borderPane;
     public BorderPane left;
     public AnchorPane right;
@@ -45,14 +46,14 @@ public class SearchBooksLibrarianController {
     SearchBooksController searchBooksController;
 
     public void switchToBook(Edition edition) throws IOException {
-        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/member/reservationMember.fxml"));
+        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookLibrarian.fxml"));
         Parent bookScene = bookLoader.load();
         BookLibrarianController bookLibrarianController = bookLoader.getController();
         bookLibrarianController.initData(edition, librarianController);
         mainBorderPane.setCenter(bookScene);
     }
 
-    public void initData(Account account, BorderPane mainBorderPane, LibrarianController librarianController) throws IOException {
+    public void initData(Account account, BorderPane mainBorderPane, LibrarianController librarianController) {
         library = new Library();
         searchBooksController = new SearchBooksController(library);
         libraryRepo = new LibraryRepo();
@@ -82,22 +83,14 @@ public class SearchBooksLibrarianController {
         setGenres();
 
         search.textProperty().addListener((observable, oldValue, newValue) -> initializeEditions(
-                searchBooksController.filterEditions(currentEditions, newValue)));
+                searchBooksController.filterByTitle(currentEditions, newValue)));
 
         genres.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 initializeEditions(searchBooksController.filterByGenre(currentEditions, newValue)));
 
-        ascSort.setPickOnBounds(true);
-        ascSort.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            //initializeEditions(library.sortAsc(currentEditions));
-        });
-        descSort.setPickOnBounds(true);
-        descSort.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            //initializeEditions(library.sortDesc(currentEditions));
-        });
-
         titleSort.textProperty().addListener((ov, t, t1) -> initializeEditions(
                 searchBooksController.sortByTitleAsc(currentEditions)));
+
         publishedDateSort.textProperty().addListener((ov, t, t1) -> initializeEditions(
                 searchBooksController.sortByPublishedDateAsc(currentEditions)));
     }
@@ -111,9 +104,10 @@ public class SearchBooksLibrarianController {
 
     public void initializeEditions(List<Edition> editions) {
         try {
+            tilePane.getChildren().clear();
             for (Edition edition : editions) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("../../fxml/member/bookSample.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("../../fxml/librarian/bookSampleLibrarian.fxml"));
                 AnchorPane bookPane = fxmlLoader.load();
                 bookPane.setPrefWidth(150);
                 bookPane.setPrefHeight(100);

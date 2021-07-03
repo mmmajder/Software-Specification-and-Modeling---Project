@@ -53,13 +53,6 @@
                                     <Font name="SansSerif Regular" size="12.0"/>
                                 </font>
                             </Label>
-                            <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
-                            <ImageView fx:id="ascSort" fitHeight="40.0" fitWidth="26.0">
-                                <Image url="@../asc.png"/>
-                            </ImageView>
-                            <ImageView fx:id="descSort" fitHeight="40.0" fitWidth="26.0">
-                                <Image url="@../desc.png"/>
-                            </ImageView>
                         </HBox>
                     </top>
                     <center>

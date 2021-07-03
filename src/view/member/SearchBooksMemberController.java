@@ -25,8 +25,6 @@ public class SearchBooksMemberController {
     public TextField search;
     public Label titleSort;
     public Label publishedDateSort;
-    public ImageView ascSort;
-    public ImageView descSort;
     public BorderPane borderPane;
     public BorderPane left;
     public AnchorPane right;
@@ -82,22 +80,14 @@ public class SearchBooksMemberController {
         setGenres();
 
         search.textProperty().addListener((observable, oldValue, newValue) -> initializeEditions(
-                searchBooksController.filterEditions(currentEditions, newValue)));
+                searchBooksController.filterByTitle(currentEditions, newValue)));
 
         genres.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 initializeEditions(searchBooksController.filterByGenre(currentEditions, newValue)));
 
-        ascSort.setPickOnBounds(true);
-        ascSort.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            //initializeEditions(library.sortAsc(currentEditions));
-        });
-        descSort.setPickOnBounds(true);
-        descSort.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            //initializeEditions(library.sortDesc(currentEditions));
-        });
-
         titleSort.textProperty().addListener((ov, t, t1) -> initializeEditions(
                 searchBooksController.sortByTitleAsc(currentEditions)));
+
         publishedDateSort.textProperty().addListener((ov, t, t1) -> initializeEditions(
                 searchBooksController.sortByPublishedDateAsc(currentEditions)));
     }
@@ -111,6 +101,7 @@ public class SearchBooksMemberController {
 
     public void initializeEditions(List<Edition> editions) {
         try {
+            tilePane.getChildren().clear();
             for (Edition edition : editions) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("../../fxml/member/bookSample.fxml"));

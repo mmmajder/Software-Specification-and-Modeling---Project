@@ -14,8 +14,9 @@ public class BookPaneController {
     public Label lblTitle;
     public Label lblAuthor;
     public Label lblAvailable;
-    EditionController editionController;
+
     Library library;
+    EditionController editionController;
 
     public Edition getEdition() {
         return edition;
@@ -24,7 +25,7 @@ public class BookPaneController {
     public void setEdition(Edition edition, Library library) {
         this.edition = edition;
         this.library = library;
-        editionController = new EditionController(library);
+        this.editionController = new EditionController(library);
 //        try (InputStream in = new URL(edition.getImage()).openStream()) {
 //            Files.copy(in, Paths.get("src/fxml/images/" + edition.getTitle() + ".jpg"));
 //        } catch (IOException e) {

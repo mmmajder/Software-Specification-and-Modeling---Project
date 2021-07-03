@@ -15,6 +15,7 @@ public class BookPaneLibrarianController {
     public Label lblAuthor;
     public Label lblAvailable;
     public Label lblShell;
+
     EditionController editionController;
     Library library;
 

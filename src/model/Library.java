@@ -260,6 +260,17 @@ public class Library implements Publisher {
         return members;
     }
 
+    public boolean isAvailable(Edition edition){
+        return getAvailableBooks(edition).size() > 0;
+    }
+
+    public List<Book> getAvailableBooks(Edition edition){
+        return books.stream()
+                .filter(book -> book.getEdition().getEditionId().equals(edition.getEditionId()))
+                .filter(book -> book.isAvailable())
+                .collect(Collectors.toList());
+    }
+
     public List<IssuedBook> getMembersReturnedBooks(Account account) {
         Member member = (Member) account.getPerson();
         return member.getReturnedBooks();

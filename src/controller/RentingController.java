@@ -29,7 +29,7 @@ public class RentingController {
     }
 
     private void validateBookRent(Member member, Book book) throws BookRentingIsInvalidException {
-        if (!(book.isAvailable() || isReservedForMember(member, book)) || book.getIsRestricted()){
+        if (!(book.isAvailable() || isReservedForMember(member, book)) || book.isRestricted()){
             throw new BookRentingIsInvalidException();
         }
     }

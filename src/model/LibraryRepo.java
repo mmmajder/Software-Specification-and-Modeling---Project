@@ -397,7 +397,7 @@ public class LibraryRepo implements ILibraryRepo {
 
             while (reservedBooks.next()) {
 
-                int reservationId = reservedBooks.getInt("idpr");
+                int reservationId = reservedBooks.getInt("idr");
                 String member = reservedBooks.getString("member");
                 String book = reservedBooks.getString("book");
 
@@ -673,65 +673,240 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addAccount(Account account) {
 
+        String query = "INSERT INTO accounts VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, account.getEmail());
+            statement.setString(2, account.getUsername());
+            statement.setString(3, account.getPassword());
+            statement.setString(4, account.getType().toString());
+            statement.setString(5, account.getPerson().getJMBG());
+            statement.setInt(6, account.isActive() ? 1 : 0);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void addPayment(Payment payment) {
 
+        String query = "INSERT INTO payments VALUES (?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, payment.getPaymentId());
+            statement.setString(2, payment.getMember().getJMBG());
+            statement.setDate(3, Date.valueOf(payment.getValidToDate()));
+            statement.setInt(4, payment.getNumOfMonths());
+            statement.setDate(5, Date.valueOf(payment.getPaymentDate()));
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void addPendingReservation(PendingReservation pendingReservation) {
 
+        String query = "INSERT INTO pendingReservations VALUES (?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, pendingReservation.getId());
+            statement.setString(2, pendingReservation.getMember().getJMBG());
+            statement.setString(3, pendingReservation.getEdition().getEditionId());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void addReservation(Reservation reservation) {
 
+        String query = "INSERT INTO pendingReservations VALUES (?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, reservation.getId());
+            statement.setString(2, reservation.getMember().getJMBG());
+            statement.setString(3, reservation.getBook().getBookId());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void addIssuedBook(IssuedBook issuedBook) {
 
+        String query = "INSERT INTO issuedBooks VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, issuedBook.getBook().getBookId());
+            statement.setDate(2, Date.valueOf(issuedBook.getIssueDate()));
+            statement.setDate(3, Date.valueOf(issuedBook.getReturnDate()));
+            statement.setInt(4, issuedBook.isProlongedIssue() ? 1 : 0);
+            statement.setString(5, issuedBook.getLibrarian().getJMBG());
+            statement.setString(6, issuedBook.getMember().getJMBG());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void addGenre(Genre genre) {
 
+        String query = "INSERT INTO genres VALUES (?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, genre.getGenreId());
+            statement.setString(2, genre.getName());
+            statement.executeUpdate();
+
+            for (Edition edition : genre.getEditions()) {
+
+                query = "INSERT INTO editionGenres VALUES (?, ?)";
+                statement = connection.prepareStatement(query);
+                statement.setString(1, edition.getEditionId());
+                statement.setInt(2, genre.getGenreId());
+                statement.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void addEdition(Edition edition) {
 
+        String query = "INSERT INTO editions VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, edition.getEditionId());
+            statement.setString(2, edition.getTitle());
+            statement.setString(3, edition.getPublisher());
+            statement.setInt(4, edition.getNumberOfPages());
+            statement.setString(5, edition.getDescription());
+            statement.setDate(6, Date.valueOf(edition.getPublishedDate()));
+            statement.setString(7, edition.getLanguage());
+            statement.setInt(8, edition.getFormat().getBookFormatId());
+            statement.setString(9, edition.getImage());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void addContributor(Contributor contributor) {
 
+        String query = "INSERT INTO contributors VALUES (?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, contributor.getContributorId());
+            statement.setString(2, contributor.getName());
+            statement.setString(3, contributor.getSurname());
+            statement.setString(4, contributor.getBiography());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void addContributorRole(ContributorRole role) {
 
+        String query = "INSERT INTO contributorRoles VALUES (?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, role.getEdition().getEditionId());
+            statement.setInt(2, role.getContributor().getContributorId());
+            statement.setString(3, role.getRole().toString());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void addBookSection(BookSection bookSection) {
 
+        String query = "INSERT INTO bookSections VALUES (?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, bookSection.getSectionId());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void addBookShelf(Bookshelf bookshelf) {
+    public void addBookShelf(BookSection bookSection) {
 
+        String query = "INSERT INTO booksPosition VALUES (?, ?, ?, ?)";
+        try {
+
+            for (Bookshelf bookshelf : bookSection.getShelves()) {
+                for (int row : bookshelf.getRows().keySet()) {
+                    for (Book book : bookshelf.getBooks(row)) {
+
+                        PreparedStatement statement = connection.prepareStatement(query);
+                        statement.setString(1, bookSection.getSectionId());
+                        statement.setInt(2, bookshelf.getShelfId());
+                        statement.setInt(3, row);
+                        statement.setString(4, book.getBookId());
+                        statement.executeUpdate();
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void addBook(Book book) {
 
+        String query = "INSERT INTO books VALUES (?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, book.getBookId());
+            statement.setString(2, book.getEdition().getEditionId());
+            statement.setString(3, book.getState().toString());
+            statement.setInt(4, book.isRestricted() ? 1 : 0);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void addBookFormat(BookFormat bookFormat) {
 
+        String query = "INSERT INTO bookFormats VALUES (?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, bookFormat.getBookFormatId());
+            statement.setDouble(2, bookFormat.getHeight());
+            statement.setDouble(3, bookFormat.getWidth());
+            statement.setDouble(4, bookFormat.getThickness());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -34,7 +34,7 @@ public interface ILibraryRepo {
     void addContributor(Contributor contributor);
     void addContributorRole(ContributorRole role);
     void addBookSection(BookSection bookSection);
-    void addBookShelf(Bookshelf bookshelf);
+    void addBookShelf(BookSection bookSection);
     void addBook(Book book);
     void addBookFormat(BookFormat bookFormat);
 }

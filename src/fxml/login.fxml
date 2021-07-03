@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0"
-            prefWidth="950.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+<AnchorPane prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.LoginController">
     <ImageView fitHeight="650.0" fitWidth="950.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@../fxml/login.png"/>

@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import model.Account;
@@ -27,6 +28,7 @@ import java.util.Objects;
 public class LoginController {
     public TextField usernameTextField;
     public PasswordField passwordField;
+    public ImageView background;
     public Label lblError;
     AccountController accountController;
     Library library;

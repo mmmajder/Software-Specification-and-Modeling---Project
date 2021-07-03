@@ -35,7 +35,7 @@ public class Reports {
     }
 
     private void generateMembershipsPart(List<String> lines){
-        
+
     }
 
     private void generateIssuesPart(List<String> lines){
@@ -44,6 +44,7 @@ public class Reports {
 
         for (Librarian librarian : librariansThatIssued){
             generateLibrarianLines(lines, issuedBooks, librarian);
+            
         }
     }
 

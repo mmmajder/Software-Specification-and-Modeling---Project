@@ -445,6 +445,34 @@ public class LibraryRepo implements ILibraryRepo {
     }
 
     @Override
+    public void loadPayments(Library library) {
+
+        String query = "SELECT * FROM payments";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet payments = statement.executeQuery();
+
+            while (payments.next()) {
+
+                int id = payments.getInt("idp");
+                String jmbg = payments.getString("member");
+                LocalDate toDate = payments.getDate("toDate").toLocalDate();
+                int numOfMonths = payments.getInt("numOfMonths");
+                LocalDate paymentDate = payments.getDate("paymentDate").toLocalDate();
+
+                Member member = (Member) library.getPerson(jmbg);
+                Payment payment = new Payment(id, paymentDate, toDate, member, numOfMonths);
+                payment.setMember(member);
+                member.addPayment(payment);
+                library.addPayment(payment);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void loadHalfAYearPrices(Library library) {
 
         String query = "SELECT * FROM catalogHalfAYearPrices";
@@ -564,6 +592,51 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setString(2, notification.getMessage());
             statement.setDate(3, Date.valueOf(notification.getDate()));
             statement.setString(4, notification.getAccount().getEmail());
+            statement.executeUpdate(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateName(String name, String jmbg) {
+
+        String query = "UPDATE persons SET name = ? WHERE jmbg = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, name);
+            statement.setString(2, jmbg);
+            statement.executeUpdate(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateSurname(String surname, String jmbg) {
+
+        String query = "UPDATE persons SET surname = ? WHERE jmbg = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, surname);
+            statement.setString(2, jmbg);
+            statement.executeUpdate(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updatePhoneNumber(String phoneNumber, String jmbg) {
+
+        String query = "UPDATE persons SET phoneNumber = ? WHERE jmbg = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, phoneNumber);
+            statement.setString(2, jmbg);
             statement.executeUpdate(query);
 
         } catch (SQLException e) {

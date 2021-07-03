@@ -14,9 +14,13 @@ public interface ILibraryRepo {
     void loadPendingReservations(Library library);
     void loadReservations(Library library);
     void loadPriceCatalogs(Library library);
+    void loadPayments(Library library);
     void loadHalfAYearPrices(Library library);
     void loadFullYearPrices(Library library);
     void loadIssuedBooks(Library library);
     void loadNotifications(Library library);
     void addNotification(Notification notification);
+    void updateName(String name, String jmbg);
+    void updateSurname(String surname, String jmbg);
+    void updatePhoneNumber(String phoneNumber, String jmbg);
 }

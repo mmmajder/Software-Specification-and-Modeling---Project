@@ -210,7 +210,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void loadContributorRoles(Library library) {
 
-        String query = "SELECT * FROM editionContributors";
+        String query = "SELECT * FROM contributorRoles";
 
         try {
             PreparedStatement statement = connection.prepareStatement(query);

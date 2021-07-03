@@ -103,4 +103,5 @@ public class EditionController {
     public String getAuthorName(Edition edition) {
         return edition.getAuthor().getName() + " " + edition.getAuthor().getSurname();
     }
+
 }

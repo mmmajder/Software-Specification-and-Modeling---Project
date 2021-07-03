@@ -22,6 +22,7 @@ public class BookLibrarianController {
     public Label lblNumberOfPages;
     public Label lblTranslation;
     public Label lblIllustration;
+    public Label lblShelf;
     public Label lblGenre;
     public Text txtTags;
     public Text txtDescription;
@@ -41,6 +42,7 @@ public class BookLibrarianController {
     @FXML
     public void initData(Edition edition, LibrarianController librarianController) {
         this.librarianController = librarianController;
+        editionControler = new EditionController(library);
         lblTitle.setText(edition.getTitle());
         lblAuthor.setText(editionControler.getAuthorName(edition));
         final Tooltip authorBiography = new Tooltip();
@@ -54,7 +56,7 @@ public class BookLibrarianController {
         lblNumberOfPages.setText("Name of pages: " + edition.getNumberOfPages());
         //lblTranslation.setText("Translation: " + edition.getTranslator());
         //lblIllustration.setText("Illustration: " + edition.getIllustrator());
-//        lblGenre.setText("Genre " + edition.getGenre());
+        lblGenre.setText("Genre " + edition.getGenres());
         txtTags.setText("Tags: " + edition.getTags());
 
         // TODO add needed getters

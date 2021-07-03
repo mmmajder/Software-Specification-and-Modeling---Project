@@ -13,11 +13,11 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+<AnchorPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.member.BookMemberController" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="0.0"
             AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-    <BorderPane prefHeight="550.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0"
-                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <BorderPane prefHeight="550.0" prefWidth="900.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
+                AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
         <left>
             <VBox prefHeight="478.0" prefWidth="270.0" BorderPane.alignment="CENTER">
                 <Pane prefHeight="261.0" prefWidth="288.0">

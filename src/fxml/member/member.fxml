@@ -1,61 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0"
+<BorderPane fx:id="borderPane" minHeight="650.0" minWidth="950.0" prefHeight="650.0" prefWidth="950.0"
             xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.member.MemberController">
     <top>
-        <HBox prefHeight="26.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
-            <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false"/>
+        <HBox minHeight="50.0" prefHeight="50.0" prefWidth="950.0" style="-fx-background-color: #ffffff;"
+              BorderPane.alignment="CENTER">
+            <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false" HBox.hgrow="NEVER"/>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../logo.png"/>
             </ImageView>
-            <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="100.0" visible="false"/>
-            <Label fx:id="lblBooks" alignment="CENTER" contentDisplay="CENTER" prefHeight="99.0" prefWidth="99.0"
-                   text="BOOKS" onMouseClicked="#switchToBooks" textFill="#63ac29" underline="true">
+            <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="100.0" visible="false" HBox.hgrow="NEVER"/>
+            <Label fx:id="lblBooks" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#switchToBooks"
+                   prefHeight="99.0" prefWidth="99.0" text="BOOKS" textFill="#63ac29" underline="true"
+                   HBox.hgrow="NEVER">
                 <font>
                     <Font name="SansSerif Bold" size="12.0"/>
                 </font>
             </Label>
-            <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="20.0" visible="false"/>
-            <Label fx:id="lblMembership" alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="122.0"
-                   onMouseClicked="#switchToMembership" text="MEMBERSHIP" textFill="#63ac29">
+            <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="20.0" visible="false" HBox.hgrow="NEVER"/>
+            <Label fx:id="lblMembership" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#switchToMembership"
+                   prefHeight="79.0" prefWidth="122.0" text="MEMBERSHIP" textFill="#63ac29" HBox.hgrow="NEVER">
                 <font>
                     <Font name="SansSerif Bold" size="12.0"/>
                 </font>
             </Label>
-            <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="20.0" visible="false"/>
-            <Label fx:id="lblHistory" alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="122.0"
-                   onMouseClicked="#switchToHistory" text="HISTORY" textFill="#63ac29">
+            <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="20.0" visible="false" HBox.hgrow="NEVER"/>
+            <Label fx:id="lblHistory" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#switchToHistory"
+                   prefHeight="79.0" prefWidth="122.0" text="HISTORY" textFill="#63ac29" HBox.hgrow="NEVER">
                 <font>
                     <Font name="SansSerif Bold" size="12.0"/>
                 </font>
             </Label>
-            <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="20.0" visible="false"/>
-            <Label fx:id="lblNotifications" alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0"
-                   prefWidth="122.0"
-                   onMouseClicked="#switchToNotifications" text="NOTIFICATIONS" textFill="#63ac29">
+            <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="20.0" visible="false" HBox.hgrow="NEVER"/>
+            <Label fx:id="lblNotifications" alignment="CENTER" contentDisplay="CENTER"
+                   onMouseClicked="#switchToNotifications" prefHeight="79.0" prefWidth="122.0" text="NOTIFICATIONS"
+                   textFill="#63ac29" HBox.hgrow="NEVER">
                 <font>
                     <Font name="SansSerif Bold" size="12.0"/>
                 </font>
             </Label>
+            <Separator maxWidth="Infinity" orientation="VERTICAL" prefHeight="50.0" prefWidth="14.0" visible="false" HBox.hgrow="ALWAYS"/>
             <Label fx:id="lblUsername" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="50.0"
-                   prefWidth="311.0" textFill="#63ac29">
+                   prefWidth="311.0" textFill="#63ac29" HBox.hgrow="NEVER">
                 <font>
                     <Font name="SansSerif Bold" size="12.0"/>
                 </font>
             </Label>
-            <Separator orientation="VERTICAL" prefHeight="71.0" prefWidth="40.0" visible="false"/>
-            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" onMouseClicked="#logOut"
-                       preserveRatio="true">
+            <Separator minHeight="71.0" minWidth="40.0" orientation="VERTICAL" visible="false"
+                       HBox.hgrow="NEVER"/>
+            <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#logOut" pickOnBounds="true"
+                       preserveRatio="true" HBox.hgrow="NEVER">
                 <Image url="@../logout.png"/>
             </ImageView>
+            <Separator orientation="VERTICAL" prefHeight="200.0" visible="false"/>
         </HBox>
     </top>
 </BorderPane>

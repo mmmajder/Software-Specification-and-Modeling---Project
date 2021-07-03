@@ -72,25 +72,12 @@ public class CRUDController {
         }
     }
 
-    private boolean phoneNumberExists(String phoneNumber) {
-
-        for (Person person : library.getPersons()) {
-
-            if (person.getPhoneNumber().equals(phoneNumber)) {
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     private boolean phoneNumberValid(String phoneNumber) {
         return phoneNumber.matches("\\+\\d{3}\\d{9}");
     }
 
     private boolean surnameValid(String surname) {
-        return surname.matches("[A-Z]+([ '-][a-zA-Z]+)*");
+        return surname.matches("[A-Z]+([a-zA-Z]+)*");
     }
 
     private boolean jmbgValid(String jmbg) {

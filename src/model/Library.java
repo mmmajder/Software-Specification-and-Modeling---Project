@@ -276,20 +276,20 @@ public class Library implements Publisher {
         return member.getReturnedBooks();
     }
 
-    public String getMaxNumberOfTakenBooks(MemberType memberType) {
-        return "Number of books you can issue is " + this.getMaxIssuedBooks().get(memberType) + ".";
+    public int getMaxNumberOfTakenBooks(MemberType memberType) {
+        return this.getMaxIssuedBooks().get(memberType);
     }
 
-    public String getMaxNumberOfIssueDays(MemberType memberType) {
-        return "Number of days you can keep your books is " + this.getMaxIssueDays().get(memberType) + ".";
+    public int getMaxNumberOfIssueDays(MemberType memberType) {
+        return this.getMaxIssueDays().get(memberType);
     }
 
-    public String get6mothsPrice(MemberType memberType) {
-        return this.getCurrentCatalog().getPrice(memberType, 6) + "RSD";
+    public double get6mothsPrice(MemberType memberType) {
+        return this.getCurrentCatalog().getPrice(memberType, 6);
     }
 
-    public String get12mothsPrice(MemberType memberType) {
-        return this.getCurrentCatalog().getPrice(memberType, 12) + "RSD";
+    public double get12mothsPrice(MemberType memberType) {
+        return this.getCurrentCatalog().getPrice(memberType, 12);
     }
 
     public List<Payment> getPayments(){ return payments;}

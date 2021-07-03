@@ -144,8 +144,7 @@ public class MemberCRUDController implements Observer {
         colJMBG.setCellFactory(TextFieldTableCell.forTableColumn());
         colPhone.setCellFactory(TextFieldTableCell.forTableColumn());
         colEmail.setCellFactory(TextFieldTableCell.forTableColumn());
-//
-//        colBirthDate.setCellFactory(TextFieldTableCell.forTableColumn());
+        colBirthDate.setCellFactory(TextFieldTableCell.forTableColumn());
 //        colMembershipEndDate.setCellFactory(TextFieldTableCell.forTableColumn());
 
         memberTable.setOnMouseClicked(e -> {
@@ -158,7 +157,7 @@ public class MemberCRUDController implements Observer {
         });
 
         addMemberLbl.setOnMouseClicked(e -> {
-            dataMemberTable.add(new MemberTable("Name", "Surname", "JMBG", "Phone", "Email", LocalDate.of(2001, 1, 1), LocalDate.of(2001, 1, 1)));
+            dataMemberTable.add(new MemberTable("Name", "Surname", "JMBG", "Phone", "Email", "01.01.2001.", null));
         });
 
         prolongLbl.setOnMouseClicked(e -> {
@@ -169,8 +168,12 @@ public class MemberCRUDController implements Observer {
     private ObservableList<MemberTable> getMembers() {
         ObservableList<MemberTable> list = FXCollections.observableArrayList();
         for (Member member : library.getMembers()) {
-            list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate(), member.getMembershipExpirationDate()));
-
+            try{
+                list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate().toString(), member.getMembershipExpirationDate().toString()));
+            }
+            catch (NullPointerException e) {
+                list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate().toString(), null));
+            }
         }
         return list;
     }

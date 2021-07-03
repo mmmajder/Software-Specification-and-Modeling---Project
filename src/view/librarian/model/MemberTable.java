@@ -8,10 +8,10 @@ public class MemberTable {
     private String JMBG;
     private String phoneNumber;
     private String email;
-    private LocalDate birthDate;
-    private LocalDate membershipEndDate;
+    private String birthDate;
+    private String membershipEndDate;
 
-    public MemberTable(String name, String surname, String JMBG, String phoneNumber, String email, LocalDate birthDate, LocalDate membershipEndDate) {
+    public MemberTable(String name, String surname, String JMBG, String phoneNumber, String email, String birthDate, String membershipEndDate) {
         this.name = name;
         this.surname = surname;
         this.JMBG = JMBG;
@@ -54,11 +54,11 @@ public class MemberTable {
         return email;
     }
 
-    public LocalDate getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public LocalDate getMembershipEndDate() {
+    public String getMembershipEndDate() {
         return membershipEndDate;
     }
 
@@ -82,11 +82,11 @@ public class MemberTable {
         this.email = email;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
-    public void setMembershipEndDate(LocalDate membershipEndDate) {
+    public void setMembershipEndDate(String membershipEndDate) {
         this.membershipEndDate = membershipEndDate;
     }
 }

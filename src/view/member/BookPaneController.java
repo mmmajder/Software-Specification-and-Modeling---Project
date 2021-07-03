@@ -1,5 +1,6 @@
 package view.member;
 
+import controller.EditionController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -13,7 +14,7 @@ public class BookPaneController {
     public Label lblTitle;
     public Label lblAuthor;
     public Label lblAvailable;
-
+    EditionController editionController;
     Library library;
 
     public Edition getEdition() {
@@ -23,6 +24,7 @@ public class BookPaneController {
     public void setEdition(Edition edition, Library library) {
         this.edition = edition;
         this.library = library;
+        editionController = new EditionController(library);
 //        try (InputStream in = new URL(edition.getImage()).openStream()) {
 //            Files.copy(in, Paths.get("src/fxml/images/" + edition.getTitle() + ".jpg"));
 //        } catch (IOException e) {
@@ -34,7 +36,7 @@ public class BookPaneController {
         lblTitle.setText(edition.getTitle());
         //Image image = new Image(getClass().getResourceAsStream(edition.getImage()));
         //imageView.setImage(image);
-        lblAuthor.setText(edition.getAuthorName());
+        lblAuthor.setText(editionController.getAuthorName(edition));
 
         if (library.isAvailable(edition)) {
             lblAvailable.setText("AVAILABLE");

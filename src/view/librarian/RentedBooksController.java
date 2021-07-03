@@ -32,6 +32,8 @@ public class RentedBooksController implements Observer {
         libraryRepo.loadEditions(library);
         libraryRepo.loadBooks(library);
         libraryRepo.loadIssuedBooks(library);
+        libraryRepo.loadContributors(library);
+        libraryRepo.loadContributorRoles(library);
         controller = new IssuedBookController(library);
         rentedBooksTable.setItems(getRentedBooks());
 

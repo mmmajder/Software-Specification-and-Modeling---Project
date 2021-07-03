@@ -37,4 +37,5 @@ public interface ILibraryRepo {
     void addBookShelf(BookSection bookSection);
     void addBook(Book book);
     void addBookFormat(BookFormat bookFormat);
+    void prolongIssue(IssuedBook issueBook);
 }

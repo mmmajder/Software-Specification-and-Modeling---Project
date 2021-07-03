@@ -210,7 +210,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void loadContributorRoles(Library library) {
 
-        String query = "SELECT * FROM editionContributors";
+        String query = "SELECT * FROM contributorRoles";
 
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -903,6 +903,21 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setDouble(2, bookFormat.getHeight());
             statement.setDouble(3, bookFormat.getWidth());
             statement.setDouble(4, bookFormat.getThickness());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void prolongIssue(IssuedBook issueBook) {
+
+        String query = "UPDATE issuedBooks SET prolongedIssue = ? WHERE book = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, 1);
+            statement.setString(2, issueBook.getBookId());
             statement.executeUpdate();
 
         } catch (SQLException e) {

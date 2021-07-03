@@ -26,4 +26,8 @@ public class Payment {
     public Member getMember() { return member; }
 
     public int getNumOfMonths() { return numOfMonths; }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 }

@@ -607,7 +607,7 @@ public class LibraryRepo implements ILibraryRepo {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
             statement.setString(2, jmbg);
-            statement.executeUpdate(query);
+            statement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -622,7 +622,7 @@ public class LibraryRepo implements ILibraryRepo {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, surname);
             statement.setString(2, jmbg);
-            statement.executeUpdate(query);
+            statement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -637,10 +637,101 @@ public class LibraryRepo implements ILibraryRepo {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, phoneNumber);
             statement.setString(2, jmbg);
-            statement.executeUpdate(query);
+
+            statement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void addPerson(Person person) {
+
+        String query = "INSERT INTO persons VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, person.getJMBG());
+            statement.setString(2, person.getName());
+            statement.setString(3, person.getSurname());
+            statement.setString(4, person.getPhoneNumber());
+            statement.setDate(5, Date.valueOf(person.getBirthDate()));
+
+            if (person.getAccount() == null) {
+                statement.setString(6, null);
+            } else {
+                statement.setString(6, person.getAccount().getEmail());
+            }
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addAccount(Account account) {
+
+    }
+
+    @Override
+    public void addPayment(Payment payment) {
+
+    }
+
+    @Override
+    public void addPendingReservation(PendingReservation pendingReservation) {
+
+    }
+
+    @Override
+    public void addReservation(Reservation reservation) {
+
+    }
+
+    @Override
+    public void addIssuedBook(IssuedBook issuedBook) {
+
+    }
+
+    @Override
+    public void addGenre(Genre genre) {
+
+    }
+
+    @Override
+    public void addEdition(Edition edition) {
+
+    }
+
+    @Override
+    public void addContributor(Contributor contributor) {
+
+    }
+
+    @Override
+    public void addContributorRole(ContributorRole role) {
+
+    }
+
+    @Override
+    public void addBookSection(BookSection bookSection) {
+
+    }
+
+    @Override
+    public void addBookShelf(Bookshelf bookshelf) {
+
+    }
+
+    @Override
+    public void addBook(Book book) {
+
+    }
+
+    @Override
+    public void addBookFormat(BookFormat bookFormat) {
+
     }
 }

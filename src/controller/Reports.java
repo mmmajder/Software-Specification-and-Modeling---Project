@@ -1,9 +1,7 @@
 package controller;
 
-import model.IssuedBook;
-import model.Librarian;
-import model.Library;
-import model.Member;
+import model.*;
+import model.enums.MemberType;
 import utils.StringUtils;
 
 import java.io.IOException;
@@ -28,14 +26,56 @@ public class Reports {
     }
 
 
-    public void generateDailyReport(){
+    public void generateDailyReport() throws IOException {
         List<String> lines = new ArrayList<>();
         generateMembershipsPart(lines);
         generateIssuesPart(lines);
+        generateFile(lines, generateName());
     }
 
     private void generateMembershipsPart(List<String> lines){
+        List<Payment> todaysPayments = getPayments(LocalDate.now());
+        double totalEarnings = 0;
 
+        for (MemberType memberType : MemberType.values()){
+            List<Payment> typePayments = getTypePayments(todaysPayments, memberType);
+            totalEarnings += generateNumOfMonthsPaymentLine(lines, typePayments, memberType, 6);
+            totalEarnings += generateNumOfMonthsPaymentLine(lines, typePayments, memberType, 12);
+        }
+
+        lines.add("Total earnings are: " + totalEarnings + ".");
+    }
+
+    private List<Payment> getPayments(LocalDate date){
+        return library.getPayments().stream()
+                .filter(payment -> payment.getPaymentDate().isEqual(date))
+                .collect(Collectors.toList());
+    }
+
+    private List<Payment> getTypePayments(List<Payment> payments, MemberType memberType){
+        return payments.stream()
+                .filter(payment -> payment.getMember().getType() == memberType)
+                .collect(Collectors.toList());
+    }
+
+    private List<Payment> getNumOfMonthsPayments(List<Payment> payments, int numOfMonths){
+        return payments.stream()
+                .filter(payment -> payment.getNumOfMonths() == numOfMonths)
+                .collect(Collectors.toList());
+    }
+
+    private double generateNumOfMonthsPaymentLine(List<String> lines, List<Payment> payments, MemberType memberType, int numOfMonths){
+        List<Payment> numOfMonthsPayments = getNumOfMonthsPayments(payments, numOfMonths);
+        double price = numOfMonths == 6 ? library.get6mothsPrice(memberType) : library.get12mothsPrice(memberType);
+        int numOfPayments = payments.size();
+        double earnings = price*numOfPayments;
+        lines.add(generateTypePaymentLine(memberType, numOfPayments, numOfMonths, earnings));
+
+        return earnings;
+    }
+
+    private String generateTypePaymentLine(MemberType memberType, int numOfPayments, int numOfMonths, double earnings){
+        return numOfPayments + " memberships of type " + memberType + "for a period of " + numOfMonths + " were sold and made earnings of " + earnings + ".";
     }
 
     private void generateIssuesPart(List<String> lines){
@@ -44,7 +84,6 @@ public class Reports {
 
         for (Librarian librarian : librariansThatIssued){
             generateLibrarianLines(lines, issuedBooks, librarian);
-            
         }
     }
 

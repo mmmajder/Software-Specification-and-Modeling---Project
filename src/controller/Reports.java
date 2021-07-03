@@ -21,8 +21,12 @@ public class Reports {
         this.library = library;
     }
 
-    public void generateDailyReport(){
 
+    public void generateTodaysReport(){
+        generateDailyReport(LocalDate.now());
+    }
+    private void generateDailyReport(LocalDate date){
+        Issu
     }
 
     public void generateTopTenBooks(){

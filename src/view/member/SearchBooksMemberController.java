@@ -80,7 +80,7 @@ public class SearchBooksMemberController {
         setGenres();
 
         search.textProperty().addListener((observable, oldValue, newValue) -> initializeEditions(
-                searchBooksController.filterEditions(currentEditions, newValue)));
+                searchBooksController.filterByTitle(currentEditions, newValue)));
 
         genres.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 initializeEditions(searchBooksController.filterByGenre(currentEditions, newValue)));

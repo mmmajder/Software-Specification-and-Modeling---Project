@@ -1,5 +1,6 @@
 package view.librarian;
 
+import controller.IssuedBookController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ public class RentedBooksController implements Observer {
 
     Library library;
     ILibraryRepo libraryRepo;
+    IssuedBookController controller;
 
     public void initData() throws IOException {
         this.library = new Library();
@@ -30,7 +32,9 @@ public class RentedBooksController implements Observer {
         libraryRepo.loadEditions(library);
         libraryRepo.loadBooks(library);
         libraryRepo.loadIssuedBooks(library);
+        controller = new IssuedBookController(library);
         rentedBooksTable.setItems(getRentedBooks());
+
 
         TableColumn colMember = new TableColumn("Member") {
             {
@@ -69,7 +73,7 @@ public class RentedBooksController implements Observer {
     private ObservableList<RentedBooksTable> getRentedBooks() {
         ObservableList<RentedBooksTable> list = FXCollections.observableArrayList();
         for (IssuedBook issuedBook : library.getCurrentlyIssued()) {
-            list.add(new RentedBooksTable(issuedBook.getMemberNameSurname(), issuedBook.getTitle(), issuedBook.getIssueDate(), issuedBook.getReturnDate()));
+            list.add(new RentedBooksTable(controller.getAuthorName(issuedBook), issuedBook.getTitle(), issuedBook.getIssueDate(), issuedBook.getReturnDate()));
         }
         return list;
     }

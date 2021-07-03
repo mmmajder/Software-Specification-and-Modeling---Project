@@ -68,9 +68,7 @@ public class IssuedBook {
     public Member getMember() {
         return member;
     }
-    public String getMemberNameSurname() {
-        return member.getName() + " " + member.getSurname();
-    }
+
     public String getTitle() {
         return getBook().getEdition().getTitle();
     }

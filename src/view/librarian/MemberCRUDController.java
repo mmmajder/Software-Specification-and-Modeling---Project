@@ -1,12 +1,12 @@
 package view.librarian;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
 import model.*;
 import observer.Observer;
 import view.librarian.model.CurrentIssueTable;
@@ -14,6 +14,10 @@ import view.librarian.model.MemberTable;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Date;
 
 public class MemberCRUDController implements Observer {
     public Label removeMemberLbl;
@@ -29,6 +33,7 @@ public class MemberCRUDController implements Observer {
 
     public void initData() throws IOException  {
         this.library = new Library();
+        library.addObserver(this);
         libraryRepo = new LibraryRepo();
         libraryRepo.loadContributors(library);
         libraryRepo.loadAccounts(library);
@@ -134,11 +139,12 @@ public class MemberCRUDController implements Observer {
         dataMemberIssuesTable = FXCollections.observableArrayList();
 
         memberTable.setEditable(true);
+
         colName.setCellFactory(TextFieldTableCell.forTableColumn());
         colJMBG.setCellFactory(TextFieldTableCell.forTableColumn());
         colPhone.setCellFactory(TextFieldTableCell.forTableColumn());
         colEmail.setCellFactory(TextFieldTableCell.forTableColumn());
-
+//
 //        colBirthDate.setCellFactory(TextFieldTableCell.forTableColumn());
 //        colMembershipEndDate.setCellFactory(TextFieldTableCell.forTableColumn());
 
@@ -186,11 +192,8 @@ public class MemberCRUDController implements Observer {
 
     @Override
     public void updatePerformed() {
-        try {
-            initData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        memberTable.setItems(getMembers());
+        memberIssuesTable.setItems(FXCollections.observableArrayList());
     }
 
     public void editNameChanged(TableColumn.CellEditEvent<MemberTable, String> memberTableStringCellEditEvent) {

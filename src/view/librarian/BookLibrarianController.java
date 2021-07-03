@@ -1,6 +1,7 @@
 package view.librarian;
 
 import controller.AccountController;
+import controller.EditionController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
@@ -30,6 +31,7 @@ public class BookLibrarianController {
     Library library;
     Account account;
     ILibraryRepo libraryRepo;
+    EditionController editionControler;
 
     @FXML
     public void backToBooks() throws IOException {
@@ -40,7 +42,7 @@ public class BookLibrarianController {
     public void initData(Edition edition, LibrarianController librarianController) {
         this.librarianController = librarianController;
         lblTitle.setText(edition.getTitle());
-        lblAuthor.setText(edition.getAuthorName());
+        lblAuthor.setText(editionControler.getAuthorName(edition));
         final Tooltip authorBiography = new Tooltip();
         authorBiography.setText(edition.getAuthorBiography());
         lblAuthor.setTooltip(authorBiography);

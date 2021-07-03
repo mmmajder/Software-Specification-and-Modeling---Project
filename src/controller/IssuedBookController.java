@@ -36,4 +36,8 @@ public class IssuedBookController {
         return issuedBook.getIssueDate().plusDays(maxIssueDays);
     }
 
+    public String getAuthorName(IssuedBook issuedBook) { return issuedBook.getBook().getEdition().getAuthor().getName() + " " + issuedBook.getBook().getEdition().getAuthor().getSurname(); }
+
+
+
 }

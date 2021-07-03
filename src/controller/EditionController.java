@@ -99,4 +99,8 @@ public class EditionController {
 
         return library.getEditions().stream().filter(edition -> randomIds.contains(edition.getEditionId())).collect(Collectors.toList());
     }
+
+    public String getAuthorName(Edition edition) {
+        return edition.getAuthor().getName() + " " + edition.getAuthor().getSurname();
+    }
 }

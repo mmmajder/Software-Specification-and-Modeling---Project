@@ -50,6 +50,10 @@ public class Library implements Publisher {
         this.formats = new ArrayList<>();
     }
 
+    public List<Person> getPersons() {
+        return persons;
+    }
+
     public List<Genre> getGenres() {
         return genres;
     }

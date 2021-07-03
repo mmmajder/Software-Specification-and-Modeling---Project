@@ -7,6 +7,7 @@ import model.Person;
 import utils.exceptions.InvalidNameFormatException;
 import utils.exceptions.InvalidPhoneNumberFormatException;
 import utils.exceptions.InvalidSurnameFormatException;
+import utils.exceptions.PhoneNumberAlreadyExistsException;
 
 public class CRUDController {
 
@@ -42,16 +43,35 @@ public class CRUDController {
         throw new InvalidSurnameFormatException();
     }
 
-    public void changePhoneNumber(String phoneNumber, String jmbg) throws InvalidPhoneNumberFormatException {
+    public void changePhoneNumber(String phoneNumber, String jmbg) throws InvalidPhoneNumberFormatException,
+            PhoneNumberAlreadyExistsException {
 
         if (phoneNumberValid(phoneNumber)) {
 
-            Person person = library.getPerson(jmbg);
-            person.setPhoneNumber(phoneNumber);
-            libraryRepo.updatePhoneNumber(phoneNumber, jmbg);
+            if (!phoneNumberExists(phoneNumber)) {
+
+                Person person = library.getPerson(jmbg);
+                person.setPhoneNumber(phoneNumber);
+                libraryRepo.updatePhoneNumber(phoneNumber, jmbg);
+            }
+
+            throw new PhoneNumberAlreadyExistsException();
         }
 
         throw new InvalidPhoneNumberFormatException();
+    }
+
+    private boolean phoneNumberExists(String phoneNumber) {
+
+        for (Person person : library.getPersons()) {
+
+            if (person.getPhoneNumber().equals(phoneNumber)) {
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private boolean phoneNumberValid(String phoneNumber) {

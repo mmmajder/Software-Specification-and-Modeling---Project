@@ -29,7 +29,6 @@ public class BookCRUDController implements Observer {
     Account account;
     ILibraryRepo libraryRepo;
 
-    @FXML
     private void initData(Account account, Edition edition) throws IOException {
         this.edition = edition;
         this.account = account;

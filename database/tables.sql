@@ -378,5 +378,8 @@ ALTER TABLE issuedBooks DROP COLUMN state;
 
 ALTER TABLE payments ADD numOfMonths INTEGER NOT NULL;
 ALTER TABLE payments ADD paymentDate DATE NOT NULL;
+DROP TABLE memberPayments;
+DROP TABLE currentlyTakenBooks;
+RENAME editionContributors TO contributorRoles;
 
 COMMIT;

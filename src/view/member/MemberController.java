@@ -54,7 +54,7 @@ public class MemberController {
         libraryRepo.loadTags(library);
         libraryRepo.loadMaxIssueDays(library);
         libraryRepo.loadMaxIssuedBooks(library);
-        lblUsername.setText(account.getFullName());
+        lblUsername.setText(controller.getFullName(account.getPerson()));
 
         FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../../fxml/member/searchBooksMember.fxml"));
         booksScene = booksLoader.load();

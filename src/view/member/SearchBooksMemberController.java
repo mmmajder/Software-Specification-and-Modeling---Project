@@ -111,6 +111,7 @@ public class SearchBooksMemberController {
 
     public void initializeEditions(List<Edition> editions) {
         try {
+            tilePane.getChildren().clear();
             for (Edition edition : editions) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("../../fxml/member/bookSample.fxml"));

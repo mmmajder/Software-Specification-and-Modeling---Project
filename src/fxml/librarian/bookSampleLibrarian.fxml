@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="bookPane" minHeight="100.0" fx:controller="view.librarian.BookPaneLibrarianController"
+            minWidth="150.0" prefHeight="100.0" prefWidth="150.0"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <BorderPane>
+        <left>
+            <Pane prefHeight="100.0" prefWidth="80.0" BorderPane.alignment="CENTER">
+                <VBox prefHeight="100.0" prefWidth="90.0">
+                    <Label fx:id="lblTitle" prefHeight="20.0" prefWidth="100.0" textAlignment="CENTER"
+                           textFill="#3f3f3f">
+                        <font>
+                            <Font name="System Bold" size="8.0"/>
+                        </font>
+                    </Label>
+                    <Label fx:id="lblAuthor" prefHeight="20.0" prefWidth="100.0" textAlignment="CENTER"
+                           textFill="#3f3f3f">
+                        <font>
+                            <Font name="System Italic" size="8.0"/>
+                        </font>
+                    </Label>
+                    <Label fx:id="lblAvailable" prefHeight="20.0" prefWidth="100.0" textAlignment="CENTER">
+                        <font>
+                            <Font name="System Bold" size="7.0"/>
+                        </font>
+                    </Label>
+                </VBox>
+            </Pane>
+        </left>
+        <right>
+            <Pane prefHeight="100.0" prefWidth="70.0" BorderPane.alignment="CENTER">
+                <ImageView fitHeight="100.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true"/>
+            </Pane>
+        </right>
+    </BorderPane>
+</AnchorPane>

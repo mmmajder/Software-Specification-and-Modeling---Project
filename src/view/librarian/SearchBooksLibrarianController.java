@@ -25,6 +25,8 @@ public class SearchBooksLibrarianController {
     public TextField search;
     public Label titleSort;
     public Label publishedDateSort;
+    public Label addNewEdition;
+    public Label addNewGenre;
     public ImageView ascSort;
     public ImageView descSort;
     public BorderPane borderPane;
@@ -45,14 +47,14 @@ public class SearchBooksLibrarianController {
     SearchBooksController searchBooksController;
 
     public void switchToBook(Edition edition) throws IOException {
-        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/member/reservationMember.fxml"));
+        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookLibrarian.fxml"));
         Parent bookScene = bookLoader.load();
         BookLibrarianController bookLibrarianController = bookLoader.getController();
         bookLibrarianController.initData(edition, librarianController);
         mainBorderPane.setCenter(bookScene);
     }
 
-    public void initData(Account account, BorderPane mainBorderPane, LibrarianController librarianController) throws IOException {
+    public void initData(Account account, BorderPane mainBorderPane, LibrarianController librarianController) {
         library = new Library();
         searchBooksController = new SearchBooksController(library);
         libraryRepo = new LibraryRepo();
@@ -111,9 +113,10 @@ public class SearchBooksLibrarianController {
 
     public void initializeEditions(List<Edition> editions) {
         try {
+            tilePane.getChildren().clear();
             for (Edition edition : editions) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("../../fxml/member/bookSample.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("../../fxml/librarian/bookSampleLibrarian.fxml"));
                 AnchorPane bookPane = fxmlLoader.load();
                 bookPane.setPrefWidth(150);
                 bookPane.setPrefHeight(100);

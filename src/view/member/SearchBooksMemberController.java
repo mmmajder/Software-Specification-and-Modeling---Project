@@ -11,9 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.TilePane;
 import model.*;
 
 import java.io.IOException;
@@ -50,7 +51,7 @@ public class SearchBooksMemberController {
         mainBorderPane.setCenter(bookScene);
     }
 
-    public void initData(Account account, BorderPane mainBorderPane, MemberController memberController) throws IOException {
+    public void initData(Account account, BorderPane mainBorderPane, MemberController memberController) {
         library = new Library();
         searchBooksController = new SearchBooksController(library);
         libraryRepo = new LibraryRepo();
@@ -75,7 +76,7 @@ public class SearchBooksMemberController {
         tilePane.setVgap(8);
         tilePane.setPadding(new Insets(5));
 
-        currentEditions = editionController.getRandomEditions(50);
+        currentEditions = library.getEditions();
         initializeEditions(currentEditions);
         setGenres();
 
@@ -84,12 +85,16 @@ public class SearchBooksMemberController {
 
         genres.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 initializeEditions(searchBooksController.filterByGenre(currentEditions, newValue)));
+    }
 
-        titleSort.textProperty().addListener((ov, t, t1) -> initializeEditions(
-                searchBooksController.sortByTitleAsc(currentEditions)));
+    @FXML
+    public void sortByTitle() {
+        initializeEditions(searchBooksController.sortByTitleAsc(currentEditions));
+    }
 
-        publishedDateSort.textProperty().addListener((ov, t, t1) -> initializeEditions(
-                searchBooksController.sortByPublishedDateAsc(currentEditions)));
+    @FXML
+    public void sortByPublishedDate() {
+        initializeEditions(searchBooksController.sortByPublishedDateAsc(currentEditions));
     }
 
     @FXML

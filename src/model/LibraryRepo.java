@@ -2,7 +2,13 @@ package model;
 
 import model.enums.*;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.DriverManager;
+import java.sql.Date;
+
 import java.time.LocalDate;
 
 public class LibraryRepo implements ILibraryRepo {
@@ -544,6 +550,23 @@ public class LibraryRepo implements ILibraryRepo {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addNotification(Notification notification) {
+        String query = "INSERT INTO notifications VALUES (?, ?, ?, ?)";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, notification.getId());
+            statement.setString(2, notification.getMessage());
+            statement.setDate(3, Date.valueOf(notification.getDate()));
+            statement.setString(4, notification.getAccount().getEmail());
+            statement.executeUpdate(query);
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

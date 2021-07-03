@@ -41,13 +41,13 @@
                                 </font>
                             </Label>
                             <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
-                            <Label fx:id="titleSort" prefHeight="42.0" prefWidth="30.0" text="Title" textFill="WHITE">
+                            <Label fx:id="titleSort" onMouseClicked="#sortByTitle" prefHeight="42.0" prefWidth="30.0" text="Title" textFill="WHITE">
                                 <font>
                                     <Font name="SansSerif Regular" size="12.0"/>
                                 </font>
                             </Label>
                             <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
-                            <Label fx:id="publishedDateSort" prefHeight="40.0" prefWidth="86.0" text="Published Date"
+                            <Label fx:id="publishedDateSort" onMouseClicked="#sortByPublishedDate" prefHeight="40.0" prefWidth="86.0" text="Published Date"
                                    textFill="WHITE">
                                 <font>
                                     <Font name="SansSerif Regular" size="12.0"/>

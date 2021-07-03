@@ -52,7 +52,7 @@ public class AdminController {
         libraryRepo.loadTags(library);
         libraryRepo.loadMaxIssueDays(library);
         libraryRepo.loadMaxIssuedBooks(library);
-        lblUsername.setText(account.getFullName());
+        lblUsername.setText(controller.getFullName(account.getPerson()));
 
         FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/searchBooksLibrarian.fxml"));
         booksScene = booksLoader.load();
@@ -86,7 +86,7 @@ public class AdminController {
     @FXML
     private void logOut(MouseEvent event) throws IOException {
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/login.fxml"));
-        final Parent root = (Parent) loader.load();
+        final Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -95,7 +95,7 @@ public class AdminController {
     }
 
     @FXML
-    private void switchToRentedBooks(MouseEvent event) {
+    private void switchToRentedBooks() {
         borderPane.setCenter(rentedBooksScene);
         lblRentedBooks.setUnderline(true);
         lblMembers.setUnderline(false);

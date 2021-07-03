@@ -26,17 +26,6 @@ public class Account {
         this.notifications = new ArrayList<>();
     }
 
-    public String getMembershipExpirationDateStr() {
-        Member member = (Member) person;
-        LocalDate expirationDate = member.getMembershipExpirationDate();
-
-        if (expirationDate != null) {
-            return StringUtils.dateToString(expirationDate, "dd.mm.yyyy.");
-        }
-
-        return null;
-    }
-
     public Person getPerson() {
         return person;
     }
@@ -59,10 +48,6 @@ public class Account {
 
     public void setPerson(Person person) {
         this.person = person;
-    }
-
-    public String getFullName() {
-        return this.person.getName() + " " + this.person.getSurname();
     }
 
     public List<Notification> getNotifications() {

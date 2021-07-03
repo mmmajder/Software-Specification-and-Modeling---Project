@@ -36,7 +36,6 @@ public class LibrarianController {
     SearchBooksLibrarianController searchBooksLibrarianController;
 
     AccountController controller;
-    LibrarianController librarianController;
     Library library;
     Account account;
     ILibraryRepo libraryRepo;
@@ -44,7 +43,6 @@ public class LibrarianController {
     public void initData(Account account) throws IOException {
         this.account = account;
         this.library = new Library();
-        this.librarianController = new LibrarianController();
         this.controller = new AccountController(library);
         libraryRepo = new LibraryRepo();
         libraryRepo.loadContributors(library);
@@ -100,7 +98,7 @@ public class LibrarianController {
     @FXML
     public void switchToBooks() {
         borderPane.setCenter(booksScene);
-        searchBooksLibrarianController.initData(account, borderPane, librarianController);
+        searchBooksLibrarianController.initData(account, borderPane, this);
         lblRentedBooks.setUnderline(false);
         lblMembers.setUnderline(false);
         lblReservations.setUnderline(false);

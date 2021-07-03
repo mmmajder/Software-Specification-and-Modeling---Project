@@ -111,8 +111,8 @@ public class SearchBooksMemberController {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("../../fxml/member/bookSample.fxml"));
                 AnchorPane bookPane = fxmlLoader.load();
-                bookPane.setPrefWidth(150);
-                bookPane.setPrefHeight(100);
+                bookPane.setPrefWidth(300);
+                bookPane.setPrefHeight(130);
                 bookPane.addEventFilter(MouseEvent.MOUSE_PRESSED, mouseEvent -> {
                     try {
                         switchToBook(edition);
@@ -125,7 +125,7 @@ public class SearchBooksMemberController {
                         "-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);");
 
                 BookPaneController itemController = fxmlLoader.getController();
-                itemController.setEdition(edition);
+                itemController.setEdition(edition, library);
                 tilePane.getChildren().add(bookPane);
             }
         } catch (IOException e) {

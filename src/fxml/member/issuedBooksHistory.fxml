@@ -16,7 +16,7 @@
         <bottom>
             <Label text="PROLONG" textFill="WHITE" BorderPane.alignment="CENTER">
                 <font>
-                    <Font name="System Bold" size="18.0"/>
+                    <Font name="System Bold" size="25.0"/>
                 </font>
             </Label>
         </bottom>

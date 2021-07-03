@@ -79,8 +79,8 @@ public class LoginController {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setResizable(true);
-            stage.setMinWidth(900);
-            stage.setMinHeight(600);
+            stage.setMinWidth(950);
+            stage.setMinHeight(650);
             stage.setTitle("SIMS Library");
             stage.show();
         } catch (NoAccountWithThatUsername | InvalidAccountPassword noAccountWithThatUsername) {

@@ -75,11 +75,11 @@ public class MembershipController {
             if (group.getSelectedToggle() != null) {
                 MemberType memberType = MemberType.valueOf(((RadioButton) group.getSelectedToggle()).getText());
 
-                price6months.setText(library.get6mothsPrice(memberType));
-                price12months.setText(library.get12mothsPrice(memberType));
+                price6months.setText(library.getCurrentCatalog().getPrice(memberType, 6) + "RSD");
+                price12months.setText(library.getCurrentCatalog().getPrice(memberType, 12) + "RSD");
 
-                maxNumberOfBooks.setText(library.getMaxNumberOfTakenBooks(memberType));
-                maxNumberOfDays.setText(library.getMaxNumberOfIssueDays(memberType));
+                maxNumberOfBooks.setText("Number of books you can issue is " + library.getMaxIssuedBooks().get(memberType) + ".");
+                maxNumberOfDays.setText("Number of days you can keep your books is " + library.getMaxIssueDays().get(memberType) + ".");
             }
         });
     }

@@ -25,8 +25,6 @@ public class SearchBooksMemberController {
     public TextField search;
     public Label titleSort;
     public Label publishedDateSort;
-    public ImageView ascSort;
-    public ImageView descSort;
     public BorderPane borderPane;
     public BorderPane left;
     public AnchorPane right;
@@ -87,17 +85,9 @@ public class SearchBooksMemberController {
         genres.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 initializeEditions(searchBooksController.filterByGenre(currentEditions, newValue)));
 
-        ascSort.setPickOnBounds(true);
-        ascSort.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            //initializeEditions(library.sortAsc(currentEditions));
-        });
-        descSort.setPickOnBounds(true);
-        descSort.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            //initializeEditions(library.sortDesc(currentEditions));
-        });
-
         titleSort.textProperty().addListener((ov, t, t1) -> initializeEditions(
                 searchBooksController.sortByTitleAsc(currentEditions)));
+
         publishedDateSort.textProperty().addListener((ov, t, t1) -> initializeEditions(
                 searchBooksController.sortByPublishedDateAsc(currentEditions)));
     }

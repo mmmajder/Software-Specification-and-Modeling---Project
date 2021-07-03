@@ -11,9 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.TilePane;
 import model.*;
 
 import java.io.IOException;
@@ -27,8 +28,6 @@ public class SearchBooksLibrarianController {
     public Label publishedDateSort;
     public Label addNewEdition;
     public Label addNewGenre;
-    public ImageView ascSort;
-    public ImageView descSort;
     public BorderPane borderPane;
     public BorderPane left;
     public AnchorPane right;
@@ -89,17 +88,9 @@ public class SearchBooksLibrarianController {
         genres.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 initializeEditions(searchBooksController.filterByGenre(currentEditions, newValue)));
 
-        ascSort.setPickOnBounds(true);
-        ascSort.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            //initializeEditions(library.sortAsc(currentEditions));
-        });
-        descSort.setPickOnBounds(true);
-        descSort.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            //initializeEditions(library.sortDesc(currentEditions));
-        });
-
         titleSort.textProperty().addListener((ov, t, t1) -> initializeEditions(
                 searchBooksController.sortByTitleAsc(currentEditions)));
+
         publishedDateSort.textProperty().addListener((ov, t, t1) -> initializeEditions(
                 searchBooksController.sortByPublishedDateAsc(currentEditions)));
     }

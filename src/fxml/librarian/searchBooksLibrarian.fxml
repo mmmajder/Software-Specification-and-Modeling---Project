@@ -13,9 +13,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="900.0" fx:controller="view.librarian.SearchBooksLibrarianController"
+<AnchorPane prefHeight="550.0" prefWidth="900.0"
             stylesheets="@../style.css" BorderPane.alignment="CENTER"
-            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.librarian.SearchBooksLibrarianController">
     <BorderPane fx:id="borderPane" prefHeight="550.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0"
                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <center>
@@ -47,13 +48,6 @@
                                     <Font name="SansSerif Regular" size="12.0"/>
                                 </font>
                             </Label>
-                            <Separator orientation="VERTICAL" prefHeight="42.0" prefWidth="15.0" visible="false"/>
-                            <ImageView fx:id="ascSort" fitHeight="40.0" fitWidth="26.0">
-                                <Image url="@../asc.png"/>
-                            </ImageView>
-                            <ImageView fx:id="descSort" fitHeight="40.0" fitWidth="26.0">
-                                <Image url="@../desc.png"/>
-                            </ImageView>
                         </HBox>
                     </top>
                     <center>
@@ -71,7 +65,7 @@
         <left>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                 <center>
-                    <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER"/>
+                    <ListView fx:id="genres" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER"/>
                 </center>
                 <bottom>
                     <AnchorPane prefHeight="67.0" prefWidth="200.0" style="-fx-background-color: #abc82e;"

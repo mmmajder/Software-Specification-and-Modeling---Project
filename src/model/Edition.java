@@ -52,7 +52,7 @@ public class Edition {
 
     public Contributor getAuthor() {
         for (ContributorRole cRole : contributorRoles) {
-            if (cRole.getContributorType() == ContributorType.AUTHOR) {
+            if (cRole.getRole() == ContributorType.AUTHOR) {
                 return cRole.getContributor();
             }
         }

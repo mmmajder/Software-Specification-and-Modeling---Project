@@ -19,6 +19,7 @@ public class SearchBooksController {
     }
 
     public List<String> getGenreNamesSorted() {
+
         List<String> genresNames = new ArrayList<>();
         for (Genre genre : library.getGenres()) {
             genresNames.add(genre.getName());
@@ -28,16 +29,19 @@ public class SearchBooksController {
     }
 
     public List<Edition> sortByTitleAsc(List<Edition> currentEditions) {
+
         currentEditions.sort(Sorter.EditionTitleAscComparator);
         return currentEditions;
     }
 
     public List<Edition> sortByPublishedDateAsc(List<Edition> currentEditions) {
+
         currentEditions.sort(Sorter.EditionPublishedDateAscComparator);
         return currentEditions;
     }
 
     public List<Edition> filterByGenre(List<Edition> currentEditions, String genreName) {
+
         List<Edition> editions = new ArrayList<>();
         for (Edition edition : currentEditions) {
 
@@ -53,7 +57,17 @@ public class SearchBooksController {
         return editions;
     }
 
-    public List<Edition> filterEditions(List<Edition> currentEditions, String filter) {
-        return currentEditions;
+    public List<Edition> filterByTitle(List<Edition> currentEditions, String title) {
+
+        List<Edition> editions = new ArrayList<>();
+        for (Edition edition : currentEditions) {
+
+            if (edition.getTitle().contains(title)) {
+
+                editions.add(edition);
+            }
+        }
+
+        return editions;
     }
 }

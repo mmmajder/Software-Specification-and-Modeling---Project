@@ -292,6 +292,8 @@ public class Library implements Publisher {
         return this.getCurrentCatalog().getPrice(memberType, 12) + "RSD";
     }
 
+    public List<Payment> getPayments(){ return payments;}
+
     public void addFormat(BookFormat format) {
         formats.add(format);
     }

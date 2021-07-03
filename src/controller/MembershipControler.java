@@ -30,7 +30,7 @@ public class MembershipControler {
         //TODO nextId value
         int nextId = 0;
         LocalDate fromDate = calculateFromDate(m);
-        Payment newPayment = new Payment(nextId, LocalDate.now(), fromDate.plusMonths(numOfMonths), m);
+        Payment newPayment = new Payment(nextId, LocalDate.now(), fromDate.plusMonths(numOfMonths), m, numOfMonths);
         m.addPayment(newPayment);
     }
 

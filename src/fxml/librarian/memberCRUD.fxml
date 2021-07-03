@@ -60,7 +60,7 @@
                 </TableView>
                 <BorderPane prefHeight="58.0" prefWidth="860.0">
                     <right>
-                        <Label text="PROLONG" textFill="WHITE" BorderPane.alignment="CENTER">
+                        <Label fx:id="prolongLbl" text="PROLONG" textFill="WHITE" BorderPane.alignment="CENTER">
                             <font>
                                 <Font size="18.0" />
                             </font>

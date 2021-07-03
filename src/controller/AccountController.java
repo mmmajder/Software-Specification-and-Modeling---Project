@@ -2,9 +2,14 @@ package controller;
 
 import model.Account;
 import model.Library;
+import model.Member;
+import model.Person;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+import utils.StringUtils;
 import utils.exceptions.InvalidAccountPassword;
 import utils.exceptions.NoAccountWithThatUsername;
+
+import java.time.LocalDate;
 
 public class AccountController {
 
@@ -37,8 +42,30 @@ public class AccountController {
         return false;
     }
 
-    public boolean passwordValid(Account account, String password) throws InvalidAccountPassword {
+    public boolean passwordValid(Account account, String password) {
 
         return account.getPassword().equals(password);
+    }
+
+    public String getFullName(Person person) {
+        return person.getName() + " " + person.getSurname();
+    }
+
+    public String getMembershipExpirationDate(Person person) {
+        Member member = (Member) person;
+        LocalDate expirationDate = member.getMembershipExpirationDate();
+
+        if (expirationDate != null) {
+            return StringUtils.dateToString(expirationDate, "dd.mm.yyyy.");
+        }
+
+        return null;
+    }
+
+    public String getMembershipStatus(Account account) {
+        if (this.getMembershipExpirationDate(account.getPerson()) == null) {
+            return "Membership status: NOT ACTIVE";
+        }
+        return "Membership status: ACTIVE UNTIL " + this.getMembershipExpirationDate(account.getPerson());
     }
 }

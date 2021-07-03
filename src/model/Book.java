@@ -43,4 +43,6 @@ public class Book {
     public void makeAvailable() { this.state = BookState.AVAILABLE; }
 
     public void makeTaken() {this.state = BookState.TAKEN; }
+
+    public String getTitle() { return getEdition().getTitle(); }
 }

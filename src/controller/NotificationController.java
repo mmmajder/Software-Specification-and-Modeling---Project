@@ -7,8 +7,12 @@ import java.time.LocalDate;
 public class NotificationController {
 
     private Library library;
+    private ILibraryRepo libraryRepo;
 
-    public NotificationController(Library library){ this.library = library; }
+    public NotificationController(Library library) {
+        this.library = library;
+        libraryRepo = new LibraryRepo();
+    }
 
     public void reminderToReturnBook(IssuedBook issuedBook) {
         String bookTitle = issuedBook.getBook().getEdition().getTitle();
@@ -52,5 +56,6 @@ public class NotificationController {
 
     private void addNotification(Account account, Notification notification) {
         account.addNotification(notification);
+        libraryRepo.addNotification(notification);
     }
 }

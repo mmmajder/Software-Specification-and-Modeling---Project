@@ -50,14 +50,22 @@ public class Edition {
     }
 
 
-    public Contributor getAuthor(){
-        for (ContributorRole cRole : contributorRoles){
-            if (cRole.getContributorType() == ContributorType.AUTHOR){
+    public Contributor getAuthor() {
+        for (ContributorRole cRole : contributorRoles) {
+            if (cRole.getContributorType() == ContributorType.AUTHOR) {
                 return cRole.getContributor();
             }
         }
 
         return null;
+    }
+
+    public String getAuthorBiography() {
+        return this.getAuthor().getBiography();
+    }
+
+    public String getAuthorName() {
+        return this.getAuthor().getName() + " " + this.getAuthor().getSurname();
     }
 
     public String getImage() {
@@ -108,7 +116,9 @@ public class Edition {
         this.genres.add(genre);
     }
 
-    public List<Genre> getGenres() { return genres;}
+    public List<Genre> getGenres() {
+        return genres;
+    }
 
     public void addTag(String tag) {
         this.tags.add(tag);

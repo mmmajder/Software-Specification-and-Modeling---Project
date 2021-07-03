@@ -18,6 +18,7 @@ import java.time.LocalDate;
 public class MemberCRUDController implements Observer {
     public Label removeMemberLbl;
     public Label addMemberLbl;
+    public Label prolongLbl;
     ObservableList<MemberTable> dataMemberTable;
     ObservableList<CurrentIssueTable> dataMemberIssuesTable;
 
@@ -152,6 +153,10 @@ public class MemberCRUDController implements Observer {
 
         addMemberLbl.setOnMouseClicked(e -> {
             dataMemberTable.add(new MemberTable("Name", "Surname", "JMBG", "Phone", "Email", LocalDate.of(2001, 1, 1), LocalDate.of(2001, 1, 1)));
+        });
+
+        prolongLbl.setOnMouseClicked(e -> {
+            memberIssuesTable.getSelectionModel().getSelectedItem();
         });
     }
 

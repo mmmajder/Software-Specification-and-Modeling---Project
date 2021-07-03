@@ -1,12 +1,14 @@
 package model;
 
 import model.enums.AccountType;
+import model.enums.BookState;
 import model.enums.MemberType;
 import observer.Observer;
 import observer.Publisher;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class Library implements Publisher {
 
@@ -260,20 +262,40 @@ public class Library implements Publisher {
         return members;
     }
 
-    public boolean isAvailable(Edition edition){
-        return getAvailableBooks(edition).size() > 0;
+    public boolean isAvailable(Edition edition) {
+
+        for (Book book : edition.getBooks()) {
+
+            if (book.getState() == BookState.AVAILABLE) {
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public List<Book> getAvailableBooks(Edition edition){
-        return books.stream()
-                .filter(book -> book.getEdition().getEditionId().equals(edition.getEditionId()))
-                .filter(book -> book.isAvailable())
-                .collect(Collectors.toList());
+    public List<Book> getAvailableBooks(Edition edition) {
+
+        List<Book> availableBooks = new ArrayList<>();
+        for (Book book : edition.getBooks()) {
+
+            if (book.getState() == BookState.AVAILABLE) {
+
+                availableBooks.add(book);
+            }
+        }
+
+        return availableBooks;
     }
 
     public List<IssuedBook> getMembersReturnedBooks(Account account) {
         Member member = (Member) account.getPerson();
         return member.getReturnedBooks();
+    }
+
+    public void addPayment(Payment payment) {
+        this.payments.add(payment);
     }
 
     public void addFormat(BookFormat format) {

@@ -376,4 +376,7 @@ ALTER TABLE notifications ADD CONSTRAINT notifications_FK FOREIGN KEY (Account) 
 
 ALTER TABLE issuedBooks DROP COLUMN state;
 
+ALTER TABLE payments ADD numOfMonths INTEGER NOT NULL;
+ALTER TABLE payments ADD paymentDate DATE NOT NULL;
+
 COMMIT;

@@ -1,6 +1,7 @@
 package view.member;
 
 import controller.AccountController;
+import controller.EditionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -35,6 +36,7 @@ public class BookMemberController {
 
     AccountController controller;
     MemberController memberController;
+    EditionController editionController;
     Library library;
     Account account;
     ILibraryRepo libraryRepo;
@@ -54,10 +56,11 @@ public class BookMemberController {
     @FXML
     public void initData(Edition edition, MemberController memberController) {
         this.memberController = memberController;
+        editionController = new EditionController(library);
         lblTitle.setText(edition.getTitle());
-        //lblAuthor.setText(edition.getAuthor());
+        lblAuthor.setText(editionController.getAuthorName(edition));
         final Tooltip authorBiography = new Tooltip();
-        //authorBiography.setText(edition.getAuthor().getBiography());
+        authorBiography.setText(edition.getAuthor().getBiography());
         lblAuthor.setTooltip(authorBiography);
 
         txtDescription.setText(edition.getDescription());

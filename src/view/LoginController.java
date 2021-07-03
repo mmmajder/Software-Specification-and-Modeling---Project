@@ -28,7 +28,6 @@ import java.util.Objects;
 public class LoginController {
     public TextField usernameTextField;
     public PasswordField passwordField;
-    public ImageView background;
     public Label lblError;
     AccountController accountController;
     Library library;

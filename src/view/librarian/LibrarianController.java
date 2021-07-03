@@ -44,6 +44,7 @@ public class LibrarianController {
     public void initData(Account account) throws IOException {
         this.account = account;
         this.library = new Library();
+        this.librarianController = new LibrarianController();
         this.controller = new AccountController(library);
         libraryRepo = new LibraryRepo();
         libraryRepo.loadContributors(library);

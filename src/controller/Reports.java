@@ -66,8 +66,7 @@ public class Reports {
 
     private double generateNumOfMonthsPaymentLine(List<String> lines, List<Payment> payments, MemberType memberType, int numOfMonths){
         List<Payment> numOfMonthsPayments = getNumOfMonthsPayments(payments, numOfMonths);
-        // currentCatalog because it is expected that prices will be changed on non-working days
-        double price = library.getCurrentCatalog().getPrice(memberType, numOfMonths);
+        double price = numOfMonths == 6 ? library.get6mothsPrice(memberType) : library.get12mothsPrice(memberType);
         int numOfPayments = payments.size();
         double earnings = price*numOfPayments;
         lines.add(generateTypePaymentLine(memberType, numOfPayments, numOfMonths, earnings));
@@ -78,7 +77,6 @@ public class Reports {
     private String generateTypePaymentLine(MemberType memberType, int numOfPayments, int numOfMonths, double earnings){
         return numOfPayments + " memberships of type " + memberType + "for a period of " + numOfMonths + " were sold and made earnings of " + earnings + ".";
     }
-
 
     private void generateIssuesPart(List<String> lines){
         List<IssuedBook> issuedBooks = getTodaysIssues();

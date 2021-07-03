@@ -383,4 +383,7 @@ DROP TABLE currentlyTakenBooks;
 RENAME editionContributors TO contributorRoles;
 ALTER TABLE reservations RENAME COLUMN idrb TO idr;
 
+ALTER TABLE persons DROP CONSTRAINT persons_UQ;
+ALTER TABLE persons ADD CONSTRAINT persons_UQ UNIQUE (Account);
+
 COMMIT;

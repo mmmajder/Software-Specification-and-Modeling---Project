@@ -909,4 +909,19 @@ public class LibraryRepo implements ILibraryRepo {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void prolongIssue(IssuedBook issueBook) {
+
+        String query = "UPDATE issuedBooks SET prolongedIssue = ? WHERE book = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, 1);
+            statement.setString(2, issueBook.getBookId());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

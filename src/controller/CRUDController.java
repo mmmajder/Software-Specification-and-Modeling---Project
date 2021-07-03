@@ -1,13 +1,9 @@
 package controller;
 
-import model.ILibraryRepo;
-import model.Library;
-import model.LibraryRepo;
-import model.Person;
+import model.*;
 import utils.exceptions.InvalidNameFormatException;
 import utils.exceptions.InvalidPhoneNumberFormatException;
 import utils.exceptions.InvalidSurnameFormatException;
-import utils.exceptions.PhoneNumberAlreadyExistsException;
 
 public class CRUDController {
 
@@ -19,46 +15,61 @@ public class CRUDController {
         this.libraryRepo = new LibraryRepo();
     }
 
-    public void changeName(String name, String jmbg) throws InvalidNameFormatException {
+    public void editName(String name, String jmbg) throws InvalidNameFormatException {
 
         if (nameValid(name)) {
 
             Person person = library.getPerson(jmbg);
             person.setName(name);
             libraryRepo.updateName(name, jmbg);
-        }
+        } else {
 
-        throw new InvalidNameFormatException();
+            throw new InvalidNameFormatException();
+        }
     }
 
-    public void changeSurname(String surname, String jmbg) throws InvalidSurnameFormatException {
+    public void editSurname(String surname, String jmbg) throws InvalidSurnameFormatException {
 
         if (surnameValid(surname)) {
 
             Person person = library.getPerson(jmbg);
             person.setSurname(surname);
             libraryRepo.updateSurname(surname, jmbg);
-        }
+        } else {
 
-        throw new InvalidSurnameFormatException();
+            throw new InvalidSurnameFormatException();
+        }
     }
 
-    public void changePhoneNumber(String phoneNumber, String jmbg) throws InvalidPhoneNumberFormatException,
-            PhoneNumberAlreadyExistsException {
+    public void editPhoneNumber(String phoneNumber, String jmbg) throws InvalidPhoneNumberFormatException {
 
         if (phoneNumberValid(phoneNumber)) {
 
-            if (!phoneNumberExists(phoneNumber)) {
+            Person person = library.getPerson(jmbg);
+            person.setPhoneNumber(phoneNumber);
+            libraryRepo.updatePhoneNumber(phoneNumber, jmbg);
+        } else {
 
-                Person person = library.getPerson(jmbg);
-                person.setPhoneNumber(phoneNumber);
-                libraryRepo.updatePhoneNumber(phoneNumber, jmbg);
-            }
-
-            throw new PhoneNumberAlreadyExistsException();
+            throw new InvalidPhoneNumberFormatException();
         }
+    }
 
-        throw new InvalidPhoneNumberFormatException();
+    public void editJmbg(String jmbg) {
+
+    }
+
+    public void prolongIssue(String jmbg, String bookId) {
+        Member member = (Member) library.getPerson(jmbg);
+
+        for (IssuedBook issuedBook : member.getCurrentlyTakenBooks()) {
+
+            if (issuedBook.getBookId().equals(bookId)) {
+                issuedBook.prolongIssue();
+                libraryRepo.prolongIssue(issuedBook);
+                library.notifyObservers();
+                break;
+            }
+        }
     }
 
     private boolean phoneNumberExists(String phoneNumber) {
@@ -80,6 +91,10 @@ public class CRUDController {
 
     private boolean surnameValid(String surname) {
         return surname.matches("[A-Z]+([ '-][a-zA-Z]+)*");
+    }
+
+    private boolean jmbgValid(String jmbg) {
+        return jmbg.matches("[0-2][0-9]{12}");
     }
 
     private boolean nameValid(String name) {

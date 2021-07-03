@@ -70,7 +70,14 @@ public class IssuedBook {
     }
 
     public String getTitle() {
-        return getBook().getEdition().getTitle();
+        return book.getEdition().getTitle();
     }
 
+    public String getBookId() {
+        return book.getBookId();
+    }
+
+    public void prolongIssue() {
+        prolongedIssue = true;
+    }
 }

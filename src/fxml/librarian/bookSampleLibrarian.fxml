@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -8,36 +9,46 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="bookPane" minHeight="100.0" fx:controller="view.librarian.BookPaneLibrarianController"
-            minWidth="150.0" prefHeight="100.0" prefWidth="150.0"
-            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <BorderPane>
+<AnchorPane fx:id="bookPane" minHeight="130.0" minWidth="300.0" prefHeight="130.0" prefWidth="300.0"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.librarian.BookPaneLibrarianController">
+    <BorderPane prefHeight="130.0" prefWidth="300.0">
         <left>
-            <Pane prefHeight="100.0" prefWidth="80.0" BorderPane.alignment="CENTER">
-                <VBox prefHeight="100.0" prefWidth="90.0">
-                    <Label fx:id="lblTitle" prefHeight="20.0" prefWidth="100.0" textAlignment="CENTER"
-                           textFill="#3f3f3f">
+            <Pane prefHeight="130.0" prefWidth="190.0" BorderPane.alignment="CENTER">
+                <VBox prefHeight="130.0" prefWidth="191.0">
+                    <Label fx:id="lblTitle" alignment="CENTER" prefHeight="26.0" prefWidth="192.0"
+                           textAlignment="CENTER" textFill="#3f3f3f">
                         <font>
-                            <Font name="System Bold" size="8.0"/>
+                            <Font name="System Bold" size="10.0"/>
                         </font>
                     </Label>
-                    <Label fx:id="lblAuthor" prefHeight="20.0" prefWidth="100.0" textAlignment="CENTER"
-                           textFill="#3f3f3f">
+                    <Separator prefHeight="9.0" prefWidth="160.0" visible="false"/>
+                    <Label fx:id="lblAuthor" alignment="CENTER" prefHeight="22.0" prefWidth="193.0"
+                           textAlignment="CENTER" textFill="#3f3f3f">
                         <font>
-                            <Font name="System Italic" size="8.0"/>
+                            <Font name="System Italic" size="10.0"/>
                         </font>
                     </Label>
-                    <Label fx:id="lblAvailable" prefHeight="20.0" prefWidth="100.0" textAlignment="CENTER">
+                    <Separator prefHeight="9.0" prefWidth="160.0" visible="false"/>
+                    <Label fx:id="lblAvailable" alignment="CENTER" prefHeight="20.0" prefWidth="194.0"
+                           textAlignment="CENTER">
                         <font>
-                            <Font name="System Bold" size="7.0"/>
+                            <Font name="System Bold" size="10.0"/>
+                        </font>
+                    </Label>
+                    <Separator prefHeight="10.0" prefWidth="160.0" visible="false"/>
+                    <Label fx:id="lblShell" alignment="CENTER" prefHeight="22.0" prefWidth="191.0">
+                        <font>
+                            <Font size="10.0"/>
                         </font>
                     </Label>
                 </VBox>
             </Pane>
         </left>
         <right>
-            <Pane prefHeight="100.0" prefWidth="70.0" BorderPane.alignment="CENTER">
-                <ImageView fitHeight="100.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true"/>
+            <Pane prefHeight="150.0" prefWidth="90.0" BorderPane.alignment="CENTER">
+                <ImageView fx:id="imageView" fitHeight="115.0" fitWidth="82.0" layoutX="4.0" layoutY="8.0"
+                           pickOnBounds="true" preserveRatio="true"/>
             </Pane>
         </right>
     </BorderPane>

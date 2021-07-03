@@ -1,7 +1,5 @@
 package view.member.model;
 
-import model.enums.IssuedBookState;
-
 import java.time.LocalDate;
 
 public class MemberHistoryTable {
@@ -9,9 +7,9 @@ public class MemberHistoryTable {
     private LocalDate issueDate;
     private LocalDate returnDate;
     private LocalDate returnedDate;
-    private IssuedBookState state;
+    private String state;
 
-    public MemberHistoryTable(String bookTitle, LocalDate issueDate, LocalDate returnDate, LocalDate returnedDate, IssuedBookState state) {
+    public MemberHistoryTable(String bookTitle, LocalDate issueDate, LocalDate returnDate, LocalDate returnedDate, String state) {
         this.bookTitle = bookTitle;
         this.issueDate = issueDate;
         this.returnDate = returnDate;
@@ -35,7 +33,7 @@ public class MemberHistoryTable {
         return returnDate;
     }
 
-    public IssuedBookState getState() {
+    public String getState() {
         return state;
     }
 }

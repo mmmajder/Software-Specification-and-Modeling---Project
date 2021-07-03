@@ -25,7 +25,6 @@ public class Reports {
         this.library = library;
     }
 
-
     public void generateDailyReport() throws IOException {
         List<String> lines = new ArrayList<>();
         generateMembershipsPart(lines);

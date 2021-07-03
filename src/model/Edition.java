@@ -5,6 +5,7 @@ import model.enums.ContributorType;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Edition {
 
@@ -58,6 +59,23 @@ public class Edition {
         }
 
         return null;
+    }
+
+    public List<Contributor> getAuthors(){ return getContributors(ContributorType.AUTHOR); }
+
+    public List<Contributor> getTranslators(){ return getContributors(ContributorType.TRANSLATOR); }
+
+    public List<Contributor> getIllustrators(){ return getContributors(ContributorType.ILLUSTRATOR); }
+
+    public List<Contributor> getCritics(){ return getContributors(ContributorType.CRITIC); }
+
+    public List<Contributor> getEditors(){ return getContributors(ContributorType.EDITOR); }
+
+    public List<Contributor> getContributors(ContributorType type){
+        return contributorRoles.stream()
+                .filter(contributorRole -> contributorRole.getContributorType() == type)
+                .map(contributorRole -> contributorRole.getContributor())
+                .collect(Collectors.toList());
     }
 
     public String getAuthorBiography() {

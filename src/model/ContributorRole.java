@@ -19,4 +19,8 @@ public class ContributorRole {
     public Contributor getContributor(){ return contributor; }
 
     public ContributorType getContributorType(){ return role; }
+
+    public ContributorType getRole() { return role; }
+
+    public Edition getEdition() { return edition; }
 }

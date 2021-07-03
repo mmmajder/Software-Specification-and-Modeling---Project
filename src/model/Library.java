@@ -1,12 +1,14 @@
 package model;
 
 import model.enums.AccountType;
+import model.enums.BookState;
 import model.enums.MemberType;
 import observer.Observer;
 import observer.Publisher;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class Library implements Publisher {
 
@@ -46,6 +48,10 @@ public class Library implements Publisher {
         this.reservations = new ArrayList<>();
         this.currentlyIssued = new ArrayList<>();
         this.formats = new ArrayList<>();
+    }
+
+    public List<Person> getPersons() {
+        return persons;
     }
 
     public List<Genre> getGenres() {
@@ -260,15 +266,31 @@ public class Library implements Publisher {
         return members;
     }
 
-    public boolean isAvailable(Edition edition){
-        return getAvailableBooks(edition).size() > 0;
+    public boolean isAvailable(Edition edition) {
+
+        for (Book book : edition.getBooks()) {
+
+            if (book.getState() == BookState.AVAILABLE) {
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public List<Book> getAvailableBooks(Edition edition){
-        return books.stream()
-                .filter(book -> book.getEdition().getEditionId().equals(edition.getEditionId()))
-                .filter(book -> book.isAvailable())
-                .collect(Collectors.toList());
+    public List<Book> getAvailableBooks(Edition edition) {
+
+        List<Book> availableBooks = new ArrayList<>();
+        for (Book book : edition.getBooks()) {
+
+            if (book.getState() == BookState.AVAILABLE) {
+
+                availableBooks.add(book);
+            }
+        }
+
+        return availableBooks;
     }
 
     public List<IssuedBook> getMembersReturnedBooks(Account account) {
@@ -276,20 +298,24 @@ public class Library implements Publisher {
         return member.getReturnedBooks();
     }
 
+    public void addPayment(Payment payment) {
+        this.payments.add(payment);
+    }
+
     public int getMaxNumberOfTakenBooks(MemberType memberType) {
-        return this.getMaxIssuedBooks().get(memberType);
+        return this.maxIssuedBooks.get(memberType);
     }
 
     public int getMaxNumberOfIssueDays(MemberType memberType) {
-        return this.getMaxIssueDays().get(memberType);
+        return this.maxIssueDays.get(memberType);
     }
 
-    public double get6mothsPrice(MemberType memberType) {
-        return this.getCurrentCatalog().getPrice(memberType, 6);
+    public double getHalfAYearPrice(MemberType memberType) {
+        return this.currentCatalog.getPrice(memberType, 6);
     }
 
-    public double get12mothsPrice(MemberType memberType) {
-        return this.getCurrentCatalog().getPrice(memberType, 12);
+    public double getFullYearPrice(MemberType memberType) {
+        return this.currentCatalog.getPrice(memberType, 12);
     }
 
     public List<Payment> getPayments(){ return payments;}

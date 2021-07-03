@@ -9,7 +9,7 @@ public class Payment {
     private Member member;
     private int numOfMonths;
 
-    public Payment(int paymentId, LocalDate paymentDate, LocalDate validToDate, Member member, int numOfMonths){
+    public Payment(int paymentId, LocalDate paymentDate, LocalDate validToDate, Member member, int numOfMonths) {
         this.paymentId = paymentId;
         this.paymentDate = paymentDate;
         this.validToDate = validToDate;
@@ -26,4 +26,8 @@ public class Payment {
     public Member getMember() { return member; }
 
     public int getNumOfMonths() { return numOfMonths; }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 }

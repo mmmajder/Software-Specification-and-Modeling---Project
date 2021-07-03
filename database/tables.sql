@@ -376,4 +376,14 @@ ALTER TABLE notifications ADD CONSTRAINT notifications_FK FOREIGN KEY (Account) 
 
 ALTER TABLE issuedBooks DROP COLUMN state;
 
+ALTER TABLE payments ADD numOfMonths INTEGER NOT NULL;
+ALTER TABLE payments ADD paymentDate DATE NOT NULL;
+DROP TABLE memberPayments;
+DROP TABLE currentlyTakenBooks;
+RENAME editionContributors TO contributorRoles;
+ALTER TABLE reservations RENAME COLUMN idrb TO idr;
+
+ALTER TABLE persons DROP CONSTRAINT persons_UQ;
+ALTER TABLE persons ADD CONSTRAINT persons_UQ UNIQUE (Account);
+
 COMMIT;

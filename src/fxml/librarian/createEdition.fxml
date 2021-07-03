@@ -17,9 +17,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.AnchorPane?>
 
-
-<Pane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="view.librarian.CreateEditionController">
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="view.librarian.CreateEditionController">
     <BorderPane prefHeight="550.0" prefWidth="900.0">
         <left>
             <VBox prefHeight="475.0" prefWidth="287.0" style="-fx-background-color: ffffff;"
@@ -129,7 +129,7 @@
                     </ScrollPane>
                     <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="97.0" layoutY="2.0"
                                pickOnBounds="true" preserveRatio="true">
-                        <Image url="@greenplus.jpg"/>
+                        <Image url="@../plus.png"/>
                     </ImageView>
                 </Pane>
             </VBox>
@@ -215,4 +215,4 @@
             </BorderPane>
         </bottom>
     </BorderPane>
-</Pane>
+</AnchorPane>

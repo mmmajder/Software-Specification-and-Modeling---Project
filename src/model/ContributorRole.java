@@ -16,7 +16,9 @@ public class ContributorRole {
         this.edition = edition;
     }
 
-    public Contributor getContributor(){ return contributor; }
+    public Contributor getContributor() {
+        return contributor;
+    }
 
     public ContributorType getContributorType(){ return role; }
 

@@ -5,7 +5,6 @@ import view.librarian.model.BookEditionTable;
 import view.librarian.model.BookSampleTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.*;
@@ -44,7 +43,7 @@ public class BookCRUDController implements Observer {
     private ObservableList<BookEditionTable> getSamples() {
         ObservableList<BookEditionTable> list = FXCollections.observableArrayList();
         for (Book book : edition.getBooks()) {
-            list.add(new BookEditionTable(book.getBookId(), book.getState(), book.getIsRestricted()));
+            list.add(new BookEditionTable(book.getBookId(), book.getState(), book.isRestricted()));
         }
         return list;
     }

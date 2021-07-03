@@ -26,18 +26,19 @@ public class IssuedBookController {
         return issuedBook.getReturnDate() == null;
     }
 
-    public LocalDate calculateReturnDate(IssuedBook issuedBook){
+    public LocalDate calculateReturnDate(IssuedBook issuedBook) {
         int maxIssueDays = library.getMaxIssueDays(issuedBook.getMember().getType());
 
-        if (issuedBook.isProlongedIssue()){
+        if (issuedBook.isProlongedIssue()) {
             maxIssueDays *= 2;
         }
 
         return issuedBook.getIssueDate().plusDays(maxIssueDays);
     }
 
-    public String getAuthorName(IssuedBook issuedBook) { return issuedBook.getBook().getEdition().getAuthor().getName() + " " + issuedBook.getBook().getEdition().getAuthor().getSurname(); }
-
+    public String getAuthorName(IssuedBook issuedBook) {
+        return issuedBook.getBook().getEdition().getAuthor().getName() + " " + issuedBook.getBook().getEdition().getAuthor().getSurname();
+    }
 
 
 }

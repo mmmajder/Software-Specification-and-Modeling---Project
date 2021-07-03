@@ -32,6 +32,8 @@ public class RentedBooksController implements Observer {
         libraryRepo.loadEditions(library);
         libraryRepo.loadBooks(library);
         libraryRepo.loadIssuedBooks(library);
+        libraryRepo.loadContributors(library);
+        libraryRepo.loadContributorRoles(library);
         controller = new IssuedBookController(library);
         rentedBooksTable.setItems(getRentedBooks());
 
@@ -74,6 +76,7 @@ public class RentedBooksController implements Observer {
         ObservableList<RentedBooksTable> list = FXCollections.observableArrayList();
         for (IssuedBook issuedBook : library.getCurrentlyIssued()) {
             list.add(new RentedBooksTable(controller.getAuthorName(issuedBook), issuedBook.getTitle(), issuedBook.getIssueDate(), issuedBook.getReturnDate()));
+
         }
         return list;
     }

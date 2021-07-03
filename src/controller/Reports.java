@@ -65,7 +65,7 @@ public class Reports {
 
     private double generateNumOfMonthsPaymentLine(List<String> lines, List<Payment> payments, MemberType memberType, int numOfMonths){
         List<Payment> numOfMonthsPayments = getNumOfMonthsPayments(payments, numOfMonths);
-        double price = numOfMonths == 6 ? library.get6mothsPrice(memberType) : library.get12mothsPrice(memberType);
+        double price = numOfMonths == 6 ? library.getHalfAYearPrice(memberType) : library.getFullYearPrice(memberType);
         int numOfPayments = payments.size();
         double earnings = price*numOfPayments;
         lines.add(generateTypePaymentLine(memberType, numOfPayments, numOfMonths, earnings));

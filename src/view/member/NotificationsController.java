@@ -47,7 +47,6 @@ public class NotificationsController implements Observer {
 
     @Override
     public void updatePerformed() {
-        libraryRepo.loadNotifications(library);
         notificationTable.setItems(getNotifications());
     }
 }

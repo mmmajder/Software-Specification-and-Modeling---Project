@@ -62,4 +62,10 @@ public class AccountController {
         return null;
     }
 
+    public String getMembershipStatus(Account account) {
+        if (this.getMembershipExpirationDate(account.getPerson()) == null) {
+            return "Membership status: NOT ACTIVE";
+        }
+        return "Membership status: ACTIVE UNTIL " + this.getMembershipExpirationDate(account.getPerson());
+    }
 }

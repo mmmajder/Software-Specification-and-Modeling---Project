@@ -135,4 +135,19 @@ public class EditionController {
                 .map(contributor -> contributor.getName() + " " + contributor.getSurname())
                 .collect(Collectors.toList());
     }
+
+    public String getGenresConcatenated(Edition edition){
+        String genresStr = "";
+        List<Genre> genres = edition.getGenres();
+
+        for (int i = 0; i < genres.size(); i++){
+            genresStr += genres.get(i);
+
+            if (i != genres.size() - 1){
+                genresStr += ", ";
+            }
+        }
+
+        return genresStr;
+    }
 }

@@ -39,6 +39,10 @@ public class Contributor {
         this.name = name;
     }
 
+    public String getFullName() {
+        return this.name + " " + this.surname;
+    }
+
     public String getSurname() {
         return surname;
     }

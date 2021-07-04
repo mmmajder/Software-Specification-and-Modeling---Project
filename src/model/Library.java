@@ -265,7 +265,7 @@ public class Library implements Publisher {
         currentCatalog = catalog;
     }
 
-    public List<PriceCatalog> getPriceCatalogs(){ return priceCatalogs; }
+    public List<PriceCatalog> getPriceCatalogs() { return priceCatalogs; }
 
     public PriceCatalog getPriceCatalog(int catalogId) {
 

@@ -14,6 +14,14 @@ public class MemberTableAdmin {
         return name;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setMembershipEndDate(String membershipEndDate) {
+        this.membershipEndDate = membershipEndDate;
+    }
+
     public String getSurname() {
         return surname;
     }
@@ -42,14 +50,12 @@ public class MemberTableAdmin {
         return userType;
     }
 
-    public MemberTableAdmin(String name, String surname, String JMBG, String phoneNumber, String email, String birthDate, String membershipEndDate, String userType) {
+    public MemberTableAdmin(String name, String surname, String JMBG, String phoneNumber, String birthDate, String userType) {
         this.name = name;
         this.surname = surname;
         this.JMBG = JMBG;
         this.phoneNumber = phoneNumber;
-        this.email = email;
         this.birthDate = birthDate;
-        this.membershipEndDate = membershipEndDate;
         this.userType = userType;
     }
 }

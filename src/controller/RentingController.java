@@ -75,5 +75,6 @@ public class RentingController {
         library.addIssuedBook(issuedBook);
         book.setState(BookState.TAKEN);
         libraryRepo.addIssuedBook(issuedBook);
+        libraryRepo.updateBookState(book);
     }
 }

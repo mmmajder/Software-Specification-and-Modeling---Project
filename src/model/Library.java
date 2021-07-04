@@ -411,4 +411,30 @@ public class Library implements Publisher {
             observer.updatePerformed();
         }
     }
+
+    public PendingReservation getPendingReservation(int pendingReservationId) {
+
+        for (PendingReservation pendingReservation : pendingReservations) {
+
+            if (pendingReservation.getId() == pendingReservationId) {
+
+                return pendingReservation;
+            }
+        }
+
+        return null;
+    }
+
+    public Reservation getReservation(int reservationId) {
+
+        for (Reservation reservation : reservations) {
+
+            if (reservation.getId() == reservationId) {
+
+                return reservation;
+            }
+        }
+
+        return null;
+    }
 }

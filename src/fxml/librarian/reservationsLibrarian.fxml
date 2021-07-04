@@ -48,14 +48,14 @@
                             <Insets left="30.0"/>
                         </VBox.margin>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0"
-                                style="-fx-background-color: #ABC82E;" text="APPROVE" textFill="WHITE">
+                                style="-fx-background-color: #ABC82E;" onMouseClicked="#approve" text="APPROVE" textFill="WHITE">
                             <font>
                                 <Font size="18.0"/>
                             </font>
                         </Button>
                         <Separator orientation="VERTICAL" prefHeight="52.0" prefWidth="18.0" visible="false"/>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0"
-                                style="-fx-background-color: #ABC82E;" text="DECLINE" textFill="WHITE">
+                                style="-fx-background-color: #ABC82E;" onMouseClicked="#decline" text="DECLINE" textFill="WHITE">
                             <font>
                                 <Font size="18.0"/>
                             </font>
@@ -82,7 +82,7 @@
                         </columns>
                     </TableView>
                     <Separator prefHeight="18.0" prefWidth="252.0" visible="false"/>
-                    <Button alignment="CENTER" contentDisplay="CENTER" minHeight="50.0" mnemonicParsing="false"
+                    <Button onMouseClicked="#issue" alignment="CENTER" contentDisplay="CENTER" minHeight="50.0" mnemonicParsing="false"
                             prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: #ABC82E;" text="ISSUE"
                             textFill="WHITE">
                         <font>

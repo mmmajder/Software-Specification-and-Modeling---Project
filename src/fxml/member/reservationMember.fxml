@@ -99,7 +99,7 @@
                         BorderPane.alignment="CENTER">
                 <right>
                     <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                        <Button layoutX="23.0" layoutY="23.0" mnemonicParsing="false" prefHeight="30.0"
+                        <Button layoutX="23.0" layoutY="23.0" onMouseClicked="#reserve" mnemonicParsing="false" prefHeight="30.0"
                                 prefWidth="154.0" style="-fx-background-color: #7AB12B;" text="RESERVE"
                                 textFill="WHITE">
                             <font>

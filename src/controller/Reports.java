@@ -13,11 +13,16 @@ import java.util.stream.Collectors;
 public class Reports {
 
     private final Library library;
-    private final String extension = ".txt";
-    private final String path = "reports/";
-    private final String datePatternInFilename = "dd_MM_yyyy";
-    private final String datePatternInFile = "dd.MM.yyyy.";
+    private final String extension;
+    private final String path;
+    private final String datePatternInFilename;
+    private final String datePatternInFile;
+
     public Reports(Library library) {
+        extension = ".txt";
+        path = "reports/";
+        datePatternInFilename = "dd_MM_yyyy";
+        datePatternInFile = "dd.MM.yyyy.";
         this.library = library;
     }
 

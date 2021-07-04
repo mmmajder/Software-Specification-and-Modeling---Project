@@ -744,15 +744,14 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addIssuedBook(IssuedBook issuedBook) {
 
-        String query = "INSERT INTO issuedBooks VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO issuedBooks VALUES (?, ?, NULL, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, issuedBook.getBook().getBookId());
             statement.setDate(2, Date.valueOf(issuedBook.getIssueDate()));
-            statement.setDate(3, Date.valueOf(issuedBook.getReturnDate()));
-            statement.setInt(4, issuedBook.isProlongedIssue() ? 1 : 0);
-            statement.setString(5, issuedBook.getLibrarian().getJMBG());
-            statement.setString(6, issuedBook.getMember().getJMBG());
+            statement.setInt(3, issuedBook.isProlongedIssue() ? 1 : 0);
+            statement.setString(4, issuedBook.getLibrarian().getJMBG());
+            statement.setString(5, issuedBook.getMember().getJMBG());
             statement.executeUpdate();
 
         } catch (SQLException e) {

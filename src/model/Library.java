@@ -104,13 +104,17 @@ public class Library implements Publisher {
         this.maxIssueDays = maxIssueDays;
     }
 
-    public void setMaxIssueDays(MemberType type, int newMaxIssueDays) { this.maxIssueDays.put(type, newMaxIssueDays); }
+    public void setMaxIssueDays(MemberType type, int newMaxIssueDays) {
+        this.maxIssueDays.put(type, newMaxIssueDays);
+    }
 
     public void setMaxIssuedBooks(HashMap<MemberType, Integer> maxIssuedBooks) {
         this.maxIssuedBooks = maxIssuedBooks;
     }
 
-    public void setMaxIssuedBooks(MemberType type, int newMaxIssuedBooks) { this.maxIssuedBooks.put(type, newMaxIssuedBooks); }
+    public void setMaxIssuedBooks(MemberType type, int newMaxIssuedBooks) {
+        this.maxIssuedBooks.put(type, newMaxIssuedBooks);
+    }
 
     public List<Account> getAccounts() {
         return this.accounts;
@@ -128,7 +132,9 @@ public class Library implements Publisher {
         this.accounts.add(account);
     }
 
-    public void setAccounts(List<Account> accounts) {this.accounts = accounts; }
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
 
     public void addContributor(Contributor contributor) {
         this.contributors.add(contributor);
@@ -260,12 +266,14 @@ public class Library implements Publisher {
         this.currentCatalog = this.priceCatalogs.get(indexOfLastCatalog);
     }
 
-    public void setNewPriceCatalog(PriceCatalog catalog){
+    public void setNewPriceCatalog(PriceCatalog catalog) {
         priceCatalogs.add(catalog);
         currentCatalog = catalog;
     }
 
-    public List<PriceCatalog> getPriceCatalogs(){ return priceCatalogs; }
+    public List<PriceCatalog> getPriceCatalogs() {
+        return priceCatalogs;
+    }
 
     public PriceCatalog getPriceCatalog(int catalogId) {
 

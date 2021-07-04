@@ -15,26 +15,17 @@ import utils.exceptions.MemberUnableToRentException;
 
 public class BookRentController {
 
-    public Button rentBtn;
     public TextField userIdLbl;
     public TextField sampleIdLbl;
     public Account account;
     public Library library;
-    public RentingController rentingController;
 
     public void initData(Account account, Library library) {
         this.account = account;
         this.library = library;
     }
-    public void init() {
-        rentBtn.setOnMouseClicked(e->{
-            rentBook();
-        });
-    }
-
 
     public void rentBook() {
-
         try {
             RentingController rentingController = new RentingController(library);
             rentingController.rent(userIdLbl.getText(), sampleIdLbl.getText(), account.getPerson());

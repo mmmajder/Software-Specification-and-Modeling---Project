@@ -113,7 +113,7 @@
                                 <Insets left="20.0"/>
                             </padding>
                         </Label>
-                        <ComboBox fx:id="genresCB1" prefHeight="27.0" prefWidth="162.0"
+                        <ComboBox fx:id="translatorCB" prefHeight="27.0" prefWidth="162.0"
                                   style="-fx-background-color: #ffffff; -fx-border-color: #707070;"
                                   GridPane.columnIndex="1" GridPane.rowIndex="5"/>
                         <Label style="-fx-text-fill: #7AB12B;" text="Critic:" GridPane.rowIndex="6">
@@ -121,7 +121,7 @@
                                 <Insets left="20.0"/>
                             </padding>
                         </Label>
-                        <ComboBox fx:id="genresCB11" prefHeight="27.0" prefWidth="162.0"
+                        <ComboBox fx:id="criticCB" prefHeight="27.0" prefWidth="162.0"
                                   style="-fx-background-color: #ffffff; -fx-border-color: #707070;"
                                   GridPane.columnIndex="1" GridPane.rowIndex="6"/>
                         <Label style="-fx-text-fill: #7AB12B;" text="Editor:" GridPane.rowIndex="7">
@@ -129,7 +129,7 @@
                                 <Insets left="20.0"/>
                             </padding>
                         </Label>
-                        <ComboBox fx:id="genresCB12" prefHeight="27.0" prefWidth="162.0"
+                        <ComboBox fx:id="editorCB" prefHeight="27.0" prefWidth="162.0"
                                   style="-fx-background-color: #ffffff; -fx-border-color: #707070;"
                                   GridPane.columnIndex="1" GridPane.rowIndex="7"/>
                         <Label style="-fx-text-fill: #7AB12B;" text="Illustrator:" GridPane.rowIndex="8">
@@ -137,7 +137,7 @@
                                 <Insets left="20.0"/>
                             </padding>
                         </Label>
-                        <ComboBox fx:id="genresCB121" prefHeight="27.0" prefWidth="162.0"
+                        <ComboBox fx:id="illustratorCB" prefHeight="27.0" prefWidth="162.0"
                                   style="-fx-background-color: #ffffff; -fx-border-color: #707070;"
                                   GridPane.columnIndex="1" GridPane.rowIndex="8"/>
                     </children>

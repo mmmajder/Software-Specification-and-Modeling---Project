@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -26,18 +25,11 @@ public class SearchBooksLibrarianController {
     public ListView<String> genres;
     public TilePane tilePane;
     public TextField search;
-    public Label titleSort;
-    public Label publishedDateSort;
-    public Label addNewEdition;
-    public Label addNewGenre;
-    public BorderPane borderPane;
-    public BorderPane left;
     public AnchorPane right;
 
     public List<Edition> currentEditions;
     public BorderPane mainBorderPane;
     public ScrollPane scrollPane;
-    public AnchorPane anchorPane;
 
     ILibraryRepo libraryRepo;
     Library library;
@@ -57,7 +49,7 @@ public class SearchBooksLibrarianController {
     }
 
     @FXML
-    public void switchToAddEdition(MouseEvent mouseEvent) throws IOException {
+    public void switchToAddEdition() throws IOException {
         FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/createEdition.fxml"));
         Parent bookScene = bookLoader.load();
         mainBorderPane.setCenter(bookScene);
@@ -74,6 +66,7 @@ public class SearchBooksLibrarianController {
         libraryRepo.loadContributors(library);
         libraryRepo.loadContributorRoles(library);
         libraryRepo.loadGenres(library);
+        libraryRepo.loadBooks(library);
         this.account = account;
 
         editionController = new EditionController(library);

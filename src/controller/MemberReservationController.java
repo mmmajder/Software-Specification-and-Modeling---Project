@@ -41,7 +41,7 @@ public class MemberReservationController {
         List<PendingReservation> pendingReservations = library.getPendingReservations();
         Integer maxId = pendingReservations.stream()
                 .map(pendingReservation -> pendingReservation.getId())
-                .max(Integer::compare).get();
+                .max(Integer::compare).orElse(1);
 
         return ++maxId;
     }

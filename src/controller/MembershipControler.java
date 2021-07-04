@@ -39,7 +39,7 @@ public class MembershipControler {
         List<Payment> payments = library.getPayments();
         Integer maxId = payments.stream()
                 .map(payment -> payment.getPaymentId())
-                .max(Integer::compare).get();
+                .max(Integer::compare).orElse(1);
 
         return ++maxId;
     }

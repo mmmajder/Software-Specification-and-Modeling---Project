@@ -3,10 +3,12 @@ package controller;
 import model.Library;
 import model.Member;
 import model.Payment;
+import model.PendingReservation;
 import model.enums.MemberType;
 import utils.exceptions.InvalidTransactionException;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class MembershipControler {
 
@@ -27,11 +29,19 @@ public class MembershipControler {
     }
 
     private void createPayment(Member m, int numOfMonths){
-        //TODO nextId value
-        int nextId = 0;
+        int nextId = getNextId();
         LocalDate fromDate = calculateFromDate(m);
         Payment newPayment = new Payment(nextId, LocalDate.now(), fromDate.plusMonths(numOfMonths), m, numOfMonths);
         m.addPayment(newPayment);
+    }
+
+    private int getNextId(){
+        List<Payment> payments = library.getPayments();
+        Integer maxId = payments.stream()
+                .map(payment -> payment.getPaymentId())
+                .max(Integer::compare).get();
+
+        return ++maxId;
     }
 
     private LocalDate calculateFromDate(Member member){

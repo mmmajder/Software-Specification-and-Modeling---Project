@@ -107,7 +107,7 @@ public class AdminController {
     @FXML
     private void switchToMembers() throws IOException {
         borderPane.setCenter(membersScene);
-        membershipController.initData();
+        membershipController.initAdmin();
         lblRentedBooks.setUnderline(false);
         lblMembers.setUnderline(true);
         lblReservations.setUnderline(false);

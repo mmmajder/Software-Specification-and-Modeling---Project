@@ -33,12 +33,16 @@ public class MemberCRUDController implements Observer {
     public Label addAccountLbl;
     ObservableList<MemberTable> dataMemberTable;
     ObservableList<CurrentIssueTable> dataMemberIssuesTable;
+    ObservableList<MemberTableAdmin> dataMemberTableAdmin;
+
 
     public TableView<MemberTable> memberTable;
+    public TableView<MemberTableAdmin> memberAdminTable;
     public TableView<CurrentIssueTable> memberIssuesTable;
     Library library;
     ILibraryRepo libraryRepo;
     MemberTable selected;
+    MemberTableAdmin selectedMemberTableAdmin;
     CRUDController crudController;
     TableColumn colName;
     TableColumn colSurname;
@@ -352,13 +356,20 @@ public class MemberCRUDController implements Observer {
 
             Scene scene = new Scene(layout, 300, 250);
             window.setScene(scene);
-            window.showAndWait();
+
 
             confirm.setOnAction(event -> {
                 CRUDController crudController = new CRUDController(library);
                 MemberTable member = memberTable.getSelectionModel().getSelectedItem();
-//                crudController.setAccount(member.getJMBG(), usename.getText(), password.getText(), email.getText());
+                try {
+                    crudController.addAccount(member.getJMBG(), usename.getText(), password.getText(), email.getText(), AccountType.MEMBER);
+                } catch (EmailAlreadyExistsException emailAlreadyExistsException) {
+                    createAlert("Email already exists");
+                } catch (UsernameAlreadyExistsException usernameAlreadyExistsException) {
+                    createAlert("Username already exists");
+                }
             });
+            window.show();
 
         });
     }
@@ -381,7 +392,6 @@ public class MemberCRUDController implements Observer {
 
         removeMemberLbl.setOnMouseClicked(e -> {
             memberTable.getItems().remove(memberTable.getSelectionModel().getSelectedItem());
-
         });
 
         addMemberChooser();
@@ -393,8 +403,6 @@ public class MemberCRUDController implements Observer {
         });
 
         addAccChooser();
-
-
     }
 
 
@@ -404,12 +412,34 @@ public class MemberCRUDController implements Observer {
         setMemberIssueTable();
         displayMemberDataTableAdmin();
         displayCurrentIssueTable();
-        setDataMember();
+        setDataAdmin();
+        setEditable();
+
+        memberTable.setOnMouseClicked(e -> {
+            selectedMemberTableAdmin = memberAdminTable.getSelectionModel().getSelectedItem();
+            loadCurrentIssuesAdmin();
+            memberIssuesTable.setItems(dataMemberIssuesTable);
+        });
+
+        removeMemberLbl.setOnMouseClicked(e -> {
+            memberAdminTable.getItems().remove(memberAdminTable.getSelectionModel().getSelectedItem());
+        });
+
+        addMemberChooser();     // change
+
+        prolongLbl.setOnMouseClicked(e -> {
+            MemberTable member = memberTable.getSelectionModel().getSelectedItem();
+            CurrentIssueTable issue = memberIssuesTable.getSelectionModel().getSelectedItem();
+            crudController.prolongIssue(member.getJMBG(), issue.getId());
+        });
+
+        addAccChooser();
+
     }
 
-    private void setDataMember() {
-//        dataMemberTable = getMembersAdmin();
-        memberTable.setItems(dataMemberTable);
+    private void setDataAdmin() {
+        dataMemberTableAdmin = getMembersAdmin();
+        memberAdminTable.setItems(dataMemberTableAdmin);
         dataMemberIssuesTable = FXCollections.observableArrayList();
     }
 
@@ -417,7 +447,6 @@ public class MemberCRUDController implements Observer {
         Alert a = new Alert(Alert.AlertType.WARNING);
         a.setTitle("Alert");
         a.setContentText(text);
-        System.out.println(text);
         a.show();
     }
 
@@ -458,6 +487,16 @@ public class MemberCRUDController implements Observer {
             } catch (NullPointerException e) {
             }
         }
+        /*for (Librarian librarian : library.getLibrarians()) {
+            MemberTableAdmin memberTable = new MemberTableAdmin(librarian.getName(), librarian.getSurname(), librarian.getJMBG(),
+                    librarian.getPhoneNumber(), librarian.getBirthDate().toString(), "Librarian");
+            list.add(memberTable);
+            try {
+                String email = librarian.getAccount().getEmail();
+                memberTable.setEmail(email);
+            } catch (NullPointerException e) {
+            }
+        }*/
         return list;
     }
 
@@ -472,6 +511,22 @@ public class MemberCRUDController implements Observer {
             return;
         }
     }
+
+    private void loadCurrentIssuesAdmin() {
+        dataMemberIssuesTable.clear();
+        try {
+            LibrarianController librarianController = new LibrarianController();
+//            if (librarianController.isLibrarian(selected.getJMBG())) {
+//                return;
+//            }
+            for (IssuedBook issuedBook : library.getMembersCurrentlyTakenBooks(selected.getJMBG())) {
+                dataMemberIssuesTable.add(new CurrentIssueTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.isProlongedIssue(), issuedBook.getReturnDate()));
+            }
+        } catch (NullPointerException e) {
+            return;
+        }
+    }
+
 
     @Override
     public void updatePerformed() {

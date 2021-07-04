@@ -7,6 +7,9 @@ import model.PendingReservation;
 import utils.exceptions.MemberAlreadyHasPendingRequestException;
 import utils.exceptions.MemberAlreadyHasReservedBook;
 
+import java.util.Comparator;
+import java.util.List;
+
 public class MemberReservationController {
     private Library library;
 
@@ -29,10 +32,18 @@ public class MemberReservationController {
     }
 
     private PendingReservation createPendingReservation(Member member, Edition edition){
-        //TODO get value for new id
-        int id = 0;
+        int id = getNextId();
 
         return new PendingReservation(id, member, edition);
+    }
+
+    private int getNextId(){
+        List<PendingReservation> pendingReservations = library.getPendingReservations();
+        Integer maxId = pendingReservations.stream()
+                .map(pendingReservation -> pendingReservation.getId())
+                .max(Integer::compare).get();
+
+        return ++maxId;
     }
 
 }

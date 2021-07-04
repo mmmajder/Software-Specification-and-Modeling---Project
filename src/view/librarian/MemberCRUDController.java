@@ -25,6 +25,7 @@ import view.librarian.model.MemberTable;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class MemberCRUDController implements Observer {
     public Label removeMemberLbl;
@@ -41,7 +42,7 @@ public class MemberCRUDController implements Observer {
     MemberTable selected;
     CRUDController crudController;
 
-    public void initData() throws IOException  {
+    public void initData() throws IOException {
         this.library = new Library();
         library.addObserver(this);
         libraryRepo = new LibraryRepo();
@@ -53,7 +54,7 @@ public class MemberCRUDController implements Observer {
         libraryRepo.loadIssuedBooks(library);
         crudController = new CRUDController(library);
 
-        TableColumn colName = new TableColumn("Name"){
+        TableColumn colName = new TableColumn("Name") {
             {
                 prefWidthProperty().bind(memberTable.widthProperty().multiply(0.15));
             }
@@ -247,7 +248,8 @@ public class MemberCRUDController implements Observer {
             window.showAndWait();
             confirm.setOnMouseClicked(event -> {
                 CRUDController crudController = new CRUDController(library);
-                crudController.addMember(name, surname, jmbg, phone, birthDate);
+                String date = birthDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                crudController.addMember(name.getText(), surname.getText(), jmbg.getText(), phone.getText(), date);
             });
         });
 
@@ -257,7 +259,7 @@ public class MemberCRUDController implements Observer {
         prolongLbl.setOnMouseClicked(e -> {
             MemberTable member = memberTable.getSelectionModel().getSelectedItem();
             CurrentIssueTable issue = memberIssuesTable.getSelectionModel().getSelectedItem();
-            crudController.prolongIssue(member.getJMBG(),issue.getId());
+            crudController.prolongIssue(member.getJMBG(), issue.getId());
         });
 
         addAccountLbl.setOnMouseClicked(e -> {
@@ -291,10 +293,9 @@ public class MemberCRUDController implements Observer {
     private ObservableList<MemberTable> getMembers() {
         ObservableList<MemberTable> list = FXCollections.observableArrayList();
         for (Member member : library.getMembers()) {
-            try{
+            try {
                 list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate().toString(), member.getMembershipExpirationDate().toString()));
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate().toString(), null));
             }
         }

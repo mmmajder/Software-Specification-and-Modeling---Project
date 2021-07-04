@@ -1,4 +1,4 @@
-package view.librarian;
+package view.admin;
 
 import controller.CRUDController;
 import javafx.collections.FXCollections;
@@ -12,11 +12,15 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.*;
+import model.IssuedBook;
+import model.Library;
+import model.Member;
+import model.enums.MemberType;
 import observer.Observer;
 import repository.ILibraryRepo;
 import repository.LibraryRepo;
 import utils.exceptions.*;
+import view.admin.model.MemberTableAdmin;
 import view.librarian.model.CurrentIssueTable;
 import view.librarian.model.MemberTable;
 
@@ -24,7 +28,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class MemberCRUDController implements Observer {
+public class MembersCRUDAdminController implements Observer {
     public Label removeMemberLbl;
     public Label addMemberLbl;
     public Label prolongLbl;
@@ -101,7 +105,7 @@ public class MemberCRUDController implements Observer {
 
         TableColumn colPhone = new TableColumn("Phone number") {
             {
-                prefWidthProperty().bind(memberTable.widthProperty().multiply(0.15));
+                prefWidthProperty().bind(memberTable.widthProperty().multiply(0.1));
             }
         };
         memberTable.getColumns().add(colPhone);
@@ -120,7 +124,7 @@ public class MemberCRUDController implements Observer {
 
         TableColumn colEmail = new TableColumn("Email") {
             {
-                prefWidthProperty().bind(memberTable.widthProperty().multiply(0.15));
+                prefWidthProperty().bind(memberTable.widthProperty().multiply(0.1));
             }
         };
         memberTable.getColumns().add(colEmail);
@@ -138,6 +142,13 @@ public class MemberCRUDController implements Observer {
             }
         };
         memberTable.getColumns().add(colMembershipEndDate);
+
+        TableColumn colUserType = new TableColumn("User type") {
+            {
+                prefWidthProperty().bind(memberTable.widthProperty().multiply(0.1));
+            }
+        };
+        memberTable.getColumns().add(colUserType);
 
 
         TableColumn colID = new TableColumn("ID") {
@@ -168,13 +179,14 @@ public class MemberCRUDController implements Observer {
         };
         memberIssuesTable.getColumns().add(colReturnDate);
 
-        colName.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("name"));
-        colSurname.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("surname"));
-        colJMBG.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("JMBG"));
-        colPhone.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("phoneNumber"));
-        colEmail.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("email"));
-        colBirthDate.setCellValueFactory(new PropertyValueFactory<MemberTable, LocalDate>("birthDate"));
-        colMembershipEndDate.setCellValueFactory(new PropertyValueFactory<MemberTable, LocalDate>("membershipEndDate"));
+        colName.setCellValueFactory(new PropertyValueFactory<MemberTableAdmin, String>("name"));
+        colSurname.setCellValueFactory(new PropertyValueFactory<MemberTableAdmin, String>("surname"));
+        colJMBG.setCellValueFactory(new PropertyValueFactory<MemberTableAdmin, String>("JMBG"));
+        colPhone.setCellValueFactory(new PropertyValueFactory<MemberTableAdmin, String>("phoneNumber"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<MemberTableAdmin, String>("email"));
+        colBirthDate.setCellValueFactory(new PropertyValueFactory<MemberTableAdmin, LocalDate>("birthDate"));
+        colMembershipEndDate.setCellValueFactory(new PropertyValueFactory<MemberTableAdmin, LocalDate>("membershipEndDate"));
+        colUserType.setCellValueFactory(new PropertyValueFactory<MemberTableAdmin, MemberType>("userType"));
 
         colID.setCellValueFactory(new PropertyValueFactory<CurrentIssueTable, String>("id"));
         colTitle.setCellValueFactory(new PropertyValueFactory<CurrentIssueTable, String>("title"));
@@ -227,10 +239,17 @@ public class MemberCRUDController implements Observer {
             birthDate.setValue(LocalDate.now());
             HBox birthDateHBox = new HBox(birthDateLbl, birthDate);
 
+            Label typeLbl = new Label("Type ");
+            ObservableList<String> options = FXCollections.observableArrayList("Librarian", "Member");
+            ComboBox<String> typeChoose = new ComboBox(options);
+            typeChoose.setValue("Member");
+            HBox typeChooseHBox = new HBox(typeLbl, typeChoose);
+
+
             Button confirm = new Button("CONFIRM");
 
             VBox layout = new VBox(10);
-            layout.getChildren().addAll(nameHBox, surnameHBox, jmbgHBox, phoneHBox, birthDateHBox, confirm);
+            layout.getChildren().addAll(nameHBox, surnameHBox, jmbgHBox, phoneHBox, birthDateHBox, typeChooseHBox, confirm);
             layout.setAlignment(Pos.CENTER);
 
             Scene scene = new Scene(layout, 300, 250);
@@ -238,8 +257,8 @@ public class MemberCRUDController implements Observer {
             confirm.setOnAction(event -> {
                 CRUDController crudController = new CRUDController(library);
                 String date = birthDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                try {
-                    crudController.addMember(name.getText(), surname.getText(), jmbg.getText(), phone.getText(), date);
+               /* try {
+                    crudController.addUser(name.getText(), surname.getText(), jmbg.getText(), phone.getText(), date, typeChoose.getValue());
                 } catch (InvalidJmbgFormatException invalidJmbgFormatException) {
                     createAlert("Invalid JMBG format");
                 } catch (JmbgAlreadyExists jmbgAlreadyExists) {
@@ -252,7 +271,7 @@ public class MemberCRUDController implements Observer {
                     createAlert("Invalid phone number format");
                 } catch (InvalidDateFormatException invalidDateFormatException) {
                     createAlert("Invalid date format");
-                }
+                }*/
             });
             window.show();
         });
@@ -315,7 +334,6 @@ public class MemberCRUDController implements Observer {
         for (Member member : library.getMembers()) {
             MemberTable memberTable = new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getBirthDate().toString());
             list.add(memberTable);
-//                list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate().toString(), member.getMembershipExpirationDate().toString()));
             try {
                 String expDateTable = member.getMembershipExpirationDate().toString();
                 memberTable.setMembershipEndDate(expDateTable);

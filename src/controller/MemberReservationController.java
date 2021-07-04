@@ -13,7 +13,9 @@ import java.util.List;
 public class MemberReservationController {
     private Library library;
 
-    public MemberReservationController(Library library){ this.library = library; }
+    public MemberReservationController(Library library) {
+        this.library = library;
+    }
 
     public void sendReservationRequest(Member member, Edition edition) throws MemberAlreadyHasPendingRequestException, MemberAlreadyHasReservedBook {
         validateMembersReservationAbility(member);

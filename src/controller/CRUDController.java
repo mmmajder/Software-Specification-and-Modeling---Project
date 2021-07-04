@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import model.enums.AccountType;
 import model.enums.MemberType;
 import repository.ILibraryRepo;
 import repository.LibraryRepo;
@@ -68,6 +69,43 @@ public class CRUDController {
         }
     }
 
+    public void addLibrarian(String name, String surname, String jmbg, String phoneNumber, String birthDate) throws
+            InvalidJmbgFormatException, JmbgAlreadyExists, InvalidNameFormatException, InvalidSurnameFormatException,
+            InvalidPhoneNumberFormatException, InvalidDateFormatException {
+
+        jmbgValid(jmbg);
+        jmbgExists(jmbg);
+        nameValid(name);
+        surnameValid(surname);
+        phoneNumberValid(phoneNumber);
+
+        try {
+            LocalDate date = LocalDate.parse(birthDate);
+            Librarian librarian = new Librarian(name, surname, jmbg, phoneNumber, date, null);
+            library.addPerson(librarian);
+            library.notifyObservers();
+            libraryRepo.addPerson(librarian);
+            libraryRepo.addLibrarian(librarian);
+
+        } catch (DateTimeParseException e) {
+
+            throw new InvalidDateFormatException();
+        }
+    }
+
+    public void addAccount(String jmbg, String username, String password, String email, AccountType type) throws
+            EmailAlreadyExistsException, UsernameAlreadyExistsException {
+
+        emailExists(email);
+        usernameExists(username);
+        Person person = library.getPerson(jmbg);
+        Account account = new Account(username, password, email, type, person, true);
+        person.setAccount(account);
+        library.addAccount(account);
+        library.notifyObservers();
+        libraryRepo.addAccount(account);
+    }
+
     public void prolongIssue(String jmbg, String bookId) {
         Member member = (Member) library.getPerson(jmbg);
 
@@ -79,6 +117,22 @@ public class CRUDController {
                 library.notifyObservers();
                 break;
             }
+        }
+    }
+
+    private void usernameExists(String username) throws UsernameAlreadyExistsException {
+
+        if (library.getAccountByUsername(username) != null) {
+
+            throw new UsernameAlreadyExistsException();
+        }
+    }
+
+    private void emailExists(String email) throws EmailAlreadyExistsException {
+
+        if (library.getAccountByEmail(email) != null) {
+
+            throw new EmailAlreadyExistsException();
         }
     }
 

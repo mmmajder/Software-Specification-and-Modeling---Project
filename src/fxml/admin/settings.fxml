@@ -2,51 +2,50 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="550.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+<AnchorPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.admin.SettingsController">
     <BorderPane prefHeight="600.0" prefWidth="950.0" style="-fx-background-color: #7AB12B;"
-                AnchorPane.bottomAnchor="0.0"
-                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                AnchorPane.topAnchor="0.0">
         <center>
             <VBox prefHeight="517.0" prefWidth="860.0" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
                     <Insets left="20.0" right="20.0"/>
                 </BorderPane.margin>
-                <Pane>
-                    <VBox.margin>
-                        <Insets top="20.0"/>
-                    </VBox.margin>
-                    <Label layoutX="7.0" prefHeight="35.0" prefWidth="128.0" text="General settings"
-                           textFill="WHITE">
-                        <font>
-                            <Font name="System Bold" size="14.0"/>
-                        </font>
-                    </Label>
-                </Pane>
+                <Label prefHeight="65.0" prefWidth="271.0" text="General settings" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="17.0"/>
+                    </font>
+                </Label>
                 <Separator prefHeight="10.0" prefWidth="200.0" visible="false"/>
-                <GridPane alignment="CENTER" prefHeight="200.0" style="-fx-background-color: #ffffff;">
+                <GridPane alignment="CENTER" prefHeight="304.0" prefWidth="910.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0"
-                                           prefWidth="212.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0"
-                                           prefWidth="132.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="NEVER" maxWidth="155.20001220703125" minWidth="10.0"
+                                           prefWidth="155.20001220703125"/>
+                        <ColumnConstraints hgrow="NEVER" maxWidth="210.0" minWidth="210.0" prefWidth="210.0"/>
+                        <ColumnConstraints hgrow="ALWAYS" maxWidth="298.40001220703124" minWidth="10.0"
+                                           prefWidth="40.79998779296875"/>
+                        <ColumnConstraints hgrow="NEVER" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
+                        <ColumnConstraints hgrow="ALWAYS" maxWidth="392.4000366210937" minWidth="0.0"
+                                           prefWidth="38.00003662109373"/>
+                        <ColumnConstraints hgrow="NEVER" maxWidth="130.0" minWidth="130.0" prefWidth="130.0"/>
+                        <ColumnConstraints hgrow="ALWAYS" maxWidth="297.80000000000007" minWidth="10.0"
+                                           prefWidth="49.0"/>
+                        <ColumnConstraints hgrow="NEVER" maxWidth="130.0" minWidth="130.0"
+                                           prefWidth="119.99997558593714"/>
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
@@ -55,128 +54,152 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
-                    <BorderPane GridPane.columnIndex="1">
-                        <center>
-                            <Label prefHeight="17.0" prefWidth="197.0"
-                                   text="Number of days to return books " textFill="#abc82e">
-                                <font>
-                                    <Font name="System Bold" size="12.0"/>
-                                </font>
-                            </Label>
-                        </center>
-                    </BorderPane>
-                    <BorderPane GridPane.columnIndex="2">
-                        <center>
-                            <Label text="Max number of books issued" textFill="#abc82e">
-                                <font>
-                                    <Font name="System Bold" size="12.0"/>
-                                </font>
-                            </Label>
-                        </center>
-                    </BorderPane>
-                    <BorderPane GridPane.columnIndex="3">
-                        <center>
-                            <Label text="6 moths (RSD)" textFill="#abc82e">
-                                <font>
-                                    <Font name="System Bold" size="12.0"/>
-                                </font>
-                            </Label>
-                        </center>
-                    </BorderPane>
-                    <BorderPane GridPane.columnIndex="4">
-                        <center>
-                            <Label alignment="CENTER" contentDisplay="CENTER" text="12 moths (RSD)"
-                                   textAlignment="CENTER" textFill="#abc82e">
-                                <font>
-                                    <Font name="System Bold" size="12.0"/>
-                                </font>
-                            </Label>
-                        </center>
-                    </BorderPane>
-                    <BorderPane GridPane.rowIndex="1">
-                        <center>
-                            <Label text="Regular" textFill="#abc82e">
-                                <font>
-                                    <Font name="System Bold" size="12.0"/>
-                                </font>
-                            </Label>
-                        </center>
-                    </BorderPane>
-                    <BorderPane GridPane.rowIndex="2">
-                        <center>
-                            <Label text="Student" textFill="#abc82e">
-                                <font>
-                                    <Font name="System Bold" size="12.0"/>
-                                </font>
-                            </Label>
-                        </center>
-                    </BorderPane>
-                    <BorderPane GridPane.rowIndex="3">
-                        <center>
-                            <Label text="Kindergarden" textFill="#abc82e">
-                                <font>
-                                    <Font name="System Bold" size="12.0"/>
-                                </font>
-                            </Label>
-                        </center>
-                    </BorderPane>
-                    <BorderPane GridPane.rowIndex="4">
-                        <center>
-                            <Label text="Middleschooler" textFill="#abc82e">
-                                <font>
-                                    <Font name="System Bold" size="12.0"/>
-                                </font>
-                            </Label>
-                        </center>
-                    </BorderPane>
-                    <BorderPane GridPane.rowIndex="5">
-                        <center>
-                            <Label text="Retired" textFill="#abc82e">
-                                <font>
-                                    <Font name="System Bold" size="12.0"/>
-                                </font>
-                            </Label>
-                        </center>
-                    </BorderPane>
-                </GridPane>
-                <VBox prefHeight="200.0" prefWidth="100.0">
-                    <Label prefHeight="35.0" prefWidth="128.0" text="Generate reports" textFill="WHITE">
+                    <Label alignment="CENTER" prefHeight="18.0" prefWidth="259.0" text="Number of days to return books "
+                           textFill="WHITE" GridPane.columnIndex="1">
                         <font>
-                            <Font name="System Bold" size="14.0"/>
+                            <Font name="System Bold" size="12.0"/>
                         </font>
                     </Label>
-                    <HBox>
+                    <Label alignment="CENTER" prefHeight="18.0" prefWidth="306.0" text="Max number of books issued"
+                           textFill="WHITE" GridPane.columnIndex="3">
+                        <font>
+                            <Font name="System Bold" size="12.0"/>
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" prefHeight="18.0" prefWidth="182.0" text="6 moths (RSD)" textFill="WHITE"
+                           GridPane.columnIndex="5">
+                        <font>
+                            <Font name="System Bold" size="12.0"/>
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="179.0"
+                           text="12 moths (RSD)" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="7">
+                        <font>
+                            <Font name="System Bold" size="12.0"/>
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" prefHeight="18.0" prefWidth="178.0" text="Regular" textFill="WHITE"
+                           GridPane.rowIndex="1">
+                        <font>
+                            <Font name="System Bold" size="12.0"/>
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" prefHeight="18.0" prefWidth="178.0" text="Student" textFill="WHITE"
+                           GridPane.rowIndex="2">
+                        <font>
+                            <Font name="System Bold" size="12.0"/>
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" prefHeight="18.0" prefWidth="177.0" text="Preschooler" textFill="WHITE"
+                           GridPane.rowIndex="3">
+                        <font>
+                            <Font name="System Bold" size="12.0"/>
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" prefHeight="18.0" prefWidth="179.0" text="Pupil" textFill="WHITE"
+                           GridPane.rowIndex="4">
+                        <font>
+                            <Font name="System Bold" size="12.0"/>
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" prefHeight="18.0" prefWidth="180.0" text="Retired" textFill="WHITE"
+                           GridPane.rowIndex="5">
+                        <font>
+                            <Font name="System Bold" size="12.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="regularNumberOfDays" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    <TextField fx:id="studentNumberOfDays" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    <TextField fx:id="preschoolerNumberOfDays" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    <TextField fx:id="pupilNumberOfDays" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                    <TextField fx:id="retiredNumberOfDays" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                    <TextField fx:id="regularBooks" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                    <TextField fx:id="studentBooks" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+                    <TextField fx:id="preschoolerBooks" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+                    <TextField fx:id="pupilBooks" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+                    <TextField fx:id="retiredBooks" GridPane.columnIndex="3" GridPane.rowIndex="5"/>
+                    <TextField fx:id="regular6price" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+                    <TextField fx:id="student6price" GridPane.columnIndex="5" GridPane.rowIndex="2"/>
+                    <TextField fx:id="preschooler6price" GridPane.columnIndex="5" GridPane.rowIndex="3"/>
+                    <TextField fx:id="pupil6price" GridPane.columnIndex="5" GridPane.rowIndex="4"/>
+                    <TextField fx:id="retired6price" GridPane.columnIndex="5" GridPane.rowIndex="5"/>
+                    <TextField fx:id="regular12price" GridPane.columnIndex="7" GridPane.rowIndex="1"/>
+                    <TextField fx:id="student12price" GridPane.columnIndex="7" GridPane.rowIndex="2"/>
+                    <TextField fx:id="preschooler12price" GridPane.columnIndex="7" GridPane.rowIndex="3"/>
+                    <TextField fx:id="pupil12price" GridPane.columnIndex="7" GridPane.rowIndex="4"/>
+                    <TextField fx:id="retired12price" GridPane.columnIndex="7" GridPane.rowIndex="5"/>
+                    <Label alignment="CENTER" prefHeight="18.0" prefWidth="180.0" text="Privileged" textFill="WHITE"
+                           GridPane.rowIndex="6">
+                        <font>
+                            <Font name="System Bold" size="12.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="privilegedNumberOfDays" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                    <TextField fx:id="privilegedBooks" GridPane.columnIndex="3" GridPane.rowIndex="6"/>
+                    <TextField fx:id="privileged6price" GridPane.columnIndex="5" GridPane.rowIndex="6"/>
+                    <TextField fx:id="privileged12price" GridPane.columnIndex="7" GridPane.rowIndex="6"/>
+                </GridPane>
+                <Separator prefHeight="24.0" prefWidth="910.0" visible="false"/>
+                <Button contentDisplay="RIGHT" mnemonicParsing="false" onMouseClicked="#saveChanges" prefHeight="30.0"
+                        prefWidth="918.0" style="-fx-background-color: #abc82e;" text="SAVE CHANGES" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0"/>
+                    </font>
+                </Button>
+                <Separator prefHeight="38.0" prefWidth="910.0"/>
+                <Label prefHeight="54.0" prefWidth="271.0" text="General reports" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="17.0"/>
+                    </font>
+                </Label>
+                <Separator prefHeight="10.0" prefWidth="200.0" visible="false"/>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <HBox prefHeight="36.0" prefWidth="910.0">
                         <Label prefHeight="27.0" prefWidth="86.0" text="Start date" textFill="WHITE">
                             <font>
                                 <Font size="14.0"/>
                             </font>
                         </Label>
-                        <DatePicker/>
-                    </HBox>
-                    <HBox>
+                        <DatePicker fx:id="startDate"/>
+                        <Separator orientation="VERTICAL" prefHeight="154.0" prefWidth="16.0" visible="false"/>
                         <Label prefHeight="27.0" prefWidth="86.0" text="End date" textFill="WHITE">
                             <font>
                                 <Font size="14.0"/>
                             </font>
                         </Label>
-                        <DatePicker/>
-                    </HBox>
-                    <HBox>
-                        <Label prefHeight="27.0" prefWidth="86.0" text="Report type" textFill="WHITE">
-                            <font>
-                                <Font size="14.0"/>
-                            </font>
-                        </Label>
-                        <ComboBox prefWidth="174.0"/>
+                        <DatePicker fx:id="endDate"/>
+                        <Separator orientation="VERTICAL" prefHeight="154.0" prefWidth="16.0" visible="false"/>
                     </HBox>
                     <Separator prefHeight="18.0" prefWidth="860.0" visible="false"/>
-                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="261.0"
-                            style="-fx-background-color: #abc82e;" text="GENERATE" textFill="WHITE">
-                        <font>
-                            <Font name="System Bold" size="14.0"/>
-                        </font>
-                    </Button>
+                    <HBox prefHeight="38.0" prefWidth="910.0">
+                        <children>
+                            <Button contentDisplay="RIGHT" mnemonicParsing="false"
+                                    onMouseClicked="#generateDailyReports" prefHeight="30.0" prefWidth="303.0"
+                                    style="-fx-background-color: #abc82e;" text="DAILY REPORT" textFill="WHITE">
+                                <font>
+                                    <Font name="System Bold" size="14.0"/>
+                                </font>
+                            </Button>
+                            <Separator orientation="VERTICAL" prefHeight="154.0" prefWidth="16.0" visible="false"/>
+                            <Button contentDisplay="RIGHT" mnemonicParsing="false"
+                                    onMouseClicked="#generateTop10Reports" prefHeight="30.0" prefWidth="303.0"
+                                    style="-fx-background-color: #abc82e;" text="TOP 10 EDITIONS" textFill="WHITE">
+                                <font>
+                                    <Font name="System Bold" size="14.0"/>
+                                </font>
+                            </Button>
+                            <Separator orientation="VERTICAL" prefHeight="154.0" prefWidth="16.0" visible="false"/>
+                            <Button contentDisplay="RIGHT" mnemonicParsing="false"
+                                    onMouseClicked="#generateEditionsIssuesReports" prefHeight="30.0" prefWidth="303.0"
+                                    style="-fx-background-color: #abc82e;" text="EDITIONS ISSUES" textFill="WHITE">
+                                <font>
+                                    <Font name="System Bold" size="14.0"/>
+                                </font>
+                            </Button>
+                        </children>
+                    </HBox>
                 </VBox>
             </VBox>
         </center>

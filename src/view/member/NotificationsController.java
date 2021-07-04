@@ -41,6 +41,8 @@ public class NotificationsController implements Observer {
 
         colNotification.setCellValueFactory(new PropertyValueFactory<NotificationTable, String>("notification"));
         colDate.setCellValueFactory(new PropertyValueFactory<NotificationTable, String>("date"));
+
+        notificationTable.setItems(getNotifications());
     }
 
     private ObservableList<NotificationTable> getNotifications() {

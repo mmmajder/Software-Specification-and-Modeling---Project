@@ -21,6 +21,14 @@ public class MemberTable {
         this.membershipEndDate = membershipEndDate;
     }
 
+    public MemberTable(String name, String surname, String JMBG, String phoneNumber, String birthDate) {
+        this.name = name;
+        this.surname = surname;
+        this.JMBG = JMBG;
+        this.phoneNumber = phoneNumber;
+        this.birthDate = birthDate;
+    }
+
     @Override
     public String toString() {
         return "MemberTable{" +

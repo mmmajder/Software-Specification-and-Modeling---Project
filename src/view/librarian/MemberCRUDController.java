@@ -200,6 +200,7 @@ public class MemberCRUDController implements Observer {
 
         removeMemberLbl.setOnMouseClicked(e -> {
             memberTable.getItems().remove(memberTable.getSelectionModel().getSelectedItem());
+
         });
 
         addMemberLbl.setOnMouseClicked(e -> {
@@ -233,8 +234,7 @@ public class MemberCRUDController implements Observer {
 
             Scene scene = new Scene(layout, 300, 250);
             window.setScene(scene);
-            window.showAndWait();
-            confirm.setOnMouseClicked(event -> {
+            confirm.setOnAction(event -> {
                 CRUDController crudController = new CRUDController(library);
                 String date = birthDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 try {
@@ -253,6 +253,7 @@ public class MemberCRUDController implements Observer {
                     createAlert("Invalid date format");
                 }
             });
+            window.show();
         });
 
         prolongLbl.setOnMouseClicked(e -> {
@@ -290,7 +291,7 @@ public class MemberCRUDController implements Observer {
             window.setScene(scene);
             window.showAndWait();
 
-            confirm.setOnMouseClicked(event -> {
+            confirm.setOnAction(event -> {
                 CRUDController crudController = new CRUDController(library);
                 MemberTable member = memberTable.getSelectionModel().getSelectedItem();
 //                crudController.setAccount(member.getJMBG(), usename.getText(), password.getText(), email.getText());
@@ -298,10 +299,12 @@ public class MemberCRUDController implements Observer {
 
         });
     }
+
     private void createAlert(String text) {
         Alert a = new Alert(Alert.AlertType.WARNING);
         a.setTitle("Alert");
         a.setContentText(text);
+        System.out.println(text);
         a.show();
     }
 
@@ -309,10 +312,18 @@ public class MemberCRUDController implements Observer {
     private ObservableList<MemberTable> getMembers() {
         ObservableList<MemberTable> list = FXCollections.observableArrayList();
         for (Member member : library.getMembers()) {
+            MemberTable memberTable = new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getBirthDate().toString());
+            list.add(memberTable);
+//                list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate().toString(), member.getMembershipExpirationDate().toString()));
             try {
-                list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate().toString(), member.getMembershipExpirationDate().toString()));
+                String expDateTable = member.getMembershipExpirationDate().toString();
+                memberTable.setMembershipEndDate(expDateTable);
             } catch (NullPointerException e) {
-                list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate().toString(), null));
+            }
+            try {
+                String email = member.getAccount().getEmail();
+                memberTable.setMembershipEndDate(email);
+            } catch (NullPointerException e) {
             }
         }
         return list;

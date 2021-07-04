@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,15 +13,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.*;
+import model.Account;
+import model.Edition;
+import model.ILibraryRepo;
+import model.Library;
 
-import javax.xml.soap.SAAJResult;
 import java.io.IOException;
-import java.util.Objects;
 
 public class BookLibrarianController {
     public Label lblTitle;
@@ -33,7 +32,6 @@ public class BookLibrarianController {
     public Label lblNumberOfPages;
     public Label lblTranslation;
     public Label lblIllustration;
-    public Label lblShelf;
     public Label lblGenre;
     public Text txtTags;
     public Text txtDescription;
@@ -76,6 +74,7 @@ public class BookLibrarianController {
     @FXML
     public void initData(Edition edition, BorderPane mainBorderPane, LibrarianController librarianController, Account account) {
         this.librarianController = librarianController;
+        this.library = new Library();
         this.edition = edition;
         this.mainBorderPane = mainBorderPane;
         this.account = account;
@@ -91,22 +90,22 @@ public class BookLibrarianController {
         lblLanguage.setText("Language: " + edition.getLanguage());
         lblPublisher.setText("Publisher: " + edition.getPublisher());
         lblNumberOfPages.setText("Name of pages: " + edition.getNumberOfPages());
-        //lblTranslation.setText("Translation: " + edition.getTranslator());
-        //lblIllustration.setText("Illustration: " + edition.getIllustrator());
-        lblGenre.setText("Genre " + edition.getGenres());
+        lblTranslation.setText("Translation: " + editionControler.getTranslatorsStr(edition));
+        lblIllustration.setText("Illustration: " + editionControler.getIllustratorsStr(edition));
+        lblGenre.setText("Genre " + editionControler.getGenresConcatenated(edition));
         txtTags.setText("Tags: " + edition.getTags());
-
-        // TODO add needed getters
 
         btnRent.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Parent root;
                 try {
-                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/librarian/bookRent.fxml")));
+                    FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookRent.fxml"));
+                    Parent rentScene = bookLoader.load();
+                    BookRentController bookRentController = bookLoader.getController();
+                    bookRentController.initData(account, library);
                     Stage primaryStage = new Stage();
                     primaryStage.setTitle("Book Rent");
                     primaryStage.getIcons().add(new Image("/fxml/logo.png"));
-                    primaryStage.setScene(new Scene(root, 600, 250));
+                    primaryStage.setScene(new Scene(rentScene, 400, 250));
                     primaryStage.setResizable(false);
                     primaryStage.show();
                 } catch (IOException e) {

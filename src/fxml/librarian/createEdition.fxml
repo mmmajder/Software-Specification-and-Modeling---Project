@@ -5,12 +5,9 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -22,141 +19,136 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.librarian.EditEditionController">
     <BorderPane prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
                 AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
         <left>
             <VBox prefHeight="554.0" prefWidth="310.0" style="-fx-background-color: ffffff;"
                   BorderPane.alignment="CENTER">
-                <Pane prefHeight="264.0" prefWidth="287.0">
-                    <ImageView fitHeight="216.0" fitWidth="194.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true"
-                               preserveRatio="true">
+                <Pane prefHeight="250.0" prefWidth="310.0">
+                    <Pane layoutX="66.0" layoutY="31.0" prefHeight="200.0" prefWidth="179.0"
+                          style="-fx-border-color: #707070;">
+                        <children>
+                            <ImageView fitHeight="216.0" fitWidth="194.0" layoutX="72.0" layoutY="88.0"
+                                       pickOnBounds="true" preserveRatio="true">
 
-                    </ImageView>
-                    <Label layoutX="60.0" layoutY="38.0" prefHeight="186.0" prefWidth="103.0" text="UPLOAD PICTURE"
-                           textFill="#63ac29" wrapText="true">
+                            </ImageView>
+                        </children>
+                    </Pane>
+                    <Label alignment="CENTER" layoutX="86.0" layoutY="38.0" prefHeight="186.0" prefWidth="139.0"
+                           text="UPLOAD PICTURE" textAlignment="CENTER" textFill="#63ac29" wrapText="true">
                         <font>
                             <Font name="System Bold" size="24.0"/>
                         </font>
                     </Label>
                 </Pane>
-                <BorderPane prefHeight="16.0" prefWidth="295.0">
-                    <left>
-                        <Label text="Published date:" BorderPane.alignment="CENTER">
+                <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <Label style="-fx-text-fill: #7AB12B;" text="Published date:">
                             <padding>
                                 <Insets left="20.0"/>
                             </padding>
                         </Label>
-                    </left>
-                    <right>
-                        <DatePicker fx:id="publishedDate" prefHeight="25.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+                        <Label style="-fx-text-fill: #7AB12B;" text="Language:" GridPane.rowIndex="1">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </Label>
+                        <Label style="-fx-text-fill: #7AB12B;" text="Publisher:" GridPane.rowIndex="2">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </Label>
+                        <Label prefHeight="18.0" prefWidth="160.0" style="-fx-text-fill: #7AB12B;"
+                               text="Number of pages:" GridPane.rowIndex="3">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </Label>
+                        <Label style="-fx-text-fill: #7AB12B;" text="Genre:" GridPane.rowIndex="4">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </Label>
+                        <DatePicker fx:id="publishedDate" prefHeight="26.0" prefWidth="163.0"
+                                    style="-fx-border-color: #707070;" GridPane.columnIndex="1">
                             <opaqueInsets>
                                 <Insets/>
                             </opaqueInsets>
                         </DatePicker>
-                    </right>
-                </BorderPane>
-                <Separator prefWidth="200.0" visible="false"/>
-                <BorderPane prefHeight="21.0" prefWidth="295.0">
-                    <left>
-                        <Label text="Language:" BorderPane.alignment="CENTER">
-                            <padding>
-                                <Insets left="20.0"/>
-                            </padding>
-                        </Label>
-                    </left>
-                    <right>
                         <TextField fx:id="language" prefHeight="25.0" prefWidth="150.0"
-                                  style="-fx-background-color: #ffffff; -fx-border-color: #707070;"
-                                  BorderPane.alignment="CENTER">
+                                   style="-fx-background-color: #ffffff; -fx-border-color: #707070;"
+                                   GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <opaqueInsets>
                                 <Insets/>
                             </opaqueInsets>
                         </TextField>
-                    </right>
-                </BorderPane>
-                <Separator prefWidth="200.0" visible="false"/>
-                <BorderPane prefHeight="23.0" prefWidth="295.0">
-                    <left>
-                        <Label text="Publisher:" BorderPane.alignment="CENTER">
-                            <padding>
-                                <Insets left="20.0"/>
-                            </padding>
-                        </Label>
-                    </left>
-                    <right>
-                        <ComboBox fx:id="publisherCB" prefWidth="150.0"
+                        <TextField fx:id="publisher" prefWidth="150.0"
+                                   style="-fx-background-color: #ffffff; -fx-border-color: #707070;"
+                                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        <TextField fx:id="numberOfPages" prefWidth="150.0"
+                                   style="-fx-background-color: #ffffff; -fx-border-color: #707070;"
+                                   GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <ComboBox fx:id="genresCB" prefHeight="27.0" prefWidth="162.0"
                                   style="-fx-background-color: #ffffff; -fx-border-color: #707070;"
-                                  BorderPane.alignment="CENTER"/>
-                    </right>
-                </BorderPane>
-                <Separator prefWidth="200.0" visible="false"/>
-                <BorderPane>
-                    <left>
-                        <Label prefHeight="18.0" prefWidth="136.0" text="Number of pages:"
-                               BorderPane.alignment="CENTER">
+                                  GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                        <Label style="-fx-text-fill: #7AB12B;" text="Translator:" GridPane.rowIndex="5">
                             <padding>
                                 <Insets left="20.0"/>
                             </padding>
                         </Label>
-                    </left>
-                    <right>
-                        <Spinner fx:id="numberOfPages" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #707070;"
-                                 BorderPane.alignment="CENTER"/>
-                    </right>
-                </BorderPane>
-                <Separator prefWidth="200.0" visible="false"/>
-                <BorderPane>
-                    <left>
-                        <Label text="Genre:" BorderPane.alignment="CENTER">
-                            <padding>
-                                <Insets left="20.0"/>
-                            </padding>
-                        </Label>
-                    </left>
-                    <right>
-                        <ComboBox fx:id="genreCB" prefWidth="150.0"
+                        <ComboBox fx:id="genresCB1" prefHeight="27.0" prefWidth="162.0"
                                   style="-fx-background-color: #ffffff; -fx-border-color: #707070;"
-                                  BorderPane.alignment="CENTER"/>
-                    </right>
-                </BorderPane>
-                <Separator prefWidth="200.0" visible="false"/>
-                <Separator prefWidth="200.0" visible="false"/>
-                <Pane prefHeight="55.0" prefWidth="287.0">
-                    <Label layoutY="6.0" text="Tags:">
-                        <padding>
-                            <Insets left="20.0"/>
-                        </padding>
-                    </Label>
-                    <ScrollPane layoutX="160.0" layoutY="-4.0" prefHeight="57.0" prefWidth="150.0">
-                        <TextField prefHeight="134.0" prefWidth="148.0"/>
-                    </ScrollPane>
-                    <ImageView fitHeight="20.0" fitWidth="16.0" layoutX="139.0" layoutY="7.0" pickOnBounds="true"
-                               preserveRatio="true">
-                        <Image url="@../plus.png"/>
-                    </ImageView>
-                </Pane>
-                <Pane prefHeight="55.0" prefWidth="287.0">
-                    <Label layoutY="6.0" text="Contributors:">
-                        <padding>
-                            <Insets left="20.0"/>
-                        </padding>
-                    </Label>
-                    <ScrollPane layoutX="160.0" layoutY="-1.0" prefHeight="54.0" prefWidth="150.0">
-                        <TextField prefHeight="134.0" prefWidth="134.0"/>
-                    </ScrollPane>
-                    <ImageView fitHeight="20.0" fitWidth="16.0" layoutX="139.0" layoutY="6.0" pickOnBounds="true"
-                               preserveRatio="true">
-                        <Image url="@../plus.png"/>
-                    </ImageView>
-                </Pane>
+                                  GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                        <Label style="-fx-text-fill: #7AB12B;" text="Critic:" GridPane.rowIndex="6">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </Label>
+                        <ComboBox fx:id="genresCB11" prefHeight="27.0" prefWidth="162.0"
+                                  style="-fx-background-color: #ffffff; -fx-border-color: #707070;"
+                                  GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                        <Label style="-fx-text-fill: #7AB12B;" text="Editor:" GridPane.rowIndex="7">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </Label>
+                        <ComboBox fx:id="genresCB12" prefHeight="27.0" prefWidth="162.0"
+                                  style="-fx-background-color: #ffffff; -fx-border-color: #707070;"
+                                  GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+                        <Label style="-fx-text-fill: #7AB12B;" text="Illustrator:" GridPane.rowIndex="8">
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </Label>
+                        <ComboBox fx:id="genresCB121" prefHeight="27.0" prefWidth="162.0"
+                                  style="-fx-background-color: #ffffff; -fx-border-color: #707070;"
+                                  GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+                    </children>
+                </GridPane>
             </VBox>
         </left>
         <center>
             <VBox prefHeight="542.0" prefWidth="614.0" style="-fx-background-color: ffffff;"
                   BorderPane.alignment="CENTER">
                 <Separator prefHeight="28.0" prefWidth="608.0" visible="false"/>
-                <GridPane prefHeight="94.0" prefWidth="633.0">
+                <GridPane prefHeight="94.0" prefWidth="633.0" VBox.vgrow="ALWAYS">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.4000244140625" minWidth="10.0"
                                            prefWidth="68.79999160766602"/>
@@ -180,11 +172,7 @@
                                         vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <Label fx:id="lblTitle" prefHeight="17.0" prefWidth="43.0" text="Title:" textFill="#63ac29"
-                           GridPane.rowIndex="1">
-                        <font>
-                            <Font name="System Bold" size="12.0"/>
-                        </font>
-                    </Label>
+                           GridPane.rowIndex="1"/>
                     <Label text="Writter:" textFill="#63ac29" GridPane.rowIndex="2"/>
                     <ComboBox fx:id="writerCB" prefHeight="27.0" prefWidth="276.0"
                               style="-fx-background-color: #ffffff; -fx-border-color: #707070;" GridPane.columnIndex="1"
@@ -195,20 +183,14 @@
                             <Font name="System Bold" size="12.0"/>
                         </font>
                     </Label>
-                    <TextField GridPane.columnIndex="4" GridPane.rowIndex="1"/>
-                    <Label prefHeight="24.0" prefWidth="58.0" text="Position:" textFill="#63ac29"
-                           GridPane.columnIndex="3" GridPane.rowIndex="1">
-                        <font>
-                            <Font name="System Italic" size="12.0"/>
-                        </font>
-                    </Label>
-                    <TextField prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    <TextField fx:id="title" prefWidth="149.0" style="-fx-border-color: #707070;"
+                               GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                 </GridPane>
                 <Separator prefHeight="16.0" prefWidth="613.0" visible="false"/>
                 <HBox prefHeight="387.0" prefWidth="663.0">
-                    <TextArea fx:id="description" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="600.0"
-                              prefHeight="387.0" prefWidth="600.0" promptText="book description" HBox.hgrow="ALWAYS"
-                              VBox.vgrow="ALWAYS">
+                    <TextArea fx:id="description" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity"
+                              minWidth="600.0" prefHeight="387.0" prefWidth="600.0" promptText="book description"
+                              style="-fx-border-color: #707070;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                         <HBox.margin>
                             <Insets left="5.0"/>
                         </HBox.margin>

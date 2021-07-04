@@ -65,10 +65,7 @@ public class BookMemberController {
         lblNumberOfPages.setText("Name of pages: " + edition.getNumberOfPages());
         //lblTranslation.setText("Translation: " + edition.getTranslator());
         //lblIllustration.setText("Illustration: " + edition.getIllustrator());
-//        lblGenre.setText("Genre " + edition.getGenre());
-        txtTags.setText("Tags: " + edition.getTags());
-
-        // TODO add needed getters
+        //lblGenre.setText("Genre " + edition.getGenre());
     }
 
 }

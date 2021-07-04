@@ -82,9 +82,13 @@ public class Library implements Publisher {
         this.maxIssueDays = maxIssueDays;
     }
 
+    public void setMaxIssueDays(MemberType type, int newMaxIssueDays) { this.maxIssueDays.put(type, newMaxIssueDays); }
+
     public void setMaxIssuedBooks(HashMap<MemberType, Integer> maxIssuedBooks) {
         this.maxIssuedBooks = maxIssuedBooks;
     }
+
+    public void setMaxIssuedBooks(MemberType type, int newMaxIssuedBooks) { this.maxIssuedBooks.put(type, newMaxIssuedBooks); }
 
     public List<Account> getAccounts() {
         return this.accounts;

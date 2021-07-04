@@ -8,6 +8,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import model.Account;
 import model.Library;
+import repository.ILibraryRepo;
+import repository.LibraryRepo;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,15 +47,25 @@ public class SettingsController {
     public DatePicker startDate;
     public DatePicker endDate;
     public Reports reports;
-    public Button btnEditionsIsuues;
-    public Button btnTop10;
-    public Button btnDailyReport;
+    public ILibraryRepo libraryRepo;
 
     public void initData(Account account) {
         this.account = account;
         this.library = new Library();
         this.adminSettingsController = new AdminSettingsController(library);
         this.reports = new Reports(library);
+        this.libraryRepo = new LibraryRepo();
+        this.libraryRepo.loadAccounts(library);
+        this.libraryRepo.loadPersons(library);
+        this.libraryRepo.loadEditions(library);
+        this.libraryRepo.loadBooks(library);
+        this.libraryRepo.loadPriceCatalogs(library);
+        this.libraryRepo.loadFullYearPrices(library);
+        this.libraryRepo.loadHalfAYearPrices(library);
+        this.libraryRepo.loadMaxIssueDays(library);
+        this.libraryRepo.loadMaxIssuedBooks(library);
+        this.libraryRepo.loadIssuedBooks(library);
+        this.libraryRepo.loadPayments(library);
     }
 
     @FXML
@@ -91,7 +103,7 @@ public class SettingsController {
         prices6months.add(Double.valueOf(student6price.getText()));
         prices6months.add(Double.valueOf(preschooler6price.getText()));
         prices6months.add(Double.valueOf(pupil6price.getText()));
-        prices6months.add(Double.valueOf(regular6price.getText()));
+        prices6months.add(Double.valueOf(retired6price.getText()));
         prices6months.add(Double.valueOf(privileged6price.getText()));
         return prices6months;
     }

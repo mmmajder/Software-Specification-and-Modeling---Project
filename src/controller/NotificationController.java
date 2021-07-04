@@ -52,9 +52,7 @@ public class NotificationController {
         addNotification(account, notification);
     }
 
-    private String getNewId(Account account){
-        return String.valueOf(account.getNotifications().size() + 1);
-    }
+    private String getNewId(Account account){ return account.getUsername() + (account.getNotifications().size() + 1); }
 
     private void addNotification(Account account, Notification notification) {
         account.addNotification(notification);

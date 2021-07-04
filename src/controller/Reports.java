@@ -202,12 +202,8 @@ public class Reports {
 
     private List<String> generateLines(List<EditionIssues> editionsIssues, LocalDate fromDate, LocalDate toDate, Integer n) {
         List<String> lines = new ArrayList<>();
-<<<<<<< HEAD
         lines.add(generateTitle(fromDate, toDate, n,  n == editionsIssues.size()));
-=======
 
-        lines.add(generateTitle(fromDate, toDate, n, n == editionsIssues.size()));
->>>>>>> 5a3fad21d37f38f8975e7eb8d4d35ed308c8d316
 
         for (int i = 0; i < n; i++) {
             lines.add(generateEditionIssuesLine(editionsIssues.get(i)));
@@ -221,13 +217,7 @@ public class Reports {
     private String generateTitle(LocalDate fromDate, LocalDate toDate, Integer n, boolean allEditions) {
         String line = "NUMBER OF ";
 
-<<<<<<< HEAD
         if (!allEditions){ line += "TOP " + n; }
-=======
-        if (!allEditions) {
-            line += "TOP " + n;
-        }
->>>>>>> 5a3fad21d37f38f8975e7eb8d4d35ed308c8d316
 
         line += " EDITIONS' ISSUES FROM " + StringUtils.dateToString(fromDate, "dd.mm.yyyy.")
                 + " TO " + StringUtils.dateToString(fromDate, "dd.mm.yyyy.") + "\n";
@@ -258,19 +248,11 @@ public class Reports {
         return "Daily_" + getTodaysDateStr();
     }
 
-<<<<<<< HEAD
     private String generateName(LocalDate fromDate, LocalDate toDate, Integer n, boolean allEditions){
         String name;
 
         if (allEditions){
             name = "Issues_";
-=======
-    private String generateName(LocalDate fromDate, LocalDate toDate, Integer n, boolean allEditions) {
-        String name = "";
-
-        if (allEditions) {
-            name += "Issues_";
->>>>>>> 5a3fad21d37f38f8975e7eb8d4d35ed308c8d316
         } else {
             name = "Top" + n + "_Issues_";
         }

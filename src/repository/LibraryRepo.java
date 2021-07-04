@@ -973,4 +973,18 @@ public class LibraryRepo implements ILibraryRepo {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void addLibrarian(Librarian librarian) {
+
+        String query = "INSERT INTO librarians VALUES (?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, librarian.getJMBG());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

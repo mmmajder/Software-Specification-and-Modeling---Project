@@ -69,6 +69,30 @@ public class CRUDController {
         }
     }
 
+    public void addLibrarian(String name, String surname, String jmbg, String phoneNumber, String birthDate) throws
+            InvalidJmbgFormatException, JmbgAlreadyExists, InvalidNameFormatException, InvalidSurnameFormatException,
+            InvalidPhoneNumberFormatException, InvalidDateFormatException {
+
+        jmbgValid(jmbg);
+        jmbgExists(jmbg);
+        nameValid(name);
+        surnameValid(surname);
+        phoneNumberValid(phoneNumber);
+
+        try {
+            LocalDate date = LocalDate.parse(birthDate);
+            Librarian librarian = new Librarian(name, surname, jmbg, phoneNumber, date, null);
+            library.addPerson(librarian);
+            library.notifyObservers();
+            libraryRepo.addPerson(librarian);
+            libraryRepo.addLibrarian(librarian);
+
+        } catch (DateTimeParseException e) {
+
+            throw new InvalidDateFormatException();
+        }
+    }
+
     public void addAccount(String jmbg, String username, String password, String email, AccountType type) throws
             EmailAlreadyExistsException, UsernameAlreadyExistsException {
 

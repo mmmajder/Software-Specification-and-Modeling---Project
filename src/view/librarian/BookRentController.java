@@ -24,8 +24,15 @@ public class BookRentController {
     public BookRentController(Account account) {
         this.account = account;
     }
+    public void init() {
+        rentBtn.setOnMouseClicked(e->{
+            rentBook();
+        });
+    }
 
-    public void rentBook(MouseEvent event) {
+
+    public void rentBook() {
+
         try {
             library = new Library(); // add
             RentingController rentingController = new RentingController(library);

@@ -109,6 +109,8 @@ public class BookLibrarianController {
                     primaryStage.setScene(new Scene(root, 600, 250));
                     primaryStage.setResizable(false);
                     primaryStage.show();
+                    BookRentController bookRentController = new BookRentController(account);
+                    bookRentController.init();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

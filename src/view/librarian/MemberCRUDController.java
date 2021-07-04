@@ -214,7 +214,41 @@ public class MemberCRUDController implements Observer {
         });
 
         addMemberLbl.setOnMouseClicked(e -> {
-            dataMemberTable.add(new MemberTable("Name", "Surname", "JMBG", "Phone", "Email", "01.01.2001.", null));
+            Stage window = new Stage();
+            window.setTitle("Add member");
+            Label nameLbl = new Label("Name ");
+            TextField name = new TextField();
+            HBox nameHBox = new HBox(nameLbl, name);
+
+            Label surnameLbl = new Label("Surname ");
+            TextField surname = new TextField();
+            HBox surnameHBox = new HBox(surnameLbl, surname);
+
+            Label jmbgLbl = new Label("JMBG ");
+            TextField jmbg = new TextField();
+            HBox jmbgHBox = new HBox(jmbgLbl, jmbg);
+
+            Label phoneLbl = new Label("Phone number ");
+            TextField phone = new TextField();
+            HBox phoneHBox = new HBox(phoneLbl, phone);
+
+            Label birthDateLbl = new Label("Birth date ");
+            DatePicker birthDate = new DatePicker();
+            HBox birthDateHBox = new HBox(birthDateLbl, birthDate);
+
+            Button confirm = new Button("CONFIRM");
+
+            VBox layout = new VBox(10);
+            layout.getChildren().addAll(nameHBox, surnameHBox, jmbgHBox, phoneHBox, birthDateHBox, confirm);
+            layout.setAlignment(Pos.CENTER);
+
+            Scene scene = new Scene(layout, 300, 250);
+            window.setScene(scene);
+            window.showAndWait();
+            confirm.setOnMouseClicked(event -> {
+                CRUDController crudController = new CRUDController(library);
+                crudController.addMember(name, surname, jmbg, phone, birthDate);
+            });
         });
 
         prolongLbl.setOnMouseClicked(e -> {

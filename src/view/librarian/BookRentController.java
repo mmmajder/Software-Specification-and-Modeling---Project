@@ -24,7 +24,7 @@ public class BookRentController {
         try {
             library = new Library(); // add
             RentingController rentingController = new RentingController(library);
-//            rentingController.rent(userIdLbl.getText(), sampleIdLbl.getText(), account);
+//            rentingController.rent(userIdLbl.getText(), sampleIdLbl.getText(), account.getPerson());
         } catch (Exception e) {
             // add exceptions
             /*Alert a = new Alert(Alert.AlertType.WARNING);

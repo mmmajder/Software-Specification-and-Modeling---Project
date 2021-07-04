@@ -1,13 +1,17 @@
 package view.member;
 
+import controller.CRUDController;
 import controller.IssuedBookController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 import observer.Observer;
+import view.librarian.model.CurrentIssueTable;
+import view.librarian.model.MemberTable;
 import view.member.model.MemberHistoryTable;
 
 import java.io.IOException;
@@ -15,6 +19,7 @@ import java.time.LocalDate;
 
 public class IssuedBooksHistoryController implements Observer {
     public TableView<MemberHistoryTable> issuedBooksHistoryTable;
+    public Label prolongLbl;
     ObservableList<MemberHistoryTable> dataHistoryTable;
     Library library;
     Account account;
@@ -73,7 +78,7 @@ public class IssuedBooksHistoryController implements Observer {
 
         TableColumn colStatus = new TableColumn("Status") {
             {
-                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.45));
+                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.15));
             }
         };
         issuedBooksHistoryTable.getColumns().add(colStatus);
@@ -86,6 +91,12 @@ public class IssuedBooksHistoryController implements Observer {
         colStatus.setCellValueFactory(new PropertyValueFactory<MemberHistoryTable, String>("state"));
 
         issuedBooksHistoryTable.setItems(getHistory());
+
+        prolongLbl.setOnMouseClicked(e -> {
+            MemberHistoryTable memberHistoryTable = issuedBooksHistoryTable.getSelectionModel().getSelectedItem();
+            CRUDController crudController = new CRUDController(library);
+//            crudController.prolongIssue(member.getJMBG(),issue.getId());
+        });
     }
 
     private ObservableList<MemberHistoryTable> getHistory() {

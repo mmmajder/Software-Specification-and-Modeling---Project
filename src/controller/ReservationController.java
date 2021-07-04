@@ -18,12 +18,12 @@ public class ReservationController {
         this.libraryRepo = new LibraryRepo();
     }
 
-    public void approveReservation(String jmbg, String editionId) {
+    public void approveReservation(int pendingReservationId) {
 
-        Member member = (Member) library.getPerson(jmbg);
-        Edition edition = library.getEdition(editionId);
+        PendingReservation pendingReservation = library.getPendingReservation(pendingReservationId);
+        Member member = pendingReservation.getMember();
+        Edition edition = pendingReservation.getEdition();
         Book book = library.getAvailableBook(edition);
-        PendingReservation pendingReservation = member.getPendingReservation();
         notificationController.reservationApproved(pendingReservation);
 
         library.removePendingReservation(pendingReservation);
@@ -40,10 +40,10 @@ public class ReservationController {
 
     }
 
-    public void declineReservation(String jmbg) {
+    public void declineReservation(int pendingReservationId) {
 
-        Member member = (Member) library.getPerson(jmbg);
-        PendingReservation pendingReservation = member.getPendingReservation();
+        PendingReservation pendingReservation = library.getPendingReservation(pendingReservationId);
+        Member member = pendingReservation.getMember();
         notificationController.reservationDeclined(pendingReservation);
 
         library.removePendingReservation(pendingReservation);
@@ -53,12 +53,12 @@ public class ReservationController {
         library.notifyObservers();
     }
 
-    public void issueReservation(String jmbg, Account account) {
+    public void issueReservation(int reservationId, Account account) {
 
         Librarian librarian = (Librarian) account.getPerson();
-        Member member = (Member) library.getPerson(jmbg);
-        Book book = member.getReservedBook();
-        Reservation reservation = member.getReservation();
+        Reservation reservation = library.getReservation(reservationId);
+        Member member = reservation.getMember();
+        Book book = reservation.getBook();
 
         library.removeReservation(reservation);
         member.removeReservation();

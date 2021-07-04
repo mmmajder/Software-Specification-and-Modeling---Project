@@ -5,7 +5,7 @@ import model.enums.MemberType;
 import utils.DateUtils;
 import utils.StringUtils;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -16,7 +16,10 @@ import java.util.stream.Collectors;
 public class Reports {
 
     private final Library library;
-
+    private final String extension = ".txt";
+    private final String path = "reports/";
+    private final String datePatternInFilename = "dd_MM_yyyy";
+    private final String datePatternInFile = "dd.MM.yyyy.";
     public Reports(Library library) {
         this.library = library;
     }
@@ -210,8 +213,8 @@ public class Reports {
             line += "TOP " + n;
         }
 
-        line += " EDITIONS' ISSUES FROM " + StringUtils.dateToString(fromDate, "dd.MM.yyyy.")
-                + " TO " + StringUtils.dateToString(fromDate, "dd.MM.yyyy.") + "\n";
+        line += " EDITIONS' ISSUES FROM " + StringUtils.dateToString(fromDate, datePatternInFile)
+                + " TO " + StringUtils.dateToString(fromDate, datePatternInFile) + "\n";
 
         return line;
     }
@@ -247,23 +250,38 @@ public class Reports {
         } else {
             name = "Top" + n + "_Issues_";
         }
-        name += getTodaysDateStr() + "_from_" + getDateStr(fromDate) + "_to_" + getDateStr(toDate);
+        name += getTodaysDateStr() + "_from_" + getDateStrForFilename(fromDate) + "_to_" + getDateStrForFilename(toDate);
 
         return name;
     }
 
     private String getTodaysDateStr() {
-        return getDateStr(LocalDate.now());
+        return getDateStrForFilename(LocalDate.now());
     }
 
-    private String getDateStr(LocalDate date) {
-        String datePattern = "dd_MM_yyyy";
-        return StringUtils.dateToString(date, datePattern);
+    private String getDateStrForFilename(LocalDate date) {
+        return StringUtils.dateToString(date, datePatternInFilename);
     }
 
-    private void generateFile(List<String> lines, String filename) throws IOException {
-        String extension = ".txt";
-        String path = "./../reports/";
-        Files.write(Paths.get(path + filename + extension), lines, StandardCharsets.UTF_8);
+    public void generateFile(List<String> lines, String filename) throws IOException {
+        FileWriter myWriter = new FileWriter(path + filename + extension);
+        write(path + filename + extension, lines);
+    }
+
+    private void write(String fileName, List<String> lines) {
+        PrintWriter pw = null;
+
+        try {
+            pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(fileName), "utf-8"));
+
+            for (String line : lines) {
+                pw.println(line);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pw.close();
+        }
     }
 }

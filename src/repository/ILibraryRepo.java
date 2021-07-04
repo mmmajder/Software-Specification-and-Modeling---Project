@@ -1,4 +1,6 @@
-package model;
+package repository;
+
+import model.*;
 
 public interface ILibraryRepo {
     void loadAccounts(Library library);

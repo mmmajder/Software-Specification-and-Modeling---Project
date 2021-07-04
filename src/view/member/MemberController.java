@@ -11,9 +11,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Account;
-import model.ILibraryRepo;
+import repository.ILibraryRepo;
 import model.Library;
-import model.LibraryRepo;
+import repository.LibraryRepo;
 
 import java.io.IOException;
 

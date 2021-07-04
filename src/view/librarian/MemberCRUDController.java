@@ -3,28 +3,32 @@ package view.librarian;
 import controller.CRUDController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import model.*;
 import observer.Observer;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-import utils.exceptions.InvalidNameFormatException;
-import utils.exceptions.InvalidPhoneNumberFormatException;
-import utils.exceptions.InvalidSurnameFormatException;
+import repository.ILibraryRepo;
+import repository.LibraryRepo;
+import utils.exceptions.*;
 import view.librarian.model.CurrentIssueTable;
 import view.librarian.model.MemberTable;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class MemberCRUDController implements Observer {
     public Label removeMemberLbl;
     public Label addMemberLbl;
     public Label prolongLbl;
+    public Label addAccountLbl;
     ObservableList<MemberTable> dataMemberTable;
     ObservableList<CurrentIssueTable> dataMemberIssuesTable;
 
@@ -35,7 +39,7 @@ public class MemberCRUDController implements Observer {
     MemberTable selected;
     CRUDController crudController;
 
-    public void initData() throws IOException  {
+    public void initData() throws IOException {
         this.library = new Library();
         library.addObserver(this);
         libraryRepo = new LibraryRepo();
@@ -47,7 +51,7 @@ public class MemberCRUDController implements Observer {
         libraryRepo.loadIssuedBooks(library);
         crudController = new CRUDController(library);
 
-        TableColumn colName = new TableColumn("Name"){
+        TableColumn colName = new TableColumn("Name") {
             {
                 prefWidthProperty().bind(memberTable.widthProperty().multiply(0.15));
             }
@@ -61,10 +65,7 @@ public class MemberCRUDController implements Observer {
                 try {
                     crudController.editName(member.getName(), member.getJMBG());
                 } catch (InvalidNameFormatException e) {
-                    Alert a = new Alert(Alert.AlertType.WARNING);
-                    a.setTitle("Alert");
-                    a.setContentText("Name must start with capital letter and contain only alphabetical letters");
-                    a.show();
+                    createAlert("Name must start with capital letter and contain only alphabetical letters");
                     memberTable.getSelectionModel().getSelectedItem().setName(event.getOldValue().toString());
                 }
             }
@@ -86,10 +87,7 @@ public class MemberCRUDController implements Observer {
                     System.out.println(member.getJMBG());
                     crudController.editSurname(member.getSurname(), member.getJMBG());
                 } catch (InvalidSurnameFormatException e) {
-                    Alert a = new Alert(Alert.AlertType.WARNING);
-                    a.setTitle("Alert");
-                    a.setContentText("Surname must start with capital letter and contain only alphabetical letters");
-                    a.show();
+                    createAlert("Surname must start with capital letter and contain only alphabetical letters");
                 }
             }
         });
@@ -115,10 +113,7 @@ public class MemberCRUDController implements Observer {
                 try {
                     crudController.editPhoneNumber(member.getPhoneNumber(), member.getJMBG());
                 } catch (InvalidPhoneNumberFormatException e) {
-                    Alert a = new Alert(Alert.AlertType.WARNING);
-                    a.setTitle("Alert");
-                    a.setContentText("Phone number is not written properly");
-                    a.show();
+                    createAlert("Phone number is not written properly");
                 }
             }
         });
@@ -195,6 +190,7 @@ public class MemberCRUDController implements Observer {
         colName.setCellFactory(TextFieldTableCell.forTableColumn());
         colSurname.setCellFactory(TextFieldTableCell.forTableColumn());
         colPhone.setCellFactory(TextFieldTableCell.forTableColumn());
+        colBirthDate.setCellFactory(TextFieldTableCell.forTableColumn());
 
         memberTable.setOnMouseClicked(e -> {
             selected = memberTable.getSelectionModel().getSelectedItem();
@@ -207,7 +203,56 @@ public class MemberCRUDController implements Observer {
         });
 
         addMemberLbl.setOnMouseClicked(e -> {
-            dataMemberTable.add(new MemberTable("Name", "Surname", "JMBG", "Phone", "Email", "01.01.2001.", null));
+            Stage window = new Stage();
+            window.setTitle("Add member");
+            Label nameLbl = new Label("Name ");
+            TextField name = new TextField();
+            HBox nameHBox = new HBox(nameLbl, name);
+
+            Label surnameLbl = new Label("Surname ");
+            TextField surname = new TextField();
+            HBox surnameHBox = new HBox(surnameLbl, surname);
+
+            Label jmbgLbl = new Label("JMBG ");
+            TextField jmbg = new TextField();
+            HBox jmbgHBox = new HBox(jmbgLbl, jmbg);
+
+            Label phoneLbl = new Label("Phone number ");
+            TextField phone = new TextField();
+            HBox phoneHBox = new HBox(phoneLbl, phone);
+
+            Label birthDateLbl = new Label("Birth date ");
+            DatePicker birthDate = new DatePicker();
+            HBox birthDateHBox = new HBox(birthDateLbl, birthDate);
+
+            Button confirm = new Button("CONFIRM");
+
+            VBox layout = new VBox(10);
+            layout.getChildren().addAll(nameHBox, surnameHBox, jmbgHBox, phoneHBox, birthDateHBox, confirm);
+            layout.setAlignment(Pos.CENTER);
+
+            Scene scene = new Scene(layout, 300, 250);
+            window.setScene(scene);
+            window.showAndWait();
+            confirm.setOnMouseClicked(event -> {
+                CRUDController crudController = new CRUDController(library);
+                String date = birthDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                try {
+                    crudController.addMember(name.getText(), surname.getText(), jmbg.getText(), phone.getText(), date);
+                } catch (InvalidJmbgFormatException invalidJmbgFormatException) {
+                    createAlert("Invalid JMBG format");
+                } catch (JmbgAlreadyExists jmbgAlreadyExists) {
+                    createAlert("JMBG already exists");
+                } catch (InvalidNameFormatException invalidNameFormatException) {
+                    createAlert("Invalid name format");
+                } catch (InvalidSurnameFormatException invalidSurnameFormatException) {
+                    createAlert("Invalid surname format");
+                } catch (InvalidPhoneNumberFormatException invalidPhoneNumberFormatException) {
+                    createAlert("Invalid phone number format");
+                } catch (InvalidDateFormatException invalidDateFormatException) {
+                    createAlert("Invalid date format");
+                }
+            });
         });
 
         prolongLbl.setOnMouseClicked(e -> {
@@ -216,17 +261,57 @@ public class MemberCRUDController implements Observer {
         prolongLbl.setOnMouseClicked(e -> {
             MemberTable member = memberTable.getSelectionModel().getSelectedItem();
             CurrentIssueTable issue = memberIssuesTable.getSelectionModel().getSelectedItem();
-            crudController.prolongIssue(member.getJMBG(),issue.getId());
+            crudController.prolongIssue(member.getJMBG(), issue.getId());
+        });
+
+        addAccountLbl.setOnMouseClicked(e -> {
+            Stage window = new Stage();
+            window.setTitle("Add account");
+
+            Label userLbl = new Label("Username ");
+            TextField usename = new TextField();
+            HBox userHBox = new HBox(userLbl, usename);
+
+            Label passLbl = new Label("Password ");
+            TextField password = new TextField();
+            HBox passHBox = new HBox(passLbl, password);
+
+            Label emailLbl = new Label("Email ");
+            TextField email = new TextField();
+            HBox emailHBox = new HBox(emailLbl, email);
+
+            Button confirm = new Button("CONFIRM");
+
+            VBox layout = new VBox(10);
+            layout.getChildren().addAll(userHBox, passHBox, emailHBox, confirm);
+            layout.setAlignment(Pos.CENTER);
+
+            Scene scene = new Scene(layout, 300, 250);
+            window.setScene(scene);
+            window.showAndWait();
+
+            confirm.setOnMouseClicked(event -> {
+                CRUDController crudController = new CRUDController(library);
+                MemberTable member = memberTable.getSelectionModel().getSelectedItem();
+//                crudController.setAccount(member.getJMBG(), usename.getText(), password.getText(), email.getText());
+            });
+
         });
     }
+    private void createAlert(String text) {
+        Alert a = new Alert(Alert.AlertType.WARNING);
+        a.setTitle("Alert");
+        a.setContentText(text);
+        a.show();
+    }
+
 
     private ObservableList<MemberTable> getMembers() {
         ObservableList<MemberTable> list = FXCollections.observableArrayList();
         for (Member member : library.getMembers()) {
-            try{
+            try {
                 list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate().toString(), member.getMembershipExpirationDate().toString()));
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate().toString(), null));
             }
         }

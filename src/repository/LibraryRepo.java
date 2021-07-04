@@ -1,5 +1,6 @@
-package model;
+package repository;
 
+import model.*;
 import model.enums.*;
 
 import java.sql.Connection;

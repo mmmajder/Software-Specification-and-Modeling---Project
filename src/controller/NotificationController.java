@@ -1,6 +1,8 @@
 package controller;
 
 import model.*;
+import repository.ILibraryRepo;
+import repository.LibraryRepo;
 
 import java.time.LocalDate;
 
@@ -26,7 +28,7 @@ public class NotificationController {
         notify(reservation.getMember().getAccount(), message);
     }
 
-    public void reservationNotApproved(PendingReservation reservation) {
+    public void reservationDeclined(PendingReservation reservation) {
         String bookTitle = reservation.getEdition().getTitle();
         String message = "Your reservation of " + bookTitle + " is not approved. Try again in a few days.";
         notify(reservation.getMember().getAccount(), message);

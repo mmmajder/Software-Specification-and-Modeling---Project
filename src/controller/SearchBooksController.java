@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchBooksController {
 
@@ -42,33 +43,15 @@ public class SearchBooksController {
 
     public List<Edition> filterByGenre(List<Edition> currentEditions, String genreName) {
 
-        List<Edition> editions = new ArrayList<>();
-        for (Edition edition : currentEditions) {
-
-            for (Genre genre : edition.getGenres()) {
-
-                if (genre.getName().equals(genreName)) {
-                    editions.add(edition);
-                    break;
-                }
-            }
-        }
-
-        return editions;
+        return currentEditions.stream().filter(edition -> edition.getGenres().stream().anyMatch(g -> g.getName().equals(genreName)))
+        .collect(Collectors.toList());
     }
 
     public List<Edition> filterByTitle(List<Edition> currentEditions, String title) {
 
-        List<Edition> editions = new ArrayList<>();
         title = title.toUpperCase();
-        for (Edition edition : currentEditions) {
-
-            if ((edition.getTitle().toUpperCase()).contains(title)) {
-
-                editions.add(edition);
-            }
-        }
-
-        return editions;
+        String finalTitle = title;
+        return currentEditions.stream().filter(edition -> edition.getTitle().toUpperCase().contains(finalTitle))
+                .collect(Collectors.toList());
     }
 }

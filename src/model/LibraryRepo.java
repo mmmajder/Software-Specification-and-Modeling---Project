@@ -924,4 +924,23 @@ public class LibraryRepo implements ILibraryRepo {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void addMember(Member member) {
+
+        String query = "INSERT INTO members VALUES (?, ?, ?, ?, ?, null, null)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, member.getJMBG());
+            statement.setString(2, member.getType().toString());
+            statement.setDouble(3, member.getDebt());
+            statement.setInt(4, member.isMembershipPaid() ? 1 : 0);
+            statement.setInt(5, member.isActive() ? 1 : 0);
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

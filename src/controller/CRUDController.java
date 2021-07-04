@@ -1,9 +1,11 @@
 package controller;
 
 import model.*;
-import utils.exceptions.InvalidNameFormatException;
-import utils.exceptions.InvalidPhoneNumberFormatException;
-import utils.exceptions.InvalidSurnameFormatException;
+import model.enums.MemberType;
+import utils.exceptions.*;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class CRUDController {
 
@@ -54,8 +56,48 @@ public class CRUDController {
         }
     }
 
-    public void editJmbg(String jmbg) {
+    public void addMember(String name, String surname, String jmbg, String phoneNumber, String birthDate) throws
+            InvalidJmbgFormatException, JmbgAlreadyExists, InvalidNameFormatException, InvalidSurnameFormatException,
+            InvalidPhoneNumberFormatException, InvalidDateFormatException {
 
+        if (jmbgValid(jmbg)) {
+
+            if (!jmbgExists(jmbg)) {
+
+                if (nameValid(name)) {
+
+                    if (surnameValid(surname)) {
+
+                        if (phoneNumberValid(phoneNumber)) {
+
+                            try {
+                                LocalDate date = LocalDate.parse(birthDate);
+                                Member member = new Member(jmbg, name, surname, phoneNumber, date, null,
+                                        MemberType.REGULAR, 0, false, true);
+                                library.addPerson(member);
+                                library.notifyObservers();
+                                libraryRepo.addPerson(member);
+                                libraryRepo.addMember(member);
+
+                            } catch (DateTimeParseException e) {
+
+                                throw new InvalidDateFormatException();
+                            }
+                        } else {
+                            throw new InvalidPhoneNumberFormatException();
+                        }
+                    } else {
+                        throw new InvalidSurnameFormatException();
+                    }
+                } else {
+                    throw new InvalidNameFormatException();
+                }
+            } else {
+                throw new JmbgAlreadyExists();
+            }
+        } else {
+            throw new InvalidJmbgFormatException();
+        }
     }
 
     public void prolongIssue(String jmbg, String bookId) {
@@ -78,6 +120,10 @@ public class CRUDController {
 
     private boolean surnameValid(String surname) {
         return surname.matches("[A-Z]+([a-zA-Z]+)*");
+    }
+
+    private boolean jmbgExists(String jmbg) {
+        return library.getPerson(jmbg) != null;
     }
 
     private boolean jmbgValid(String jmbg) {

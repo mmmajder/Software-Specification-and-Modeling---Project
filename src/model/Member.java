@@ -47,6 +47,14 @@ public class Member extends Person {
         this.currentlyTakenBooks = new ArrayList<>();
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public double getDebt() {
+        return debt;
+    }
+
     public LocalDate getMembershipExpirationDate() {
         LocalDate expirationDate = null;
         if (!payments.isEmpty()) {

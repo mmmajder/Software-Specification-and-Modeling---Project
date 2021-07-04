@@ -55,7 +55,7 @@ public class SearchBooksMemberController {
         library = new Library();
         searchBooksController = new SearchBooksController(library);
         libraryRepo = new LibraryRepo();
-        this.account = library.getAccountByEmail(account.getEmail());
+        this.account = account;
         this.memberController = memberController;
         libraryRepo.loadEditions(library);
         libraryRepo.loadContributors(library);

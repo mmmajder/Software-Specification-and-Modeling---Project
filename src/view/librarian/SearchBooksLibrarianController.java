@@ -73,7 +73,7 @@ public class SearchBooksLibrarianController {
         libraryRepo.loadContributors(library);
         libraryRepo.loadContributorRoles(library);
         libraryRepo.loadGenres(library);
-        this.account = library.getAccountByEmail(account.getEmail());
+        this.account = account;
 
         editionController = new EditionController(library);
         this.mainBorderPane = mainBorderPane;

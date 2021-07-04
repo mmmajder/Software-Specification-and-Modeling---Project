@@ -56,7 +56,7 @@ public class BookMemberController {
     @FXML
     public void initData(Edition edition, MemberController memberController, Account account) {
         this.memberController = memberController;
-        this.account = library.getAccountByEmail(account.getEmail());
+        this.account = account;
         editionController = new EditionController(library);
         lblTitle.setText(edition.getTitle());
         lblAuthor.setText(editionController.getAuthorName(edition));

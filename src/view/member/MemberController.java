@@ -42,7 +42,7 @@ public class MemberController {
     ILibraryRepo libraryRepo;
 
     public void initData(Account account) throws IOException {
-        this.account = library.getAccountByEmail(account.getEmail());
+        this.account = account;
         this.library = new Library();
         this.controller = new AccountController(library);
         libraryRepo = new LibraryRepo();

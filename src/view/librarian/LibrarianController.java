@@ -49,7 +49,7 @@ public class LibrarianController {
         libraryRepo.loadTags(library);
         libraryRepo.loadMaxIssueDays(library);
         libraryRepo.loadMaxIssuedBooks(library);
-        this.account = library.getAccountByEmail(account.getEmail());
+        this.account = account;
         lblUsername.setText(controller.getFullName(account.getPerson()));
 
         FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/searchBooksLibrarian.fxml"));

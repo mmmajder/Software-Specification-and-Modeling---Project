@@ -65,8 +65,8 @@ public class BookLibrarianController {
         FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/createEdition.fxml"));
         Parent bookScene = bookLoader.load();
         mainBorderPane.setCenter(bookScene);
-        CreateEditionController createEditionController = bookLoader.getController();
-        //createEditionController.initData(edition, mainBorderPane, librarianController);
+        EditEditionController editionController = new EditEditionController(edition);
+        bookLoader.setController(editionController);
     }
 
     @FXML

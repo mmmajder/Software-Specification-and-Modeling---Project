@@ -44,7 +44,7 @@ public class MembershipController {
     public void initData(Account account) {
         library = new Library();
         libraryRepo = new LibraryRepo();
-        this.account = account;
+        this.account = library.getAccountByEmail(account.getEmail());
         accountController = new AccountController(library);
         libraryRepo.loadMaxIssueDays(library);
         libraryRepo.loadMaxIssuedBooks(library);

@@ -18,8 +18,8 @@ public class NotificationsController implements Observer {
     Account account;
     ILibraryRepo libraryRepo;
 
-    public void initData(Account account) throws IOException {
-        this.account = account;
+    public void initData(Account account) {
+        this.account = library.getAccountByEmail(account.getEmail());
         this.library = new Library();
         libraryRepo = new LibraryRepo();
         library.addObserver(this);

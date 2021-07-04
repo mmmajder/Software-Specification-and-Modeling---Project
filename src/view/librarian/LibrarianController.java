@@ -38,7 +38,7 @@ public class LibrarianController {
     ILibraryRepo libraryRepo;
 
     public void initData(Account account) throws IOException {
-        this.account = account;
+        this.account = library.getAccountByEmail(account.getEmail());
         this.library = new Library();
         this.controller = new AccountController(library);
         libraryRepo = new LibraryRepo();
@@ -115,7 +115,7 @@ public class LibrarianController {
     @FXML
     private void switchToReservations() throws IOException {
         borderPane.setCenter(reservationsScene);
-        reservationsLibrarianController.initData();
+        reservationsLibrarianController.initData(account);
         lblRentedBooks.setUnderline(false);
         lblMembers.setUnderline(false);
         lblReservations.setUnderline(true);

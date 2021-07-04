@@ -7,10 +7,10 @@ import java.time.LocalDate;
 public class BookSampleTable {
     private LocalDate issueDate;
     private LocalDate returnedDate;
-    private BookState state;
+    private String state;
     private String member;
 
-    public BookSampleTable(LocalDate issueDate, LocalDate returnedDate, BookState state, String member) {
+    public BookSampleTable(LocalDate issueDate, LocalDate returnedDate, String state, String member) {
         this.issueDate = issueDate;
         this.returnedDate = returnedDate;
         this.state = state;
@@ -25,7 +25,7 @@ public class BookSampleTable {
         return returnedDate;
     }
 
-    public BookState getState() {
+    public String getState() {
         return state;
     }
 

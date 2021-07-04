@@ -23,6 +23,12 @@ public class Edition {
     private BookFormat format;
     private List<ContributorRole> contributorRoles;
 
+    public Edition(String editionId){
+        this.editionId = editionId;
+        this.contributorRoles = new ArrayList<>();
+        this.genres = new ArrayList<>();
+    }
+
     public Edition() {
         this.genres = new ArrayList<>();
         this.tags = new ArrayList<>();

@@ -15,7 +15,7 @@ public class SystemClock {
     private NotificationController notificationController;
     private IssuedBookController issuedBookController;
 
-    //TODO move these constants somewhere
+    //TODO these constants should be changeable by admin
     private final int DAYS_UNTIL_RETURN_DATE_TO_NOTIFY = 3;
     private final int DAYS_AFTER_RETURN_DATE_TO_SEND_FINE = 0; // if not 0, put in negative
 

@@ -59,7 +59,7 @@ public class EditionController {
     }
 
     private void validateId(String editionId) throws IdAlreadyExistsException {
-        if (EditionController.editionIdExists(library.getEditions(), editionId)) {
+        if (editionIdExists(editionId)) {
             throw new IdAlreadyExistsException();
         }
     }
@@ -73,7 +73,9 @@ public class EditionController {
 //        return e;
 //    }
 
-    public static boolean editionIdExists(List<Edition> editions, String editionId) {
+    public boolean editionIdExists(String editionId) {
+        List<Edition> editions = library.getEditions();
+
         for (Edition e : editions) {
             if (e.getEditionId().equals(editionId)) {
                 return true;
@@ -141,7 +143,7 @@ public class EditionController {
         List<Genre> genres = edition.getGenres();
 
         for (int i = 0; i < genres.size(); i++){
-            genresStr += genres.get(i);
+            genresStr += genres.get(i).getName();
 
             if (i != genres.size() - 1){
                 genresStr += ", ";

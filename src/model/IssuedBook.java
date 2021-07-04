@@ -10,6 +10,8 @@ public class IssuedBook {
     private Librarian librarian;
     private Member member;
 
+    public IssuedBook(){};
+
     public IssuedBook(LocalDate issueDate, LocalDate returnDate, boolean prolongedIssue, Book book, Librarian librarian,
                       Member member) {
         this.issueDate = issueDate;
@@ -80,4 +82,10 @@ public class IssuedBook {
     public void prolongIssue() {
         prolongedIssue = true;
     }
+
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    public void setMember (Member member){ this.member = member;}
 }

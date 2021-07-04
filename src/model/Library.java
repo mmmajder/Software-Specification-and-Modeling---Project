@@ -128,6 +128,8 @@ public class Library implements Publisher {
         this.accounts.add(account);
     }
 
+    public void setAccounts(List<Account> accounts) {this.accounts = accounts; }
+
     public void addContributor(Contributor contributor) {
         this.contributors.add(contributor);
     }
@@ -285,9 +287,7 @@ public class Library implements Publisher {
         List<Member> members = new ArrayList<>();
 
         for (Account account : accounts) {
-
             if (account.getType() == AccountType.MEMBER) {
-
                 members.add((Member) account.getPerson());
             }
         }
@@ -317,12 +317,10 @@ public class Library implements Publisher {
     }
 
     public List<Book> getAvailableBooks(Edition edition) {
-
         List<Book> availableBooks = new ArrayList<>();
+
         for (Book book : edition.getBooks()) {
-
             if (book.getState() == BookState.AVAILABLE) {
-
                 availableBooks.add(book);
             }
         }

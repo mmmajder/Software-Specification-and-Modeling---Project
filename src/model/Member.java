@@ -134,4 +134,6 @@ public class Member extends Person {
     public Payment getLastPayment() { return payments.get(payments.size()-1); }
 
     public List<Payment> getPayments() { return payments; }
+
+    public void setType(MemberType type) { this.type = type; }
 }

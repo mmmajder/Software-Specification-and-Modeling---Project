@@ -16,9 +16,13 @@ public class Account {
     private boolean isActive;
     private List<Notification> notifications;
 
-    public Account(String username, String password, String email, AccountType type, Person person, boolean isActive) {
+    public Account(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public Account(String username, String password, String email, AccountType type, Person person, boolean isActive) {
+        this(username, password);
         this.email = email;
         this.type = type;
         this.person = person;

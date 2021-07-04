@@ -28,13 +28,11 @@ public class IssuedBookController {
 
     public LocalDate calculateReturnDate(IssuedBook issuedBook) {
         int maxIssueDays = library.getMaxIssueDays(issuedBook.getMember().getType());
-        System.out.println(maxIssueDays);
+
         if (issuedBook.isProlongedIssue()) {
             maxIssueDays *= 2;
         }
-        System.out.println(maxIssueDays);
-        System.out.println(issuedBook.getIssueDate().plusDays(maxIssueDays));
-        System.out.println("-----------------------------------------");
+
         return issuedBook.getIssueDate().plusDays(maxIssueDays);
     }
 

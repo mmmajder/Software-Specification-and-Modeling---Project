@@ -13,10 +13,11 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(int id, Member member, Book book) {
+    public Reservation(int id, Member member, Book book, LocalDate reservedOn) {
         this.id = id;
         this.member = member;
         this.book = book;
+        this.reservedOn = reservedOn;
     }
 
     public int getId() {

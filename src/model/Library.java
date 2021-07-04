@@ -306,6 +306,19 @@ public class Library implements Publisher {
         return availableBooks;
     }
 
+    public Book getAvailableBook(Edition edition) {
+
+        for (Book book : edition.getBooks()) {
+
+            if (book.getState() == BookState.AVAILABLE) {
+
+                return book;
+            }
+        }
+
+        return null;
+    }
+
     public List<IssuedBook> getMembersReturnedBooks(Account account) {
         Member member = (Member) account.getPerson();
         return member.getReturnedBooks();
@@ -336,7 +349,9 @@ public class Library implements Publisher {
         return this.currentCatalog.getPrice(memberType, 12);
     }
 
-    public List<Payment> getPayments(){ return payments;}
+    public List<Payment> getPayments() {
+        return payments;
+    }
 
     public void addFormat(BookFormat format) {
         formats.add(format);
@@ -344,6 +359,10 @@ public class Library implements Publisher {
 
     public List<BookFormat> getFormats() {
         return formats;
+    }
+
+    public void removeReservation(Reservation reservation) {
+        reservations.remove(reservation);
     }
 
     @Override

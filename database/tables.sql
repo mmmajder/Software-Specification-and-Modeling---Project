@@ -385,5 +385,6 @@ ALTER TABLE reservations RENAME COLUMN idrb TO idr;
 
 ALTER TABLE persons DROP CONSTRAINT persons_UQ;
 ALTER TABLE persons ADD CONSTRAINT persons_UQ UNIQUE (Account);
+ALTER TABLE reservations ADD reservedOn DATE NOT NULL;
 
 COMMIT;

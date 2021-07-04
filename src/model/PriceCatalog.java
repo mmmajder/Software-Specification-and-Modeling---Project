@@ -13,9 +13,19 @@ public class PriceCatalog {
     private HashMap<MemberType, Double> halfAYearPrices;
     private HashMap<MemberType, Double> fullYearPrices;
 
-    public PriceCatalog(int catalogId, LocalDate fromDate, LocalDate toDate) {
+    public PriceCatalog(int catalogId, LocalDate fromDate) {
         this.catalogId = catalogId;
         this.fromDate = fromDate;
+    }
+    public PriceCatalog(int catalogId, LocalDate fromDate, HashMap<MemberType, Double> halfAYearPrices, HashMap<MemberType, Double> fullYearPrices) {
+        this(catalogId, fromDate);
+        this.toDate = null;
+        this.halfAYearPrices = halfAYearPrices;
+        this.fullYearPrices = fullYearPrices;
+    }
+
+    public PriceCatalog(int catalogId, LocalDate fromDate, LocalDate toDate) {
+        this(catalogId, fromDate);
         this.toDate = toDate;
         this.halfAYearPrices = new HashMap<>();
         this.fullYearPrices = new HashMap<>();

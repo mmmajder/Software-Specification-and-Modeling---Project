@@ -20,9 +20,11 @@ public class BookRentController {
     public TextField sampleIdLbl;
     public Account account;
     public Library library;
+    public RentingController rentingController;
 
-    public BookRentController(Account account) {
+    public void initData(Account account, Library library) {
         this.account = account;
+        this.library = library;
     }
     public void init() {
         rentBtn.setOnMouseClicked(e->{
@@ -34,7 +36,6 @@ public class BookRentController {
     public void rentBook() {
 
         try {
-            library = new Library(); // add
             RentingController rentingController = new RentingController(library);
             rentingController.rent(userIdLbl.getText(), sampleIdLbl.getText(), account.getPerson());
         } catch (BookNotFoundException e) {

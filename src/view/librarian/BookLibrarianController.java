@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class BookLibrarianController {
     public Label lblTitle;
@@ -95,35 +96,29 @@ public class BookLibrarianController {
     }
 
     public void createRentPanel(MouseEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../../fxml/librarian/bookRent.fxml"));
-        BookRentController bookRentController = new BookRentController(this.account);
-        /*
-         * if "fx:controller" is not set in fxml
-         * fxmlLoader.setController(NewWindowController);
-         */
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        Stage stage = new Stage();
-        stage.setTitle("New Window");
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookRent.fxml"));
+        final Parent root = loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setMinWidth(600);
+        stage.setMinHeight(400);
         stage.show();
-//
-//        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("../../fxml/librarian/bookRent.fxml"));
-//        Stage stage = new Stage();
-//        stage.setTitle("My New Stage Title");
-//        stage.setScene(new Scene(root, 450, 450));
-//        stage.show();
-//        // Hide this current window (if this is what you want)
-//        ((Node)(event.getSource())).getScene().getWindow().hide();
 
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookRent.fxml"));
-//        Parent root1 = (Parent) fxmlLoader.load();
-//        Stage stage = new Stage();
-//        stage.setTitle("Rent");
-//        stage.setScene(new Scene(root1));
-//        stage.show();
+
+
 //        FXMLLoader fxmlLoader = new FXMLLoader();
 //        fxmlLoader.setLocation(getClass().getResource("../../fxml/librarian/bookRent.fxml"));
-//        AnchorPane bookPane = fxmlLoader.load();
+//        BookRentController bookRentController = new BookRentController(this.account);
+//        /*
+//         * if "fx:controller" is not set in fxml
+//         * fxmlLoader.setController(NewWindowController);
+//         */
+//        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+//        Stage stage = new Stage();
+//        stage.setTitle("New Window");
+//        stage.setScene(scene);
+//        stage.show();
     }
 }

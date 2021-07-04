@@ -6,9 +6,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import model.*;
 import observer.Observer;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
@@ -25,6 +30,7 @@ public class MemberCRUDController implements Observer {
     public Label removeMemberLbl;
     public Label addMemberLbl;
     public Label prolongLbl;
+    public Label addAccountLbl;
     ObservableList<MemberTable> dataMemberTable;
     ObservableList<CurrentIssueTable> dataMemberIssuesTable;
 
@@ -195,6 +201,7 @@ public class MemberCRUDController implements Observer {
         colName.setCellFactory(TextFieldTableCell.forTableColumn());
         colSurname.setCellFactory(TextFieldTableCell.forTableColumn());
         colPhone.setCellFactory(TextFieldTableCell.forTableColumn());
+        colBirthDate.setCellFactory(TextFieldTableCell.forTableColumn());
 
         memberTable.setOnMouseClicked(e -> {
             selected = memberTable.getSelectionModel().getSelectedItem();
@@ -217,6 +224,33 @@ public class MemberCRUDController implements Observer {
             MemberTable member = memberTable.getSelectionModel().getSelectedItem();
             CurrentIssueTable issue = memberIssuesTable.getSelectionModel().getSelectedItem();
             crudController.prolongIssue(member.getJMBG(),issue.getId());
+        });
+
+        addAccountLbl.setOnMouseClicked(e -> {
+            Stage window = new Stage();
+            window.setTitle("Add account");
+
+            Label userLbl = new Label("Username ");
+            TextField usename = new TextField();
+            HBox userHBox = new HBox(userLbl, usename);
+
+            Label passLbl = new Label("Password ");
+            TextField password = new TextField();
+            HBox passHBox = new HBox(passLbl, password);
+
+            Label emailLbl = new Label("Email ");
+            TextField email = new TextField();
+            HBox emailHBox = new HBox(emailLbl, email);
+
+            Button confirm = new Button("CONFIRM");
+
+            VBox layout = new VBox(10);
+            layout.getChildren().addAll(userHBox, passHBox, emailHBox, confirm);
+            layout.setAlignment(Pos.CENTER);
+
+            Scene scene = new Scene(layout, 300, 250);
+            window.setScene(scene);
+            window.showAndWait();
         });
     }
 

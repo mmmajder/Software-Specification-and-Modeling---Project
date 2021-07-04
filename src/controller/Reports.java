@@ -194,7 +194,6 @@ public class Reports {
         List<String> lines = new ArrayList<>();
         lines.add(generateTitle(fromDate, n, n == editionsIssues.size()));
 
-
         for (int i = 0; i < n; i++) {
             lines.add(generateEditionIssuesLine(editionsIssues.get(i)));
         }

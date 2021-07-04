@@ -10,7 +10,9 @@ import utils.exceptions.MemberAlreadyHasReservedBook;
 public class MemberReservationController {
     private Library library;
 
-    public MemberReservationController(Library library){ this.library = library; }
+    public MemberReservationController(Library library) {
+        this.library = library;
+    }
 
     public void sendReservationRequest(Member member, Edition edition) throws MemberAlreadyHasPendingRequestException, MemberAlreadyHasReservedBook {
         validateMembersReservationAbility(member);
@@ -28,7 +30,7 @@ public class MemberReservationController {
         }
     }
 
-    private PendingReservation createPendingReservation(Member member, Edition edition){
+    private PendingReservation createPendingReservation(Member member, Edition edition) {
         //TODO get value for new id
         int id = 0;
 

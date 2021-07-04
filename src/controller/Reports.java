@@ -143,7 +143,7 @@ public class Reports {
             n = editionsIssues.size();
         }
         List<String> lines = generateLines(editionsIssues, fromDate, n);
-        String filename = generateTitle(fromDate, n, n == editionsIssues.size());
+        String filename = generateName(fromDate, toDate, n, n == editionsIssues.size());
         generateFile(lines, filename);
     }
 

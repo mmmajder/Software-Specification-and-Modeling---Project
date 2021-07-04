@@ -594,7 +594,7 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setString(2, notification.getMessage());
             statement.setDate(3, Date.valueOf(notification.getDate()));
             statement.setString(4, notification.getAccount().getEmail());
-            statement.executeUpdate(query);
+            statement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();

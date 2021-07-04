@@ -21,7 +21,7 @@ public class NotificationsController implements Observer {
     Account account;
     ILibraryRepo libraryRepo;
 
-    public void initData(Account account) throws IOException {
+    public void initData(Account account) {
         this.account = account;
         this.library = new Library();
         libraryRepo = new LibraryRepo();

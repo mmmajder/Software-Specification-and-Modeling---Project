@@ -47,7 +47,7 @@ public class SearchBooksMemberController {
         FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/member/reservationMember.fxml"));
         Parent bookScene = bookLoader.load();
         BookMemberController bookMemberController = bookLoader.getController();
-        bookMemberController.initData(edition, memberController);
+        bookMemberController.initData(edition, memberController, account);
         mainBorderPane.setCenter(bookScene);
     }
 

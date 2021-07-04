@@ -54,16 +54,26 @@ public class SearchBooksLibrarianController {
         mainBorderPane.setCenter(bookScene);
     }
 
+    @FXML
+    public void switchToAddEdition() throws IOException {
+        FXMLLoader addEditionLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/createEdition.fxml"));
+        Parent bookScene = addEditionLoader.load();
+        CreateEditionController createEditionController = new CreateEditionController();
+        createEditionController.initData(librarianController);
+        addEditionLoader.setController(createEditionController);
+        mainBorderPane.setCenter(bookScene);
+    }
+
     public void initData(Account account, BorderPane mainBorderPane, LibrarianController librarianController) {
         library = new Library();
         searchBooksController = new SearchBooksController(library);
         libraryRepo = new LibraryRepo();
-        this.account = account;
         this.librarianController = librarianController;
         libraryRepo.loadEditions(library);
         libraryRepo.loadContributors(library);
         libraryRepo.loadContributorRoles(library);
         libraryRepo.loadGenres(library);
+        this.account = account;
 
         editionController = new EditionController(library);
         this.mainBorderPane = mainBorderPane;

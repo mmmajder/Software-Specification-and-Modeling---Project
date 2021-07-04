@@ -38,7 +38,6 @@ public class LibrarianController {
     ILibraryRepo libraryRepo;
 
     public void initData(Account account) throws IOException {
-        this.account = account;
         this.library = new Library();
         this.controller = new AccountController(library);
         libraryRepo = new LibraryRepo();
@@ -50,6 +49,7 @@ public class LibrarianController {
         libraryRepo.loadTags(library);
         libraryRepo.loadMaxIssueDays(library);
         libraryRepo.loadMaxIssuedBooks(library);
+        this.account = account;
         lblUsername.setText(controller.getFullName(account.getPerson()));
 
         FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/searchBooksLibrarian.fxml"));
@@ -115,7 +115,7 @@ public class LibrarianController {
     @FXML
     private void switchToReservations() throws IOException {
         borderPane.setCenter(reservationsScene);
-        reservationsLibrarianController.initData();
+        reservationsLibrarianController.initData(account);
         lblRentedBooks.setUnderline(false);
         lblMembers.setUnderline(false);
         lblReservations.setUnderline(true);

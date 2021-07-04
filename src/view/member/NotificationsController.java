@@ -22,7 +22,7 @@ public class NotificationsController implements Observer {
     ILibraryRepo libraryRepo;
 
     public void initData(Account account) {
-        this.account = library.getAccountByEmail(account.getEmail());
+        this.account = account;
         this.library = new Library();
         libraryRepo = new LibraryRepo();
         library.addObserver(this);

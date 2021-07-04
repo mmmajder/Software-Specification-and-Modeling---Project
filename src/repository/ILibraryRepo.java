@@ -44,4 +44,5 @@ public interface ILibraryRepo {
     void removePendingReservation(PendingReservation pendingReservation);
     void removeReservation(Reservation reservation);
     void addLibrarian(Librarian librarian);
+    void updateBookState(Book book);
 }

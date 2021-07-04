@@ -986,4 +986,19 @@ public class LibraryRepo implements ILibraryRepo {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void updateBookState(Book book) {
+
+        String query = "UPDATE books SET state = ? WHERE idb = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, book.getState().toString());
+            statement.setString(2, book.getBookId());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

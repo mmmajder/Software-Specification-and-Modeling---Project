@@ -3,6 +3,7 @@ package view.librarian;
 import controller.RentingController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import model.Account;
@@ -19,6 +20,7 @@ public class BookRentController {
     public TextField sampleIdLbl;
     public Account account;
     public Library library;
+    public Label confirmationMessage;
 
     public void initData(Account account, Library library) {
         this.account = account;
@@ -29,6 +31,7 @@ public class BookRentController {
         try {
             RentingController rentingController = new RentingController(library);
             rentingController.rent(userIdLbl.getText(), sampleIdLbl.getText(), account.getPerson());
+            confirmationMessage.setText("Your rent was successful.");
         } catch (BookNotFoundException e) {
             Alert a = new Alert(Alert.AlertType.WARNING);
             a.setTitle("Alert");

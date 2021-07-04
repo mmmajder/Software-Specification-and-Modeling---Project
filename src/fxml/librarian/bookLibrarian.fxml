@@ -14,16 +14,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.librarian.BookLibrarianController" style="-fx-background-color: ffffff;"
-            AnchorPane.bottomAnchor="0.0"
-            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-    <BorderPane AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
+<AnchorPane minHeight="600.0" minWidth="950.0" prefHeight="600.0" prefWidth="950.0"
+            style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml" fx:controller="view.librarian.BookLibrarianController">
+    <BorderPane prefHeight="550.0" prefWidth="900.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
                 AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
         <left>
-            <VBox prefHeight="469.0" prefWidth="295.0"
-                  BorderPane.alignment="CENTER">
-                <Pane prefHeight="261.0" prefWidth="295.0">
+            <VBox prefHeight="478.0" prefWidth="270.0" BorderPane.alignment="CENTER">
+                <Pane prefHeight="261.0" prefWidth="288.0">
                     <ImageView fitHeight="216.0" fitWidth="194.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true"
                                preserveRatio="true">
                         <Image url="@../TheLittlePrince.jpg"/>
@@ -77,7 +76,7 @@
             </VBox>
         </left>
         <center>
-            <VBox prefHeight="200.0" prefWidth="100.0"
+            <VBox maxWidth="550.0" minHeight="500.0" minWidth="500.0" prefHeight="518.0" prefWidth="550.0"
                   BorderPane.alignment="CENTER">
                 <Separator prefHeight="28.0" prefWidth="608.0" visible="false"/>
                 <Label fx:id="lblTitle" text="Title" textFill="#63ac29">
@@ -93,57 +92,55 @@
                 </Label>
                 <Separator prefHeight="10.0" prefWidth="594.0"/>
                 <Text fx:id="txtDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="Edition description"
-                      wrappingWidth="594.13671875"/>
+                      wrappingWidth="519.7366943359375"/>
             </VBox>
         </center>
         <bottom>
-            <BorderPane prefHeight="70.0" prefWidth="900.0"
-                        BorderPane.alignment="CENTER">
+            <BorderPane minWidth="900.0" prefHeight="70.0" prefWidth="900.0" BorderPane.alignment="CENTER">
                 <right>
-                    <AnchorPane prefHeight="116.0" prefWidth="498.0" BorderPane.alignment="CENTER">
+                    <AnchorPane prefHeight="72.0" prefWidth="500.0" BorderPane.alignment="CENTER">
                         <HBox prefHeight="123.0" prefWidth="1039.0" AnchorPane.bottomAnchor="15.0"
-                              AnchorPane.leftAnchor="15.0"
-                              AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
-                            <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS" maxWidth="Infinity"
-                                       prefHeight="200.0"/>
-                            <Button mnemonicParsing="false" HBox.hgrow="NEVER" prefHeight="30.0" prefWidth="160.0"
-                                    style="-fx-background-color: #7AB12B;" text="EDIT SAMPLES" textFill="WHITE">
+                              AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                            <Button fx:id="btnRent" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0"
+                                    style="-fx-background-color: #7AB12B;" text="RENT" textFill="WHITE"
+                                    HBox.hgrow="NEVER">
                                 <font>
                                     <Font name="System Bold" size="14.0"/>
                                 </font>
                             </Button>
-                            <Separator orientation="VERTICAL" HBox.hgrow="NEVER" prefHeight="200.0" visible="false"/>
-                            <Button mnemonicParsing="false" HBox.hgrow="NEVER" prefHeight="30.0" prefWidth="160.0"
-                                    style="-fx-background-color: #FF0000;" text="RENT" textFill="WHITE">
+                            <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" HBox.hgrow="NEVER"/>
+                            <Button fx:id="btnEditSamples" onMouseClicked="#switchToEditSamples" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0"
+                                    style="-fx-background-color: #7AB12B;" text="EDIT SAMPLES" textFill="WHITE"
+                                    HBox.hgrow="NEVER">
                                 <font>
                                     <Font name="System Bold" size="14.0"/>
                                 </font>
                             </Button>
-                            <Separator orientation="VERTICAL" HBox.hgrow="NEVER" prefHeight="200.0" visible="false"/>
-                            <Button mnemonicParsing="false" HBox.hgrow="NEVER" prefHeight="30.0" prefWidth="160.0"
-                                    style="-fx-background-color: #7AB12B;" text="EDIT EDITION" textFill="WHITE">
+                            <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" HBox.hgrow="NEVER"/>
+                            <Button fx:id="btnEditEdition" onMouseClicked="#switchToEditEdition" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0"
+                                    style="-fx-background-color: #7AB12B;" text="EDIT EDITION" textFill="WHITE"
+                                    HBox.hgrow="NEVER">
                                 <font>
                                     <Font name="System Bold" size="14.0"/>
                                 </font>
                             </Button>
-                            <Separator orientation="VERTICAL" HBox.hgrow="NEVER" prefHeight="200.0" visible="false"/>
+                            <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" HBox.hgrow="NEVER"/>
                         </HBox>
                     </AnchorPane>
                 </right>
                 <left>
-                    <ImageView onMouseClicked="#backToBooks" fitHeight="72.0" fitWidth="76.0" pickOnBounds="true"
-                               preserveRatio="true"
-                               BorderPane.alignment="CENTER">
+                    <ImageView fitHeight="72.0" fitWidth="76.0" onMouseClicked="#backToBooks" pickOnBounds="true"
+                               preserveRatio="true" BorderPane.alignment="CENTER">
                         <Image url="@../back.png"/>
                     </ImageView>
                 </left>
             </BorderPane>
         </bottom>
         <right>
-            <AnchorPane prefHeight="432.0" prefWidth="143.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="518.0" prefWidth="149.0" BorderPane.alignment="CENTER">
                 <Label fx:id="lblShelf" layoutX="52.0" layoutY="30.0" text="Shelf" textFill="#f1a350" underline="true">
                     <font>
-                        <Font size="18.0" name="System Bold"/>
+                        <Font name="System Bold" size="18.0"/>
                     </font>
                 </Label>
             </AnchorPane>

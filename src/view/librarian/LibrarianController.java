@@ -10,10 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.Account;
-import model.ILibraryRepo;
-import model.Library;
-import model.LibraryRepo;
+import model.*;
 
 import java.io.IOException;
 
@@ -124,5 +121,4 @@ public class LibrarianController {
         lblReservations.setUnderline(true);
         lblBooks.setUnderline(false);
     }
-
 }

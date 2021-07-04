@@ -1,5 +1,9 @@
 package view.librarian;
 
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.layout.BorderPane;
 import observer.Observer;
 import view.librarian.model.BookEditionTable;
 import view.librarian.model.BookSampleTable;
@@ -25,15 +29,33 @@ public class BookCRUDController implements Observer {
     public TableColumn member;
     private Edition edition;
     Library library;
-    Account account;
     ILibraryRepo libraryRepo;
+    LibrarianController librarianController;
+    BookLibrarianController editionController;
+    BorderPane mainBorderPane;
 
-    private void initData(Account account, Edition edition) throws IOException {
+    @FXML
+    public void backToEdition() throws IOException {
+        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookLibrarian.fxml"));
+        Parent bookScene = bookLoader.load();
+        BookLibrarianController bookLibrarianController = bookLoader.getController();
+        bookLibrarianController.initData(edition, mainBorderPane, librarianController);
+        mainBorderPane.setCenter(bookScene);
+    }
+
+    public void initData(Edition edition, BorderPane mainBorderPane, LibrarianController librarianController) {
         this.edition = edition;
-        this.account = account;
+        this.librarianController = librarianController;
+        this.mainBorderPane = mainBorderPane;
         this.library = new Library();
+        library.addObserver(this);
         libraryRepo = new LibraryRepo();
+        libraryRepo.loadContributors(library);
+        libraryRepo.loadAccounts(library);
+        libraryRepo.loadPersons(library);
+        libraryRepo.loadEditions(library);
         libraryRepo.loadBooks(library);
+        libraryRepo.loadIssuedBooks(library);
         editionTable.setItems(getSamples());
         editionTable.setOnMouseClicked(e -> {
             loadSamples();

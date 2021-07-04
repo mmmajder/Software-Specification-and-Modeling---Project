@@ -65,6 +65,7 @@ public class MembershipController {
 
         final ToggleGroup group = new ToggleGroup();
         regularRB.setToggleGroup(group);
+        regularRB.setSelected(true);
         studentRB.setToggleGroup(group);
         pupilRB.setToggleGroup(group);
         preschoolerRB.setToggleGroup(group);

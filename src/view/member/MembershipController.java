@@ -9,12 +9,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import model.Account;
-import model.ILibraryRepo;
+import repository.ILibraryRepo;
 import model.Library;
-import model.LibraryRepo;
+import repository.LibraryRepo;
 import model.enums.MemberType;
-
-import java.util.HashMap;
 
 public class MembershipController {
     public Label pay6months;

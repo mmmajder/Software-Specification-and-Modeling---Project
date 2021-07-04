@@ -9,6 +9,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import model.enums.BookState;
 import observer.Observer;
+import repository.ILibraryRepo;
+import repository.LibraryRepo;
 import view.librarian.model.BookEditionTable;
 import view.librarian.model.BookSampleTable;
 import javafx.collections.FXCollections;
@@ -16,8 +18,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.*;
-import view.librarian.model.CurrentIssueTable;
-import view.librarian.model.MemberTable;
 
 import java.io.IOException;
 import java.time.LocalDate;

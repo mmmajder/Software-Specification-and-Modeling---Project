@@ -7,9 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import model.ILibraryRepo;
+import repository.ILibraryRepo;
 import model.Library;
-import model.LibraryRepo;
+import repository.LibraryRepo;
 
 import java.util.Objects;
 

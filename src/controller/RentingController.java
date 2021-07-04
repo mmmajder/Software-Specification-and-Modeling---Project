@@ -2,6 +2,8 @@ package controller;
 
 import model.*;
 import model.enums.BookState;
+import repository.ILibraryRepo;
+import repository.LibraryRepo;
 import utils.exceptions.BookNotFoundException;
 import utils.exceptions.BookRentingIsInvalidException;
 import utils.exceptions.MemberNotFoundException;

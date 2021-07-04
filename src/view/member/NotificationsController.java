@@ -7,11 +7,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 import observer.Observer;
-import view.librarian.model.MemberTable;
+import repository.ILibraryRepo;
+import repository.LibraryRepo;
 import view.member.model.NotificationTable;
-
-import java.io.IOException;
-import java.time.LocalDate;
 
 public class NotificationsController implements Observer {
 

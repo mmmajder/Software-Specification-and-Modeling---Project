@@ -18,7 +18,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Account;
 import model.Edition;
-import model.ILibraryRepo;
+import repository.ILibraryRepo;
 import model.Library;
 
 import java.io.IOException;
@@ -45,7 +45,7 @@ public class BookLibrarianController {
     Account account;
     Edition edition;
     ILibraryRepo libraryRepo;
-    EditionController editionControler;
+    EditionController editionController;
     public BorderPane mainBorderPane;
 
     @FXML
@@ -78,9 +78,9 @@ public class BookLibrarianController {
         this.edition = edition;
         this.mainBorderPane = mainBorderPane;
         this.account = account;
-        editionControler = new EditionController(library);
+        editionController = new EditionController(library);
         lblTitle.setText(edition.getTitle());
-        lblAuthor.setText(editionControler.getAuthorName(edition));
+        lblAuthor.setText(editionController.getAuthorName(edition));
         final Tooltip authorBiography = new Tooltip();
         authorBiography.setText(edition.getAuthorBiography());
         lblAuthor.setTooltip(authorBiography);
@@ -90,9 +90,9 @@ public class BookLibrarianController {
         lblLanguage.setText("Language: " + edition.getLanguage());
         lblPublisher.setText("Publisher: " + edition.getPublisher());
         lblNumberOfPages.setText("Name of pages: " + edition.getNumberOfPages());
-        lblTranslation.setText("Translation: " + editionControler.getTranslatorsStr(edition));
-        lblIllustration.setText("Illustration: " + editionControler.getIllustratorsStr(edition));
-        lblGenre.setText("Genre " + editionControler.getGenresConcatenated(edition));
+        lblTranslation.setText("Translation: " + editionController.getTranslatorsStr(edition));
+        lblIllustration.setText("Illustration: " + editionController.getIllustratorsStr(edition));
+        lblGenre.setText("Genre " + editionController.getGenresConcatenated(edition));
         txtTags.setText("Tags: " + edition.getTags());
 
         btnRent.setOnAction(new EventHandler<ActionEvent>() {
@@ -108,8 +108,8 @@ public class BookLibrarianController {
                     primaryStage.setScene(new Scene(rentScene, 400, 250));
                     primaryStage.setResizable(false);
                     primaryStage.show();
-                    BookRentController bookRentController = new BookRentController(account);
-                    bookRentController.init();
+//                    BookRentController bookRentController = new BookRentController(account);
+//                    bookRentController.init();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

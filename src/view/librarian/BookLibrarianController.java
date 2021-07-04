@@ -20,6 +20,7 @@ import model.Account;
 import model.Edition;
 import repository.ILibraryRepo;
 import model.Library;
+import repository.LibraryRepo;
 
 import java.io.IOException;
 
@@ -75,6 +76,12 @@ public class BookLibrarianController {
     public void initData(Edition edition, BorderPane mainBorderPane, LibrarianController librarianController, Account account) {
         this.librarianController = librarianController;
         this.library = new Library();
+        this.libraryRepo = new LibraryRepo();
+        this.libraryRepo.loadAccounts(library);
+        this.libraryRepo.loadPersons(library);
+        this.libraryRepo.loadEditions(library);
+        this.libraryRepo.loadBooks(library);
+        this.libraryRepo.loadMaxIssuedBooks(library);
         this.edition = edition;
         this.mainBorderPane = mainBorderPane;
         this.account = account;
@@ -108,8 +115,6 @@ public class BookLibrarianController {
                     primaryStage.setScene(new Scene(rentScene, 400, 250));
                     primaryStage.setResizable(false);
                     primaryStage.show();
-                    bookRentController = new BookRentController();
-                    bookRentController.init();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

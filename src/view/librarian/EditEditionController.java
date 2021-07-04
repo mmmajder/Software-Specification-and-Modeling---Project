@@ -8,10 +8,13 @@ import model.Contributor;
 import model.Edition;
 import model.Genre;
 import model.Library;
+import repository.ILibraryRepo;
+import repository.LibraryRepo;
 
 public class EditEditionController {
 
     public ComboBox<Contributor> writerCB;
+    public ComboBox<Contributor> illustratorCB;
     public ComboBox<Genre> genresCB;
     public TextField publisher;
     public TextField title;
@@ -21,6 +24,10 @@ public class EditEditionController {
     public TextArea description;
     public EditionController editionController;
     public Library library;
+    public ILibraryRepo libraryRepo;
+    public ComboBox<Contributor> editorCB;
+    public ComboBox<Contributor> criticCB;
+    public ComboBox<Contributor> translatorCB;
 
     LibrarianController librarianController;
 
@@ -40,21 +47,35 @@ public class EditEditionController {
         this.library = new Library();
         this.editionController = new EditionController(library);
         this.librarianController = new LibrarianController();
-
+        this.libraryRepo = new LibraryRepo();
+        this.libraryRepo.loadEditions(library);
+        this.libraryRepo.loadBooks(library);
+        this.libraryRepo.loadContributors(library);
+        this.libraryRepo.loadContributorRoles(library);
+        this.libraryRepo.loadGenres(library);
         description.setWrapText(true);
 
-        writerCB.setConverter(new StringConverter<Contributor>() {
+        StringConverter<Contributor> stringConverter = new StringConverter<Contributor>() {
             @Override
             public String toString(Contributor object) {
                 return object.getFullName();
             }
-
             @Override
             public Contributor fromString(String fullName) {
                 return library.fromFullName(fullName);
             }
-        });
+        };
+
+        writerCB.setConverter(stringConverter);
         writerCB.setItems(FXCollections.observableArrayList(library.getContributors()));
+        illustratorCB.setConverter(stringConverter);
+        illustratorCB.setItems(FXCollections.observableArrayList(library.getContributors()));
+        translatorCB.setConverter(stringConverter);
+        translatorCB.setItems(FXCollections.observableArrayList(library.getContributors()));
+        criticCB.setConverter(stringConverter);
+        criticCB.setItems(FXCollections.observableArrayList(library.getContributors()));
+        criticCB.setConverter(stringConverter);
+        criticCB.setItems(FXCollections.observableArrayList(library.getContributors()));
 
         genresCB.setConverter(new StringConverter<Genre>() {
             @Override

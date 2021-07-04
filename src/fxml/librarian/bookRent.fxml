@@ -26,6 +26,6 @@
             <Font name="System Italic" size="14.0"/>
         </font>
     </Label>
-    <Button fx:id="rentBtn" layoutX="17.0" layoutY="198.0" mnemonicParsing="false"
+    <Button fx:id="rentBtn" onMouseClicked="#rentBook" layoutX="17.0" layoutY="198.0" mnemonicParsing="false"
             prefHeight="26.0" prefWidth="343.0" style="-fx-background-color: #7AB12B;" text="CONFIRM" textFill="WHITE"/>
 </AnchorPane>

@@ -31,6 +31,7 @@ public class BookRentController {
         try {
             RentingController rentingController = new RentingController(library);
             rentingController.rent(userIdLbl.getText(), sampleIdLbl.getText(), account.getPerson());
+            System.out.println("RENOTANO JE");
             confirmationMessage.setText("Your rent was successful.");
         } catch (BookNotFoundException e) {
             Alert a = new Alert(Alert.AlertType.WARNING);

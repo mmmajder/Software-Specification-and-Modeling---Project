@@ -50,7 +50,7 @@ public class SearchBooksLibrarianController {
         FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookLibrarian.fxml"));
         Parent bookScene = bookLoader.load();
         BookLibrarianController bookLibrarianController = bookLoader.getController();
-        bookLibrarianController.initData(edition, mainBorderPane, librarianController);
+        bookLibrarianController.initData(edition, mainBorderPane, librarianController, account);
         mainBorderPane.setCenter(bookScene);
     }
 

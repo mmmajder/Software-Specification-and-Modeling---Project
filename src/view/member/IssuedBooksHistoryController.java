@@ -8,7 +8,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 import observer.Observer;
-import view.librarian.model.MemberTable;
 import view.member.model.MemberHistoryTable;
 
 import java.io.IOException;
@@ -34,6 +33,8 @@ public class IssuedBooksHistoryController implements Observer {
         libraryRepo.loadEditions(library);
         libraryRepo.loadBooks(library);
         libraryRepo.loadIssuedBooks(library);
+        libraryRepo.loadMaxIssueDays(library);
+        this.account = library.getAccountByEmail(account.getEmail());
 
         TableColumn colTitle = new TableColumn("Title") {
             {
@@ -95,7 +96,7 @@ public class IssuedBooksHistoryController implements Observer {
                     issuedBook.getReturnDate(), controller.calculateReturnDate(issuedBook), issuedBook.isProlongedIssue(),
                     controller.getIssuedBookState(issuedBook)));
         }
-        for (IssuedBook issuedBook : library.getMemebersCurrentlyTakenBooks(account)) {
+        for (IssuedBook issuedBook : library.getMembersCurrentlyTakenBooks(account)) {
             list.add(new MemberHistoryTable(issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(),
                     issuedBook.getReturnDate(), controller.calculateReturnDate(issuedBook), issuedBook.isProlongedIssue(),
                     controller.getIssuedBookState(issuedBook)));

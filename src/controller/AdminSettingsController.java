@@ -39,7 +39,7 @@ public class AdminSettingsController {
 
     private void setNewMaxIssuedBooks(MemberType type, Integer newMaxIssuedBooks){
         if (newMaxIssuedBooks != null){
-            library.setMaxIssueDays(type, newMaxIssuedBooks);
+            library.setMaxIssuedBooks(type, newMaxIssuedBooks);
         }
     }
 

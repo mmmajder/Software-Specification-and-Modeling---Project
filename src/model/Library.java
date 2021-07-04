@@ -219,6 +219,8 @@ public class Library implements Publisher {
         return null;
     }
 
+    public List<Book> getBooks() { return books; }
+
     public void addCatalog(PriceCatalog catalog) {
         this.priceCatalogs.add(catalog);
     }

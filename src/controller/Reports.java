@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 import model.enums.MemberType;
+import utils.DateUtils;
 import utils.StringUtils;
 
 import java.io.IOException;
@@ -9,9 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Reports {
@@ -141,18 +140,126 @@ public class Reports {
         return info;
     }
 
-    public void generateTopTenBooks(){
+    public void generateTopTenEditionsReport(LocalDate fromDate, LocalDate toDate) throws IOException {
+        generateEditionIssuesReport(fromDate, toDate, 10);
+    }
 
+    private void generateEditionIssuesReport(LocalDate fromDate, LocalDate toDate, Integer n) throws IOException {
+        List<EditionIssues> editionsIssues = getEditionsIssues(fromDate, toDate);
+        if (n == null || n > editionsIssues.size()) { n = editionsIssues.size(); }
+        List<String> lines = generateLines(editionsIssues, fromDate, toDate, n);
+        String filename = generateTitle(fromDate, toDate, n, n == editionsIssues.size());
+        generateFile(lines, filename);
+    }
+
+    private List<EditionIssues> getEditionsIssues(LocalDate fromDate, LocalDate toDate){
+        Map<String, Integer> mappedEditionsIssues = new HashMap<>();
+
+        for (Book book : library.getBooks()){
+            addNumOfBookIssues(mappedEditionsIssues, book, fromDate, toDate);
+        }
+
+        List<EditionIssues> editionsIssues = transformIntoEditionIssues(mappedEditionsIssues);
+        sort(editionsIssues);
+
+        return editionsIssues;
+    }
+
+    private void addNumOfBookIssues(Map<String, Integer> mappedEditionsIssues, Book book, LocalDate fromDate, LocalDate toDate){
+        String editionId = book.getEdition().getEditionId();
+        int numOfIssues = getIssues(book, fromDate, toDate).size();
+
+        if (mappedEditionsIssues.containsKey(editionId)) {
+            numOfIssues += mappedEditionsIssues.get(editionId);
+        }
+
+        mappedEditionsIssues.put(editionId, numOfIssues);
+    }
+
+    private List<IssuedBook> getIssues(Book book, LocalDate fromDate, LocalDate toDate){
+        return book.getIssueHistory().stream()
+                .filter(issuedBook -> DateUtils.isDateWithin(issuedBook.getIssueDate(), fromDate, toDate))
+                .collect(Collectors.toList());
+    }
+
+    private List<EditionIssues> transformIntoEditionIssues(Map<String, Integer> mappedEditionsIssues){
+        List<EditionIssues> editionsIssues = new ArrayList<>();
+
+        for (String editionId : mappedEditionsIssues.keySet()){
+            EditionIssues editionIssues = new EditionIssues(editionId, mappedEditionsIssues.get(editionId));
+            editionsIssues.add(editionIssues);
+        }
+
+        return editionsIssues;
+    }
+
+    private void sort(List<EditionIssues> editionsIssues){
+        EditionIssuesComparator comparator = new EditionIssuesComparator();
+        editionsIssues.sort(comparator);
+    }
+
+    private List<String> generateLines(List<EditionIssues> editionsIssues, LocalDate fromDate, LocalDate toDate, Integer n){
+        List<String> lines = new ArrayList<>();
+
+        lines.add(generateTitle(fromDate, toDate, n,  n == editionsIssues.size()));
+
+        for (int i = 0; i < n; i++){
+            lines.add(generateEditionIssuesLine(editionsIssues.get(i)));
+        }
+
+        lines.add(generateEditionsIssuesSumLine(editionsIssues));
+
+        return lines;
+    }
+
+    private String generateTitle(LocalDate fromDate, LocalDate toDate, Integer n, boolean allEditions){
+        String line = "NUMBER OF ";
+
+        if (!allEditions){
+            line += "TOP " + n;
+        }
+
+        line += " EDITIONS' ISSUES FROM " + StringUtils.dateToString(fromDate, "dd.mm.yyyy.")
+                + " TO " + StringUtils.dateToString(fromDate, "dd.mm.yyyy.");
+        line += "\n";
+
+        return line;
+    }
+
+    private String generateEditionIssuesLine(EditionIssues editionIssues){
+        Edition edition = library.getEdition(editionIssues.getEditionId());
+
+        return "Edition " + edition.getTitle() + " by " + edition.getAuthor()
+                + " (id=" + edition.getEditionId() + ") was issued "
+                + editionIssues.getNumOfIssues() + " times.";
+    }
+
+    private String generateEditionsIssuesSumLine(List<EditionIssues> editionsIssues){
+        int numOfEditions = editionsIssues.size();
+        int numOfIssuesSum = 0;
+
+        for (EditionIssues editionIssues : editionsIssues){
+            numOfIssuesSum += editionIssues.getNumOfIssues();
+        }
+
+        return "A total of " + numOfEditions + " editions were issued " + numOfIssuesSum + " times.";
     }
 
     private String generateName(){
         return "Daily_" + getTodaysDateStr();
     }
 
-    private String generateName(List<LocalDate> dates){
-        String name = "Top10_" + getTodaysDateStr();
-        name += "_from_" + getDateStr(dates.get(0));
-        name += "_to_" + getDateStr(dates.get(1));
+    private String generateName(LocalDate fromDate, LocalDate toDate, Integer n, boolean allEditions){
+        String name = "";
+
+        if (allEditions){
+            name += "Issues_";
+        } else {
+            name += "Top" + n + "_Issues_";
+        }
+        name += getTodaysDateStr();
+        name += "_from_" + getDateStr(fromDate);
+        name += "_to_" + getDateStr(toDate);
 
         return name;
     }

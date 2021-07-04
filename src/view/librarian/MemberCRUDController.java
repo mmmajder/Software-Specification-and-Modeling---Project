@@ -194,11 +194,7 @@ public class MemberCRUDController implements Observer {
 
         colName.setCellFactory(TextFieldTableCell.forTableColumn());
         colSurname.setCellFactory(TextFieldTableCell.forTableColumn());
-//        colJMBG.setCellFactory(TextFieldTableCell.forTableColumn());
         colPhone.setCellFactory(TextFieldTableCell.forTableColumn());
-//        colEmail.setCellFactory(TextFieldTableCell.forTableColumn());
-//        colBirthDate.setCellFactory(TextFieldTableCell.forTableColumn());
-//        colMembershipEndDate.setCellFactory(TextFieldTableCell.forTableColumn());
 
         memberTable.setOnMouseClicked(e -> {
             selected = memberTable.getSelectionModel().getSelectedItem();
@@ -216,6 +212,11 @@ public class MemberCRUDController implements Observer {
 
         prolongLbl.setOnMouseClicked(e -> {
             memberIssuesTable.getSelectionModel().getSelectedItem();
+        });
+        prolongLbl.setOnMouseClicked(e -> {
+            MemberTable member = memberTable.getSelectionModel().getSelectedItem();
+            CurrentIssueTable issue = memberIssuesTable.getSelectionModel().getSelectedItem();
+            crudController.prolongIssue(member.getJMBG(),issue.getId());
         });
     }
 
@@ -248,26 +249,4 @@ public class MemberCRUDController implements Observer {
         memberTable.setItems(getMembers());
         loadCurrentIssues();
     }
-
-    public void editSurnameChanged(TableColumn.CellEditEvent<MemberTable, String> memberTableStringCellEditEvent) {
-        MemberTable member = memberTable.getSelectionModel().getSelectedItem();
-        member.setSurname(memberTableStringCellEditEvent.getNewValue());
-//        Member member1 = (Member) library.getPerson(member.getJMBG());
-//        member1.setSurname(member.getSurname());
-    }
-
-    public void editPhoneNumberChanged(TableColumn.CellEditEvent<MemberTable, String> memberTableStringCellEditEvent) {
-        MemberTable member = memberTable.getSelectionModel().getSelectedItem();
-        member.setPhoneNumber(memberTableStringCellEditEvent.getNewValue());
-//        Member member1 = (Member) library.getPerson(member.getJMBG());
-//        member1.setPhoneNumber(member.getPhoneNumber());
-    }
-
-    public void editEmailChanged(TableColumn.CellEditEvent<MemberTable, String> memberTableStringCellEditEvent) {
-        MemberTable member = memberTable.getSelectionModel().getSelectedItem();
-        member.setEmail(memberTableStringCellEditEvent.getNewValue());
-//        Member member1 = (Member) library.getPerson(member.getJMBG());
-//        member1.getAccount().setEmail(member.getEmail());
-    }
-
 }

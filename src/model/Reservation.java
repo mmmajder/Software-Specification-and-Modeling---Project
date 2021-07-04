@@ -2,6 +2,8 @@ package model;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 
 public class Reservation {
 
@@ -37,7 +39,7 @@ public class Reservation {
     }
 
     public int getDaysLeft() {
-        return 3 - (int) Duration.between(reservedOn, LocalDate.now()).toDays();
+        return (int) (3 - ChronoUnit.DAYS.between(reservedOn, LocalDate.now()));
     }
 
     public String getMemberFullName() {

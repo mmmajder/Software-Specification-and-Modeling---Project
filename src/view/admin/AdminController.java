@@ -10,10 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.Account;
-import repository.ILibraryRepo;
-import model.Library;
-import repository.LibraryRepo;
+import model.*;
+import view.librarian.*;
 
 import java.io.IOException;
 
@@ -28,57 +26,47 @@ public class AdminController {
     public BorderPane borderPane;
 
     public Parent booksScene;
-    public Parent bookScene;
     public Parent reservationsScene;
     public Parent membersScene;
     public Parent rentedBooksScene;
     public Parent settingsScene;
+    RentedBooksController rentedBooksController;
+    MemberCRUDController membershipController;
+    ReservationsLibrarianController reservationsLibrarianController;
+    SearchBooksLibrarianController searchBooksLibrarianController;
+    SettingsController settingsController;
 
     AccountController controller;
+    LibrarianController librarianController;
     Library library;
     Account account;
-    ILibraryRepo libraryRepo;
 
     public void initData(Account account) throws IOException {
-        this.account = account;
         this.library = new Library();
         this.controller = new AccountController(library);
-        libraryRepo = new LibraryRepo();
-        libraryRepo.loadContributors(library);
-        libraryRepo.loadEditions(library);
-        libraryRepo.loadContributorRoles(library);
-        libraryRepo.loadGenres(library);
-        libraryRepo.loadBooks(library);
-        libraryRepo.loadTags(library);
-        libraryRepo.loadMaxIssueDays(library);
-        libraryRepo.loadMaxIssuedBooks(library);
+        this.account = account;
+        this.librarianController = new LibrarianController();
         lblUsername.setText(controller.getFullName(account.getPerson()));
 
         FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/searchBooksLibrarian.fxml"));
         booksScene = booksLoader.load();
-        //SearchBooksLibrarianController searchBooksLibrarianController = (SearchBooksLibrarianController) booksLoader.getController();
-
-        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookLibrarian.fxml"));
-        bookScene = bookLoader.load();
-        //BookLibrarianController bookLibrarianController = (BookLibrarianController) bookLoader.getController();
-        // TODO
-        //bookLibrarianController.setSecondScene(new Scene(booksScene));
-        //searchBooksLibrarianController.setSecondScene(new Scene(bookScene));
+        searchBooksLibrarianController = booksLoader.getController();
 
         FXMLLoader reservationsLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/reservationsLibrarian.fxml"));
         reservationsScene = reservationsLoader.load();
-        //HistoryController historyController = (HistoryController) historyLoader.getController();
+        reservationsLibrarianController = reservationsLoader.getController();
 
         FXMLLoader membersLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/memberCRUD.fxml"));
         membersScene = membersLoader.load();
-        //MembershipController membershipController = (MembershipController) membershipLoader.getController();
+        membershipController = membersLoader.getController();
 
         FXMLLoader rentedBooksLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/rentedBooks.fxml"));
         rentedBooksScene = rentedBooksLoader.load();
+        rentedBooksController = rentedBooksLoader.getController();
 
         FXMLLoader settingsLoader = new FXMLLoader(getClass().getResource("../../fxml/admin/settings.fxml"));
         settingsScene = settingsLoader.load();
-        //NotificationsController notificationsController = (NotificationsController) notificationsLoader.getController();
+        settingsController = settingsLoader.getController();
 
         switchToBooks();
     }
@@ -95,8 +83,9 @@ public class AdminController {
     }
 
     @FXML
-    private void switchToRentedBooks() {
+    private void switchToRentedBooks() throws IOException {
         borderPane.setCenter(rentedBooksScene);
+        rentedBooksController.initData();
         lblRentedBooks.setUnderline(true);
         lblMembers.setUnderline(false);
         lblReservations.setUnderline(false);
@@ -105,12 +94,9 @@ public class AdminController {
     }
 
     @FXML
-    private void switchToBooks(MouseEvent event) throws IOException {
-        switchToBooks();
-    }
-
     public void switchToBooks() {
         borderPane.setCenter(booksScene);
+        searchBooksLibrarianController.initData(account, borderPane, librarianController);
         lblRentedBooks.setUnderline(false);
         lblMembers.setUnderline(false);
         lblReservations.setUnderline(false);
@@ -119,18 +105,9 @@ public class AdminController {
     }
 
     @FXML
-    private void switchToSettings(MouseEvent event) {
-        borderPane.setCenter(settingsScene);
-        lblRentedBooks.setUnderline(false);
-        lblMembers.setUnderline(false);
-        lblReservations.setUnderline(false);
-        lblBooks.setUnderline(false);
-        lblSettings.setUnderline(true);
-    }
-
-    @FXML
-    private void switchToMembers(MouseEvent event) {
+    private void switchToMembers() throws IOException {
         borderPane.setCenter(membersScene);
+        membershipController.initData();
         lblRentedBooks.setUnderline(false);
         lblMembers.setUnderline(true);
         lblReservations.setUnderline(false);
@@ -139,8 +116,9 @@ public class AdminController {
     }
 
     @FXML
-    private void switchToReservations(MouseEvent event) {
+    private void switchToReservations() throws IOException {
         borderPane.setCenter(reservationsScene);
+        reservationsLibrarianController.initData(account);
         lblRentedBooks.setUnderline(false);
         lblMembers.setUnderline(false);
         lblReservations.setUnderline(true);
@@ -148,4 +126,14 @@ public class AdminController {
         lblSettings.setUnderline(false);
     }
 
+    @FXML
+    private void switchToSettings() throws IOException {
+        borderPane.setCenter(settingsScene);
+        settingsController.initData(account);
+        lblRentedBooks.setUnderline(false);
+        lblMembers.setUnderline(false);
+        lblReservations.setUnderline(false);
+        lblBooks.setUnderline(false);
+        lblSettings.setUnderline(true);
+    }
 }

@@ -37,20 +37,10 @@ public class LibrarianController {
     AccountController controller;
     Library library;
     Account account;
-    ILibraryRepo libraryRepo;
 
     public void initData(Account account) throws IOException {
         this.library = new Library();
         this.controller = new AccountController(library);
-        libraryRepo = new LibraryRepo();
-        libraryRepo.loadContributors(library);
-        libraryRepo.loadEditions(library);
-        libraryRepo.loadContributorRoles(library);
-        libraryRepo.loadGenres(library);
-        libraryRepo.loadBooks(library);
-        libraryRepo.loadTags(library);
-        libraryRepo.loadMaxIssueDays(library);
-        libraryRepo.loadMaxIssuedBooks(library);
         this.account = account;
         lblUsername.setText(controller.getFullName(account.getPerson()));
 

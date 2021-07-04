@@ -394,17 +394,18 @@ public class LibraryRepo implements ILibraryRepo {
 
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet reservedBooks = statement.executeQuery();
+            ResultSet reservations = statement.executeQuery();
 
-            while (reservedBooks.next()) {
+            while (reservations.next()) {
 
-                int reservationId = reservedBooks.getInt("idr");
-                String member = reservedBooks.getString("member");
-                String book = reservedBooks.getString("book");
+                int reservationId = reservations.getInt("idr");
+                String member = reservations.getString("member");
+                String book = reservations.getString("book");
+                LocalDate reservedOn = reservations.getDate("reservedOn").toLocalDate();
 
                 Member m = (Member) library.getPerson(member);
                 Book b = library.getBook(book);
-                Reservation reservation = new Reservation(reservationId, m, b);
+                Reservation reservation = new Reservation(reservationId, m, b, reservedOn);
                 library.addReservation(reservation);
             }
 
@@ -938,6 +939,34 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setInt(4, member.isMembershipPaid() ? 1 : 0);
             statement.setInt(5, member.isActive() ? 1 : 0);
 
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void removePendingReservation(PendingReservation pendingReservation) {
+
+        String query = "DELETE FROM pendingReservations WHERE idpr = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, pendingReservation.getId());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void removeReservation(Reservation reservation) {
+
+        String query = "DELETE FROM reservations WHERE idr = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, reservation.getId());
             statement.executeUpdate();
 
         } catch (SQLException e) {

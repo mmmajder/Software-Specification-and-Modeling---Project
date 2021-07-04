@@ -2,15 +2,20 @@ package view.librarian;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 import observer.Observer;
 import repository.ILibraryRepo;
 import repository.LibraryRepo;
 import view.librarian.model.ApprovedReservationTable;
+import view.librarian.model.CurrentIssueTable;
+import view.librarian.model.MemberTable;
 import view.librarian.model.ReservationRequestTable;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class ReservationsLibrarianController implements Observer {
     ObservableList<ReservationRequestTable> dataReservationRequestTable;
@@ -31,6 +36,46 @@ public class ReservationsLibrarianController implements Observer {
         libraryRepo.loadPersons(library);
         libraryRepo.loadPendingReservations(library);
         libraryRepo.loadReservations(library);
+
+        TableColumn colMember = new TableColumn("Member") {
+            {
+                prefWidthProperty().bind(reservationRequestTable.widthProperty().multiply(0.5));
+            }
+        };
+        reservationRequestTable.getColumns().add(colMember);
+        TableColumn colEdition = new TableColumn("Edition") {
+            {
+                prefWidthProperty().bind(reservationRequestTable.widthProperty().multiply(0.5));
+            }
+        };
+        reservationRequestTable.getColumns().add(colEdition);
+
+        TableColumn colMember2 = new TableColumn("Member") {
+            {
+                prefWidthProperty().bind(approvedReservationsTable.widthProperty().multiply(0.4));
+            }
+        };
+        approvedReservationsTable.getColumns().add(colMember2);
+        TableColumn colBookId = new TableColumn("Book ID") {
+            {
+                prefWidthProperty().bind(approvedReservationsTable.widthProperty().multiply(0.4));
+            }
+        };
+        approvedReservationsTable.getColumns().add(colBookId);
+        TableColumn colDaysLeft = new TableColumn("Days left") {
+            {
+                prefWidthProperty().bind(approvedReservationsTable.widthProperty().multiply(0.2));
+            }
+        };
+        approvedReservationsTable.getColumns().add(colDaysLeft);
+
+        colMember.setCellValueFactory(new PropertyValueFactory<ReservationRequestTable, LocalDate>("member"));
+        colEdition.setCellValueFactory(new PropertyValueFactory<ReservationRequestTable, LocalDate>("edition"));
+
+        colMember2.setCellValueFactory(new PropertyValueFactory<ApprovedReservationTable, String>("member"));
+        colBookId.setCellValueFactory(new PropertyValueFactory<ApprovedReservationTable, String>("bookID"));
+        colDaysLeft.setCellValueFactory(new PropertyValueFactory<ApprovedReservationTable, Boolean>("daysLeft"));
+
         reservationRequestTable.setItems(getRequests());
         approvedReservationsTable.setItems(getApproved());
     }
@@ -54,14 +99,7 @@ public class ReservationsLibrarianController implements Observer {
 
     @Override
     public void updatePerformed() {
-        try {
-            initData(account);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-//        libraryRepo.loadPendingReservations(library);
-//        libraryRepo.loadReservations(library);
-//        reservationRequestTable.setItems(getRequests());
-//        approvedReservationsTable.setItems(getApproved());
+        reservationRequestTable.setItems(getRequests());
+        approvedReservationsTable.setItems(getApproved());
     }
 }

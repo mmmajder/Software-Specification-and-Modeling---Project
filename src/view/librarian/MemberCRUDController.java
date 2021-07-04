@@ -224,6 +224,7 @@ public class MemberCRUDController implements Observer {
 
             Label birthDateLbl = new Label("Birth date ");
             DatePicker birthDate = new DatePicker();
+            birthDate.setValue(LocalDate.now());
             HBox birthDateHBox = new HBox(birthDateLbl, birthDate);
 
             Button confirm = new Button("CONFIRM");
@@ -322,7 +323,7 @@ public class MemberCRUDController implements Observer {
             }
             try {
                 String email = member.getAccount().getEmail();
-                memberTable.setMembershipEndDate(email);
+                memberTable.setEmail(email);
             } catch (NullPointerException e) {
             }
         }

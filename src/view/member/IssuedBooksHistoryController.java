@@ -38,7 +38,7 @@ public class IssuedBooksHistoryController implements Observer {
 
         TableColumn colTitle = new TableColumn("Title") {
             {
-                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.45));
+                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.2));
             }
         };
         issuedBooksHistoryTable.getColumns().add(colTitle);
@@ -52,20 +52,20 @@ public class IssuedBooksHistoryController implements Observer {
 
         TableColumn colReturnDate = new TableColumn("Return date") {
             {
-                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.2));
+                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.15));
             }
         };
         issuedBooksHistoryTable.getColumns().add(colReturnDate);
 
         TableColumn colReturnedDate = new TableColumn("Returned date") {
             {
-                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.2));
+                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.15));
             }
         };
 
         TableColumn colProlonged = new TableColumn("Prolonged") {
             {
-                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.2));
+                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.15));
             }
         };
 
@@ -73,7 +73,7 @@ public class IssuedBooksHistoryController implements Observer {
 
         TableColumn colStatus = new TableColumn("Status") {
             {
-                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.15));
+                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.45));
             }
         };
         issuedBooksHistoryTable.getColumns().add(colStatus);
@@ -94,16 +94,18 @@ public class IssuedBooksHistoryController implements Observer {
         for (IssuedBook issuedBook : library.getMembersReturnedBooks(account)) {
             list.add(new MemberHistoryTable(issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(),
                     issuedBook.getReturnDate(), controller.calculateReturnDate(issuedBook), issuedBook.isProlongedIssue(),
-                    controller.getIssuedBookState(issuedBook)));
+                    "Returned"));
         }
+        System.out.println(library.getMembersCurrentlyTakenBooks(account));
         for (IssuedBook issuedBook : library.getMembersCurrentlyTakenBooks(account)) {
             list.add(new MemberHistoryTable(issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(),
-                    issuedBook.getReturnDate(), controller.calculateReturnDate(issuedBook), issuedBook.isProlongedIssue(),
-                    controller.getIssuedBookState(issuedBook)));
+                    issuedBook.getReturnDate(), null, issuedBook.isProlongedIssue(),
+                    "Taken"));
         }
+        System.out.println(library.getReservations());
         for (Reservation reservation : library.getReservations()) {
             list.add(new MemberHistoryTable(reservation.getBook().getEdition().getTitle(), null,
-                    null, null, null, "RESERVED"));
+                    null, null, null, "Reserved"));
         }
         return list;
     }

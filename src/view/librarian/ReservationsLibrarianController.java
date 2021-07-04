@@ -1,10 +1,12 @@
 package view.librarian;
 
+import controller.ReservationController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import model.*;
 import observer.Observer;
 import repository.ILibraryRepo;
@@ -22,6 +24,7 @@ public class ReservationsLibrarianController implements Observer {
     ObservableList<ApprovedReservationTable> dataApprovedReservationsTable;
     public TableView<ReservationRequestTable> reservationRequestTable;
     public TableView<ApprovedReservationTable> approvedReservationsTable;
+    private ReservationController reservationController;
 
     Library library;
     Account account;
@@ -34,12 +37,20 @@ public class ReservationsLibrarianController implements Observer {
         library.addObserver(this);
         libraryRepo.loadAccounts(library);
         libraryRepo.loadPersons(library);
+        libraryRepo.loadEditions(library);
+        libraryRepo.loadBooks(library);
         libraryRepo.loadPendingReservations(library);
         libraryRepo.loadReservations(library);
+        reservationController = new ReservationController(library);
 
+        TableColumn colId = new TableColumn("id") {
+            {
+                prefWidthProperty().bind(reservationRequestTable.widthProperty().multiply(0.2));
+            }
+        };
         TableColumn colMember = new TableColumn("Member") {
             {
-                prefWidthProperty().bind(reservationRequestTable.widthProperty().multiply(0.5));
+                prefWidthProperty().bind(reservationRequestTable.widthProperty().multiply(0.3));
             }
         };
         reservationRequestTable.getColumns().add(colMember);
@@ -69,7 +80,8 @@ public class ReservationsLibrarianController implements Observer {
         };
         approvedReservationsTable.getColumns().add(colDaysLeft);
 
-        colMember.setCellValueFactory(new PropertyValueFactory<ReservationRequestTable, LocalDate>("member"));
+        colId.setCellValueFactory(new PropertyValueFactory<ReservationRequestTable, Integer>("member"));
+        colMember.setCellValueFactory(new PropertyValueFactory<ReservationRequestTable, String>("member"));
         colEdition.setCellValueFactory(new PropertyValueFactory<ReservationRequestTable, LocalDate>("edition"));
 
         colMember2.setCellValueFactory(new PropertyValueFactory<ApprovedReservationTable, String>("member"));
@@ -82,17 +94,16 @@ public class ReservationsLibrarianController implements Observer {
 
     private ObservableList<ReservationRequestTable> getRequests() {
         ObservableList<ReservationRequestTable> list = FXCollections.observableArrayList();
-        System.out.println(library.getPendingReservations());
         for (PendingReservation reservation : library.getPendingReservations()) {
-            list.add(new ReservationRequestTable(reservation.getMember().getName()+" "+reservation.getMember().getSurname(), reservation.getEdition().getTitle()));
+            list.add(new ReservationRequestTable(reservation.getId(), reservation.getMember().getFullName(), reservation.getEdition().getTitle()));
         }
         return list;
     }
+
     private ObservableList<ApprovedReservationTable> getApproved() {
         ObservableList<ApprovedReservationTable> list = FXCollections.observableArrayList();
-        System.out.println(library.getReservations());
         for (Reservation reservation : library.getReservations()) {
-            list.add(new ApprovedReservationTable(reservation.getMember().getName()+" "+reservation.getMember().getSurname(), reservation.getBook().getBookId(), reservation.getDaysLeft()));
+            list.add(new ApprovedReservationTable(reservation.getMemberFullName(), reservation.getBook().getBookId(), reservation.getDaysLeft()));
         }
         return list;
     }
@@ -101,5 +112,20 @@ public class ReservationsLibrarianController implements Observer {
     public void updatePerformed() {
         reservationRequestTable.setItems(getRequests());
         approvedReservationsTable.setItems(getApproved());
+    }
+
+    public void issue() {
+        ReservationRequestTable reservation = reservationRequestTable.getSelectionModel().getSelectedItem();
+        reservationController.issueReservation(reservation.getId(), account);
+    }
+
+    public void decline() {
+        ReservationRequestTable reservation = reservationRequestTable.getSelectionModel().getSelectedItem();
+        reservationController.declineReservation(reservation.getId());
+    }
+
+    public void approve() {
+        ReservationRequestTable reservation = reservationRequestTable.getSelectionModel().getSelectedItem();
+        reservationController.approveReservation(reservation.getId());
     }
 }

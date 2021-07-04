@@ -32,9 +32,15 @@ public class Reservation {
         return book;
     }
 
-    public LocalDate getReservedOn() { return reservedOn; }
+    public LocalDate getReservedOn() {
+        return reservedOn;
+    }
 
-    public int getDaysLeft(){
+    public int getDaysLeft() {
         return 3 - (int) Duration.between(reservedOn, LocalDate.now()).toDays();
+    }
+
+    public String getMemberFullName() {
+        return this.getMember().getFullName();
     }
 }

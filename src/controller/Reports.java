@@ -257,13 +257,13 @@ public class Reports {
     }
 
     private String getDateStr(LocalDate date) {
-        String datePattern = "dd_mm_yyyy";
+        String datePattern = "dd_MM_yyyy";
         return StringUtils.dateToString(date, datePattern);
     }
 
     private void generateFile(List<String> lines, String filename) throws IOException {
         String extension = ".txt";
-        String path = "../../reports/";
+        String path = "./../reports/";
         Files.write(Paths.get(path + filename + extension), lines, StandardCharsets.UTF_8);
     }
 }

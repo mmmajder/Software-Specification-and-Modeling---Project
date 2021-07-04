@@ -2,16 +2,22 @@ package view.member;
 
 import controller.AccountController;
 import controller.EditionController;
+import controller.MemberReservationController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import model.Account;
 import model.Edition;
+import model.Member;
 import repository.ILibraryRepo;
 import model.Library;
+import repository.LibraryRepo;
+import utils.exceptions.MemberAlreadyHasPendingRequestException;
+import utils.exceptions.MemberAlreadyHasReservedBook;
 
 import java.io.IOException;
 
@@ -34,6 +40,7 @@ public class BookMemberController {
     Library library;
     Account account;
     ILibraryRepo libraryRepo;
+    Edition edition;
 
     @FXML
     public void backToBooks() throws IOException {
@@ -49,8 +56,15 @@ public class BookMemberController {
 
     @FXML
     public void initData(Edition edition, MemberController memberController, Account account) {
+        this.edition = edition;
         this.memberController = memberController;
         this.account = account;
+        this.library = new Library();
+        this.libraryRepo = new LibraryRepo();
+        libraryRepo.loadAccounts(library);
+        libraryRepo.loadPersons(library);
+        libraryRepo.loadEditions(library);
+        libraryRepo.loadPendingReservations(library);
         editionController = new EditionController(library);
         lblTitle.setText(edition.getTitle());
         lblAuthor.setText(editionController.getAuthorName(edition));
@@ -63,9 +77,14 @@ public class BookMemberController {
         lblLanguage.setText("Language: " + edition.getLanguage());
         lblPublisher.setText("Publisher: " + edition.getPublisher());
         lblNumberOfPages.setText("Name of pages: " + edition.getNumberOfPages());
-        //lblTranslation.setText("Translation: " + edition.getTranslator());
-        //lblIllustration.setText("Illustration: " + edition.getIllustrator());
-        //lblGenre.setText("Genre " + edition.getGenre());
+        lblTranslation.setText("Translation: " + editionController.getTranslatorsStr(edition));
+        lblIllustration.setText("Illustration: " + editionController.getIllustratorsStr(edition));
+        lblGenre.setText("Genre " + editionController.getGenresConcatenated(edition));
     }
 
+    public void reserve(MouseEvent mouseEvent) throws MemberAlreadyHasReservedBook, MemberAlreadyHasPendingRequestException {
+        // TODO dodaj catchove
+        MemberReservationController memberReservationController = new MemberReservationController(library);
+        memberReservationController.sendReservationRequest((Member) account.getPerson(), edition);
+    }
 }

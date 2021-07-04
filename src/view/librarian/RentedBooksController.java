@@ -84,7 +84,7 @@ public class RentedBooksController implements Observer {
         colBook.setCellValueFactory(new PropertyValueFactory<RentedBooksTable, String>("book"));
         colIssuedDate.setCellValueFactory(new PropertyValueFactory<RentedBooksTable, Boolean>("issuedDate"));
         colReturnDate.setCellValueFactory(new PropertyValueFactory<RentedBooksTable, LocalDate>("returnDate"));
-        colReturnDate.setCellValueFactory(new PropertyValueFactory<RentedBooksTable, String>("state"));
+        colState.setCellValueFactory(new PropertyValueFactory<RentedBooksTable, String>("state"));
 
         returnFromRepairLbl.setOnMouseClicked(e-> {
 //            cont.setStatus(rentedBooksTable.getSelectionModel().getSelectedItem().getBook(), BookState.AVAILABLE);

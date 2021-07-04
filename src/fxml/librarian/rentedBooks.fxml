@@ -38,7 +38,7 @@
                         <Insets left="30.0" top="10.0" />
                     </VBox.margin>
                     <Separator orientation="VERTICAL" prefHeight="38.0" prefWidth="179.0" visible="false" />
-               <Label fx:id="returnFromRepairLbl" prefHeight="35.0" prefWidth="301.0" text="RETURN FROM RAPAIR" textFill="WHITE">
+               <Label fx:id="returnFromRepairLbl" prefHeight="35.0" prefWidth="301.0" text="RETURN FROM REPAIR" textFill="WHITE">
                   <font>
                      <Font name="System Bold" size="24.0" />
                   </font>

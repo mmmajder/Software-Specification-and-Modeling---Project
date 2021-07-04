@@ -19,7 +19,3 @@
 .shadow{
     -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
 }
-.comboBox{
-    -fx-background-color: rgba(255,255,255,0.3);
-    -fx-background-radius: 30;
-}

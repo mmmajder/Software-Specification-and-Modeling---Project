@@ -9,4 +9,10 @@ public class CreateEditionController {
     public ComboBox tagsCB;
     public ComboBox genreCB;
     public ComboBox publisherCB;
+
+    LibrarianController librarianController;
+
+    public void initData(LibrarianController librarianController) {
+        this.librarianController = librarianController;
+    }
 }

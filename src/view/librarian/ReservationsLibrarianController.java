@@ -21,8 +21,9 @@ public class ReservationsLibrarianController implements Observer {
     Account account;
     ILibraryRepo libraryRepo;
 
-    public void initData() throws IOException {
+    public void initData(Account account) throws IOException {
         this.library = new Library();
+        this.account = library.getAccountByEmail(account.getEmail());
         libraryRepo = new LibraryRepo();
         library.addObserver(this);
         libraryRepo.loadAccounts(library);
@@ -53,7 +54,7 @@ public class ReservationsLibrarianController implements Observer {
     @Override
     public void updatePerformed() {
         try {
-            initData();
+            initData(account);
         } catch (IOException e) {
             e.printStackTrace();
         }

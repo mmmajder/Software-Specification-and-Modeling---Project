@@ -22,7 +22,7 @@ public class IssuedBooksHistoryController implements Observer {
     private IssuedBookController controller;
 
     public void initData(Account account) throws IOException {
-        this.account = account;
+        this.account = library.getAccountByEmail(account.getEmail());
         this.library = new Library();
         controller = new IssuedBookController(library);
         libraryRepo = new LibraryRepo();

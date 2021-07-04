@@ -10,8 +10,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 import observer.Observer;
-import view.librarian.model.CurrentIssueTable;
-import view.librarian.model.MemberTable;
+import repository.ILibraryRepo;
+import repository.LibraryRepo;
 import view.member.model.MemberHistoryTable;
 
 import java.io.IOException;
@@ -112,15 +112,17 @@ public class IssuedBooksHistoryController implements Observer {
         ObservableList<MemberHistoryTable> list = FXCollections.observableArrayList();
         System.out.println(library.getMembersReturnedBooks(account));
         for (IssuedBook issuedBook : library.getMembersReturnedBooks(account)) {
-            list.add(new MemberHistoryTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(),
-                    issuedBook.getReturnDate(), controller.calculateReturnDate(issuedBook), issuedBook.isProlongedIssue(),
-                    "Returned"));
+
+            list.add(new MemberHistoryTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(),
+                    issuedBook.getIssueDate(), controller.calculateReturnDate(issuedBook), issuedBook.getReturnDate(),
+                    issuedBook.isProlongedIssue(), "Returned"));
         }
         System.out.println(library.getMembersCurrentlyTakenBooks(account));
         for (IssuedBook issuedBook : library.getMembersCurrentlyTakenBooks(account)) {
-            list.add(new MemberHistoryTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(),
-                    issuedBook.getReturnDate(), null, issuedBook.isProlongedIssue(),
-                    "Taken"));
+            System.out.println(controller.calculateReturnDate(issuedBook));
+            list.add(new MemberHistoryTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(),
+                    issuedBook.getIssueDate(), controller.calculateReturnDate(issuedBook), null,
+                    issuedBook.isProlongedIssue(), "Taken"));
         }
         System.out.println(library.getReservations());
         for (Reservation reservation : library.getReservations()) {

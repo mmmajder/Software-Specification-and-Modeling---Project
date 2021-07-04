@@ -69,6 +69,10 @@ public class Member extends Person {
         return this.reservation;
     }
 
+    public String getFullName() {
+        return this.getName() + " " + this.getSurname();
+    }
+
     public boolean isMembershipPaid() {
         return isMembershipPaid;
     }
@@ -97,7 +101,9 @@ public class Member extends Person {
         this.returnedBooks.add(issuedBook);
     }
 
-    public List<IssuedBook> getReturnedBooks() { return returnedBooks; }
+    public List<IssuedBook> getReturnedBooks() {
+        return returnedBooks;
+    }
 
     public void addTakenBook(IssuedBook issuedBook) {
         this.currentlyTakenBooks.add(issuedBook);
@@ -111,19 +117,23 @@ public class Member extends Person {
         return this.reservation.getBook().getBookId();
     }
 
-    public void setReservation(Reservation reservation){
+    public void setReservation(Reservation reservation) {
         this.reservation = reservation;
     }
 
-    public void removePendingReservation() { this.pendingReservation = null; }
+    public void removePendingReservation() {
+        this.pendingReservation = null;
+    }
 
-    public void removeReservation() { this.reservation = null; }
+    public void removeReservation() {
+        this.reservation = null;
+    }
 
     public PendingReservation getPendingReservation() {
         return pendingReservation;
     }
 
-    public void setPendingReservation(PendingReservation pendingReservation){
+    public void setPendingReservation(PendingReservation pendingReservation) {
         this.pendingReservation = pendingReservation;
     }
 
@@ -131,9 +141,15 @@ public class Member extends Person {
         return currentlyTakenBooks;
     }
 
-    public Payment getLastPayment() { return payments.get(payments.size()-1); }
+    public Payment getLastPayment() {
+        return payments.get(payments.size() - 1);
+    }
 
-    public List<Payment> getPayments() { return payments; }
+    public List<Payment> getPayments() {
+        return payments;
+    }
 
-    public void setType(MemberType type) { this.type = type; }
+    public void setType(MemberType type) {
+        this.type = type;
+    }
 }

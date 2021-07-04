@@ -22,7 +22,7 @@ public class RentingController {
     public void rent(String jmbg, String bookId, Person person) throws BookRentingIsInvalidException,
             MemberUnableToRentException, MemberNotFoundException, BookNotFoundException {
 
-        Librarian librarian = (Librarian) library.getPerson(person.getJMBG());
+        Librarian librarian = (Librarian) person;
         Member member = (Member) library.getPerson(jmbg);
         memberExists(member);
         Book book = library.getBook(bookId);

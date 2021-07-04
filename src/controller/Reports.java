@@ -15,10 +15,7 @@ import java.util.stream.Collectors;
 
 public class Reports {
 
-    private final String path = "../../reports/";
-    private final String extension = ".txt";
-    private final String datePattern = "dd_mm_yyyy";
-    private Library library;
+    private final Library library;
 
     public Reports(Library library) {
         this.library = library;
@@ -56,14 +53,7 @@ public class Reports {
                 .collect(Collectors.toList());
     }
 
-    private List<Payment> getNumOfMonthsPayments(List<Payment> payments, int numOfMonths) {
-        return payments.stream()
-                .filter(payment -> payment.getNumOfMonths() == numOfMonths)
-                .collect(Collectors.toList());
-    }
-
     private double generateNumOfMonthsPaymentLine(List<String> lines, List<Payment> payments, MemberType memberType, int numOfMonths) {
-        List<Payment> numOfMonthsPayments = getNumOfMonthsPayments(payments, numOfMonths);
         double price = numOfMonths == 6 ? library.getHalfAYearPrice(memberType) : library.getFullYearPrice(memberType);
         int numOfPayments = payments.size();
         double earnings = price * numOfPayments;
@@ -104,7 +94,7 @@ public class Reports {
 
     private Set<Librarian> getLibrariansThatIssued(List<IssuedBook> issuedBooks) {
         return issuedBooks.stream()
-                .map(issuedBook -> issuedBook.getLibrarian())
+                .map(IssuedBook::getLibrarian)
                 .collect(Collectors.toSet());
     }
 
@@ -149,8 +139,8 @@ public class Reports {
         if (n == null || n > editionsIssues.size()) {
             n = editionsIssues.size();
         }
-        List<String> lines = generateLines(editionsIssues, fromDate, toDate, n);
-        String filename = generateTitle(fromDate, toDate, n, n == editionsIssues.size());
+        List<String> lines = generateLines(editionsIssues, fromDate, n);
+        String filename = generateTitle(fromDate, n, n == editionsIssues.size());
         generateFile(lines, filename);
     }
 
@@ -200,9 +190,9 @@ public class Reports {
         editionsIssues.sort(comparator);
     }
 
-    private List<String> generateLines(List<EditionIssues> editionsIssues, LocalDate fromDate, LocalDate toDate, Integer n) {
+    private List<String> generateLines(List<EditionIssues> editionsIssues, LocalDate fromDate, Integer n) {
         List<String> lines = new ArrayList<>();
-        lines.add(generateTitle(fromDate, toDate, n,  n == editionsIssues.size()));
+        lines.add(generateTitle(fromDate, n, n == editionsIssues.size()));
 
         for (int i = 0; i < n; i++) {
             lines.add(generateEditionIssuesLine(editionsIssues.get(i)));
@@ -213,10 +203,12 @@ public class Reports {
         return lines;
     }
 
-    private String generateTitle(LocalDate fromDate, LocalDate toDate, Integer n, boolean allEditions) {
+    private String generateTitle(LocalDate fromDate, Integer n, boolean allEditions) {
         String line = "NUMBER OF ";
 
-        if (!allEditions){ line += "TOP " + n; }
+        if (!allEditions) {
+            line += "TOP " + n;
+        }
 
         line += " EDITIONS' ISSUES FROM " + StringUtils.dateToString(fromDate, "dd.mm.yyyy.")
                 + " TO " + StringUtils.dateToString(fromDate, "dd.mm.yyyy.") + "\n";
@@ -247,15 +239,15 @@ public class Reports {
         return "Daily_" + getTodaysDateStr();
     }
 
-    private String generateName(LocalDate fromDate, LocalDate toDate, Integer n, boolean allEditions){
+    private String generateName(LocalDate fromDate, LocalDate toDate, Integer n, boolean allEditions) {
         String name;
 
-        if (allEditions){
+        if (allEditions) {
             name = "Issues_";
         } else {
             name = "Top" + n + "_Issues_";
         }
-        name += getTodaysDateStr() +  "_from_" + getDateStr(fromDate) + "_to_" + getDateStr(toDate);
+        name += getTodaysDateStr() + "_from_" + getDateStr(fromDate) + "_to_" + getDateStr(toDate);
 
         return name;
     }
@@ -265,19 +257,13 @@ public class Reports {
     }
 
     private String getDateStr(LocalDate date) {
+        String datePattern = "dd_mm_yyyy";
         return StringUtils.dateToString(date, datePattern);
     }
 
     private void generateFile(List<String> lines, String filename) throws IOException {
+        String extension = ".txt";
+        String path = "../../reports/";
         Files.write(Paths.get(path + filename + extension), lines, StandardCharsets.UTF_8);
-    }
-
-    public List<String> getReportTypes() {
-        List<String> types = new ArrayList<>();
-        types.add("Daily");
-        types.add("Top10");
-        types.add("Editions issues");
-
-        return types;
     }
 }

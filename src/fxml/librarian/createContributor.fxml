@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane minHeight="416.0" minWidth="638.0" prefHeight="416.0" prefWidth="639.0"
-            style="-fx-background-color: #63AC29;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+            style="-fx-background-color: #63AC29;" xmlns="http://javafx.com/javafx">
     <top>
         <HBox prefHeight="26.0" style="-fx-background-color: #ffffff; -fx-border-color: #7AB12B;"
               BorderPane.alignment="CENTER">

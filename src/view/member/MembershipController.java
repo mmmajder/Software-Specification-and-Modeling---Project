@@ -65,7 +65,6 @@ public class MembershipController {
 
         final ToggleGroup group = new ToggleGroup();
         regularRB.setToggleGroup(group);
-        regularRB.setSelected(true);
         studentRB.setToggleGroup(group);
         pupilRB.setToggleGroup(group);
         preschoolerRB.setToggleGroup(group);
@@ -76,12 +75,13 @@ public class MembershipController {
             if (group.getSelectedToggle() != null) {
                 MemberType memberType = MemberType.valueOf(((RadioButton) group.getSelectedToggle()).getText());
 
-                price6months.setText(library.getCurrentCatalog().getPrice(memberType, 6) + "RSD");
-                price12months.setText(library.getCurrentCatalog().getPrice(memberType, 12) + "RSD");
+                price6months.setText(library.getCurrentCatalog().getPrice(memberType, 6) + " RSD");
+                price12months.setText(library.getCurrentCatalog().getPrice(memberType, 12) + " RSD");
 
                 maxNumberOfBooks.setText("Number of books you can issue is " + library.getMaxIssuedBooks().get(memberType) + ".");
                 maxNumberOfDays.setText("Number of days you can keep your books is " + library.getMaxIssueDays().get(memberType) + ".");
             }
         });
+        regularRB.setSelected(true);
     }
 }

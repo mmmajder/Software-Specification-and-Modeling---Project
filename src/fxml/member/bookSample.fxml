@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.image.Image?>
 <AnchorPane fx:id="bookPane" minHeight="130.0" minWidth="300.0" prefHeight="130.0" prefWidth="300.0"
             xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.member.BookPaneController">
@@ -42,7 +43,9 @@
         <right>
             <Pane prefHeight="130.0" prefWidth="106.0" BorderPane.alignment="CENTER">
                 <ImageView fx:id="imageView" fitHeight="107.0" fitWidth="94.0" layoutX="6.0" layoutY="12.0"
-                           pickOnBounds="true" preserveRatio="true"/>
+                           pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../TheLittlePrince.jpg"/>
+                </ImageView>
             </Pane>
         </right>
     </BorderPane>

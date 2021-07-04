@@ -22,6 +22,7 @@ public class NotificationsController implements Observer {
         this.account = account;
         this.library = new Library();
         libraryRepo = new LibraryRepo();
+        library.addObserver(this);
         libraryRepo.loadAccounts(library);
         libraryRepo.loadNotifications(library);
         notificationTable.getColumns().add(new TableColumn("Notification") {

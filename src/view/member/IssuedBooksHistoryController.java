@@ -27,6 +27,7 @@ public class IssuedBooksHistoryController implements Observer {
         this.library = new Library();
         controller = new IssuedBookController(library);
         libraryRepo = new LibraryRepo();
+        library.addObserver(this);
         libraryRepo.loadContributors(library);
         libraryRepo.loadAccounts(library);
         libraryRepo.loadPersons(library);

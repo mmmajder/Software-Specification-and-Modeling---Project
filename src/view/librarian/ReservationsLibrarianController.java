@@ -24,6 +24,7 @@ public class ReservationsLibrarianController implements Observer {
     public void initData() throws IOException {
         this.library = new Library();
         libraryRepo = new LibraryRepo();
+        library.addObserver(this);
         libraryRepo.loadAccounts(library);
         libraryRepo.loadPersons(library);
         libraryRepo.loadPendingReservations(library);

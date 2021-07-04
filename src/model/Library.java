@@ -298,6 +298,12 @@ public class Library implements Publisher {
         return member.getReturnedBooks();
     }
 
+    public  List<IssuedBook> getMemebersCurrentlyTakenBooks(Account account) {
+        Member member = (Member) account.getPerson();
+        return member.getCurrentlyTakenBooks();
+    }
+
+
     public void addPayment(Payment payment) {
         this.payments.add(payment);
     }

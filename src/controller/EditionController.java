@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import model.enums.ContributorType;
 import utils.StringUtils;
 import utils.exceptions.IdAlreadyExistsException;
 import utils.exceptions.MissingValueException;
@@ -104,4 +105,49 @@ public class EditionController {
         return edition.getAuthor().getName() + " " + edition.getAuthor().getSurname();
     }
 
+    public String getAuthorsStr(Edition edition){ return getContributorsStrConcatenated(edition, ContributorType.AUTHOR); }
+
+    public String getTranslatorsStr(Edition edition){ return getContributorsStrConcatenated(edition, ContributorType.TRANSLATOR); }
+
+    public String getIllustratorsStr(Edition edition){ return getContributorsStrConcatenated(edition, ContributorType.ILLUSTRATOR); }
+
+    public String getCriticsStr(Edition edition){ return getContributorsStrConcatenated(edition, ContributorType.CRITIC); }
+
+    public String getEditorsStr(Edition edition){ return getContributorsStrConcatenated(edition, ContributorType.EDITOR); }
+
+    private String getContributorsStrConcatenated(Edition edition, ContributorType type){
+        String concatenated = "";
+        List<String> contributors = getContributorsStr(edition, type);
+
+        for (int i = 0; i < contributors.size(); i++){
+            concatenated += contributors.get(i);
+
+            if (i != contributors.size() - 1){
+                concatenated += ", ";
+            }
+        }
+
+        return concatenated;
+    }
+
+    private List<String> getContributorsStr(Edition edition, ContributorType type){
+        return edition.getContributors(type).stream()
+                .map(contributor -> contributor.getName() + " " + contributor.getSurname())
+                .collect(Collectors.toList());
+    }
+
+    public String getGenresConcatenated(Edition edition){
+        String genresStr = "";
+        List<Genre> genres = edition.getGenres();
+
+        for (int i = 0; i < genres.size(); i++){
+            genresStr += genres.get(i);
+
+            if (i != genres.size() - 1){
+                genresStr += ", ";
+            }
+        }
+
+        return genresStr;
+    }
 }

@@ -7,18 +7,24 @@ public class MemberHistoryTable {
     private LocalDate issueDate;
     private LocalDate returnDate;
     private LocalDate returnedDate;
+    private Boolean prolonged;
     private String state;
 
-    public MemberHistoryTable(String bookTitle, LocalDate issueDate, LocalDate returnDate, LocalDate returnedDate, String state) {
+    public MemberHistoryTable(String bookTitle, LocalDate issueDate, LocalDate returnDate, LocalDate returnedDate, Boolean prolonged, String state) {
         this.bookTitle = bookTitle;
         this.issueDate = issueDate;
         this.returnDate = returnDate;
         this.returnedDate = returnedDate;
+        this.prolonged = prolonged;
         this.state = state;
     }
 
     public LocalDate getReturnedDate() {
         return returnedDate;
+    }
+
+    public Boolean getProlonged() {
+        return prolonged;
     }
 
     public String getBookTitle() {

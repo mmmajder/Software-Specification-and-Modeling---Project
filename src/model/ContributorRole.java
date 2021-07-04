@@ -16,15 +16,13 @@ public class ContributorRole {
         this.edition = edition;
     }
 
-    public Edition getEdition() {
-        return edition;
-    }
-
     public Contributor getContributor() {
         return contributor;
     }
 
-    public ContributorType getRole() {
-        return role;
-    }
+    public ContributorType getContributorType(){ return role; }
+
+    public ContributorType getRole() { return role; }
+
+    public Edition getEdition() { return edition; }
 }

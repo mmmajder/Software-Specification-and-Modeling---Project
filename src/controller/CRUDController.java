@@ -55,7 +55,7 @@ public class CRUDController {
 
         try {
             LocalDate date = LocalDate.parse(birthDate);
-            Member member = new Member(jmbg, name, surname, phoneNumber, date, null,
+            Member member = new Member(name, surname, jmbg, phoneNumber, date, null,
                     MemberType.REGULAR, 0, false, true);
             library.addPerson(member);
             library.notifyObservers();

@@ -2,10 +2,11 @@ package view.librarian;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import model.*;
 import observer.Observer;
+import repository.ILibraryRepo;
+import repository.LibraryRepo;
 import view.librarian.model.ApprovedReservationTable;
 import view.librarian.model.ReservationRequestTable;
 

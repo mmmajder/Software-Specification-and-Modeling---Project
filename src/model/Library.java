@@ -54,6 +54,28 @@ public class Library implements Publisher {
         return persons;
     }
 
+    public List<Contributor> getContributors() {
+        return contributors;
+    }
+
+    public Contributor fromFullName(String fullName) {
+        for (Contributor contributor : getContributors()) {
+            if (fullName.equals(contributor.getFullName())) {
+                return contributor;
+            }
+        }
+        return null;
+    }
+
+    public Genre fromName(String name) {
+        for (Genre genre : getGenres()) {
+            if (name.equals(genre.getName())) {
+                return genre;
+            }
+        }
+        return null;
+    }
+
     public List<Genre> getGenres() {
         return genres;
     }
@@ -225,7 +247,9 @@ public class Library implements Publisher {
         return null;
     }
 
-    public List<Book> getBooks() { return books; }
+    public List<Book> getBooks() {
+        return books;
+    }
 
     public void addCatalog(PriceCatalog catalog) {
         this.priceCatalogs.add(catalog);
@@ -304,12 +328,25 @@ public class Library implements Publisher {
         return availableBooks;
     }
 
+    public Book getAvailableBook(Edition edition) {
+
+        for (Book book : edition.getBooks()) {
+
+            if (book.getState() == BookState.AVAILABLE) {
+
+                return book;
+            }
+        }
+
+        return null;
+    }
+
     public List<IssuedBook> getMembersReturnedBooks(Account account) {
         Member member = (Member) account.getPerson();
         return member.getReturnedBooks();
     }
 
-    public  List<IssuedBook> getMembersCurrentlyTakenBooks(Account account) {
+    public List<IssuedBook> getMembersCurrentlyTakenBooks(Account account) {
         Member member = (Member) account.getPerson();
         return member.getCurrentlyTakenBooks();
     }
@@ -334,7 +371,9 @@ public class Library implements Publisher {
         return this.currentCatalog.getPrice(memberType, 12);
     }
 
-    public List<Payment> getPayments(){ return payments;}
+    public List<Payment> getPayments() {
+        return payments;
+    }
 
     public void addFormat(BookFormat format) {
         formats.add(format);
@@ -342,6 +381,10 @@ public class Library implements Publisher {
 
     public List<BookFormat> getFormats() {
         return formats;
+    }
+
+    public void removeReservation(Reservation reservation) {
+        reservations.remove(reservation);
     }
 
     @Override

@@ -1,4 +1,6 @@
-package model;
+package repository;
+
+import model.*;
 
 public interface ILibraryRepo {
     void loadAccounts(Library library);
@@ -39,4 +41,6 @@ public interface ILibraryRepo {
     void addBookFormat(BookFormat bookFormat);
     void prolongIssue(IssuedBook issueBook);
     void addMember(Member member);
+    void removePendingReservation(PendingReservation pendingReservation);
+    void removeReservation(Reservation reservation);
 }

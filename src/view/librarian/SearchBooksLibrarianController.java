@@ -16,6 +16,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
 import model.*;
+import repository.ILibraryRepo;
+import repository.LibraryRepo;
 
 import java.io.IOException;
 import java.util.List;
@@ -55,13 +57,12 @@ public class SearchBooksLibrarianController {
     }
 
     @FXML
-    public void switchToAddEdition() throws IOException {
-        FXMLLoader addEditionLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/createEdition.fxml"));
-        Parent bookScene = addEditionLoader.load();
-        CreateEditionController createEditionController = new CreateEditionController();
-        createEditionController.initData(librarianController);
-        addEditionLoader.setController(createEditionController);
+    public void switchToAddEdition(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/createEdition.fxml"));
+        Parent bookScene = bookLoader.load();
         mainBorderPane.setCenter(bookScene);
+        EditEditionController editionController = bookLoader.getController();
+        editionController.initData();
     }
 
     public void initData(Account account, BorderPane mainBorderPane, LibrarianController librarianController) {

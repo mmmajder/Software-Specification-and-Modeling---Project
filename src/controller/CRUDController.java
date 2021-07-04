@@ -2,6 +2,8 @@ package controller;
 
 import model.*;
 import model.enums.MemberType;
+import repository.ILibraryRepo;
+import repository.LibraryRepo;
 import utils.exceptions.*;
 
 import java.time.LocalDate;
@@ -19,84 +21,50 @@ public class CRUDController {
 
     public void editName(String name, String jmbg) throws InvalidNameFormatException {
 
-        if (nameValid(name)) {
-
-            Person person = library.getPerson(jmbg);
-            person.setName(name);
-            libraryRepo.updateName(name, jmbg);
-        } else {
-
-            throw new InvalidNameFormatException();
-        }
+        nameValid(name);
+        Person person = library.getPerson(jmbg);
+        person.setName(name);
+        libraryRepo.updateName(name, jmbg);
     }
 
     public void editSurname(String surname, String jmbg) throws InvalidSurnameFormatException {
 
-        if (surnameValid(surname)) {
-
-            Person person = library.getPerson(jmbg);
-            person.setSurname(surname);
-            libraryRepo.updateSurname(surname, jmbg);
-        } else {
-
-            throw new InvalidSurnameFormatException();
-        }
+        surnameValid(surname);
+        Person person = library.getPerson(jmbg);
+        person.setSurname(surname);
+        libraryRepo.updateSurname(surname, jmbg);
     }
 
     public void editPhoneNumber(String phoneNumber, String jmbg) throws InvalidPhoneNumberFormatException {
 
-        if (phoneNumberValid(phoneNumber)) {
-
-            Person person = library.getPerson(jmbg);
-            person.setPhoneNumber(phoneNumber);
-            libraryRepo.updatePhoneNumber(phoneNumber, jmbg);
-        } else {
-
-            throw new InvalidPhoneNumberFormatException();
-        }
+        phoneNumberValid(phoneNumber);
+        Person person = library.getPerson(jmbg);
+        person.setPhoneNumber(phoneNumber);
+        libraryRepo.updatePhoneNumber(phoneNumber, jmbg);
     }
 
     public void addMember(String name, String surname, String jmbg, String phoneNumber, String birthDate) throws
             InvalidJmbgFormatException, JmbgAlreadyExists, InvalidNameFormatException, InvalidSurnameFormatException,
             InvalidPhoneNumberFormatException, InvalidDateFormatException {
 
-        if (jmbgValid(jmbg)) {
+        jmbgValid(jmbg);
+        jmbgExists(jmbg);
+        nameValid(name);
+        surnameValid(surname);
+        phoneNumberValid(phoneNumber);
 
-            if (!jmbgExists(jmbg)) {
+        try {
+            LocalDate date = LocalDate.parse(birthDate);
+            Member member = new Member(name, surname, jmbg, phoneNumber, date, null,
+                    MemberType.REGULAR, 0, false, true);
+            library.addPerson(member);
+            library.notifyObservers();
+            libraryRepo.addPerson(member);
+            libraryRepo.addMember(member);
 
-                if (nameValid(name)) {
+        } catch (DateTimeParseException e) {
 
-                    if (surnameValid(surname)) {
-
-                        if (phoneNumberValid(phoneNumber)) {
-
-                            try {
-                                LocalDate date = LocalDate.parse(birthDate);
-                                Member member = new Member(jmbg, name, surname, phoneNumber, date, null,
-                                        MemberType.REGULAR, 0, false, true);
-                                library.addPerson(member);
-                                library.notifyObservers();
-                                libraryRepo.addPerson(member);
-                                libraryRepo.addMember(member);
-
-                            } catch (DateTimeParseException e) {
-
-                                throw new InvalidDateFormatException();
-                            }
-                        } else {
-                            throw new InvalidPhoneNumberFormatException();
-                        }
-                    } else {
-                        throw new InvalidSurnameFormatException();
-                    }
-                } else {
-                    throw new InvalidNameFormatException();
-                }
-            } else {
-                throw new JmbgAlreadyExists();
-            }
-        } else {
-            throw new InvalidJmbgFormatException();
+            throw new InvalidDateFormatException();
         }
     }
 
@@ -114,24 +82,39 @@ public class CRUDController {
         }
     }
 
-    private boolean phoneNumberValid(String phoneNumber) {
-        return phoneNumber.matches("\\+\\d{3}\\d{9}");
+    private void phoneNumberValid(String phoneNumber) throws InvalidPhoneNumberFormatException {
+        if (!phoneNumber.matches("\\+\\d{3}\\d{9}")) {
+
+            throw new InvalidPhoneNumberFormatException();
+        }
     }
 
-    private boolean surnameValid(String surname) {
-        return surname.matches("[A-Z]+([a-zA-Z]+)*");
+    private void surnameValid(String surname) throws InvalidSurnameFormatException {
+        if (!surname.matches("[A-Z]+([a-zA-Z]+)*")) {
+
+            throw new InvalidSurnameFormatException();
+        }
     }
 
-    private boolean jmbgExists(String jmbg) {
-        return library.getPerson(jmbg) != null;
+    private void jmbgExists(String jmbg) throws JmbgAlreadyExists {
+        if (library.getPerson(jmbg) != null) {
+
+            throw new JmbgAlreadyExists();
+        }
     }
 
-    private boolean jmbgValid(String jmbg) {
-        return jmbg.matches("[0-2][0-9]{12}");
+    private void jmbgValid(String jmbg) throws InvalidJmbgFormatException {
+        if (!jmbg.matches("[0-2][0-9]{12}")) {
+
+            throw new InvalidJmbgFormatException();
+        }
     }
 
-    private boolean nameValid(String name) {
+    private void nameValid(String name) throws InvalidNameFormatException {
 
-        return name.matches("[A-Z][a-z]*");
+        if (!name.matches("[A-Z][a-z]*")) {
+
+            throw new InvalidNameFormatException();
+        }
     }
 }

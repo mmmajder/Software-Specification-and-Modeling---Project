@@ -67,8 +67,8 @@ public class BookLibrarianController {
         FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/createEdition.fxml"));
         Parent bookScene = bookLoader.load();
         mainBorderPane.setCenter(bookScene);
-        EditEditionController editionController = new EditEditionController(edition);
-        bookLoader.setController(editionController);
+        EditEditionController editionController = bookLoader.getController();
+        editionController.fillData(edition);
     }
 
     @FXML
@@ -117,41 +117,3 @@ public class BookLibrarianController {
         });
     }
 }
-
-
-//    public void createRentPanel(MouseEvent event) throws IOException {
-////        FXMLLoader fxmlLoader = new FXMLLoader();
-////        fxmlLoader.setLocation(getClass().getResource("../../fxml/librarian/bookRent.fxml"));
-////        BookRentController bookRentController = new BookRentController(this.account);
-////        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-////        Stage stage = new Stage();
-////        stage.setTitle("New Window");
-////        stage.setScene(scene);
-////        stage.show();
-//
-//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/librarian/bookRent.fxml")));
-//        Stage primaryStage = new Stage();
-//        primaryStage.setTitle("Book Rent");
-//        primaryStage.getIcons().add(new Image("/fxml/logo.png"));
-//        primaryStage.setScene(new Scene(root, 600, 400));
-//        primaryStage.setResizable(false);
-//        primaryStage.show();
-////
-////        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("../../fxml/librarian/bookRent.fxml"));
-////        Stage stage = new Stage();
-////        stage.setTitle("My New Stage Title");
-////        stage.setScene(new Scene(root, 450, 450));
-////        stage.show();
-////        // Hide this current window (if this is what you want)
-////        ((Node)(event.getSource())).getScene().getWindow().hide();
-//
-////        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookRent.fxml"));
-////        Parent root1 = (Parent) fxmlLoader.load();
-////        Stage stage = new Stage();
-////        stage.setTitle("Rent");
-////        stage.setScene(new Scene(root1));
-////        stage.show();
-////        FXMLLoader fxmlLoader = new FXMLLoader();
-////        fxmlLoader.setLocation(getClass().getResource("../../fxml/librarian/bookRent.fxml"));
-////        AnchorPane bookPane = fxmlLoader.load();
-//    }

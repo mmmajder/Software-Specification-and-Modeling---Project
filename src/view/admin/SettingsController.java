@@ -3,13 +3,13 @@ package view.admin;
 import controller.AdminSettingsController;
 import controller.Reports;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import model.Account;
 import model.Library;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,8 +44,10 @@ public class SettingsController {
     public AdminSettingsController adminSettingsController;
     public DatePicker startDate;
     public DatePicker endDate;
-    public ComboBox<String> reportTypes;
     public Reports reports;
+    public Button btnEditionsIsuues;
+    public Button btnTop10;
+    public Button btnDailyReport;
 
     public void initData(Account account) {
         this.account = account;
@@ -55,7 +57,7 @@ public class SettingsController {
     }
 
     @FXML
-    public void saveChanges(MouseEvent mouseEvent) {
+    public void saveChanges() {
         adminSettingsController.updateMaxIssueDays(getMaxIssueDaysData());
         adminSettingsController.updateMaxIssuedBooks(getMaxBooksData());
         adminSettingsController.updatePriceCatalog(get6monthsPrices(), get12monthsPrices());
@@ -106,7 +108,17 @@ public class SettingsController {
     }
 
     @FXML
-    public void generateReports(MouseEvent mouseEvent) {
+    public void generateDailyReports() throws IOException {
+        this.reports.generateDailyReport();
+    }
 
+    @FXML
+    public void generateTop10Reports() throws IOException {
+        this.reports.generateTopTenEditionsReport(startDate.getValue(), endDate.getValue());
+    }
+
+    @FXML
+    public void generateEditionsIssuesReports() throws IOException {
+        this.reports.generateEditionIssuesReport(startDate.getValue(), endDate.getValue(), null);
     }
 }

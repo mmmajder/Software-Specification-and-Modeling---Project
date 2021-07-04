@@ -144,7 +144,7 @@ public class Reports {
         generateEditionIssuesReport(fromDate, toDate, 10);
     }
 
-    private void generateEditionIssuesReport(LocalDate fromDate, LocalDate toDate, Integer n) throws IOException {
+    public void generateEditionIssuesReport(LocalDate fromDate, LocalDate toDate, Integer n) throws IOException {
         List<EditionIssues> editionsIssues = getEditionsIssues(fromDate, toDate);
         if (n == null || n > editionsIssues.size()) {
             n = editionsIssues.size();

@@ -60,6 +60,13 @@ public class IssuedBooksHistoryController implements Observer {
                 prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.2));
             }
         };
+
+        TableColumn colProlonged = new TableColumn("Prolonged") {
+            {
+                prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.2));
+            }
+        };
+
         issuedBooksHistoryTable.getColumns().add(colReturnedDate);
 
         TableColumn colStatus = new TableColumn("Status") {
@@ -73,6 +80,7 @@ public class IssuedBooksHistoryController implements Observer {
         colIssuedDate.setCellValueFactory(new PropertyValueFactory<MemberHistoryTable, LocalDate>("issueDate"));
         colReturnDate.setCellValueFactory(new PropertyValueFactory<MemberHistoryTable, LocalDate>("returnDate"));
         colReturnedDate.setCellValueFactory(new PropertyValueFactory<MemberHistoryTable, LocalDate>("returnedDate"));
+        colProlonged.setCellValueFactory(new PropertyValueFactory<MemberHistoryTable, LocalDate>("prolonged"));
         colStatus.setCellValueFactory(new PropertyValueFactory<MemberHistoryTable, String>("state"));
 
         issuedBooksHistoryTable.setItems(getHistory());
@@ -83,8 +91,17 @@ public class IssuedBooksHistoryController implements Observer {
         System.out.println(library.getMembersReturnedBooks(account));
         for (IssuedBook issuedBook : library.getMembersReturnedBooks(account)) {
             list.add(new MemberHistoryTable(issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(),
-                    issuedBook.getReturnDate(), controller.calculateReturnDate(issuedBook),
+                    issuedBook.getReturnDate(), controller.calculateReturnDate(issuedBook), issuedBook.isProlongedIssue(),
                     controller.getIssuedBookState(issuedBook)));
+        }
+        for (IssuedBook issuedBook : library.getMemebersCurrentlyTakenBooks(account)) {
+            list.add(new MemberHistoryTable(issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(),
+                    issuedBook.getReturnDate(), controller.calculateReturnDate(issuedBook), issuedBook.isProlongedIssue(),
+                    controller.getIssuedBookState(issuedBook)));
+        }
+        for (Reservation reservation : library.getReservations()) {
+            list.add(new MemberHistoryTable(reservation.getBook().getEdition().getTitle(), null,
+                    null, null, null, "RESERVED"));
         }
         return list;
     }

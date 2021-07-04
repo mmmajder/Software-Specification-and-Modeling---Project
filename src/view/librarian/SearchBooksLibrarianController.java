@@ -45,11 +45,12 @@ public class SearchBooksLibrarianController {
 
     SearchBooksController searchBooksController;
 
+    @FXML
     public void switchToBook(Edition edition) throws IOException {
         FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookLibrarian.fxml"));
         Parent bookScene = bookLoader.load();
         BookLibrarianController bookLibrarianController = bookLoader.getController();
-        bookLibrarianController.initData(edition, librarianController);
+        bookLibrarianController.initData(edition, mainBorderPane, librarianController);
         mainBorderPane.setCenter(bookScene);
     }
 

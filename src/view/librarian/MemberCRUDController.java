@@ -17,9 +17,7 @@ import javafx.stage.Stage;
 import model.*;
 import observer.Observer;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-import utils.exceptions.InvalidNameFormatException;
-import utils.exceptions.InvalidPhoneNumberFormatException;
-import utils.exceptions.InvalidSurnameFormatException;
+import utils.exceptions.*;
 import view.librarian.model.CurrentIssueTable;
 import view.librarian.model.MemberTable;
 
@@ -68,10 +66,7 @@ public class MemberCRUDController implements Observer {
                 try {
                     crudController.editName(member.getName(), member.getJMBG());
                 } catch (InvalidNameFormatException e) {
-                    Alert a = new Alert(Alert.AlertType.WARNING);
-                    a.setTitle("Alert");
-                    a.setContentText("Name must start with capital letter and contain only alphabetical letters");
-                    a.show();
+                    createAlert("Name must start with capital letter and contain only alphabetical letters");
                     memberTable.getSelectionModel().getSelectedItem().setName(event.getOldValue().toString());
                 }
             }
@@ -93,10 +88,7 @@ public class MemberCRUDController implements Observer {
                     System.out.println(member.getJMBG());
                     crudController.editSurname(member.getSurname(), member.getJMBG());
                 } catch (InvalidSurnameFormatException e) {
-                    Alert a = new Alert(Alert.AlertType.WARNING);
-                    a.setTitle("Alert");
-                    a.setContentText("Surname must start with capital letter and contain only alphabetical letters");
-                    a.show();
+                    createAlert("Surname must start with capital letter and contain only alphabetical letters");
                 }
             }
         });
@@ -122,10 +114,7 @@ public class MemberCRUDController implements Observer {
                 try {
                     crudController.editPhoneNumber(member.getPhoneNumber(), member.getJMBG());
                 } catch (InvalidPhoneNumberFormatException e) {
-                    Alert a = new Alert(Alert.AlertType.WARNING);
-                    a.setTitle("Alert");
-                    a.setContentText("Phone number is not written properly");
-                    a.show();
+                    createAlert("Phone number is not written properly");
                 }
             }
         });
@@ -249,7 +238,21 @@ public class MemberCRUDController implements Observer {
             confirm.setOnMouseClicked(event -> {
                 CRUDController crudController = new CRUDController(library);
                 String date = birthDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                crudController.addMember(name.getText(), surname.getText(), jmbg.getText(), phone.getText(), date);
+                try {
+                    crudController.addMember(name.getText(), surname.getText(), jmbg.getText(), phone.getText(), date);
+                } catch (InvalidJmbgFormatException invalidJmbgFormatException) {
+                    createAlert("Invalid JMBG format");
+                } catch (JmbgAlreadyExists jmbgAlreadyExists) {
+                    createAlert("JMBG already exists");
+                } catch (InvalidNameFormatException invalidNameFormatException) {
+                    createAlert("Invalid name format");
+                } catch (InvalidSurnameFormatException invalidSurnameFormatException) {
+                    createAlert("Invalid surname format");
+                } catch (InvalidPhoneNumberFormatException invalidPhoneNumberFormatException) {
+                    createAlert("Invalid phone number format");
+                } catch (InvalidDateFormatException invalidDateFormatException) {
+                    createAlert("Invalid date format");
+                }
             });
         });
 
@@ -291,11 +294,18 @@ public class MemberCRUDController implements Observer {
             confirm.setOnMouseClicked(event -> {
                 CRUDController crudController = new CRUDController(library);
                 MemberTable member = memberTable.getSelectionModel().getSelectedItem();
-                crudController.setAccount(member.getJMBG(), usename.getText(), password.getText(), email.getText());
+//                crudController.setAccount(member.getJMBG(), usename.getText(), password.getText(), email.getText());
             });
 
         });
     }
+    private void createAlert(String text) {
+        Alert a = new Alert(Alert.AlertType.WARNING);
+        a.setTitle("Alert");
+        a.setContentText(text);
+        a.show();
+    }
+
 
     private ObservableList<MemberTable> getMembers() {
         ObservableList<MemberTable> list = FXCollections.observableArrayList();

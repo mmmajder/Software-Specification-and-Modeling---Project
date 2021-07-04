@@ -112,14 +112,12 @@ public class IssuedBooksHistoryController implements Observer {
         ObservableList<MemberHistoryTable> list = FXCollections.observableArrayList();
         System.out.println(library.getMembersReturnedBooks(account));
         for (IssuedBook issuedBook : library.getMembersReturnedBooks(account)) {
-
             list.add(new MemberHistoryTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(),
                     issuedBook.getReturnDate(), controller.calculateReturnDate(issuedBook), issuedBook.isProlongedIssue(),
                     "Returned"));
         }
         System.out.println(library.getMembersCurrentlyTakenBooks(account));
         for (IssuedBook issuedBook : library.getMembersCurrentlyTakenBooks(account)) {
-            System.out.println( controller.calculateReturnDate(issuedBook));
             list.add(new MemberHistoryTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.getIssueDate(),
                     issuedBook.getReturnDate(), null, issuedBook.isProlongedIssue(),
                     "Taken"));

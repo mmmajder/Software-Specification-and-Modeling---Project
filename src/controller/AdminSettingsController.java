@@ -69,11 +69,15 @@ public class AdminSettingsController {
 
     private double getPrice(MemberType type, Double newPrice, int numOfMonths){
 
-        if (newPrice == null){
-            return library.getCurrentCatalog().getPrice(type, numOfMonths);
-        } else {
-            return newPrice;
+        if (newPrice == null) {
+            if (library.getPriceCatalogs().size() != 0) {
+                newPrice = library.getCurrentCatalog().getPrice(type, numOfMonths);
+            } else { // first time adding prices
+                newPrice = 0.0;
+            }
         }
+
+        return newPrice;
     }
 
 }

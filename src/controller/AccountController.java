@@ -56,7 +56,7 @@ public class AccountController {
         LocalDate expirationDate = member.getMembershipExpirationDate();
 
         if (expirationDate != null) {
-            return StringUtils.dateToString(expirationDate, "dd.mm.yyyy.");
+            return StringUtils.dateToString(expirationDate, "dd.MM.yyyy.");
         }
 
         return null;

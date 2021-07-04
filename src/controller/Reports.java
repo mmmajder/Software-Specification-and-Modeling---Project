@@ -210,8 +210,8 @@ public class Reports {
             line += "TOP " + n;
         }
 
-        line += " EDITIONS' ISSUES FROM " + StringUtils.dateToString(fromDate, "dd.mm.yyyy.")
-                + " TO " + StringUtils.dateToString(fromDate, "dd.mm.yyyy.") + "\n";
+        line += " EDITIONS' ISSUES FROM " + StringUtils.dateToString(fromDate, "dd.MM.yyyy.")
+                + " TO " + StringUtils.dateToString(fromDate, "dd.MM.yyyy.") + "\n";
 
         return line;
     }

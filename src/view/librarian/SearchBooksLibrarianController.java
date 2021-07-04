@@ -68,12 +68,12 @@ public class SearchBooksLibrarianController {
         library = new Library();
         searchBooksController = new SearchBooksController(library);
         libraryRepo = new LibraryRepo();
-        this.account = library.getAccountByEmail(account.getEmail());
         this.librarianController = librarianController;
         libraryRepo.loadEditions(library);
         libraryRepo.loadContributors(library);
         libraryRepo.loadContributorRoles(library);
         libraryRepo.loadGenres(library);
+        this.account = library.getAccountByEmail(account.getEmail());
 
         editionController = new EditionController(library);
         this.mainBorderPane = mainBorderPane;

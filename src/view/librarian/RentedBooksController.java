@@ -19,10 +19,9 @@ import java.time.LocalDate;
 
 public class RentedBooksController implements Observer {
     public TableView<RentedBooksTable> rentedBooksTable;
-    public Label returnFromRepair;
     public Label returnedLbl;
     public Label lostLbl;
-    public Label repaitLbl;
+    public Label repairLbl;
     public Label returnFromRepairLbl;
     ObservableList<RentedBooksTable> dataRentedBooksTable;
 
@@ -86,16 +85,16 @@ public class RentedBooksController implements Observer {
         colReturnDate.setCellValueFactory(new PropertyValueFactory<RentedBooksTable, LocalDate>("returnDate"));
         colState.setCellValueFactory(new PropertyValueFactory<RentedBooksTable, String>("state"));
 
-        returnFromRepairLbl.setOnMouseClicked(e-> {
+        returnFromRepairLbl.setOnMouseClicked(e -> {
 //            cont.setStatus(rentedBooksTable.getSelectionModel().getSelectedItem().getBook(), BookState.AVAILABLE);
         });
-        repaitLbl.setOnMouseClicked(e-> {
+        repairLbl.setOnMouseClicked(e -> {
 //            cont.setStatus(rentedBooksTable.getSelectionModel().getSelectedItem().getBook(), BookState.REPAIRING);
         });
-        lostLbl.setOnMouseClicked(e-> {
+        lostLbl.setOnMouseClicked(e -> {
 //            cont.setStatus(rentedBooksTable.getSelectionModel().getSelectedItem().getBook(), BookState.LOST);
         });
-        returnedLbl.setOnMouseClicked(e-> {
+        returnedLbl.setOnMouseClicked(e -> {
 //            cont.setStatus(rentedBooksTable.getSelectionModel().getSelectedItem().getBook(), BookState.AVAILABLE);
         });
     }

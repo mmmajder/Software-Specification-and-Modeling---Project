@@ -234,6 +234,13 @@ public class Library implements Publisher {
         this.currentCatalog = this.priceCatalogs.get(indexOfLastCatalog);
     }
 
+    public void setNewPriceCatalog(PriceCatalog catalog){
+        priceCatalogs.add(catalog);
+        currentCatalog = catalog;
+    }
+
+    public List<PriceCatalog> getPriceCatalogs(){ return priceCatalogs; }
+
     public PriceCatalog getPriceCatalog(int catalogId) {
 
         for (PriceCatalog catalog : this.priceCatalogs) {

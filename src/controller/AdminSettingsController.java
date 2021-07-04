@@ -1,9 +1,13 @@
 package controller;
 
 import model.Library;
+import model.PriceCatalog;
 import model.enums.MemberType;
 
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdminSettingsController {
 
@@ -39,11 +43,37 @@ public class AdminSettingsController {
         }
     }
 
-    public void updatePriceCatalogue6(){
-
+    public void updatePriceCatalog(List<Double> newPrices6m, List<Double> newPrices12m){
+        HashMap<MemberType, Double> prices6m = createPrices(newPrices6m, 6);
+        HashMap<MemberType, Double> prices12m = createPrices(newPrices12m, 12);
+        int id = library.getPriceCatalogs().size();
+        PriceCatalog newPriceCatalog = new PriceCatalog(id, LocalDate.now(), prices6m, prices12m);
+        library.setNewPriceCatalog(newPriceCatalog);
     }
 
-    public void updatePriceCatalogue12(){
+    private HashMap<MemberType, Double> createPrices(List<Double> newPrices, int numOfMonths){
+        HashMap<MemberType, Double> prices = new HashMap<>();
+        addPrice(prices, MemberType.REGULAR, newPrices.get(0), numOfMonths);
+        addPrice(prices, MemberType.STUDENT, newPrices.get(1), numOfMonths);
+        addPrice(prices, MemberType.PRESCHOOLER, newPrices.get(2), numOfMonths);
+        addPrice(prices, MemberType.PUPIL, newPrices.get(3), numOfMonths);
+        addPrice(prices, MemberType.RETIRED, newPrices.get(4), numOfMonths);
 
+        return prices;
     }
+
+    private void addPrice(Map<MemberType, Double> prices, MemberType type, Double newPrice, int numOfMonths){
+        double price = getPrice(type, newPrice, numOfMonths);
+        prices.put(type, price);
+    }
+
+    private double getPrice(MemberType type, Double newPrice, int numOfMonths){
+
+        if (newPrice == null){
+            return library.getCurrentCatalog().getPrice(type, numOfMonths);
+        } else {
+            return newPrice;
+        }
+    }
+
 }

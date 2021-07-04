@@ -67,9 +67,15 @@ public class ReservationsLibrarianController implements Observer {
             }
         };
         approvedReservationsTable.getColumns().add(colMember2);
+        TableColumn colId2 = new TableColumn("id") {
+            {
+                prefWidthProperty().bind(approvedReservationsTable.widthProperty().multiply(0.2));
+            }
+        };
+        approvedReservationsTable.getColumns().add(colId2);
         TableColumn colBookId = new TableColumn("Book ID") {
             {
-                prefWidthProperty().bind(approvedReservationsTable.widthProperty().multiply(0.4));
+                prefWidthProperty().bind(approvedReservationsTable.widthProperty().multiply(0.2));
             }
         };
         approvedReservationsTable.getColumns().add(colBookId);
@@ -84,6 +90,7 @@ public class ReservationsLibrarianController implements Observer {
         colMember.setCellValueFactory(new PropertyValueFactory<ReservationRequestTable, String>("member"));
         colEdition.setCellValueFactory(new PropertyValueFactory<ReservationRequestTable, LocalDate>("edition"));
 
+        colId2.setCellValueFactory(new PropertyValueFactory<ApprovedReservationTable, Integer>("id"));
         colMember2.setCellValueFactory(new PropertyValueFactory<ApprovedReservationTable, String>("member"));
         colBookId.setCellValueFactory(new PropertyValueFactory<ApprovedReservationTable, String>("bookID"));
         colDaysLeft.setCellValueFactory(new PropertyValueFactory<ApprovedReservationTable, Boolean>("daysLeft"));
@@ -103,7 +110,7 @@ public class ReservationsLibrarianController implements Observer {
     private ObservableList<ApprovedReservationTable> getApproved() {
         ObservableList<ApprovedReservationTable> list = FXCollections.observableArrayList();
         for (Reservation reservation : library.getReservations()) {
-            list.add(new ApprovedReservationTable(reservation.getMemberFullName(), reservation.getBook().getBookId(), reservation.getDaysLeft()));
+            list.add(new ApprovedReservationTable(reservation.getId(), reservation.getMemberFullName(), reservation.getBook().getBookId(), reservation.getDaysLeft()));
         }
         return list;
     }
@@ -115,7 +122,7 @@ public class ReservationsLibrarianController implements Observer {
     }
 
     public void issue() {
-        ReservationRequestTable reservation = reservationRequestTable.getSelectionModel().getSelectedItem();
+        ApprovedReservationTable reservation = approvedReservationsTable.getSelectionModel().getSelectedItem();
         reservationController.issueReservation(reservation.getId(), account);
     }
 

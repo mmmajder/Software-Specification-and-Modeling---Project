@@ -27,16 +27,14 @@ public class BookRentController {
         this.library = library;
     }
     public void init() {
-        rentBtn.setOnMouseClicked(e->{
-            rentBook();
-        });
+        rentBtn.setOnMouseClicked(e-> rentBook());
     }
 
 
     public void rentBook() {
 
         try {
-            RentingController rentingController = new RentingController(library);
+            rentingController = new RentingController(library);
             rentingController.rent(userIdLbl.getText(), sampleIdLbl.getText(), account.getPerson());
         } catch (BookNotFoundException e) {
             Alert a = new Alert(Alert.AlertType.WARNING);

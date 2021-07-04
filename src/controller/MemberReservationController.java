@@ -4,6 +4,8 @@ import model.Edition;
 import model.Library;
 import model.Member;
 import model.PendingReservation;
+import repository.ILibraryRepo;
+import repository.LibraryRepo;
 import utils.exceptions.MemberAlreadyHasPendingRequestException;
 import utils.exceptions.MemberAlreadyHasReservedBook;
 
@@ -12,16 +14,21 @@ import java.util.List;
 
 public class MemberReservationController {
     private Library library;
+    private ILibraryRepo libraryRepo;
 
     public MemberReservationController(Library library) {
         this.library = library;
+        this.libraryRepo = new LibraryRepo();
     }
 
-    public void sendReservationRequest(Member member, Edition edition) throws MemberAlreadyHasPendingRequestException, MemberAlreadyHasReservedBook {
+    public void sendReservationRequest(Member member, Edition edition) throws MemberAlreadyHasPendingRequestException,
+            MemberAlreadyHasReservedBook {
+
         validateMembersReservationAbility(member);
         PendingReservation pr = createPendingReservation(member, edition);
         member.setPendingReservation(pr);
         library.addPendingReservation(pr);
+        libraryRepo.addPendingReservation(pr);
     }
 
     private void validateMembersReservationAbility(Member member) throws MemberAlreadyHasPendingRequestException, MemberAlreadyHasReservedBook {
@@ -42,7 +49,7 @@ public class MemberReservationController {
     private int getNextId(){
         List<PendingReservation> pendingReservations = library.getPendingReservations();
         Integer maxId = pendingReservations.stream()
-                .map(pendingReservation -> pendingReservation.getId())
+                .map(PendingReservation::getId)
                 .max(Integer::compare).orElse(1);
 
         return ++maxId;

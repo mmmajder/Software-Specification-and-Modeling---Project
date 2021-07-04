@@ -200,6 +200,7 @@ public class MemberCRUDController implements Observer {
 
         removeMemberLbl.setOnMouseClicked(e -> {
             memberTable.getItems().remove(memberTable.getSelectionModel().getSelectedItem());
+
         });
 
         addMemberLbl.setOnMouseClicked(e -> {
@@ -234,12 +235,10 @@ public class MemberCRUDController implements Observer {
             Scene scene = new Scene(layout, 300, 250);
             window.setScene(scene);
             confirm.setOnAction(event -> {
-                System.out.println("Stigao");
                 CRUDController crudController = new CRUDController(library);
                 String date = birthDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 try {
                     crudController.addMember(name.getText(), surname.getText(), jmbg.getText(), phone.getText(), date);
-                    System.out.println("Stigao");
                 } catch (InvalidJmbgFormatException invalidJmbgFormatException) {
                     createAlert("Invalid JMBG format");
                 } catch (JmbgAlreadyExists jmbgAlreadyExists) {

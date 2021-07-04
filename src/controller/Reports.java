@@ -5,6 +5,7 @@ import model.enums.MemberType;
 import utils.DateUtils;
 import utils.StringUtils;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -257,13 +258,19 @@ public class Reports {
     }
 
     private String getDateStr(LocalDate date) {
-        String datePattern = "dd_mm_yyyy";
+        String datePattern = "dd_MM_yyyy";
         return StringUtils.dateToString(date, datePattern);
     }
 
     private void generateFile(List<String> lines, String filename) throws IOException {
         String extension = ".txt";
-        String path = "../../reports/";
-        Files.write(Paths.get(path + filename + extension), lines, StandardCharsets.UTF_8);
+        String path = "./../reports/";
+        FileWriter myWriter = new FileWriter(path + filename + extension);
+
+        for (String line : lines){
+            myWriter.write(line);
+        }
+
+        myWriter.close();
     }
 }

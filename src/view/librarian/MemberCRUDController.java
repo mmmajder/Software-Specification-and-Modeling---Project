@@ -287,6 +287,13 @@ public class MemberCRUDController implements Observer {
             Scene scene = new Scene(layout, 300, 250);
             window.setScene(scene);
             window.showAndWait();
+
+            confirm.setOnMouseClicked(event -> {
+                CRUDController crudController = new CRUDController(library);
+                MemberTable member = memberTable.getSelectionModel().getSelectedItem();
+                crudController.setAccount(member.getJMBG(), usename.getText(), password.getText(), email.getText());
+            });
+
         });
     }
 

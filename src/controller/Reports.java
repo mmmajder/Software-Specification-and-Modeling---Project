@@ -275,4 +275,13 @@ public class Reports {
     private void generateFile(List<String> lines, String filename) throws IOException {
         Files.write(Paths.get(path + filename + extension), lines, StandardCharsets.UTF_8);
     }
+
+    public List<String> getReportTypes(){
+        List<String> types = new ArrayList<>();
+        types.add("Daily");
+        types.add("Top10");
+        types.add("Editions issues");
+
+        return types;
+    }
 }

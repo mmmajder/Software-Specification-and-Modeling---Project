@@ -22,9 +22,9 @@
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                 <TableView fx:id="editionTable" prefHeight="207.0" prefWidth="910.0">
                     <columns>
-                        <TableColumn fx:id="id" prefWidth="241.0" text="ID"/>
-                        <TableColumn fx:id="state" prefWidth="431.0" text="State"/>
-                        <TableColumn fx:id="restricted" prefWidth="187.0" text="Restricted"/>
+<!--                        <TableColumn fx:id="id" prefWidth="241.0" text="ID"/>-->
+<!--                        <TableColumn fx:id="state" prefWidth="431.0" text="State"/>-->
+<!--                        <TableColumn fx:id="restricted" prefWidth="187.0" text="Restricted"/>-->
                     </columns>
                     <VBox.margin>
                         <Insets left="20.0" right="20.0" top="30.0"/>
@@ -34,14 +34,14 @@
                     <right>
                         <AnchorPane prefHeight="38.0" prefWidth="344.0" BorderPane.alignment="CENTER">
                             <HBox prefHeight="35.0" prefWidth="325.0">
-                                <Label fx:id="lblAdd" prefHeight="36.0" prefWidth="39.0" text="ADD" textFill="WHITE">
+                                <Label fx:id="lblAdd" prefHeight="36.0" prefWidth="39.0" text="ADD" textFill="WHITE" onMouseClicked="#addSample">
                                     <font>
                                         <Font name="System Bold" size="18.0"/>
                                     </font>
                                 </Label>
                                 <Separator orientation="VERTICAL" prefHeight="35.0" prefWidth="20.0" visible="false"/>
                                 <Label fx:id="lblRemove" prefHeight="43.0" prefWidth="74.0" text="REMOVE"
-                                       textFill="WHITE">
+                                       textFill="WHITE" onMouseClicked="#removeSample">
                                     <font>
                                         <Font name="System Bold" size="18.0"/>
                                     </font>
@@ -67,10 +67,10 @@
                 </Label>
                 <TableView fx:id="sampleTable" prefHeight="229.0" prefWidth="910.0">
                     <columns>
-                        <TableColumn fx:id="issueDate" prefWidth="241.0" text="Issue date"/>
-                        <TableColumn fx:id="returnedDate" prefWidth="140.0" text="Returned date"/>
-                        <TableColumn fx:id="status" prefWidth="180.0" text="Status"/>
-                        <TableColumn fx:id="member" minWidth="3.0" prefWidth="338.0" text="Member"/>
+<!--                        <TableColumn fx:id="issueDate" prefWidth="241.0" text="Issue date"/>-->
+<!--                        <TableColumn fx:id="returnedDate" prefWidth="140.0" text="Returned date"/>-->
+<!--                        <TableColumn fx:id="status" prefWidth="180.0" text="Status"/>-->
+<!--                        <TableColumn fx:id="member" minWidth="3.0" prefWidth="338.0" text="Member"/>-->
                     </columns>
                     <VBox.margin>
                         <Insets left="20.0" right="20.0" top="10.0"/>

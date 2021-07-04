@@ -47,10 +47,6 @@ public class Member extends Person {
         this.currentlyTakenBooks = new ArrayList<>();
     }
 
-    public void requestReservation(PendingReservation pendingReservation) {
-        this.pendingReservation = pendingReservation;
-    }
-
     public LocalDate getMembershipExpirationDate() {
         LocalDate expirationDate = null;
         if (!payments.isEmpty()) {
@@ -83,10 +79,6 @@ public class Member extends Person {
 
     public void cancelMembership() {
         this.isMembershipPaid = false;
-    }
-
-    public boolean getIsMembershipPaid() {
-        return this.isMembershipPaid;
     }
 
     public boolean hasAlreadyReserved() {

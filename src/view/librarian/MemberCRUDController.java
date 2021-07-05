@@ -288,7 +288,6 @@ public class MemberCRUDController implements Observer {
 
             Scene scene = new Scene(gridPane, 300, 250);
             window.setScene(scene);
-            window.showAndWait();
 
             confirm.setOnMouseClicked(event -> {
                 CRUDController crudController = new CRUDController(library);
@@ -299,6 +298,7 @@ public class MemberCRUDController implements Observer {
                     createAlert("Username or email already exists.");
                 }
             });
+            window.show();
         });
     }
 

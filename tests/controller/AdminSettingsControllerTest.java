@@ -112,6 +112,7 @@ class AdminSettingsControllerTest {
         numbers.add(4);
         numbers.add(null);
         numbers.add(null);
+        numbers.add(null);
 
         return numbers;
     }
@@ -123,6 +124,7 @@ class AdminSettingsControllerTest {
         maxNums.put(MemberType.PRESCHOOLER, 0);
         maxNums.put(MemberType.PUPIL, 0);
         maxNums.put(MemberType.RETIRED, 0);
+        maxNums.put(MemberType.PRIVILEGED, 0);
 
         return maxNums;
     }
@@ -132,6 +134,7 @@ class AdminSettingsControllerTest {
         prices.add(null);
         prices.add(500.0);
         prices.add(400.0);
+        prices.add(null);
         prices.add(null);
         prices.add(null);
 
@@ -145,6 +148,7 @@ class AdminSettingsControllerTest {
         prices.put(MemberType.PRESCHOOLER, 100.0);
         prices.put(MemberType.PUPIL, 100.0);
         prices.put(MemberType.RETIRED, 100.0);
+        prices.put(MemberType.PRIVILEGED, 100.0);
 
         return prices;
     }

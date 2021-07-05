@@ -16,9 +16,7 @@ public class FormatCreationController {
     public void create(double height, double width, double thickness) throws MissingValueException, BookFormatAlreadyExistsException {
         validateValues(height, width, thickness);
         checkIfAlreadyExists(height, width, thickness);
-        //TODO value for new id
-        int id = 0;
-        library.addFormat(new BookFormat(id, height, width, thickness));
+        library.addFormat(new BookFormat(getNextId(), height, width, thickness));
     }
 
     private void checkIfAlreadyExists(double height, double width, double thickness) throws BookFormatAlreadyExistsException {
@@ -39,6 +37,10 @@ public class FormatCreationController {
         if (value == null || value <= 0){
             throw new MissingValueException(valueName);
         }
+    }
+
+    private int getNextId(){
+        return library.getFormats().size();
     }
 
 }

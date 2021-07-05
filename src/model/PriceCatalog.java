@@ -19,7 +19,8 @@ public class PriceCatalog {
         this.catalogId = catalogId;
         this.fromDate = fromDate;
     }
-    public PriceCatalog(int catalogId, LocalDate fromDate, HashMap<MemberType, Double> halfAYearPrices, HashMap<MemberType, Double> fullYearPrices) {
+    public PriceCatalog(int catalogId, LocalDate fromDate, HashMap<MemberType, Double> halfAYearPrices,
+                        HashMap<MemberType, Double> fullYearPrices) {
         this(catalogId, fromDate);
         this.toDate = null;
         this.halfAYearPrices = halfAYearPrices;
@@ -31,6 +32,26 @@ public class PriceCatalog {
         this.toDate = toDate;
         this.halfAYearPrices = new HashMap<>();
         this.fullYearPrices = new HashMap<>();
+    }
+
+    public HashMap<MemberType, Double> getHalfAYearPrices() {
+        return halfAYearPrices;
+    }
+
+    public HashMap<MemberType, Double> getFullYearPrices() {
+        return fullYearPrices;
+    }
+
+    public void setToDate(LocalDate toDate) {
+        this.toDate = toDate;
+    }
+
+    public LocalDate getFromDate() {
+        return fromDate;
+    }
+
+    public LocalDate getToDate() {
+        return toDate;
     }
 
     public int getCatalogId() {
@@ -60,4 +81,5 @@ public class PriceCatalog {
     public void setFullYearPrices(HashMap<MemberType, Double> fullYearPrices) {
         this.fullYearPrices = fullYearPrices;
     }
+
 }

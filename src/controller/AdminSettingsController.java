@@ -3,6 +3,8 @@ package controller;
 import model.Library;
 import model.PriceCatalog;
 import model.enums.MemberType;
+import repository.ILibraryRepo;
+import repository.LibraryRepo;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -12,15 +14,24 @@ import java.util.Map;
 public class AdminSettingsController {
 
     private Library library;
+    private ILibraryRepo libraryRepo;
 
-    public AdminSettingsController(Library library) { this.library = library; }
+    public AdminSettingsController(Library library) {
+        this.library = library;
+        this.libraryRepo = new LibraryRepo();
+    }
 
     public void updateMaxIssueDays(List<Integer> maxIssueDays){
         setNewMaxIssueDays(MemberType.REGULAR, maxIssueDays.get(0));
+        libraryRepo.updateMaxIssueDay(MemberType.REGULAR, maxIssueDays.get(0));
         setNewMaxIssueDays(MemberType.STUDENT, maxIssueDays.get(1));
+        libraryRepo.updateMaxIssueDay(MemberType.STUDENT, maxIssueDays.get(1));
         setNewMaxIssueDays(MemberType.PRESCHOOLER, maxIssueDays.get(2));
+        libraryRepo.updateMaxIssueDay(MemberType.PRESCHOOLER, maxIssueDays.get(2));
         setNewMaxIssueDays(MemberType.PUPIL, maxIssueDays.get(3));
+        libraryRepo.updateMaxIssueDay(MemberType.PUPIL, maxIssueDays.get(3));
         setNewMaxIssueDays(MemberType.RETIRED, maxIssueDays.get(4));
+        libraryRepo.updateMaxIssueDay(MemberType.RETIRED, maxIssueDays.get(4));
     }
 
     private void setNewMaxIssueDays(MemberType type, Integer newMaxIssueDays){
@@ -31,10 +42,15 @@ public class AdminSettingsController {
 
     public void updateMaxIssuedBooks(List<Integer> maxIssuedBooks){
         setNewMaxIssuedBooks(MemberType.REGULAR, maxIssuedBooks.get(0));
+        libraryRepo.updateMaxIssuedBooks(MemberType.REGULAR, maxIssuedBooks.get(0));
         setNewMaxIssuedBooks(MemberType.STUDENT, maxIssuedBooks.get(1));
+        libraryRepo.updateMaxIssuedBooks(MemberType.STUDENT, maxIssuedBooks.get(1));
         setNewMaxIssuedBooks(MemberType.PRESCHOOLER, maxIssuedBooks.get(2));
+        libraryRepo.updateMaxIssuedBooks(MemberType.PRESCHOOLER, maxIssuedBooks.get(2));
         setNewMaxIssuedBooks(MemberType.PUPIL, maxIssuedBooks.get(3));
+        libraryRepo.updateMaxIssuedBooks(MemberType.PUPIL, maxIssuedBooks.get(3));
         setNewMaxIssuedBooks(MemberType.RETIRED, maxIssuedBooks.get(4));
+        libraryRepo.updateMaxIssuedBooks(MemberType.RETIRED, maxIssuedBooks.get(4));
     }
 
     private void setNewMaxIssuedBooks(MemberType type, Integer newMaxIssuedBooks){
@@ -46,9 +62,15 @@ public class AdminSettingsController {
     public void updatePriceCatalog(List<Double> newPrices6m, List<Double> newPrices12m){
         HashMap<MemberType, Double> prices6m = createPrices(newPrices6m, 6);
         HashMap<MemberType, Double> prices12m = createPrices(newPrices12m, 12);
-        int id = library.getPriceCatalogs().size();
+        int id = library.getPriceCatalogs().size() + 1;
         PriceCatalog newPriceCatalog = new PriceCatalog(id, LocalDate.now(), prices6m, prices12m);
+        PriceCatalog currentCatalog = library.getCurrentCatalog();
+        currentCatalog.setToDate(LocalDate.now());
+        libraryRepo.updateToDatePriceCatalog(currentCatalog);
         library.setNewPriceCatalog(newPriceCatalog);
+        libraryRepo.addPriceCatalog(newPriceCatalog);
+        libraryRepo.addHalfAYearPrices(newPriceCatalog);
+        libraryRepo.addFullYearPrices(newPriceCatalog);
     }
 
     private HashMap<MemberType, Double> createPrices(List<Double> newPrices, int numOfMonths){

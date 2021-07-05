@@ -2,6 +2,7 @@ package view.member;
 
 import controller.AccountController;
 import controller.MembershipControler;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -60,10 +61,10 @@ public class MembershipController implements Observer {
         library.addObserver(this);
 
         status.setText(accountController.getMembershipStatus(account));
-        if (accountController.getMembershipExpirationDate(account.getPerson()) == null) {
-            status.setTextFill(Paint.valueOf("#CD113B"));
-        } else {
+        if (account.isActive()) {
             status.setTextFill(Paint.valueOf("#ffffff"));
+        } else {
+            status.setTextFill(Paint.valueOf("#CD113B"));
         }
 
         DropShadow dropShadow = new DropShadow(6, 0, 5, Color.GRAY);
@@ -92,10 +93,12 @@ public class MembershipController implements Observer {
         regularRB.setSelected(true);
     }
 
+    @FXML
     public void pay12months() throws InvalidTransactionException {
         membershipControler.payMembership((Member) account.getPerson(), 12);
     }
 
+    @FXML
     public void pay6months() throws InvalidTransactionException {
         membershipControler.payMembership((Member) account.getPerson(), 6);
     }

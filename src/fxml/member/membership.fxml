@@ -100,7 +100,7 @@
                                         <Font size="24.0"/>
                                     </font>
                                 </Label>
-                                <Label fx:id="pay6months" alignment="CENTER" prefHeight="54.0" prefWidth="419.0"
+                                <Label onMouseClicked="#pay6months" alignment="CENTER" prefHeight="54.0" prefWidth="419.0"
                                        text="PAY MEMBERSHIP" textFill="WHITE">
                                     <font>
                                         <Font size="14.0"/>
@@ -118,7 +118,7 @@
                         <Pane fx:id="panel12" prefHeight="174.0" prefWidth="417.0"
                               style="-fx-background-color: #ABC82E;">
                             <VBox prefHeight="176.0" prefWidth="418.0">
-                                <Label onMouseClicked="#pay6months" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="418.0"
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="418.0"
                                        text="12 months" textAlignment="CENTER" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="48.0"/>
@@ -206,10 +206,10 @@
                         BorderPane.alignment="CENTER">
                 <BorderPane prefHeight="71.0" prefWidth="900.0">
                     <center>
-                        <Label fx:id="status" prefHeight="62.0" prefWidth="900.0" text="Label" textFill="WHITE"
+                        <Label fx:id="status" prefHeight="62.0" prefWidth="900.0" textFill="WHITE"
                                BorderPane.alignment="CENTER">
                             <font>
-                                <Font size="16.0"/>
+                                <Font name="System Bold" size="16.0"/>
                             </font>
                             <graphic>
                                 <Separator orientation="VERTICAL" prefHeight="68.0" prefWidth="54.0" visible="false"/>

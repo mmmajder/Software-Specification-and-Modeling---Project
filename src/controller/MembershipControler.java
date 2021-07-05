@@ -22,6 +22,7 @@ public class MembershipControler {
         if (contactBankingSystem()) {
             createPayment(m, numOfMonths);
             m.extendMembership();
+            library.notifyObservers();
         } else {
             throw new InvalidTransactionException();
         }

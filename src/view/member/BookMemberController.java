@@ -1,20 +1,17 @@
 package view.member;
 
-import controller.AccountController;
 import controller.EditionController;
 import controller.MemberReservationController;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import model.Account;
 import model.Edition;
+import model.Library;
 import model.Member;
 import repository.ILibraryRepo;
-import model.Library;
 import repository.LibraryRepo;
 import utils.exceptions.MemberAlreadyHasPendingRequestException;
 import utils.exceptions.MemberAlreadyHasReservedBook;
@@ -34,7 +31,6 @@ public class BookMemberController {
     public Text txtTags;
     public Text txtDescription;
 
-    AccountController controller;
     MemberController memberController;
     EditionController editionController;
     Library library;
@@ -48,10 +44,11 @@ public class BookMemberController {
     }
 
     @FXML
-    private void alert(ActionEvent event) {
+    private void createAlert(String text) {
         Alert a = new Alert(Alert.AlertType.WARNING);
         a.setTitle("Alert");
-        a.setContentText("Use");
+        a.setContentText(text);
+        a.show();
     }
 
     @FXML
@@ -82,9 +79,14 @@ public class BookMemberController {
         lblGenre.setText("Genre " + editionController.getGenresConcatenated(edition));
     }
 
-    public void reserve(MouseEvent mouseEvent) throws MemberAlreadyHasReservedBook, MemberAlreadyHasPendingRequestException {
-        // TODO dodaj catchove
-        MemberReservationController memberReservationController = new MemberReservationController(library);
-        memberReservationController.sendReservationRequest((Member) account.getPerson(), edition);
+    public void reserve() throws MemberAlreadyHasReservedBook, MemberAlreadyHasPendingRequestException {
+        try {
+            MemberReservationController memberReservationController = new MemberReservationController(library);
+            memberReservationController.sendReservationRequest((Member) account.getPerson(), edition);
+        } catch (MemberAlreadyHasReservedBook memberAlreadyHasReservedBook) {
+            createAlert("Member already have 1 reserved book.");
+        } catch (MemberAlreadyHasPendingRequestException memberAlreadyHasPendingRequestException) {
+            createAlert("Member already have 1 pending request.");
+        }
     }
 }

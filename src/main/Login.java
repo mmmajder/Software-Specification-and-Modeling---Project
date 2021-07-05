@@ -30,7 +30,7 @@ public class Login extends Application {
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/login.fxml")));
         primaryStage.setTitle("Login");
-        primaryStage.getIcons().add(new Image("/fxml/logo.png"));
+        primaryStage.getIcons().add(new Image("/fxml/images/logo.png"));
         primaryStage.setScene(new Scene(root, 950, 650));
         primaryStage.setMinWidth(950);
         primaryStage.setMinHeight(650);

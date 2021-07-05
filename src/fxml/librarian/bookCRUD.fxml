@@ -75,7 +75,7 @@
             <AnchorPane prefHeight="80.0" prefWidth="950.0" BorderPane.alignment="CENTER">
                 <ImageView fitHeight="80.0" fitWidth="50.0" layoutY="5.0" onMouseClicked="#backToEdition"
                            pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                    <Image url="@../backWhite.jpg"/>
+                    <Image url="@../images/backWhite.jpg"/>
                 </ImageView>
             </AnchorPane>
         </bottom>

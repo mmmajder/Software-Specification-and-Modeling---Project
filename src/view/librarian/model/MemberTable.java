@@ -1,7 +1,5 @@
 package view.librarian.model;
 
-import java.time.LocalDate;
-
 public class MemberTable {
     private String name;
     private String surname;

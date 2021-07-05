@@ -3,17 +3,16 @@ package view.librarian;
 import controller.CRUDController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.IssuedBook;
 import model.Library;
 import model.Member;
+import model.enums.AccountType;
 import observer.Observer;
 import repository.ILibraryRepo;
 import repository.LibraryRepo;
@@ -196,34 +195,41 @@ public class MemberCRUDController implements Observer {
 
         addMemberLbl.setOnMouseClicked(e -> {
             Stage window = new Stage();
+            GridPane gridPane = new GridPane();
             window.setTitle("Add member");
-            Label nameLbl = new Label("Name ");
+
+            Label nameLbl = new Label(" Name ");
             TextField name = new TextField();
-            HBox nameHBox = new HBox(nameLbl, name);
+            gridPane.add(nameLbl, 0, 0);
+            gridPane.add(name, 1, 0);
 
-            Label surnameLbl = new Label("Surname ");
+            Label surnameLbl = new Label(" Surname ");
             TextField surname = new TextField();
-            HBox surnameHBox = new HBox(surnameLbl, surname);
+            gridPane.add(surnameLbl, 0, 1);
+            gridPane.add(surname, 1, 1);
 
-            Label jmbgLbl = new Label("JMBG ");
+            Label jmbgLbl = new Label(" JMBG ");
             TextField jmbg = new TextField();
-            HBox jmbgHBox = new HBox(jmbgLbl, jmbg);
+            gridPane.add(jmbgLbl, 0, 2);
+            gridPane.add(jmbg, 1, 2);
 
-            Label phoneLbl = new Label("Phone number ");
+            Label phoneLbl = new Label(" Phone number ");
             TextField phone = new TextField();
-            HBox phoneHBox = new HBox(phoneLbl, phone);
+            gridPane.add(phoneLbl, 0, 3);
+            gridPane.add(phone, 1, 3);
 
-            Label birthDateLbl = new Label("Birth date ");
+            Label birthDateLbl = new Label(" Birth date ");
             DatePicker birthDate = new DatePicker();
-            HBox birthDateHBox = new HBox(birthDateLbl, birthDate);
+            gridPane.add(birthDateLbl, 0, 4);
+            gridPane.add(birthDate, 1, 4);
 
             Button confirm = new Button("CONFIRM");
+            gridPane.add(confirm, 1, 5);
 
-            VBox layout = new VBox(10);
-            layout.getChildren().addAll(nameHBox, surnameHBox, jmbgHBox, phoneHBox, birthDateHBox, confirm);
-            layout.setAlignment(Pos.CENTER);
+            gridPane.setHgap(10);
+            gridPane.setVgap(10);
 
-            Scene scene = new Scene(layout, 300, 250);
+            Scene scene = new Scene(gridPane, 320, 250);
             window.setScene(scene);
             window.showAndWait();
             confirm.setOnMouseClicked(event -> {
@@ -258,36 +264,43 @@ public class MemberCRUDController implements Observer {
 
         addAccountLbl.setOnMouseClicked(e -> {
             Stage window = new Stage();
+            GridPane gridPane = new GridPane();
             window.setTitle("Add account");
 
-            Label userLbl = new Label("Username ");
-            TextField usename = new TextField();
-            HBox userHBox = new HBox(userLbl, usename);
+            Label nameLbl = new Label(" Userame ");
+            TextField username = new TextField();
+            gridPane.add(nameLbl, 0, 0);
+            gridPane.add(username, 1, 0);
 
-            Label passLbl = new Label("Password ");
+            Label surnameLbl = new Label(" Password ");
             TextField password = new TextField();
-            HBox passHBox = new HBox(passLbl, password);
+            gridPane.add(surnameLbl, 0, 1);
+            gridPane.add(password, 1, 1);
 
-            Label emailLbl = new Label("Email ");
+            Label emailLbl = new Label(" Email ");
             TextField email = new TextField();
-            HBox emailHBox = new HBox(emailLbl, email);
+            gridPane.add(emailLbl, 0, 2);
+            gridPane.add(email, 1, 2);
 
             Button confirm = new Button("CONFIRM");
+            gridPane.add(confirm, 1, 3);
 
-            VBox layout = new VBox(10);
-            layout.getChildren().addAll(userHBox, passHBox, emailHBox, confirm);
-            layout.setAlignment(Pos.CENTER);
+            gridPane.setHgap(10);
+            gridPane.setVgap(10);
 
-            Scene scene = new Scene(layout, 300, 250);
+            Scene scene = new Scene(gridPane, 300, 250);
             window.setScene(scene);
             window.showAndWait();
 
             confirm.setOnMouseClicked(event -> {
                 CRUDController crudController = new CRUDController(library);
                 MemberTable member = memberTable.getSelectionModel().getSelectedItem();
-//                crudController.setAccount(member.getJMBG(), usename.getText(), password.getText(), email.getText());
+                try {
+                    crudController.addAccount(member.getJMBG(), username.getText(), password.getText(), email.getText(), AccountType.MEMBER);
+                } catch (EmailAlreadyExistsException | UsernameAlreadyExistsException emailAlreadyExistsException) {
+                    createAlert("Username or email already exists.");
+                }
             });
-
         });
     }
 
@@ -302,10 +315,20 @@ public class MemberCRUDController implements Observer {
     private ObservableList<MemberTable> getMembers() {
         ObservableList<MemberTable> list = FXCollections.observableArrayList();
         for (Member member : library.getMembers()) {
+            if (member == null) {
+                continue;
+            }
+            MemberTable memberTable = new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getBirthDate().toString());
+            list.add(memberTable);
             try {
-                list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate().toString(), member.getMembershipExpirationDate().toString()));
-            } catch (NullPointerException e) {
-                list.add(new MemberTable(member.getName(), member.getSurname(), member.getJMBG(), member.getPhoneNumber(), member.getAccount().getEmail(), member.getBirthDate().toString(), null));
+                String expDateTable = member.getMembershipExpirationDate().toString();
+                memberTable.setMembershipEndDate(expDateTable);
+            } catch (NullPointerException ignored) {
+            }
+            try {
+                String email = member.getAccount().getEmail();
+                memberTable.setEmail(email);
+            } catch (NullPointerException ignored) {
             }
         }
         return list;

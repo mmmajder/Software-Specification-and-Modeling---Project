@@ -28,7 +28,7 @@ public class MemberReservationController {
         member.setPendingReservation(pr);
         library.addPendingReservation(pr);
         libraryRepo.addPendingReservation(pr);
-        libraryRepo.addMembersPendingReservation(member, pr);
+        libraryRepo.addMembersPendingReservation(member);
     }
 
     private void validateMembersReservationAbility(Member member) throws MemberAlreadyHasPendingRequestException, MemberAlreadyHasReservedBook {

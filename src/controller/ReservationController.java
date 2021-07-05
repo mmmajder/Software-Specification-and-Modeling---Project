@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import model.enums.BookState;
 import repository.ILibraryRepo;
 import repository.LibraryRepo;
 import utils.exceptions.MemberUnableToRentException;
@@ -93,6 +94,9 @@ public class ReservationController {
         librarian.addIssuedBook(issuedBook);
         issuedBook.getBook().addIssueHistory(issuedBook);
         library.addIssuedBook(issuedBook);
+        Book book = issuedBook.getBook();
+        book.setState(BookState.TAKEN);
+        libraryRepo.updateBookState(issuedBook.getBook());
         libraryRepo.addIssuedBook(issuedBook);
     }
 

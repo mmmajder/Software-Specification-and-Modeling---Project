@@ -78,8 +78,6 @@ public class MemberCRUDController implements Observer {
             MemberTable member = memberTable.getSelectionModel().getSelectedItem();
             member.setSurname(event.getNewValue());
             try {
-                System.out.println(member.getSurname());
-                System.out.println(member.getJMBG());
                 crudController.editSurname(member.getSurname(), member.getJMBG());
             } catch (InvalidSurnameFormatException e) {
                 createAlert("Surname must start with capital letter and contain only alphabetical letters");

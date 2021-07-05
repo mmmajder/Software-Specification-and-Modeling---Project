@@ -44,7 +44,7 @@
             <Pane prefHeight="130.0" prefWidth="106.0" BorderPane.alignment="CENTER">
                 <ImageView fitHeight="107.0" fitWidth="94.0" layoutX="6.0" layoutY="12.0"
                            pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../TheLittlePrince.jpg"/>
+                    <Image url="@../images/TheLittlePrince.jpg"/>
                 </ImageView>
             </Pane>
         </right>

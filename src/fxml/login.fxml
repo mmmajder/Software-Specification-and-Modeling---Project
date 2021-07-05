@@ -16,7 +16,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.LoginController">
     <ImageView fitHeight="650.0" fitWidth="950.0" pickOnBounds="true" preserveRatio="true">
-        <Image url="@../fxml/login.png"/>
+        <Image url="@../fxml/images/login.png"/>
     </ImageView>
     <GridPane layoutX="316.0" layoutY="324.0" prefHeight="175.0" prefWidth="329.0">
         <columnConstraints>

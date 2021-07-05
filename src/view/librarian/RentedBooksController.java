@@ -1,8 +1,10 @@
 package view.librarian;
 
 import controller.IssuedBookController;
+import controller.ReturnController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -11,6 +13,7 @@ import model.*;
 import observer.Observer;
 import repository.ILibraryRepo;
 import repository.LibraryRepo;
+import utils.exceptions.NoCurrentlyIssuedBookWithThatIdException;
 import view.librarian.model.RentedBooksTable;
 
 import java.io.IOException;
@@ -104,7 +107,18 @@ public class RentedBooksController implements Observer {
 
     public void setReturned(MouseEvent mouseEvent) {
         RentedBooksTable rent = rentedBooksTable.getSelectionModel().getSelectedItem();
-//        ReturnController returnController = new ReturnController();
-//        returnController.returnBook(rent.getBookID());
+        ReturnController returnController = new ReturnController(library);
+        try {
+            returnController.returnBook(rent.getBookID());
+        } catch (NoCurrentlyIssuedBookWithThatIdException e) {
+            createAlert("There is no book with that id");
+        }
+    }
+
+    private void createAlert(String text) {
+        Alert a = new Alert(Alert.AlertType.WARNING);
+        a.setTitle("Alert");
+        a.setContentText(text);
+        a.show();
     }
 }

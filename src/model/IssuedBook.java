@@ -87,5 +87,7 @@ public class IssuedBook {
         this.issueDate = issueDate;
     }
 
+    public void setReturnDate(LocalDate localDate) { this.returnDate = localDate; }
+
     public void setMember (Member member){ this.member = member;}
 }

@@ -14,7 +14,7 @@
             </TableView>
         </center>
         <bottom>
-            <Label fx:id="prolongLbl" text="PROLONG" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Label onMouseClicked="#prolong" text="PROLONG" textFill="WHITE" BorderPane.alignment="CENTER">
                 <font>
                     <Font name="System Bold" size="25.0"/>
                 </font>

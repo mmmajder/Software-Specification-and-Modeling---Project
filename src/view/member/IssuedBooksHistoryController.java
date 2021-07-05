@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import model.*;
 import observer.Observer;
 import repository.ILibraryRepo;
@@ -19,7 +20,6 @@ import java.time.LocalDate;
 
 public class IssuedBooksHistoryController implements Observer {
     public TableView<MemberHistoryTable> issuedBooksHistoryTable;
-    public Label prolongLbl;
     Library library;
     Account account;
     ILibraryRepo libraryRepo;
@@ -100,12 +100,6 @@ public class IssuedBooksHistoryController implements Observer {
         colStatus.setCellValueFactory(new PropertyValueFactory<>("state"));
 
         issuedBooksHistoryTable.setItems(getHistory());
-
-        prolongLbl.setOnMouseClicked(e -> {
-            MemberHistoryTable memberHistoryTable = issuedBooksHistoryTable.getSelectionModel().getSelectedItem();
-            CRUDController crudController = new CRUDController(library);
-            crudController.prolongIssue(account.getPerson().getJMBG(), memberHistoryTable.getId());
-        });
     }
 
     private ObservableList<MemberHistoryTable> getHistory() {
@@ -131,5 +125,11 @@ public class IssuedBooksHistoryController implements Observer {
     @Override
     public void updatePerformed() {
         issuedBooksHistoryTable.setItems(getHistory());
+    }
+
+    public void prolong() {
+        MemberHistoryTable memberHistoryTable = issuedBooksHistoryTable.getSelectionModel().getSelectedItem();
+        CRUDController crudController = new CRUDController(library);
+        crudController.prolongIssue(account.getPerson().getJMBG(), memberHistoryTable.getId(), memberHistoryTable.getIssueDate());
     }
 }

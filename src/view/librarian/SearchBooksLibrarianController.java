@@ -2,6 +2,8 @@ package view.librarian;
 
 import controller.EditionController;
 import controller.SearchBooksController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -90,8 +92,13 @@ public class SearchBooksLibrarianController {
         search.textProperty().addListener((observable, oldValue, newValue) -> initializeEditions(
                 searchBooksController.filterByTitle(currentEditions, newValue)));
 
-        genres.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-                initializeEditions(searchBooksController.filterByGenre(currentEditions, newValue)));
+        genres.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("GENRES")) {
+                initializeEditions(currentEditions);
+            } else {
+                initializeEditions(searchBooksController.filterByGenre(currentEditions, newValue));
+            }
+        });
     }
 
     @FXML

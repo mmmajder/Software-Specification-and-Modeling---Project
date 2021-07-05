@@ -14,7 +14,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
-import model.*;
+import model.Account;
+import model.Edition;
+import model.Library;
 import repository.ILibraryRepo;
 import repository.LibraryRepo;
 
@@ -25,8 +27,6 @@ public class SearchBooksMemberController {
     public ListView<String> genres;
     public TilePane tilePane;
     public TextField search;
-    public BorderPane borderPane;
-    public BorderPane left;
     public AnchorPane right;
 
     public List<Edition> currentEditions;
@@ -82,8 +82,13 @@ public class SearchBooksMemberController {
         search.textProperty().addListener((observable, oldValue, newValue) -> initializeEditions(
                 searchBooksController.filterByTitle(currentEditions, newValue)));
 
-        genres.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-                initializeEditions(searchBooksController.filterByGenre(currentEditions, newValue)));
+        genres.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("GENRES")) {
+                initializeEditions(currentEditions);
+            } else {
+                initializeEditions(searchBooksController.filterByGenre(currentEditions, newValue));
+            }
+        });
     }
 
     @FXML

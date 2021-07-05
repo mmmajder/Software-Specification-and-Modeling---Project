@@ -1174,4 +1174,126 @@ public class LibraryRepo implements ILibraryRepo {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void updateMaxIssueDay(MemberType type, int days) {
+
+        String query = "UPDATE maxIssueDays SET days = ? WHERE type = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, days);
+            statement.setString(2, type.toString());
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateMaxIssuedBooks(MemberType type, int books) {
+
+        String query = "UPDATE maxIssuedBooks SET limit = ? WHERE type = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, books);
+            statement.setString(2, type.toString());
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addPriceCatalog(PriceCatalog priceCatalog) {
+
+        String query = "INSERT INTO priceCatalogs VALUES (?, ?, null)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, priceCatalog.getCatalogId());
+            statement.setDate(2, Date.valueOf(priceCatalog.getFromDate()));
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateToDatePriceCatalog(PriceCatalog priceCatalog) {
+
+        String query = "UPDATE priceCatalogs SET toDate = ? WHERE catalogId = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(2, priceCatalog.getCatalogId());
+            statement.setDate(1, Date.valueOf(priceCatalog.getToDate()));
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addHalfAYearPrices(PriceCatalog priceCatalog) {
+
+        String query = "INSERT INTO catalogHalfAYearPrices VALUES (?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            for (MemberType type : priceCatalog.getHalfAYearPrices().keySet()) {
+
+                statement.setInt(1, priceCatalog.getCatalogId());
+                statement.setString(2, type.toString());
+                statement.setDouble(3, priceCatalog.getHalfAYearPrices().get(type));
+                statement.executeUpdate();
+            }
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addFullYearPrices(PriceCatalog priceCatalog) {
+
+        String query = "INSERT INTO catalogFullYearPrices VALUES (?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            for (MemberType type : priceCatalog.getFullYearPrices().keySet()) {
+
+                statement.setInt(1, priceCatalog.getCatalogId());
+                statement.setString(2, type.toString());
+                statement.setDouble(3, priceCatalog.getFullYearPrices().get(type));
+                statement.executeUpdate();
+            }
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

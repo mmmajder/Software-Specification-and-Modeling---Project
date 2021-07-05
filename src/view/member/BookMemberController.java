@@ -4,6 +4,7 @@ import controller.EditionController;
 import controller.MemberReservationController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.text.Text;
@@ -11,6 +12,7 @@ import model.Account;
 import model.Edition;
 import model.Library;
 import model.Member;
+import observer.Observer;
 import repository.ILibraryRepo;
 import repository.LibraryRepo;
 import utils.exceptions.MemberAlreadyHasPendingRequestException;
@@ -18,7 +20,7 @@ import utils.exceptions.MemberAlreadyHasReservedBook;
 
 import java.io.IOException;
 
-public class BookMemberController {
+public class BookMemberController implements Observer {
     public Label lblTitle;
     public Label lblAuthor;
     public Label lblPublishedDate;
@@ -28,8 +30,8 @@ public class BookMemberController {
     public Label lblTranslation;
     public Label lblIllustration;
     public Label lblGenre;
-    public Text txtTags;
     public Text txtDescription;
+    public Button btnReserve;
 
     MemberController memberController;
     EditionController editionController;
@@ -50,14 +52,6 @@ public class BookMemberController {
         a.setContentText(text);
         a.show();
     }
-    @FXML
-    private void createConfirmation(String text) {
-        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-        a.setTitle("Confirmation");
-        a.setContentText(text);
-        a.show();
-    }
-
 
     @FXML
     public void initData(Edition edition, MemberController memberController, Account account) {
@@ -69,14 +63,23 @@ public class BookMemberController {
         libraryRepo.loadPersons(library);
         libraryRepo.loadEditions(library);
         libraryRepo.loadPendingReservations(library);
+        library.addObserver(this);
         this.account = library.getAccountByEmail(account.getEmail());
         editionController = new EditionController(library);
         lblTitle.setText(edition.getTitle());
         lblAuthor.setText(editionController.getAuthorName(edition));
         final Tooltip authorBiography = new Tooltip();
         authorBiography.setText(edition.getAuthor().getBiography());
+        if (((Member) account.getPerson()).getReservedBook() != null &&
+                ((Member) account.getPerson()).getReservedBook().getEdition() == edition) {
+            btnReserve.setText("RESERVED");
+        } else if (((Member) account.getPerson()).getPendingReservation() != null &&
+                ((Member) account.getPerson()).getPendingReservation().getEdition() == edition) {
+            btnReserve.setText("PENDING");
+        } else {
+            btnReserve.setText("RESERVE");
+        }
         lblAuthor.setTooltip(authorBiography);
-
         txtDescription.setText(edition.getDescription());
         lblPublishedDate.setText("Published date: " + edition.getPublishedDate());
         lblLanguage.setText("Language: " + edition.getLanguage());
@@ -87,15 +90,34 @@ public class BookMemberController {
         lblGenre.setText("Genre " + editionController.getGenresConcatenated(edition));
     }
 
-    public void reserve() throws MemberAlreadyHasReservedBook, MemberAlreadyHasPendingRequestException {
+    public void reserve() {
         try {
-            MemberReservationController memberReservationController = new MemberReservationController(library);
-            memberReservationController.sendReservationRequest((Member) account.getPerson(), edition);
-            createConfirmation("You have successfully applied for reservation");
+            if (account.isActive()) {
+                if (btnReserve.getText().equals("RESERVE")) {
+                    MemberReservationController memberReservationController = new MemberReservationController(library);
+                    memberReservationController.sendReservationRequest((Member) account.getPerson(), edition);
+                    btnReserve.setText("PENDING");
+                } else {
+                    createAlert("You already send this request.");
+                }
+            } else {
+                createAlert("You have to pay membership first.");
+            }
         } catch (MemberAlreadyHasReservedBook memberAlreadyHasReservedBook) {
             createAlert("Member already have 1 reserved book.");
         } catch (MemberAlreadyHasPendingRequestException memberAlreadyHasPendingRequestException) {
             createAlert("Member already have 1 pending request.");
+        }
+    }
+
+    @Override
+    public void updatePerformed() {
+        if (((Member) account.getPerson()).getReservedBook().getEdition() == edition) {
+            btnReserve.setText("RESERVED");
+        } else if ((((Member) account.getPerson()).getPendingReservation().getEdition() == edition)) {
+            btnReserve.setText("PENDING");
+        } else {
+            btnReserve.setText("RESERVE");
         }
     }
 }

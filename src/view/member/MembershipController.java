@@ -1,23 +1,26 @@
 package view.member;
 
 import controller.AccountController;
+import controller.MembershipControler;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import model.Account;
+import model.Member;
+import observer.Observer;
 import repository.ILibraryRepo;
 import model.Library;
 import repository.LibraryRepo;
 import model.enums.MemberType;
+import utils.exceptions.InvalidTransactionException;
 
-public class MembershipController {
-    public Label pay6months;
+public class MembershipController implements Observer {
     public Label price6months;
-    public Label pay12months;
     public Label price12months;
 
     public Label maxNumberOfBooks;
@@ -35,6 +38,7 @@ public class MembershipController {
     public Pane panel12;
 
     ILibraryRepo libraryRepo;
+    MembershipControler membershipControler;
     AccountController accountController;
     Library library;
     Account account;
@@ -43,12 +47,14 @@ public class MembershipController {
         library = new Library();
         libraryRepo = new LibraryRepo();
         this.account = account;
+        membershipControler = new MembershipControler(library);
         accountController = new AccountController(library);
         libraryRepo.loadMaxIssueDays(library);
         libraryRepo.loadMaxIssuedBooks(library);
         libraryRepo.loadPriceCatalogs(library);
         libraryRepo.loadFullYearPrices(library);
         libraryRepo.loadHalfAYearPrices(library);
+        library.addObserver(this);
 
         status.setText(accountController.getMembershipStatus(account));
         if (accountController.getMembershipExpirationDate(account.getPerson()) == null) {
@@ -81,5 +87,18 @@ public class MembershipController {
             }
         });
         regularRB.setSelected(true);
+    }
+
+    public void pay12months() throws InvalidTransactionException {
+        membershipControler.payMembership((Member) account.getPerson(), 12);
+    }
+
+    public void pay6months() throws InvalidTransactionException {
+        membershipControler.payMembership((Member) account.getPerson(), 6);
+    }
+
+    @Override
+    public void updatePerformed() {
+        status.setText(accountController.getMembershipStatus(account));
     }
 }

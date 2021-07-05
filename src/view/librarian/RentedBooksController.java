@@ -44,23 +44,30 @@ public class RentedBooksController implements Observer {
         };
         rentedBooksTable.getColumns().add(colMember);
 
+        TableColumn<RentedBooksTable, String> colBookID = new TableColumn<RentedBooksTable, String>("Book ID") {
+            {
+                prefWidthProperty().bind(rentedBooksTable.widthProperty().multiply(0.1));
+            }
+        };
+        rentedBooksTable.getColumns().add(colBookID);
+
         TableColumn<RentedBooksTable, String> colBook = new TableColumn<RentedBooksTable, String>("Book") {
             {
-                prefWidthProperty().bind(rentedBooksTable.widthProperty().multiply(0.2));
+                prefWidthProperty().bind(rentedBooksTable.widthProperty().multiply(0.3));
             }
         };
         rentedBooksTable.getColumns().add(colBook);
 
         TableColumn<RentedBooksTable, LocalDate> colIssuedDate = new TableColumn<RentedBooksTable, LocalDate>("Issued date") {
             {
-                prefWidthProperty().bind(rentedBooksTable.widthProperty().multiply(0.2));
+                prefWidthProperty().bind(rentedBooksTable.widthProperty().multiply(0.1));
             }
         };
         rentedBooksTable.getColumns().add(colIssuedDate);
 
         TableColumn<RentedBooksTable, LocalDate> colReturnDate = new TableColumn<RentedBooksTable, LocalDate>("Return date") {
             {
-                prefWidthProperty().bind(rentedBooksTable.widthProperty().multiply(0.2));
+                prefWidthProperty().bind(rentedBooksTable.widthProperty().multiply(0.1));
             }
         };
         rentedBooksTable.getColumns().add(colReturnDate);
@@ -74,6 +81,7 @@ public class RentedBooksController implements Observer {
         rentedBooksTable.setItems(getRentedBooks());
 
         colMember.setCellValueFactory(new PropertyValueFactory<>("member"));
+        colBookID.setCellValueFactory(new PropertyValueFactory<>("bookID"));
         colBook.setCellValueFactory(new PropertyValueFactory<>("book"));
         colIssuedDate.setCellValueFactory(new PropertyValueFactory<>("issuedDate"));
         colReturnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
@@ -83,7 +91,7 @@ public class RentedBooksController implements Observer {
     private ObservableList<RentedBooksTable> getRentedBooks() {
         ObservableList<RentedBooksTable> list = FXCollections.observableArrayList();
         for (IssuedBook issuedBook : library.getCurrentlyIssued()) {
-            list.add(new RentedBooksTable(issuedBook.getMember().getFullName(), issuedBook.getTitle(),
+            list.add(new RentedBooksTable(issuedBook.getMember().getFullName(), issuedBook.getBookId(), issuedBook.getTitle(),
                     issuedBook.getIssueDate(), issuedBook.getReturnDate(), issuedBook.getBook().getState()));
         }
         return list;
@@ -95,7 +103,8 @@ public class RentedBooksController implements Observer {
     }
 
     public void setReturned(MouseEvent mouseEvent) {
-        RentedBooksTable reservation = rentedBooksTable.getSelectionModel().getSelectedItem();
-        //controller.
+        RentedBooksTable rent = rentedBooksTable.getSelectionModel().getSelectedItem();
+//        ReturnController returnController = new ReturnController();
+//        returnController.returnBook(rent.getBookID());
     }
 }

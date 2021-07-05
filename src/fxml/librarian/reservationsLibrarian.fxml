@@ -25,72 +25,71 @@
         <rowConstraints>
             <RowConstraints minHeight="10.0" percentHeight="100" prefHeight="30.0" vgrow="ALWAYS"/>
         </rowConstraints>
-        <children>
-            <AnchorPane prefHeight="550.0" prefWidth="478.0">
-                <VBox prefHeight="550.0" prefWidth="477.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
-                      AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-                    <Separator prefHeight="18.0" prefWidth="252.0" visible="false"/>
-                    <Label prefHeight="18.0" prefWidth="262.0" text=" RESERVATION REQUESTS" textFill="WHITE">
-                        <font>
-                            <Font name="System Bold" size="12.0"/>
-                        </font>
-                    </Label>
-                    <Separator prefHeight="18.0" prefWidth="252.0" visible="false"/>
-                    <TableView fx:id="reservationRequestTable" prefHeight="313.0" prefWidth="350.0">
-                        <columns>
-<!--                            <TableColumn prefWidth="175.0" text="Member"/>-->
-<!--                            <TableColumn prefWidth="174.0" text="Edition"/>-->
-                        </columns>
-                    </TableView>
-                    <Separator prefHeight="18.0" prefWidth="252.0" visible="false"/>
-                    <HBox minHeight="50.0" minWidth="146.0" prefHeight="50.0" prefWidth="146.0">
-                        <VBox.margin>
-                            <Insets left="30.0"/>
-                        </VBox.margin>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0"
-                                style="-fx-background-color: #ABC82E;" onMouseClicked="#approve" text="APPROVE" textFill="WHITE">
-                            <font>
-                                <Font size="18.0"/>
-                            </font>
-                        </Button>
-                        <Separator orientation="VERTICAL" prefHeight="52.0" prefWidth="18.0" visible="false"/>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0"
-                                style="-fx-background-color: #ABC82E;" onMouseClicked="#decline" text="DECLINE" textFill="WHITE">
-                            <font>
-                                <Font size="18.0"/>
-                            </font>
-                        </Button>
-                        <Separator orientation="VERTICAL" prefHeight="52.0" prefWidth="18.0" visible="false"/>
-                    </HBox>
-                </VBox>
-            </AnchorPane>
-            <AnchorPane prefHeight="550.0" prefWidth="423.0" GridPane.columnIndex="1">
-                <VBox prefHeight="550.0" prefWidth="422.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
-                      AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-                    <Separator prefHeight="18.0" prefWidth="252.0" visible="false"/>
-                    <Label prefHeight="18.0" prefWidth="277.0" text=" APPROVED RESERVATIONS" textFill="WHITE">
-                        <font>
-                            <Font name="System Bold" size="12.0"/>
-                        </font>
-                    </Label>
-                    <Separator prefHeight="18.0" prefWidth="252.0" visible="false"/>
-                    <TableView fx:id="approvedReservationsTable" prefHeight="313.0" prefWidth="350.0">
-                        <columns>
-                            <TableColumn prefWidth="137.0" text="Member"/>
-                            <TableColumn prefWidth="137.0" text="Book ID"/>
-                            <TableColumn prefWidth="75.0" text="Days left"/>
-                        </columns>
-                    </TableView>
-                    <Separator prefHeight="18.0" prefWidth="252.0" visible="false"/>
-                    <Button onMouseClicked="#issue" alignment="CENTER" contentDisplay="CENTER" minHeight="50.0" mnemonicParsing="false"
-                            prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: #ABC82E;" text="ISSUE"
+        <AnchorPane prefHeight="550.0" prefWidth="478.0">
+            <VBox prefHeight="550.0" prefWidth="477.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
+                  AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                <Separator prefHeight="18.0" prefWidth="252.0" visible="false"/>
+                <Label prefHeight="18.0" prefWidth="262.0" text=" RESERVATION REQUESTS" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                </Label>
+                <Separator prefHeight="18.0" prefWidth="252.0" visible="false"/>
+                <TableView fx:id="reservationRequestTable" prefHeight="313.0" prefWidth="350.0">
+                    <columns>
+                    </columns>
+                </TableView>
+                <Separator prefHeight="18.0" prefWidth="252.0" visible="false"/>
+                <HBox minHeight="50.0" minWidth="146.0" prefHeight="50.0" prefWidth="146.0">
+                    <VBox.margin>
+                        <Insets left="30.0"/>
+                    </VBox.margin>
+                    <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0"
+                            style="-fx-background-color: #ABC82E;" onMouseClicked="#approve" text="APPROVE"
                             textFill="WHITE">
                         <font>
                             <Font size="18.0"/>
                         </font>
                     </Button>
-                </VBox>
-            </AnchorPane>
-        </children>
+                    <Separator orientation="VERTICAL" prefHeight="52.0" prefWidth="18.0" visible="false"/>
+                    <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0"
+                            style="-fx-background-color: #ABC82E;" onMouseClicked="#decline" text="DECLINE"
+                            textFill="WHITE">
+                        <font>
+                            <Font size="18.0"/>
+                        </font>
+                    </Button>
+                    <Separator orientation="VERTICAL" prefHeight="52.0" prefWidth="18.0" visible="false"/>
+                </HBox>
+            </VBox>
+        </AnchorPane>
+        <AnchorPane prefHeight="550.0" prefWidth="423.0" GridPane.columnIndex="1">
+            <VBox prefHeight="550.0" prefWidth="422.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
+                  AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                <Separator prefHeight="18.0" prefWidth="252.0" visible="false"/>
+                <Label prefHeight="18.0" prefWidth="277.0" text=" APPROVED RESERVATIONS" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                </Label>
+                <Separator prefHeight="18.0" prefWidth="252.0" visible="false"/>
+                <TableView fx:id="approvedReservationsTable" prefHeight="313.0" prefWidth="350.0">
+                    <columns>
+                        <TableColumn prefWidth="137.0" text="Member"/>
+                        <TableColumn prefWidth="137.0" text="Book ID"/>
+                        <TableColumn prefWidth="75.0" text="Days left"/>
+                    </columns>
+                </TableView>
+                <Separator prefHeight="18.0" prefWidth="252.0" visible="false"/>
+                <Button onMouseClicked="#issue" alignment="CENTER" contentDisplay="CENTER" minHeight="50.0"
+                        mnemonicParsing="false"
+                        prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: #ABC82E;" text="ISSUE"
+                        textFill="WHITE">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Button>
+            </VBox>
+        </AnchorPane>
     </GridPane>
 </AnchorPane>

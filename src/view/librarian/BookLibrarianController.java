@@ -1,6 +1,5 @@
 package view.librarian;
 
-import controller.AccountController;
 import controller.EditionController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,14 +11,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Account;
 import model.Edition;
-import repository.ILibraryRepo;
 import model.Library;
+import repository.ILibraryRepo;
 import repository.LibraryRepo;
 
 import java.io.IOException;
@@ -37,10 +35,7 @@ public class BookLibrarianController {
     public Text txtTags;
     public Text txtDescription;
     public Button btnRent;
-    public Button btnEditSamples;
-    public Button btnEditEdition;
 
-    AccountController controller;
     LibrarianController librarianController;
     Library library;
     Account account;
@@ -50,12 +45,12 @@ public class BookLibrarianController {
     public BorderPane mainBorderPane;
 
     @FXML
-    public void backToBooks() throws IOException {
+    public void backToBooks() {
         librarianController.switchToBooks();
     }
 
     @FXML
-    public void switchToEditSamples(MouseEvent mouseEvent) throws IOException {
+    public void switchToEditSamples() throws IOException {
         FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/bookCRUD.fxml"));
         Parent bookScene = bookLoader.load();
         mainBorderPane.setCenter(bookScene);
@@ -64,7 +59,7 @@ public class BookLibrarianController {
     }
 
     @FXML
-    public void switchToEditEdition(MouseEvent mouseEvent) throws IOException {
+    public void switchToEditEdition() throws IOException {
         FXMLLoader bookLoader = new FXMLLoader(getClass().getResource("../../fxml/librarian/createEdition.fxml"));
         Parent bookScene = bookLoader.load();
         mainBorderPane.setCenter(bookScene);

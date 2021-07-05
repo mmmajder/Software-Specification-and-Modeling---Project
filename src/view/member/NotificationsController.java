@@ -11,10 +11,11 @@ import repository.ILibraryRepo;
 import repository.LibraryRepo;
 import view.member.model.NotificationTable;
 
+import java.time.LocalDate;
+
 public class NotificationsController implements Observer {
 
     public TableView<NotificationTable> notificationTable;
-    ObservableList<NotificationTable> dataNotificationTable;
     Library library;
     Account account;
     ILibraryRepo libraryRepo;
@@ -26,22 +27,21 @@ public class NotificationsController implements Observer {
         libraryRepo.loadAccounts(library);
         libraryRepo.loadNotifications(library);
         this.account = library.getAccountByEmail(account.getEmail());
-
-        TableColumn colNotification = new TableColumn("Notification") {
+        TableColumn<NotificationTable, String> colNotification = new TableColumn<NotificationTable, String>("Notification") {
             {
                 prefWidthProperty().bind(notificationTable.widthProperty().multiply(0.7));
             }
         };
         notificationTable.getColumns().add(colNotification);
-        TableColumn colDate = new TableColumn("Date") {
+        TableColumn<NotificationTable, LocalDate> colDate = new TableColumn<NotificationTable, LocalDate>("Date") {
             {
                 prefWidthProperty().bind(notificationTable.widthProperty().multiply(0.3));
             }
         };
         notificationTable.getColumns().add(colDate);
 
-        colNotification.setCellValueFactory(new PropertyValueFactory<NotificationTable, String>("notification"));
-        colDate.setCellValueFactory(new PropertyValueFactory<NotificationTable, String>("date"));
+        colNotification.setCellValueFactory(new PropertyValueFactory<>("notification"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         notificationTable.setItems(getNotifications());
     }

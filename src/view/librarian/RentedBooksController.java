@@ -3,12 +3,11 @@ package view.librarian;
 import controller.IssuedBookController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import model.*;
-import model.enums.BookState;
 import observer.Observer;
 import repository.ILibraryRepo;
 import repository.LibraryRepo;
@@ -19,11 +18,6 @@ import java.time.LocalDate;
 
 public class RentedBooksController implements Observer {
     public TableView<RentedBooksTable> rentedBooksTable;
-    public Label returnedLbl;
-    public Label lostLbl;
-    public Label repairLbl;
-    public Label returnFromRepairLbl;
-    ObservableList<RentedBooksTable> dataRentedBooksTable;
 
     Library library;
     ILibraryRepo libraryRepo;
@@ -44,65 +38,53 @@ public class RentedBooksController implements Observer {
         rentedBooksTable.setItems(getRentedBooks());
 
 
-        TableColumn colMember = new TableColumn("Member") {
+        TableColumn<RentedBooksTable, String> colMember = new TableColumn<RentedBooksTable, String>("Member") {
             {
                 prefWidthProperty().bind(rentedBooksTable.widthProperty().multiply(0.2));
             }
         };
         rentedBooksTable.getColumns().add(colMember);
 
-        TableColumn colBook = new TableColumn("Book") {
+        TableColumn<RentedBooksTable, String> colBook = new TableColumn<RentedBooksTable, String>("Book") {
             {
                 prefWidthProperty().bind(rentedBooksTable.widthProperty().multiply(0.2));
             }
         };
         rentedBooksTable.getColumns().add(colBook);
 
-        TableColumn colIssuedDate = new TableColumn("Issued date") {
+        TableColumn<RentedBooksTable, LocalDate> colIssuedDate = new TableColumn<RentedBooksTable, LocalDate>("Issued date") {
             {
                 prefWidthProperty().bind(rentedBooksTable.widthProperty().multiply(0.2));
             }
         };
         rentedBooksTable.getColumns().add(colIssuedDate);
 
-        TableColumn colReturnDate = new TableColumn("Return date") {
+        TableColumn<RentedBooksTable, LocalDate> colReturnDate = new TableColumn<RentedBooksTable, LocalDate>("Return date") {
             {
                 prefWidthProperty().bind(rentedBooksTable.widthProperty().multiply(0.2));
             }
         };
         rentedBooksTable.getColumns().add(colReturnDate);
 
-        TableColumn colState = new TableColumn("State") {
+        TableColumn<RentedBooksTable, String> colState = new TableColumn<RentedBooksTable, String>("State") {
             {
                 prefWidthProperty().bind(rentedBooksTable.widthProperty().multiply(0.2));
             }
         };
         rentedBooksTable.getColumns().add(colState);
 
-        colMember.setCellValueFactory(new PropertyValueFactory<RentedBooksTable, String>("member"));
-        colBook.setCellValueFactory(new PropertyValueFactory<RentedBooksTable, String>("book"));
-        colIssuedDate.setCellValueFactory(new PropertyValueFactory<RentedBooksTable, Boolean>("issuedDate"));
-        colReturnDate.setCellValueFactory(new PropertyValueFactory<RentedBooksTable, LocalDate>("returnDate"));
-        colState.setCellValueFactory(new PropertyValueFactory<RentedBooksTable, String>("state"));
-
-        returnFromRepairLbl.setOnMouseClicked(e -> {
-//            cont.setStatus(rentedBooksTable.getSelectionModel().getSelectedItem().getBook(), BookState.AVAILABLE);
-        });
-        repairLbl.setOnMouseClicked(e -> {
-//            cont.setStatus(rentedBooksTable.getSelectionModel().getSelectedItem().getBook(), BookState.REPAIRING);
-        });
-        lostLbl.setOnMouseClicked(e -> {
-//            cont.setStatus(rentedBooksTable.getSelectionModel().getSelectedItem().getBook(), BookState.LOST);
-        });
-        returnedLbl.setOnMouseClicked(e -> {
-//            cont.setStatus(rentedBooksTable.getSelectionModel().getSelectedItem().getBook(), BookState.AVAILABLE);
-        });
+        colMember.setCellValueFactory(new PropertyValueFactory<>("member"));
+        colBook.setCellValueFactory(new PropertyValueFactory<>("book"));
+        colIssuedDate.setCellValueFactory(new PropertyValueFactory<>("issuedDate"));
+        colReturnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
+        colState.setCellValueFactory(new PropertyValueFactory<>("state"));
     }
 
     private ObservableList<RentedBooksTable> getRentedBooks() {
         ObservableList<RentedBooksTable> list = FXCollections.observableArrayList();
         for (IssuedBook issuedBook : library.getCurrentlyIssued()) {
-            list.add(new RentedBooksTable(issuedBook.getMember().getFullName(), issuedBook.getTitle(), issuedBook.getIssueDate(), issuedBook.getReturnDate(), issuedBook.getBook().getState()));
+            list.add(new RentedBooksTable(issuedBook.getMember().getFullName(), issuedBook.getTitle(),
+                    issuedBook.getIssueDate(), issuedBook.getReturnDate(), issuedBook.getBook().getState()));
         }
         return list;
     }
@@ -110,6 +92,10 @@ public class RentedBooksController implements Observer {
     @Override
     public void updatePerformed() {
         rentedBooksTable.setItems(getRentedBooks());
-//        libraryRepo.loadIssuedBooks(library);
+    }
+
+    public void setReturned(MouseEvent mouseEvent) {
+        RentedBooksTable reservation = rentedBooksTable.getSelectionModel().getSelectedItem();
+        //controller.
     }
 }

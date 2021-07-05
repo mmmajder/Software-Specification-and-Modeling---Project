@@ -3,7 +3,6 @@ package view.librarian;
 import controller.CRUDController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,7 +11,9 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.*;
+import model.IssuedBook;
+import model.Library;
+import model.Member;
 import observer.Observer;
 import repository.ILibraryRepo;
 import repository.LibraryRepo;
@@ -51,88 +52,79 @@ public class MemberCRUDController implements Observer {
         libraryRepo.loadIssuedBooks(library);
         crudController = new CRUDController(library);
 
-        TableColumn colName = new TableColumn("Name") {
+        TableColumn<MemberTable, String> colName = new TableColumn<MemberTable, String>("Name") {
             {
                 prefWidthProperty().bind(memberTable.widthProperty().multiply(0.15));
             }
         };
         memberTable.getColumns().add(colName);
-        colName.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent event) {
-                MemberTable member = memberTable.getSelectionModel().getSelectedItem();
-                member.setName(event.getNewValue().toString());
-                try {
-                    crudController.editName(member.getName(), member.getJMBG());
-                } catch (InvalidNameFormatException e) {
-                    createAlert("Name must start with capital letter and contain only alphabetical letters");
-                    memberTable.getSelectionModel().getSelectedItem().setName(event.getOldValue().toString());
-                }
+        colName.setOnEditCommit(event -> {
+            MemberTable member = memberTable.getSelectionModel().getSelectedItem();
+            member.setName(event.getNewValue());
+            try {
+                crudController.editName(member.getName(), member.getJMBG());
+            } catch (InvalidNameFormatException e) {
+                createAlert("Name must start with capital letter and contain only alphabetical letters");
+                memberTable.getSelectionModel().getSelectedItem().setName(event.getOldValue());
             }
         });
 
-        TableColumn colSurname = new TableColumn("Surname") {
+        TableColumn<MemberTable, String> colSurname = new TableColumn<MemberTable, String>("Surname") {
             {
                 prefWidthProperty().bind(memberTable.widthProperty().multiply(0.15));
             }
         };
         memberTable.getColumns().add(colSurname);
-        colSurname.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent event) {
-                MemberTable member = memberTable.getSelectionModel().getSelectedItem();
-                member.setSurname(event.getNewValue().toString());
-                try {
-                    System.out.println(member.getSurname());
-                    System.out.println(member.getJMBG());
-                    crudController.editSurname(member.getSurname(), member.getJMBG());
-                } catch (InvalidSurnameFormatException e) {
-                    createAlert("Surname must start with capital letter and contain only alphabetical letters");
-                }
+        colSurname.setOnEditCommit(event -> {
+            MemberTable member = memberTable.getSelectionModel().getSelectedItem();
+            member.setSurname(event.getNewValue());
+            try {
+                System.out.println(member.getSurname());
+                System.out.println(member.getJMBG());
+                crudController.editSurname(member.getSurname(), member.getJMBG());
+            } catch (InvalidSurnameFormatException e) {
+                createAlert("Surname must start with capital letter and contain only alphabetical letters");
             }
         });
 
-        TableColumn colJMBG = new TableColumn("JMBG") {
+        TableColumn<MemberTable, String> colJMBG = new TableColumn<MemberTable, String>("JMBG") {
             {
                 prefWidthProperty().bind(memberTable.widthProperty().multiply(0.1));
             }
         };
         memberTable.getColumns().add(colJMBG);
 
-        TableColumn colPhone = new TableColumn("Phone number") {
+        TableColumn<MemberTable, String> colPhone = new TableColumn<MemberTable, String>("Phone number") {
             {
                 prefWidthProperty().bind(memberTable.widthProperty().multiply(0.15));
             }
         };
         memberTable.getColumns().add(colPhone);
-        colPhone.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent event) {
-                MemberTable member = memberTable.getSelectionModel().getSelectedItem();
-                member.setPhoneNumber(event.getNewValue().toString());
-                try {
-                    crudController.editPhoneNumber(member.getPhoneNumber(), member.getJMBG());
-                } catch (InvalidPhoneNumberFormatException e) {
-                    createAlert("Phone number is not written properly");
-                }
+        colPhone.setOnEditCommit(event -> {
+            MemberTable member = memberTable.getSelectionModel().getSelectedItem();
+            member.setPhoneNumber(event.getNewValue());
+            try {
+                crudController.editPhoneNumber(member.getPhoneNumber(), member.getJMBG());
+            } catch (InvalidPhoneNumberFormatException e) {
+                createAlert("Phone number is not written properly");
             }
         });
 
-        TableColumn colEmail = new TableColumn("Email") {
+        TableColumn<MemberTable, String> colEmail = new TableColumn<MemberTable, String>("Email") {
             {
                 prefWidthProperty().bind(memberTable.widthProperty().multiply(0.15));
             }
         };
         memberTable.getColumns().add(colEmail);
 
-        TableColumn colBirthDate = new TableColumn("Birth date") {
+        TableColumn<MemberTable, String> colBirthDate = new TableColumn<MemberTable, String>("Birth date") {
             {
                 prefWidthProperty().bind(memberTable.widthProperty().multiply(0.1));
             }
         };
         memberTable.getColumns().add(colBirthDate);
 
-        TableColumn colMembershipEndDate = new TableColumn("Membership end date") {
+        TableColumn<MemberTable, String> colMembershipEndDate = new TableColumn<MemberTable, String>("Membership end date") {
             {
                 prefWidthProperty().bind(memberTable.widthProperty().multiply(0.2));
             }
@@ -140,46 +132,46 @@ public class MemberCRUDController implements Observer {
         memberTable.getColumns().add(colMembershipEndDate);
 
 
-        TableColumn colID = new TableColumn("ID") {
+        TableColumn<CurrentIssueTable, String> colID = new TableColumn<CurrentIssueTable, String>("ID") {
             {
                 prefWidthProperty().bind(memberIssuesTable.widthProperty().multiply(0.2));
             }
         };
         memberIssuesTable.getColumns().add(colID);
 
-        TableColumn colTitle = new TableColumn("Title") {
+        TableColumn<CurrentIssueTable, String> colTitle = new TableColumn<CurrentIssueTable, String>("Title") {
             {
                 prefWidthProperty().bind(memberIssuesTable.widthProperty().multiply(0.3));
             }
         };
         memberIssuesTable.getColumns().add(colTitle);
 
-        TableColumn colProlonged = new TableColumn("Prolonged") {
+        TableColumn<CurrentIssueTable, Boolean> colProlonged = new TableColumn<CurrentIssueTable, Boolean>("Prolonged") {
             {
                 prefWidthProperty().bind(memberIssuesTable.widthProperty().multiply(0.2));
             }
         };
         memberIssuesTable.getColumns().add(colProlonged);
 
-        TableColumn colReturnDate = new TableColumn("Return date") {
+        TableColumn<CurrentIssueTable, LocalDate> colReturnDate = new TableColumn<CurrentIssueTable, LocalDate>("Return date") {
             {
                 prefWidthProperty().bind(memberIssuesTable.widthProperty().multiply(0.3));
             }
         };
         memberIssuesTable.getColumns().add(colReturnDate);
 
-        colName.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("name"));
-        colSurname.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("surname"));
-        colJMBG.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("JMBG"));
-        colPhone.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("phoneNumber"));
-        colEmail.setCellValueFactory(new PropertyValueFactory<MemberTable, String>("email"));
-        colBirthDate.setCellValueFactory(new PropertyValueFactory<MemberTable, LocalDate>("birthDate"));
-        colMembershipEndDate.setCellValueFactory(new PropertyValueFactory<MemberTable, LocalDate>("membershipEndDate"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        colJMBG.setCellValueFactory(new PropertyValueFactory<>("JMBG"));
+        colPhone.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colBirthDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
+        colMembershipEndDate.setCellValueFactory(new PropertyValueFactory<>("membershipEndDate"));
 
-        colID.setCellValueFactory(new PropertyValueFactory<CurrentIssueTable, String>("id"));
-        colTitle.setCellValueFactory(new PropertyValueFactory<CurrentIssueTable, String>("title"));
-        colProlonged.setCellValueFactory(new PropertyValueFactory<CurrentIssueTable, Boolean>("prolonged"));
-        colReturnDate.setCellValueFactory(new PropertyValueFactory<CurrentIssueTable, LocalDate>("returnDate"));
+        colID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colProlonged.setCellValueFactory(new PropertyValueFactory<>("prolonged"));
+        colReturnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
 
         dataMemberTable = getMembers();
         memberTable.setItems(dataMemberTable);
@@ -325,8 +317,7 @@ public class MemberCRUDController implements Observer {
             for (IssuedBook issuedBook : library.getMembersCurrentlyTakenBooks(selected.getJMBG())) {
                 dataMemberIssuesTable.add(new CurrentIssueTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(), issuedBook.isProlongedIssue(), issuedBook.getReturnDate()));
             }
-        } catch (NullPointerException e) {
-            return;
+        } catch (NullPointerException ignored) {
         }
     }
 

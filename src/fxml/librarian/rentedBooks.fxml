@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -38,34 +37,12 @@
         <bottom>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                 <right>
-                    <HBox prefHeight="78.0" prefWidth="950.0" BorderPane.alignment="CENTER">
-                        <Label fx:id="repairLbl" prefHeight="35.0" prefWidth="94.0" text="REPAIR"
+                        <Label onMouseClicked="#setReturned" prefHeight="35.0" prefWidth="114.0" text="RETURNED"
                                textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="17.0"/>
                             </font>
                         </Label>
-                        <Label fx:id="returnFromRepairLbl" prefHeight="35.0" prefWidth="226.0"
-                               text="RETURN FROM REPAIR" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="17.0"/>
-                            </font>
-                        </Label>
-                        <Label fx:id="lostLbl" prefHeight="35.0" prefWidth="81.0" text="LOST" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="17.0"/>
-                            </font>
-                            <HBox.margin>
-                                <Insets/>
-                            </HBox.margin>
-                        </Label>
-                        <Label fx:id="returnedLbl" prefHeight="35.0" prefWidth="114.0" text="RETURNED"
-                               textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="17.0"/>
-                            </font>
-                        </Label>
-                    </HBox>
                 </right>
             </BorderPane>
         </bottom>

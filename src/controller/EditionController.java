@@ -5,6 +5,7 @@ import model.enums.ContributorType;
 import utils.StringUtils;
 import utils.exceptions.IdAlreadyExistsException;
 import utils.exceptions.MissingValueException;
+import utils.exceptions.NoGenreOfSuchNameException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,58 +21,51 @@ public class EditionController {
         this.library = library;
     }
 
-    //TODO kako je uradjen izbor Genre, Date, itd
-    //da li se prebacuju ovde u stringu?
-    public void create(String editionId, List<String> tags, String title, String publisher, int numberOfPages,
-                       String description, Genre genre, LocalDate publishedDate, String language, List<Book> books,
-                       BookFormat format, List<Contributor> contributors) throws MissingValueException, IdAlreadyExistsException {
+    public void create(String editionId, String title, String publisher, int numberOfPages,
+                       String description, String genreName, LocalDate publishedDate, String language,
+                       List<ContributorRole> contributorRoles) throws MissingValueException, IdAlreadyExistsException, NoGenreOfSuchNameException {
 
-//        validateInputValues(editionId, title, publisher, genre, language, format, contributors);
-//        Edition e = EditionController.create(editionId, tags, title, publisher, numberOfPages,
-//                description, genre, publishedDate, language, books, format, contributors);
-//        library.addEdition(e);
+        validateInputValues(editionId, title, publisher, genreName, language, contributorRoles);
+        Edition e = new Edition(editionId, title, publisher, numberOfPages,
+                description, library.getGenre(genreName), publishedDate, language, contributorRoles);
+        library.addEdition(e);
     }
 
     private void validateInputValues(String editionId, String title, String publisher,
-                                     Genre genre, String language, BookFormat format, ArrayList<Contributor> contributors) throws MissingValueException, IdAlreadyExistsException {
+                                     String genreName, String language, List<ContributorRole> contributorRoles) throws MissingValueException, IdAlreadyExistsException {
         if (StringUtils.isNullOrEmpty(editionId)) {
             throw new MissingValueException("editionId");
         }
-        validateId(editionId);
+        if (editionIdExists(editionId)) {
+            throw new IdAlreadyExistsException();
+        }
         if (StringUtils.isNullOrEmpty(title)) {
             throw new MissingValueException("title");
         }
         if (StringUtils.isNullOrEmpty(publisher)) {
             throw new MissingValueException("publisher");
         }
-        if (genre == null) {
+        if (StringUtils.isNullOrEmpty(genreName)){
             throw new MissingValueException("genre");
         }
         if (StringUtils.isNullOrEmpty(language)) {
             throw new MissingValueException("language");
         }
-        if (format == null) {
-            throw new MissingValueException("format");
-        }
-        if (contributors.size() == 0) {
-            throw new MissingValueException("contributors");
+        if (contributorRoles.size() == 0) {
+            throw new MissingValueException("contributorRoles");
         }
     }
 
-    private void validateId(String editionId) throws IdAlreadyExistsException {
-        if (editionIdExists(editionId)) {
-            throw new IdAlreadyExistsException();
-        }
+    public void update(String editionId, String title, String publisher, int numberOfPages,
+                       String description, LocalDate publishedDate, String language){
+        Edition edition = library.getEdition(editionId);
+        edition.setTitle(title);
+        edition.setPublisher(publisher);
+        edition.setNumberOfPages(numberOfPages);
+        edition.setDescription(description);
+        edition.setPublishedDate(publishedDate);
+        edition.setLanguage(language);
     }
-
-//    static public Edition create(String editionId, List<String> tags, String title, String publisher, int numberOfPages,
-//                                 String description, Genre genre, LocalDate publishedDate, String language, List<Book> books,
-//                                 BookFormat format, List<Contributor> contributors) throws MissingValueException {
-//        Edition e = new Edition(editionId, title, publisher, genre, language, format, contributors);
-//        e.addOtherAttributes(tags, numberOfPages, description, publishedDate);
-//
-//        return e;
-//    }
 
     public boolean editionIdExists(String editionId) {
         List<Edition> editions = library.getEditions();
@@ -84,7 +78,6 @@ public class EditionController {
 
         return false;
     }
-
 
     public List<Edition> getRandomEditions(int n) {
         List<String> allEditionIds = library.getEditions().stream().map(Edition::getEditionId).collect(Collectors.toList());

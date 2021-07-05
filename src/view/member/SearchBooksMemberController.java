@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -26,8 +25,6 @@ public class SearchBooksMemberController {
     public ListView<String> genres;
     public TilePane tilePane;
     public TextField search;
-    public Label titleSort;
-    public Label publishedDateSort;
     public BorderPane borderPane;
     public BorderPane left;
     public AnchorPane right;
@@ -35,7 +32,6 @@ public class SearchBooksMemberController {
     public List<Edition> currentEditions;
     public BorderPane mainBorderPane;
     public ScrollPane scrollPane;
-    public AnchorPane anchorPane;
 
     ILibraryRepo libraryRepo;
     Library library;
@@ -62,6 +58,7 @@ public class SearchBooksMemberController {
         libraryRepo.loadEditions(library);
         libraryRepo.loadContributors(library);
         libraryRepo.loadContributorRoles(library);
+        libraryRepo.loadBooks(library);
         libraryRepo.loadGenres(library);
 
         editionController = new EditionController(library);

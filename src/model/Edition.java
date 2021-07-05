@@ -1,6 +1,9 @@
 package model;
 
 import model.enums.ContributorType;
+import utils.exceptions.IdAlreadyExistsException;
+import utils.exceptions.MissingValueException;
+import utils.exceptions.NoGenreOfSuchNameException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -36,7 +39,24 @@ public class Edition {
         this.contributorRoles = new ArrayList<>();
     }
 
+    public Edition(String editionId, String title, String publisher, int numberOfPages,
+                   String description, Genre genre, LocalDate publishedDate, String language,
+                   List<ContributorRole> contributorRoles){
+        this();
+        this.editionId = editionId;
+        this.title = title;
+        this.publisher = publisher;
+        this.numberOfPages = numberOfPages;
+        this.description = description;
+        genres.add(genre);
+        this.publishedDate = publishedDate;
+        this.language = language;
+        this.contributorRoles = contributorRoles;
+
+    }
+
     public Edition(String editionId, String title, String publisher, int numberOfPages, String description, LocalDate publishedDate, String language, String image, BookFormat format) {
+        this();
         this.editionId = editionId;
         this.title = title;
         this.publisher = publisher;
@@ -46,10 +66,6 @@ public class Edition {
         this.language = language;
         this.image = image;
         this.format = format;
-        this.genres = new ArrayList<>();
-        this.tags = new ArrayList<>();
-        this.books = new ArrayList<>();
-        this.contributorRoles = new ArrayList<>();
     }
 
     public Edition(String editionId, String title, String publisher, Genre genre, String language, BookFormat format, List<Contributor> contributors) {
@@ -152,4 +168,27 @@ public class Edition {
         this.contributorRoles.add(role);
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setNumberOfPages(int numberOfPages) {
+        this.numberOfPages = numberOfPages;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public void setPublishedDate(LocalDate publishedDate) {
+        this.publishedDate = publishedDate;
+    }
 }

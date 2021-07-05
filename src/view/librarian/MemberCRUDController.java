@@ -259,7 +259,7 @@ public class MemberCRUDController implements Observer {
         prolongLbl.setOnMouseClicked(e -> {
             MemberTable member = memberTable.getSelectionModel().getSelectedItem();
             CurrentIssueTable issue = memberIssuesTable.getSelectionModel().getSelectedItem();
-            crudController.prolongIssue(member.getJMBG(), issue.getId());
+            //crudController.prolongIssue(member.getJMBG(), issue.getId());
         });
 
         addAccountLbl.setOnMouseClicked(e -> {

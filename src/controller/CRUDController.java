@@ -106,12 +106,10 @@ public class CRUDController {
         libraryRepo.addAccount(account);
     }
 
-    public void prolongIssue(String jmbg, String bookId) {
+    public void prolongIssue(String jmbg, String bookId, LocalDate issueDate) {
         Member member = (Member) library.getPerson(jmbg);
-
         for (IssuedBook issuedBook : member.getCurrentlyTakenBooks()) {
-
-            if (issuedBook.getBookId().equals(bookId)) {
+            if (issuedBook.getBookId().equals(bookId) && issuedBook.getIssueDate().equals(issueDate)) {
                 issuedBook.prolongIssue();
                 libraryRepo.prolongIssue(issuedBook);
                 library.notifyObservers();

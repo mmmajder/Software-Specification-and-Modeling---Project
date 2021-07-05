@@ -728,7 +728,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addReservation(Reservation reservation) {
 
-        String query = "INSERT INTO pendingReservations VALUES (?, ?, ?)";
+        String query = "INSERT INTO reservations VALUES (?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, reservation.getId());

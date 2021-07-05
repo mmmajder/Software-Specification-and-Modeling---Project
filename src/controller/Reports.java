@@ -6,9 +6,6 @@ import utils.DateUtils;
 import utils.StringUtils;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -16,19 +13,29 @@ import java.util.stream.Collectors;
 public class Reports {
 
     private final Library library;
-    private final String extension = ".txt";
-    private final String path = "reports/";
-    private final String datePatternInFilename = "dd_MM_yyyy";
-    private final String datePatternInFile = "dd.MM.yyyy.";
+    private final String extension;
+    private final String path;
+    private final String datePatternInFilename;
+    private final String datePatternInFile;
+
     public Reports(Library library) {
+        extension = ".txt";
+        path = "reports/";
+        datePatternInFilename = "dd_MM_yyyy";
+        datePatternInFile = "dd.MM.yyyy.";
         this.library = library;
     }
 
     public void generateDailyReport() throws IOException {
         List<String> lines = new ArrayList<>();
+        lines.add(generateTitle());
         generateMembershipsPart(lines);
         generateIssuesPart(lines);
-        generateFile(lines, generateName());
+        generateFile(lines, generateFilename());
+    }
+
+    private String generateTitle(){
+        return "DAILY REPORT FOR THE DATE " + StringUtils.dateToString(LocalDate.now(), datePatternInFile) + "\n";
     }
 
     private void generateMembershipsPart(List<String> lines) {
@@ -66,7 +73,7 @@ public class Reports {
     }
 
     private String generateTypePaymentLine(MemberType memberType, int numOfPayments, int numOfMonths, double earnings) {
-        return numOfPayments + " memberships of type " + memberType + "for a period of " + numOfMonths + " were sold and made earnings of " + earnings + ".";
+        return numOfPayments + " memberships of type " + memberType + " for a period of " + numOfMonths + " were sold and made earnings of " + earnings + ".";
     }
 
     private void generateIssuesPart(List<String> lines) {
@@ -143,7 +150,7 @@ public class Reports {
             n = editionsIssues.size();
         }
         List<String> lines = generateLines(editionsIssues, fromDate, n);
-        String filename = generateName(fromDate, toDate, n, n == editionsIssues.size());
+        String filename = generateFilename(fromDate, toDate, n, n == editionsIssues.size());
         generateFile(lines, filename);
     }
 
@@ -238,11 +245,11 @@ public class Reports {
         return "A total of " + numOfEditions + " editions were issued " + numOfIssuesSum + " times.";
     }
 
-    private String generateName() {
+    private String generateFilename() {
         return "Daily_" + getTodaysDateStr();
     }
 
-    private String generateName(LocalDate fromDate, LocalDate toDate, Integer n, boolean allEditions) {
+    private String generateFilename(LocalDate fromDate, LocalDate toDate, Integer n, boolean allEditions) {
         String name;
 
         if (allEditions) {

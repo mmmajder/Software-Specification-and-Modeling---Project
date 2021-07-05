@@ -380,6 +380,7 @@ public class LibraryRepo implements ILibraryRepo {
                 Member m = (Member) library.getPerson(member);
                 Edition e = library.getEdition(edition);
                 PendingReservation pendingReservation = new PendingReservation(pendingReservationsId, m, e);
+                m.setPendingReservation(pendingReservation);
                 library.addPendingReservation(pendingReservation);
             }
 
@@ -406,6 +407,7 @@ public class LibraryRepo implements ILibraryRepo {
                 Member m = (Member) library.getPerson(member);
                 Book b = library.getBook(book);
                 Reservation reservation = new Reservation(reservationId, m, b, reservedOn);
+                m.setReservation(reservation);
                 library.addReservation(reservation);
             }
 
@@ -596,6 +598,10 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setString(4, notification.getAccount().getEmail());
             statement.executeUpdate();
 
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -609,6 +615,10 @@ public class LibraryRepo implements ILibraryRepo {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
             statement.setString(2, jmbg);
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -626,6 +636,10 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setString(2, jmbg);
             statement.executeUpdate();
 
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -640,6 +654,10 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setString(1, phoneNumber);
             statement.setString(2, jmbg);
 
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -667,6 +685,10 @@ public class LibraryRepo implements ILibraryRepo {
 
             statement.executeUpdate();
 
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -684,6 +706,10 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setString(4, account.getType().toString());
             statement.setString(5, account.getPerson().getJMBG());
             statement.setInt(6, account.isActive() ? 1 : 0);
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -704,6 +730,10 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setDate(5, Date.valueOf(payment.getPaymentDate()));
             statement.executeUpdate();
 
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -720,6 +750,10 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setString(3, pendingReservation.getEdition().getEditionId());
             statement.executeUpdate();
 
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -728,12 +762,17 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addReservation(Reservation reservation) {
 
-        String query = "INSERT INTO reservations VALUES (?, ?, ?)";
+        String query = "INSERT INTO reservations VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, reservation.getId());
             statement.setString(2, reservation.getMember().getJMBG());
             statement.setString(3, reservation.getBook().getBookId());
+            statement.setDate(4, Date.valueOf(reservation.getReservedOn()));
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -752,6 +791,10 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setInt(3, issuedBook.isProlongedIssue() ? 1 : 0);
             statement.setString(4, issuedBook.getLibrarian().getJMBG());
             statement.setString(5, issuedBook.getMember().getJMBG());
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -775,6 +818,10 @@ public class LibraryRepo implements ILibraryRepo {
                 statement = connection.prepareStatement(query);
                 statement.setString(1, edition.getEditionId());
                 statement.setInt(2, genre.getGenreId());
+                statement.executeUpdate();
+
+                query = "COMMIT";
+                statement = connection.prepareStatement(query);
                 statement.executeUpdate();
             }
 
@@ -800,6 +847,10 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setString(9, edition.getImage());
             statement.executeUpdate();
 
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -815,6 +866,10 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setString(2, contributor.getName());
             statement.setString(3, contributor.getSurname());
             statement.setString(4, contributor.getBiography());
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -833,6 +888,10 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setString(3, role.getRole().toString());
             statement.executeUpdate();
 
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -847,6 +906,10 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setString(1, bookSection.getSectionId());
             statement.executeUpdate();
 
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -857,12 +920,12 @@ public class LibraryRepo implements ILibraryRepo {
 
         String query = "INSERT INTO booksPosition VALUES (?, ?, ?, ?)";
         try {
-
+            PreparedStatement statement;
             for (Bookshelf bookshelf : bookSection.getShelves()) {
                 for (int row : bookshelf.getRows().keySet()) {
                     for (Book book : bookshelf.getBooks(row)) {
 
-                        PreparedStatement statement = connection.prepareStatement(query);
+                        statement = connection.prepareStatement(query);
                         statement.setString(1, bookSection.getSectionId());
                         statement.setInt(2, bookshelf.getShelfId());
                         statement.setInt(3, row);
@@ -871,6 +934,10 @@ public class LibraryRepo implements ILibraryRepo {
                     }
                 }
             }
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -887,6 +954,10 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setString(2, book.getEdition().getEditionId());
             statement.setString(3, book.getState().toString());
             statement.setInt(4, book.isRestricted() ? 1 : 0);
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -906,6 +977,10 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setDouble(4, bookFormat.getThickness());
             statement.executeUpdate();
 
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -919,6 +994,10 @@ public class LibraryRepo implements ILibraryRepo {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, 1);
             statement.setString(2, issueBook.getBookId());
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -940,6 +1019,10 @@ public class LibraryRepo implements ILibraryRepo {
 
             statement.executeUpdate();
 
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -952,6 +1035,10 @@ public class LibraryRepo implements ILibraryRepo {
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, pendingReservation.getId());
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -968,6 +1055,10 @@ public class LibraryRepo implements ILibraryRepo {
             statement.setInt(1, reservation.getId());
             statement.executeUpdate();
 
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -980,6 +1071,10 @@ public class LibraryRepo implements ILibraryRepo {
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, librarian.getJMBG());
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -995,6 +1090,84 @@ public class LibraryRepo implements ILibraryRepo {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, book.getState().toString());
             statement.setString(2, book.getBookId());
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addMembersPendingReservation(Member member) {
+
+        String query = "UPDATE members SET pendingReservation = ? WHERE jmbg = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, member.getPendingReservation().getId());
+            statement.setString(2, member.getJMBG());
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addMembersReservation(Member member) {
+
+        String query = "UPDATE members SET reservation = ? WHERE jmbg = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, member.getReservation().getId());
+            statement.setString(2, member.getJMBG());
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteMembersPendingReservation(Member member) {
+
+        String query = "UPDATE members SET pendingReservation = null WHERE jmbg = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, member.getJMBG());
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteMembersReservation(Member member) {
+
+        String query = "UPDATE members SET reservation = null WHERE jmbg = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, member.getJMBG());
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
             statement.executeUpdate();
 
         } catch (SQLException e) {

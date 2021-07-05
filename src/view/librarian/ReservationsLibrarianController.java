@@ -30,7 +30,6 @@ public class ReservationsLibrarianController implements Observer {
 
     public void initData(Account account) throws IOException {
         this.library = new Library();
-        this.account = account;
         libraryRepo = new LibraryRepo();
         library.addObserver(this);
         libraryRepo.loadAccounts(library);
@@ -39,7 +38,10 @@ public class ReservationsLibrarianController implements Observer {
         libraryRepo.loadBooks(library);
         libraryRepo.loadPendingReservations(library);
         libraryRepo.loadReservations(library);
+        libraryRepo.loadNotifications(library);
+        libraryRepo.loadMaxIssuedBooks(library);
         reservationController = new ReservationController(library);
+        this.account = library.getAccountByEmail(account.getEmail());
 
         TableColumn<ReservationRequestTable, Integer> colId = new TableColumn<ReservationRequestTable, Integer>("id") {
             {

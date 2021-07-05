@@ -28,6 +28,7 @@ public class ReturnController {
         issuedBook.getBook().makeAvailable();
         libraryRepo.updateBookState(issuedBook.getBook());
         libraryRepo.updateIssuedBook(issuedBook);
+        library.notifyObservers();
     }
 
     private IssuedBook getIssue(String bookId) throws NoCurrentlyIssuedBookWithThatIdException {

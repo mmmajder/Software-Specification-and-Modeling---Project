@@ -40,7 +40,7 @@ public class IssuedBooksHistoryController implements Observer {
         libraryRepo.loadIssuedBooks(library);
         libraryRepo.loadMaxIssueDays(library);
         this.account = library.getAccountByEmail(account.getEmail());
-
+        issuedBooksHistoryTable.getColumns().clear();
         TableColumn colId = new TableColumn("ID") {
             {
                 prefWidthProperty().bind(issuedBooksHistoryTable.widthProperty().multiply(0.1));
@@ -110,21 +110,17 @@ public class IssuedBooksHistoryController implements Observer {
 
     private ObservableList<MemberHistoryTable> getHistory() {
         ObservableList<MemberHistoryTable> list = FXCollections.observableArrayList();
-        System.out.println(library.getMembersReturnedBooks(account));
         for (IssuedBook issuedBook : library.getMembersReturnedBooks(account)) {
 
             list.add(new MemberHistoryTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(),
                     issuedBook.getIssueDate(), controller.calculateReturnDate(issuedBook), issuedBook.getReturnDate(),
                     issuedBook.isProlongedIssue(), "Returned"));
         }
-        System.out.println(library.getMembersCurrentlyTakenBooks(account));
         for (IssuedBook issuedBook : library.getMembersCurrentlyTakenBooks(account)) {
-            System.out.println(controller.calculateReturnDate(issuedBook));
             list.add(new MemberHistoryTable(issuedBook.getBook().getBookId(), issuedBook.getBook().getEdition().getTitle(),
                     issuedBook.getIssueDate(), controller.calculateReturnDate(issuedBook), null,
                     issuedBook.isProlongedIssue(), "Taken"));
         }
-        System.out.println(library.getReservations());
         for (Reservation reservation : library.getReservations()) {
             list.add(new MemberHistoryTable(reservation.getBook().getBookId(), reservation.getBook().getEdition().getTitle(), null,
                     null, null, null, "Reserved"));
@@ -134,8 +130,6 @@ public class IssuedBooksHistoryController implements Observer {
 
     @Override
     public void updatePerformed() {
-//        this.library = new Library();
-//        libraryRepo.loadIssuedBooks(library);
         issuedBooksHistoryTable.setItems(getHistory());
     }
 }

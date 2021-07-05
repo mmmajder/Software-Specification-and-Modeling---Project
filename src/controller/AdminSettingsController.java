@@ -13,9 +13,11 @@ public class AdminSettingsController {
 
     private Library library;
 
-    public AdminSettingsController(Library library) { this.library = library; }
+    public AdminSettingsController(Library library) {
+        this.library = library;
+    }
 
-    public void updateMaxIssueDays(List<Integer> maxIssueDays){
+    public void updateMaxIssueDays(List<Integer> maxIssueDays) {
         setNewMaxIssueDays(MemberType.REGULAR, maxIssueDays.get(0));
         setNewMaxIssueDays(MemberType.STUDENT, maxIssueDays.get(1));
         setNewMaxIssueDays(MemberType.PRESCHOOLER, maxIssueDays.get(2));
@@ -23,13 +25,13 @@ public class AdminSettingsController {
         setNewMaxIssueDays(MemberType.RETIRED, maxIssueDays.get(4));
     }
 
-    private void setNewMaxIssueDays(MemberType type, Integer newMaxIssueDays){
-        if (newMaxIssueDays != null){
+    private void setNewMaxIssueDays(MemberType type, Integer newMaxIssueDays) {
+        if (newMaxIssueDays != null) {
             library.setMaxIssueDays(type, newMaxIssueDays);
         }
     }
 
-    public void updateMaxIssuedBooks(List<Integer> maxIssuedBooks){
+    public void updateMaxIssuedBooks(List<Integer> maxIssuedBooks) {
         setNewMaxIssuedBooks(MemberType.REGULAR, maxIssuedBooks.get(0));
         setNewMaxIssuedBooks(MemberType.STUDENT, maxIssuedBooks.get(1));
         setNewMaxIssuedBooks(MemberType.PRESCHOOLER, maxIssuedBooks.get(2));
@@ -37,13 +39,13 @@ public class AdminSettingsController {
         setNewMaxIssuedBooks(MemberType.RETIRED, maxIssuedBooks.get(4));
     }
 
-    private void setNewMaxIssuedBooks(MemberType type, Integer newMaxIssuedBooks){
-        if (newMaxIssuedBooks != null){
+    private void setNewMaxIssuedBooks(MemberType type, Integer newMaxIssuedBooks) {
+        if (newMaxIssuedBooks != null) {
             library.setMaxIssuedBooks(type, newMaxIssuedBooks);
         }
     }
 
-    public void updatePriceCatalog(List<Double> newPrices6m, List<Double> newPrices12m){
+    public void updatePriceCatalog(List<Double> newPrices6m, List<Double> newPrices12m) {
         HashMap<MemberType, Double> prices6m = createPrices(newPrices6m, 6);
         HashMap<MemberType, Double> prices12m = createPrices(newPrices12m, 12);
         int id = library.getPriceCatalogs().size();
@@ -51,7 +53,7 @@ public class AdminSettingsController {
         library.setNewPriceCatalog(newPriceCatalog);
     }
 
-    private HashMap<MemberType, Double> createPrices(List<Double> newPrices, int numOfMonths){
+    private HashMap<MemberType, Double> createPrices(List<Double> newPrices, int numOfMonths) {
         HashMap<MemberType, Double> prices = new HashMap<>();
         addPrice(prices, MemberType.REGULAR, newPrices.get(0), numOfMonths);
         addPrice(prices, MemberType.STUDENT, newPrices.get(1), numOfMonths);
@@ -62,12 +64,12 @@ public class AdminSettingsController {
         return prices;
     }
 
-    private void addPrice(Map<MemberType, Double> prices, MemberType type, Double newPrice, int numOfMonths){
+    private void addPrice(Map<MemberType, Double> prices, MemberType type, Double newPrice, int numOfMonths) {
         double price = getPrice(type, newPrice, numOfMonths);
         prices.put(type, price);
     }
 
-    private double getPrice(MemberType type, Double newPrice, int numOfMonths){
+    private double getPrice(MemberType type, Double newPrice, int numOfMonths) {
 
         if (newPrice == null) {
             if (library.getPriceCatalogs().size() != 0) {

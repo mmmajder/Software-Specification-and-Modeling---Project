@@ -4,6 +4,7 @@ import model.IssuedBook;
 import model.Library;
 import model.Reservation;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class SystemClock {
     private Library library;
     private NotificationController notificationController;
     private IssuedBookController issuedBookController;
+    private Reports reports;
 
     //TODO these constants should be changeable by admin
     private final int DAYS_UNTIL_RETURN_DATE_TO_NOTIFY = 3;
@@ -23,11 +25,13 @@ public class SystemClock {
         this.library = library;
         this.notificationController = new NotificationController(library); // used to send notifications to members
         this.issuedBookController = new IssuedBookController(library);
+        this.reports = new Reports(library);
     }
 
-    public void runDaily(){
+    public void runDaily() throws IOException {
         removeExpiredReservations();
         checkIssuedBooks();
+        reports.generateDailyReport();
     }
 
     public void checkIssuedBooks(){
@@ -83,7 +87,5 @@ public class SystemClock {
         reservation.getBook().makeAvailable();
         library.getReservations().remove(indexToRemove);
     }
-
-
 
 }

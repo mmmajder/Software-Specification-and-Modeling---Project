@@ -38,20 +38,22 @@ public class ReservationController {
 
     private void removePendingReservation(PendingReservation pendingReservation, Member member){
         library.removePendingReservation(pendingReservation);
-        libraryRepo.removePendingReservation(pendingReservation);
         member.removePendingReservation();
+        libraryRepo.deleteMembersPendingReservation(member);
+        libraryRepo.removePendingReservation(pendingReservation);
     }
 
     private int getNextReservationId(){
         return library.getReservations().stream()
-                .map(reservation -> reservation.getId())
+                .map(Reservation::getId)
                 .max(Integer::compare).orElse(0) + 1;
     }
 
-    private void addReservation(Reservation reservation, Member member){
-        libraryRepo.addReservation(reservation);
+    private void addReservation(Reservation reservation, Member member) {
         member.setReservation(reservation);
         library.addReservation(reservation);
+        libraryRepo.addReservation(reservation);
+        libraryRepo.addMembersReservation(member);
     }
 
     public void declineReservation(int pendingReservationId) {
@@ -82,6 +84,7 @@ public class ReservationController {
     private void removeReservation(Reservation reservation, Member member){
         library.removeReservation(reservation);
         member.removeReservation();
+        libraryRepo.deleteMembersReservation(member);
         libraryRepo.removeReservation(reservation);
     }
 

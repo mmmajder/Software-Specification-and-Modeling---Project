@@ -58,13 +58,13 @@ public class BookMemberController {
     public void initData(Edition edition, MemberController memberController, Account account) {
         this.edition = edition;
         this.memberController = memberController;
-        this.account = account;
         this.library = new Library();
         this.libraryRepo = new LibraryRepo();
         libraryRepo.loadAccounts(library);
         libraryRepo.loadPersons(library);
         libraryRepo.loadEditions(library);
         libraryRepo.loadPendingReservations(library);
+        this.account = library.getAccountByEmail(account.getEmail());
         editionController = new EditionController(library);
         lblTitle.setText(edition.getTitle());
         lblAuthor.setText(editionController.getAuthorName(edition));

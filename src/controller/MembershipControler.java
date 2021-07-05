@@ -33,6 +33,7 @@ public class MembershipControler {
         LocalDate fromDate = calculateFromDate(m);
         Payment newPayment = new Payment(nextId, LocalDate.now(), fromDate.plusMonths(numOfMonths), m, numOfMonths);
         m.addPayment(newPayment);
+        library.addPayment(newPayment);
     }
 
     private int getNextId(){

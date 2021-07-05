@@ -56,4 +56,5 @@ public interface ILibraryRepo {
     void updateToDatePriceCatalog(PriceCatalog priceCatalog);
     void addHalfAYearPrices(PriceCatalog priceCatalog);
     void addFullYearPrices(PriceCatalog priceCatalog);
+    void updateIssuedBook(IssuedBook issuedBook);
 }

@@ -1296,4 +1296,24 @@ public class LibraryRepo implements ILibraryRepo {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void updateIssuedBook(IssuedBook issuedBook) {
+
+        String query = "UPDATE issuedBooks SET returnDate = ? WHERE book = ? AND issueDate = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setDate(1, Date.valueOf(issuedBook.getReturnDate()));
+            statement.setString(2, issuedBook.getBookId());
+            statement.setDate(3, Date.valueOf(issuedBook.getIssueDate()));
+            statement.executeUpdate();
+
+            query = "COMMIT";
+            statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

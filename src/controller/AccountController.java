@@ -73,7 +73,7 @@ public class AccountController {
         if (getMembershipExpirationDate(member) == null || getMembershipExpirationDate(member).isBefore(LocalDate.now())) {
             return "Membership status: NOT ACTIVE";
         }
-        
+
         return "Membership status: ACTIVE UNTIL " + this.getMembershipExpirationDate(account.getPerson());
     }
 }

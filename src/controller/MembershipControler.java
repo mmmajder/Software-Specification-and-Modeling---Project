@@ -19,9 +19,6 @@ public class MembershipControler {
     }
 
     public void payMembership(Member m, int numOfMonths) throws InvalidTransactionException {
-        MemberType type = m.getType();
-        double price = library.getCurrentCatalog().getPrice(type, numOfMonths);
-
         if (contactBankingSystem()) {
             createPayment(m, numOfMonths);
             m.extendMembership();

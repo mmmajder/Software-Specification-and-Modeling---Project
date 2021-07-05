@@ -55,7 +55,7 @@ public class EditionController {
             throw new MissingValueException("contributorRoles");
         }
     }
-}
+
     public void update(String editionId, String title, String publisher, int numberOfPages,
                        String description, LocalDate publishedDate, String language){
         Edition edition = library.getEdition(editionId);

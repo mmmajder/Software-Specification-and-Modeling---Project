@@ -66,17 +66,24 @@ public class BookCRUDController implements Observer {
 
         TableColumn<BookEditionTable, String> colState = new TableColumn<BookEditionTable, String>("State") {
             {
-                prefWidthProperty().bind(editionTable.widthProperty().multiply(0.4));
+                prefWidthProperty().bind(editionTable.widthProperty().multiply(0.3));
             }
         };
         editionTable.getColumns().add(colState);
 
         TableColumn<BookEditionTable, String> colRestricted = new TableColumn<BookEditionTable, String>("Restricted") {
             {
-                prefWidthProperty().bind(editionTable.widthProperty().multiply(0.3));
+                prefWidthProperty().bind(editionTable.widthProperty().multiply(0.2));
             }
         };
         editionTable.getColumns().add(colRestricted);
+
+        TableColumn<BookEditionTable, String> colPosition = new TableColumn<BookEditionTable, String>("Position") {
+            {
+                prefWidthProperty().bind(editionTable.widthProperty().multiply(0.2));
+            }
+        };
+        editionTable.getColumns().add(colPosition);
 
 
         TableColumn<BookSampleTable, LocalDate> colIssueDate = new TableColumn<BookSampleTable, LocalDate>("Issue date") {
@@ -107,12 +114,13 @@ public class BookCRUDController implements Observer {
         };
         sampleTable.getColumns().add(colMember);
 
-        colId.setCellValueFactory(new PropertyValueFactory<>("book id"));
+        colId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
         colState.setCellValueFactory(new PropertyValueFactory<>("state"));
-        colRestricted.setCellValueFactory(new PropertyValueFactory<>("restriction"));
+        colRestricted.setCellValueFactory(new PropertyValueFactory<>("isRestricted"));
+        colPosition.setCellValueFactory(new PropertyValueFactory<>("position"));
 
-        colIssueDate.setCellValueFactory(new PropertyValueFactory<>("issue date"));
-        colReturnedDate.setCellValueFactory(new PropertyValueFactory<>("returned date"));
+        colIssueDate.setCellValueFactory(new PropertyValueFactory<>("issueDte"));
+        colReturnedDate.setCellValueFactory(new PropertyValueFactory<>("returnedDate"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("state"));
         colMember.setCellValueFactory(new PropertyValueFactory<>("member"));
         dataEditionTable = getSamples();
@@ -123,7 +131,7 @@ public class BookCRUDController implements Observer {
     private ObservableList<BookEditionTable> getSamples() {
         ObservableList<BookEditionTable> list = FXCollections.observableArrayList();
         for (Book book : edition.getBooks()) {
-            list.add(new BookEditionTable(book.getBookId(), book.getState(), book.isRestricted()));
+            list.add(new BookEditionTable(book.getBookId(), book.getState(), book.isRestricted(), book.getPosition()));
         }
         return list;
     }
@@ -154,7 +162,7 @@ public class BookCRUDController implements Observer {
     }
 
     public void addSample() {
-        dataEditionTable.add(new BookEditionTable(null, null, false));
+        dataEditionTable.add(new BookEditionTable(null, null, false, ""));
         // add database connection
     }
 

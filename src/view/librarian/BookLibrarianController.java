@@ -32,7 +32,6 @@ public class BookLibrarianController {
     public Label lblTranslation;
     public Label lblIllustration;
     public Label lblGenre;
-    public Text txtTags;
     public Text txtDescription;
     public Button btnRent;
 
@@ -94,8 +93,7 @@ public class BookLibrarianController {
         lblNumberOfPages.setText("Name of pages: " + edition.getNumberOfPages());
         lblTranslation.setText("Translation: " + editionController.getTranslatorsStr(edition));
         lblIllustration.setText("Illustration: " + editionController.getIllustratorsStr(edition));
-        lblGenre.setText("Genre " + editionController.getGenresConcatenated(edition));
-        txtTags.setText("Tags: " + edition.getTags());
+        lblGenre.setText("Genre: " + editionController.getGenresConcatenated(edition));
 
         btnRent.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
@@ -106,7 +104,7 @@ public class BookLibrarianController {
                     bookRentController.initData(account, library);
                     Stage primaryStage = new Stage();
                     primaryStage.setTitle("Book Rent");
-                    primaryStage.getIcons().add(new Image("/fxml/logo.png"));
+                    primaryStage.getIcons().add(new Image("/fxml/images/logo.png"));
                     primaryStage.setScene(new Scene(rentScene, 400, 250));
                     primaryStage.setResizable(false);
                     primaryStage.show();

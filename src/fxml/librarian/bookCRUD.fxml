@@ -30,7 +30,7 @@
                     <right>
                         <AnchorPane prefHeight="38.0" prefWidth="344.0" BorderPane.alignment="CENTER">
                             <HBox prefHeight="35.0" prefWidth="325.0">
-                                <Label prefHeight="36.0" prefWidth="39.0" text="ADD" textFill="WHITE"
+                                <Label prefHeight="36.0" prefWidth="50.0" text="ADD" textFill="WHITE"
                                        onMouseClicked="#addSample">
                                     <font>
                                         <Font name="System Bold" size="18.0"/>

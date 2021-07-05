@@ -21,13 +21,6 @@
                 <BorderPane.margin>
                     <Insets left="20.0" right="20.0"/>
                 </BorderPane.margin>
-                <Pane>
-                    <VBox.margin>
-                        <Insets top="20.0"/>
-                    </VBox.margin>
-                    <TextField prefHeight="25.0" prefWidth="302.0" promptText="Search..."/>
-                </Pane>
-                <Separator prefHeight="10.0" prefWidth="200.0" visible="false"/>
                 <TableView fx:id="rentedBooksTable" prefHeight="457.0" prefWidth="910.0">
                     <columns>
                     </columns>

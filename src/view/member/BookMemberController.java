@@ -63,6 +63,8 @@ public class BookMemberController implements Observer {
         libraryRepo.loadPersons(library);
         libraryRepo.loadEditions(library);
         libraryRepo.loadPendingReservations(library);
+        libraryRepo.loadReservations(library);
+        libraryRepo.loadIssuedBooks(library);
         library.addObserver(this);
         this.account = library.getAccountByEmail(account.getEmail());
         editionController = new EditionController(library);
@@ -70,7 +72,7 @@ public class BookMemberController implements Observer {
         lblAuthor.setText(editionController.getAuthorName(edition));
         final Tooltip authorBiography = new Tooltip();
         authorBiography.setText(edition.getAuthor().getBiography());
-        if (((Member) account.getPerson()).getReservedBook() != null &&
+        if (((Member) account.getPerson()).getReservation() != null &&
                 ((Member) account.getPerson()).getReservedBook().getEdition() == edition) {
             btnReserve.setText("RESERVED");
         } else if (((Member) account.getPerson()).getPendingReservation() != null &&
@@ -87,7 +89,7 @@ public class BookMemberController implements Observer {
         lblNumberOfPages.setText("Name of pages: " + edition.getNumberOfPages());
         lblTranslation.setText("Translation: " + editionController.getTranslatorsStr(edition));
         lblIllustration.setText("Illustration: " + editionController.getIllustratorsStr(edition));
-        lblGenre.setText("Genre " + editionController.getGenresConcatenated(edition));
+        lblGenre.setText("Genre: " + editionController.getGenresConcatenated(edition));
     }
 
     public void reserve() {

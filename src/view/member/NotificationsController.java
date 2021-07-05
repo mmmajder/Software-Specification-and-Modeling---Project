@@ -27,6 +27,7 @@ public class NotificationsController implements Observer {
         libraryRepo.loadAccounts(library);
         libraryRepo.loadNotifications(library);
         this.account = library.getAccountByEmail(account.getEmail());
+        notificationTable.getColumns().clear();
         TableColumn<NotificationTable, String> colNotification = new TableColumn<NotificationTable, String>("Notification") {
             {
                 prefWidthProperty().bind(notificationTable.widthProperty().multiply(0.7));

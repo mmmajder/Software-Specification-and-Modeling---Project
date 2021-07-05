@@ -50,6 +50,8 @@ public class MemberCRUDController implements Observer {
         libraryRepo.loadBooks(library);
         libraryRepo.loadIssuedBooks(library);
         crudController = new CRUDController(library);
+        memberTable.getColumns().clear();
+        memberIssuesTable.getColumns().clear();
 
         TableColumn<MemberTable, String> colName = new TableColumn<MemberTable, String>("Name") {
             {

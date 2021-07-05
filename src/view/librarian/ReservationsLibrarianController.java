@@ -42,7 +42,7 @@ public class ReservationsLibrarianController implements Observer {
         libraryRepo.loadMaxIssuedBooks(library);
         reservationController = new ReservationController(library);
         this.account = library.getAccountByEmail(account.getEmail());
-
+        reservationRequestTable.getColumns().clear();
         TableColumn<ReservationRequestTable, Integer> colId = new TableColumn<ReservationRequestTable, Integer>("id") {
             {
                 prefWidthProperty().bind(reservationRequestTable.widthProperty().multiply(0.2));

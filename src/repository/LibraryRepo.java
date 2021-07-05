@@ -1001,4 +1001,58 @@ public class LibraryRepo implements ILibraryRepo {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void addMembersPendingReservation(Person person, PendingReservation pendingReservation) {
+
+        String query = "UPDATE members SET pendingReservation = ? WHERE jmbg = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, pendingReservation.getId());
+            statement.setString(2, person.getJMBG());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addMembersReservation(Person person, Reservation reservation) {
+
+        String query = "UPDATE members SET reservation = ? WHERE jmbg = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, reservation.getId());
+            statement.setString(2, person.getJMBG());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteMembersPendingReservation(Person person) {
+
+        String query = "UPDATE members SET pendingReservation = null WHERE jmbg = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, person.getJMBG());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteMembersReservation(Person person) {
+
+        String query = "UPDATE members SET reservation = null WHERE jmbg = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, person.getJMBG());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

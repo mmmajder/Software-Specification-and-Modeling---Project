@@ -9,7 +9,6 @@ import repository.LibraryRepo;
 import utils.exceptions.MemberAlreadyHasPendingRequestException;
 import utils.exceptions.MemberAlreadyHasReservedBook;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class MemberReservationController {
@@ -28,6 +27,7 @@ public class MemberReservationController {
         PendingReservation pr = createPendingReservation(member, edition);
         member.setPendingReservation(pr);
         library.addPendingReservation(pr);
+        libraryRepo.addMembersPendingReservation(member, pr);
         libraryRepo.addPendingReservation(pr);
     }
 

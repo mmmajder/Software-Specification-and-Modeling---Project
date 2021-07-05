@@ -45,4 +45,6 @@ public class Book {
     public void makeTaken() {this.state = BookState.TAKEN; }
 
     public String getTitle() { return getEdition().getTitle(); }
+
+    public String getPosition() { return "SECTION_?_R_?";}
 }

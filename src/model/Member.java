@@ -152,19 +152,7 @@ public class Member extends Person {
         this.type = type;
     }
 
-    public void removeTaken(String bookId) throws NoCurrentlyIssuedBookWithThatIdException {
-        boolean removed = false;
-
-        for (int i = 0; i < currentlyTakenBooks.size(); i++){
-            IssuedBook issuedBook = currentlyTakenBooks.get(i);
-
-            if (issuedBook.getBook().getBookId().equals(bookId)){
-                currentlyTakenBooks.remove(i);
-                removed = true;
-                break;
-            }
-        }
-
-        if (!removed) { throw new NoCurrentlyIssuedBookWithThatIdException(); }
+    public void removeTakenBook(IssuedBook issuedBook) {
+        currentlyTakenBooks.remove(issuedBook);
     }
 }

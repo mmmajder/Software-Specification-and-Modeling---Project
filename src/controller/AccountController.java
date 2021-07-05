@@ -51,7 +51,7 @@ public class AccountController {
         return person.getName() + " " + person.getSurname();
     }
 
-    public String getMembershipExpirationDate(Person person) {
+    public String getMembershipExpirationDateStr(Person person) {
         Member member = (Member) person;
         LocalDate expirationDate = member.getMembershipExpirationDate();
 
@@ -62,10 +62,18 @@ public class AccountController {
         return null;
     }
 
+    public LocalDate getMembershipExpirationDate(Person person) {
+        Member member = (Member) person;
+
+        return member.getMembershipExpirationDate();
+    }
+
     public String getMembershipStatus(Account account) {
-        if (this.getMembershipExpirationDate(account.getPerson()) == null) {
+        Member member = (Member) account.getPerson();
+        if (getMembershipExpirationDate(member) == null || getMembershipExpirationDate(member).isBefore(LocalDate.now())) {
             return "Membership status: NOT ACTIVE";
         }
+        
         return "Membership status: ACTIVE UNTIL " + this.getMembershipExpirationDate(account.getPerson());
     }
 }

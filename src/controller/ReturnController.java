@@ -6,6 +6,8 @@ import model.Library;
 import model.Member;
 import utils.exceptions.NoCurrentlyIssuedBookWithThatIdException;
 
+import java.time.LocalDate;
+
 public class ReturnController {
     private Library library;
 
@@ -15,6 +17,7 @@ public class ReturnController {
 
     public void returnBook(String bookId) throws NoCurrentlyIssuedBookWithThatIdException {
         IssuedBook issuedBook = getIssue(bookId);
+        issuedBook.setReturnDate(LocalDate.now());
         Member member = issuedBook.getMember();
         member.removeTaken(bookId);
         member.addReturnedBook(issuedBook);

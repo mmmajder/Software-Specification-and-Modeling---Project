@@ -20,12 +20,13 @@ public class NotificationsController implements Observer {
     ILibraryRepo libraryRepo;
 
     public void initData(Account account) {
-        this.account = account;
         this.library = new Library();
         libraryRepo = new LibraryRepo();
         library.addObserver(this);
         libraryRepo.loadAccounts(library);
         libraryRepo.loadNotifications(library);
+        this.account = library.getAccountByEmail(account.getEmail());
+
         TableColumn colNotification = new TableColumn("Notification") {
             {
                 prefWidthProperty().bind(notificationTable.widthProperty().multiply(0.7));

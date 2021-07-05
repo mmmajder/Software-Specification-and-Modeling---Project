@@ -586,7 +586,7 @@ public class LibraryRepo implements ILibraryRepo {
 
     @Override
     public void addNotification(Notification notification) {
-        String query = "INSERT INTO notifications VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO notifications VALUES (?, ?, ?, ?); COMMIT;";
 
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -604,7 +604,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void updateName(String name, String jmbg) {
 
-        String query = "UPDATE persons SET name = ? WHERE jmbg = ?";
+        String query = "UPDATE persons SET name = ? WHERE jmbg = ?; COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
@@ -619,7 +619,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void updateSurname(String surname, String jmbg) {
 
-        String query = "UPDATE persons SET surname = ? WHERE jmbg = ?";
+        String query = "UPDATE persons SET surname = ? WHERE jmbg = ?; COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, surname);
@@ -634,7 +634,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void updatePhoneNumber(String phoneNumber, String jmbg) {
 
-        String query = "UPDATE persons SET phoneNumber = ? WHERE jmbg = ?";
+        String query = "UPDATE persons SET phoneNumber = ? WHERE jmbg = ?; COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, phoneNumber);
@@ -650,7 +650,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addPerson(Person person) {
 
-        String query = "INSERT INTO persons VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO persons VALUES (?, ?, ?, ?, ?, ?); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, person.getJMBG());
@@ -675,7 +675,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addAccount(Account account) {
 
-        String query = "INSERT INTO accounts VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO accounts VALUES (?, ?, ?, ?, ?, ?); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, account.getEmail());
@@ -694,7 +694,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addPayment(Payment payment) {
 
-        String query = "INSERT INTO payments VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO payments VALUES (?, ?, ?, ?, ?); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, payment.getPaymentId());
@@ -712,7 +712,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addPendingReservation(PendingReservation pendingReservation) {
 
-        String query = "INSERT INTO pendingReservations VALUES (?, ?, ?)";
+        String query = "INSERT INTO pendingReservations VALUES (?, ?, ?); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, pendingReservation.getId());
@@ -728,7 +728,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addReservation(Reservation reservation) {
 
-        String query = "INSERT INTO reservations VALUES (?, ?, ?)";
+        String query = "INSERT INTO reservations VALUES (?, ?, ?); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, reservation.getId());
@@ -744,7 +744,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addIssuedBook(IssuedBook issuedBook) {
 
-        String query = "INSERT INTO issuedBooks VALUES (?, ?, NULL, ?, ?, ?)";
+        String query = "INSERT INTO issuedBooks VALUES (?, ?, NULL, ?, ?, ?); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, issuedBook.getBook().getBookId());
@@ -762,7 +762,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addGenre(Genre genre) {
 
-        String query = "INSERT INTO genres VALUES (?, ?)";
+        String query = "INSERT INTO genres VALUES (?, ?); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, genre.getGenreId());
@@ -786,7 +786,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addEdition(Edition edition) {
 
-        String query = "INSERT INTO editions VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO editions VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, edition.getEditionId());
@@ -808,7 +808,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addContributor(Contributor contributor) {
 
-        String query = "INSERT INTO contributors VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO contributors VALUES (?, ?, ?, ?); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, contributor.getContributorId());
@@ -825,7 +825,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addContributorRole(ContributorRole role) {
 
-        String query = "INSERT INTO contributorRoles VALUES (?, ?, ?)";
+        String query = "INSERT INTO contributorRoles VALUES (?, ?, ?); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, role.getEdition().getEditionId());
@@ -841,7 +841,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addBookSection(BookSection bookSection) {
 
-        String query = "INSERT INTO bookSections VALUES (?)";
+        String query = "INSERT INTO bookSections VALUES (?); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, bookSection.getSectionId());
@@ -855,7 +855,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addBookShelf(BookSection bookSection) {
 
-        String query = "INSERT INTO booksPosition VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO booksPosition VALUES (?, ?, ?, ?); COMMIT;";
         try {
 
             for (Bookshelf bookshelf : bookSection.getShelves()) {
@@ -880,7 +880,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addBook(Book book) {
 
-        String query = "INSERT INTO books VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO books VALUES (?, ?, ?, ?); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, book.getBookId());
@@ -897,7 +897,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addBookFormat(BookFormat bookFormat) {
 
-        String query = "INSERT INTO bookFormats VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO bookFormats VALUES (?, ?, ?, ?); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, bookFormat.getBookFormatId());
@@ -914,7 +914,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void prolongIssue(IssuedBook issueBook) {
 
-        String query = "UPDATE issuedBooks SET prolongedIssue = ? WHERE book = ?";
+        String query = "UPDATE issuedBooks SET prolongedIssue = ? WHERE book = ?; COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, 1);
@@ -929,7 +929,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addMember(Member member) {
 
-        String query = "INSERT INTO members VALUES (?, ?, ?, ?, ?, null, null)";
+        String query = "INSERT INTO members VALUES (?, ?, ?, ?, ?, null, null); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, member.getJMBG());
@@ -948,7 +948,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void removePendingReservation(PendingReservation pendingReservation) {
 
-        String query = "DELETE FROM pendingReservations WHERE idpr = ?";
+        String query = "DELETE FROM pendingReservations WHERE idpr = ?; COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, pendingReservation.getId());
@@ -962,7 +962,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void removeReservation(Reservation reservation) {
 
-        String query = "DELETE FROM reservations WHERE idr = ?";
+        String query = "DELETE FROM reservations WHERE idr = ?; COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, reservation.getId());
@@ -976,7 +976,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addLibrarian(Librarian librarian) {
 
-        String query = "INSERT INTO librarians VALUES (?)";
+        String query = "INSERT INTO librarians VALUES (?); COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, librarian.getJMBG());
@@ -990,7 +990,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void updateBookState(Book book) {
 
-        String query = "UPDATE books SET state = ? WHERE idb = ?";
+        String query = "UPDATE books SET state = ? WHERE idb = ?; COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, book.getState().toString());
@@ -1005,7 +1005,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addMembersPendingReservation(Person person, PendingReservation pendingReservation) {
 
-        String query = "UPDATE members SET pendingReservation = ? WHERE jmbg = ?";
+        String query = "UPDATE members SET pendingReservation = ? WHERE jmbg = ?; COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, pendingReservation.getId());
@@ -1019,7 +1019,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void addMembersReservation(Person person, Reservation reservation) {
 
-        String query = "UPDATE members SET reservation = ? WHERE jmbg = ?";
+        String query = "UPDATE members SET reservation = ? WHERE jmbg = ?; COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, reservation.getId());
@@ -1033,7 +1033,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void deleteMembersPendingReservation(Person person) {
 
-        String query = "UPDATE members SET pendingReservation = null WHERE jmbg = ?";
+        String query = "UPDATE members SET pendingReservation = null WHERE jmbg = ?; COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, person.getJMBG());
@@ -1046,7 +1046,7 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void deleteMembersReservation(Person person) {
 
-        String query = "UPDATE members SET reservation = null WHERE jmbg = ?";
+        String query = "UPDATE members SET reservation = null WHERE jmbg = ?; COMMIT;";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, person.getJMBG());

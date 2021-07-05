@@ -27,14 +27,14 @@ public class ReservationController {
         notificationController.reservationApproved(pendingReservation);
 
         library.removePendingReservation(pendingReservation);
-        libraryRepo.removePendingReservation(pendingReservation);
         libraryRepo.deleteMembersPendingReservation(member);
+        libraryRepo.removePendingReservation(pendingReservation);
         member.removePendingReservation();
 
         int nextId = library.getReservations().size() + 1;
         Reservation reservation = new Reservation(nextId, member, book, LocalDate.now());
-        libraryRepo.addMembersReservation(member, reservation);
         libraryRepo.addReservation(reservation);
+        libraryRepo.addMembersReservation(member, reservation);
         member.setReservation(reservation);
         library.addReservation(reservation);
 
@@ -49,8 +49,8 @@ public class ReservationController {
         notificationController.reservationDeclined(pendingReservation);
 
         library.removePendingReservation(pendingReservation);
-        libraryRepo.removePendingReservation(pendingReservation);
         libraryRepo.deleteMembersPendingReservation(member);
+        libraryRepo.removePendingReservation(pendingReservation);
         member.removePendingReservation();
 
         library.notifyObservers();
@@ -65,8 +65,8 @@ public class ReservationController {
 
         library.removeReservation(reservation);
         member.removeReservation();
-        libraryRepo.removeReservation(reservation);
         libraryRepo.deleteMembersReservation(member);
+        libraryRepo.removeReservation(reservation);
 
         IssuedBook issuedBook = new IssuedBook(member, book, librarian);
         member.addTakenBook(issuedBook);

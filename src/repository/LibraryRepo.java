@@ -989,11 +989,12 @@ public class LibraryRepo implements ILibraryRepo {
     @Override
     public void prolongIssue(IssuedBook issueBook) {
 
-        String query = "UPDATE issuedBooks SET prolongedIssue = ? WHERE book = ?";
+        String query = "UPDATE issuedBooks SET prolongedIssue = ? WHERE book = ? AND issueDate = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, 1);
             statement.setString(2, issueBook.getBookId());
+            statement.setDate(3, Date.valueOf(issueBook.getIssueDate()));
             statement.executeUpdate();
 
             query = "COMMIT";

@@ -16,7 +16,7 @@
               BorderPane.alignment="CENTER">
             <Separator orientation="VERTICAL" prefHeight="126.0" prefWidth="75.0" visible="false" HBox.hgrow="NEVER"/>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../logo.png"/>
+                <Image url="@../images/logo.png"/>
             </ImageView>
             <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="100.0" visible="false" HBox.hgrow="NEVER"/>
             <Label fx:id="lblBooks" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#switchToBooks"
@@ -59,7 +59,7 @@
                        HBox.hgrow="NEVER"/>
             <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#logOut" pickOnBounds="true"
                        preserveRatio="true" HBox.hgrow="NEVER">
-                <Image url="@../logout.png"/>
+                <Image url="@../images/logout.png"/>
             </ImageView>
             <Separator orientation="VERTICAL" prefHeight="200.0" visible="false"/>
         </HBox>

@@ -1,8 +1,10 @@
 package controller;
 
+import model.Genre;
 import model.Librarian;
 import model.Library;
 import model.enums.AccountType;
+import utils.exceptions.NoGenreOfSuchNameException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,4 +29,6 @@ public class LibraryController {
                 .map(person -> (Librarian) person)
                 .collect(Collectors.toList());
     }
+
+
 }

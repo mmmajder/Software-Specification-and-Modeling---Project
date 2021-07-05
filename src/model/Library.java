@@ -5,6 +5,7 @@ import model.enums.BookState;
 import model.enums.MemberType;
 import observer.Observer;
 import observer.Publisher;
+import utils.exceptions.NoGenreOfSuchNameException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,6 +79,16 @@ public class Library implements Publisher {
 
     public List<Genre> getGenres() {
         return genres;
+    }
+
+    public Genre getGenre(String name) throws NoGenreOfSuchNameException {
+        for (Genre genre : genres){
+            if (genre.getName().equals(name)){
+                return genre;
+            }
+        }
+
+        throw new NoGenreOfSuchNameException();
     }
 
     public List<Edition> getEditions() {

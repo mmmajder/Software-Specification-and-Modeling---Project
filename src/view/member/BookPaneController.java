@@ -25,6 +25,7 @@ public class BookPaneController {
         this.editionController = new EditionController(library);
         lblTitle.setText(edition.getTitle());
         lblAuthor.setText(editionController.getAuthorName(edition));
+
         if (library.isAvailable(edition)) {
             lblAvailable.setText("AVAILABLE");
             lblAvailable.setTextFill(Paint.valueOf("#abc82e"));

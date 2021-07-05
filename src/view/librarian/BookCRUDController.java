@@ -1,23 +1,21 @@
 package view.librarian;
 
 import controller.IssuedBookController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import model.enums.BookState;
+import model.*;
 import observer.Observer;
 import repository.ILibraryRepo;
 import repository.LibraryRepo;
 import view.librarian.model.BookEditionTable;
 import view.librarian.model.BookSampleTable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import model.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -27,18 +25,10 @@ public class BookCRUDController implements Observer {
     ObservableList<BookSampleTable> dataSampleTable;
     public TableView<BookEditionTable> editionTable;
     public TableView<BookSampleTable> sampleTable;
-    public TableColumn id;
-    public TableColumn state;
-    public TableColumn restricted;
-    public TableColumn issueDate;
-    public TableColumn returnedDate;
-    public TableColumn status;
-    public TableColumn member;
     private Edition edition;
     Library library;
     ILibraryRepo libraryRepo;
     LibrarianController librarianController;
-    BookLibrarianController editionController;
     BorderPane mainBorderPane;
     IssuedBookController issuedBookController;
     Account account;
@@ -67,21 +57,21 @@ public class BookCRUDController implements Observer {
         libraryRepo.loadBooks(library);
         libraryRepo.loadIssuedBooks(library);
         issuedBookController = new IssuedBookController(library);
-        TableColumn colId = new TableColumn("ID") {
+        TableColumn<BookEditionTable, Integer> colId = new TableColumn<BookEditionTable, Integer>("Id") {
             {
                 prefWidthProperty().bind(editionTable.widthProperty().multiply(0.3));
             }
         };
         editionTable.getColumns().add(colId);
 
-        TableColumn colState = new TableColumn("State") {
+        TableColumn<BookEditionTable, String> colState = new TableColumn<BookEditionTable, String>("State") {
             {
                 prefWidthProperty().bind(editionTable.widthProperty().multiply(0.4));
             }
         };
         editionTable.getColumns().add(colState);
 
-        TableColumn colRestricted = new TableColumn("Restricted") {
+        TableColumn<BookEditionTable, String> colRestricted = new TableColumn<BookEditionTable, String>("Restricted") {
             {
                 prefWidthProperty().bind(editionTable.widthProperty().multiply(0.3));
             }
@@ -89,47 +79,45 @@ public class BookCRUDController implements Observer {
         editionTable.getColumns().add(colRestricted);
 
 
-        TableColumn colIssueDate = new TableColumn("Issue date") {
+        TableColumn<BookSampleTable, LocalDate> colIssueDate = new TableColumn<BookSampleTable, LocalDate>("Issue date") {
             {
                 prefWidthProperty().bind(sampleTable.widthProperty().multiply(0.25));
             }
         };
         sampleTable.getColumns().add(colIssueDate);
 
-        TableColumn colReturnedDate = new TableColumn("Returned date") {
+        TableColumn<BookSampleTable, LocalDate> colReturnedDate = new TableColumn<BookSampleTable, LocalDate>("Returned date") {
             {
                 prefWidthProperty().bind(sampleTable.widthProperty().multiply(0.25));
             }
         };
         sampleTable.getColumns().add(colReturnedDate);
 
-        TableColumn colStatus = new TableColumn("Status") {
+        TableColumn<BookSampleTable, String> colStatus = new TableColumn<BookSampleTable, String>("Status") {
             {
                 prefWidthProperty().bind(sampleTable.widthProperty().multiply(0.25));
             }
         };
         sampleTable.getColumns().add(colStatus);
 
-        TableColumn colMember = new TableColumn("Member") {
+        TableColumn<BookSampleTable, String> colMember = new TableColumn<BookSampleTable, String>("Member") {
             {
                 prefWidthProperty().bind(sampleTable.widthProperty().multiply(0.25));
             }
         };
         sampleTable.getColumns().add(colMember);
 
-        colId.setCellValueFactory(new PropertyValueFactory<BookEditionTable, String>("bookId"));
-        colState.setCellValueFactory(new PropertyValueFactory<BookEditionTable, BookState>("state"));
-        colRestricted.setCellValueFactory(new PropertyValueFactory<BookEditionTable, Boolean>("isRestricted"));
+        colId.setCellValueFactory(new PropertyValueFactory<>("book id"));
+        colState.setCellValueFactory(new PropertyValueFactory<>("state"));
+        colRestricted.setCellValueFactory(new PropertyValueFactory<>("restriction"));
 
-        colIssueDate.setCellValueFactory(new PropertyValueFactory<BookSampleTable, LocalDate>("issueDate"));
-        colReturnedDate.setCellValueFactory(new PropertyValueFactory<BookSampleTable, LocalDate>("returnedDate"));
-        colStatus.setCellValueFactory(new PropertyValueFactory<BookSampleTable, String>("state"));
-        colMember.setCellValueFactory(new PropertyValueFactory<BookSampleTable, String>("member"));
+        colIssueDate.setCellValueFactory(new PropertyValueFactory<>("issue date"));
+        colReturnedDate.setCellValueFactory(new PropertyValueFactory<>("returned date"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("state"));
+        colMember.setCellValueFactory(new PropertyValueFactory<>("member"));
         dataEditionTable = getSamples();
         editionTable.setItems(dataEditionTable);
-        editionTable.setOnMouseClicked(e -> {
-            loadSamples();
-        });
+        editionTable.setOnMouseClicked(e -> loadSamples());
     }
 
     private ObservableList<BookEditionTable> getSamples() {
@@ -148,11 +136,10 @@ public class BookCRUDController implements Observer {
             dataSampleTable.clear();
         }
         for (BookEditionTable row : editionTable.getSelectionModel().getSelectedItems()) {
-            for (int i = 1; i <= 1; i++) {
-                Book sample = library.getBook(row.getBookId());
-                for (IssuedBook issuedBook : sample.getIssueHistory()) {
-                    dataSampleTable.add(new BookSampleTable(issuedBook.getIssueDate(), issuedBook.getReturnDate(), issuedBookController.getIssuedBookState(issuedBook), issuedBook.getMember().getName() + " " + issuedBook.getMember().getSurname()));
-                }
+            Book sample = library.getBook(row.getBookId());
+            for (IssuedBook issuedBook : sample.getIssueHistory()) {
+                dataSampleTable.add(new BookSampleTable(issuedBook.getIssueDate(), issuedBook.getReturnDate(),
+                        issuedBookController.getIssuedBookState(issuedBook), issuedBook.getMember().getFullName()));
             }
         }
     }
@@ -166,12 +153,12 @@ public class BookCRUDController implements Observer {
 
     }
 
-    public void addSample(MouseEvent event) {
+    public void addSample() {
         dataEditionTable.add(new BookEditionTable(null, null, false));
         // add database connection
     }
 
-    public void removeSample(MouseEvent event) {
+    public void removeSample() {
         editionTable.getItems().remove(editionTable.getSelectionModel().getSelectedItem());
         // add database connection
     }

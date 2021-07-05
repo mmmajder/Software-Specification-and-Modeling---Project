@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="bookPane" minHeight="130.0" minWidth="300.0" prefHeight="130.0" prefWidth="300.0"
+<AnchorPane minHeight="130.0" minWidth="300.0" prefHeight="130.0" prefWidth="300.0"
             xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.librarian.BookPaneLibrarianController">
     <BorderPane prefHeight="130.0" prefWidth="300.0">
@@ -37,18 +37,12 @@
                             <Font name="System Bold" size="10.0"/>
                         </font>
                     </Label>
-                    <Separator prefHeight="10.0" prefWidth="160.0" visible="false"/>
-                    <Label fx:id="lblShell" alignment="CENTER" prefHeight="22.0" prefWidth="191.0">
-                        <font>
-                            <Font size="10.0"/>
-                        </font>
-                    </Label>
                 </VBox>
             </Pane>
         </left>
         <right>
             <Pane prefHeight="130.0" prefWidth="110.0" BorderPane.alignment="CENTER">
-                <ImageView fx:id="imageView" fitHeight="107.0" fitWidth="94.0" layoutX="10.0" layoutY="12.0"
+                <ImageView fitHeight="107.0" fitWidth="94.0" layoutX="10.0" layoutY="12.0"
                            pickOnBounds="true" preserveRatio="true">
                     <Image url="@../TheLittlePrince.jpg"/>
                 </ImageView>

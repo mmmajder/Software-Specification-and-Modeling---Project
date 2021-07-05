@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import model.*;
+import model.enums.BookState;
 import observer.Observer;
 import repository.ILibraryRepo;
 import repository.LibraryRepo;
@@ -57,14 +58,16 @@ public class BookCRUDController implements Observer {
         libraryRepo.loadBooks(library);
         libraryRepo.loadIssuedBooks(library);
         issuedBookController = new IssuedBookController(library);
-        TableColumn<BookEditionTable, Integer> colId = new TableColumn<BookEditionTable, Integer>("Id") {
+        editionTable.getColumns().clear();
+        sampleTable.getColumns().clear();
+        TableColumn<BookEditionTable, String> colId = new TableColumn<BookEditionTable, String>("Id") {
             {
                 prefWidthProperty().bind(editionTable.widthProperty().multiply(0.3));
             }
         };
         editionTable.getColumns().add(colId);
 
-        TableColumn<BookEditionTable, String> colState = new TableColumn<BookEditionTable, String>("State") {
+        TableColumn<BookEditionTable, BookState> colState = new TableColumn<BookEditionTable, BookState>("State") {
             {
                 prefWidthProperty().bind(editionTable.widthProperty().multiply(0.4));
             }
@@ -107,12 +110,12 @@ public class BookCRUDController implements Observer {
         };
         sampleTable.getColumns().add(colMember);
 
-        colId.setCellValueFactory(new PropertyValueFactory<>("book id"));
+        colId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
         colState.setCellValueFactory(new PropertyValueFactory<>("state"));
-        colRestricted.setCellValueFactory(new PropertyValueFactory<>("restriction"));
+        colRestricted.setCellValueFactory(new PropertyValueFactory<>("isRestricted"));
 
-        colIssueDate.setCellValueFactory(new PropertyValueFactory<>("issue date"));
-        colReturnedDate.setCellValueFactory(new PropertyValueFactory<>("returned date"));
+        colIssueDate.setCellValueFactory(new PropertyValueFactory<>("issueDate"));
+        colReturnedDate.setCellValueFactory(new PropertyValueFactory<>("returnedDate"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("state"));
         colMember.setCellValueFactory(new PropertyValueFactory<>("member"));
         dataEditionTable = getSamples();

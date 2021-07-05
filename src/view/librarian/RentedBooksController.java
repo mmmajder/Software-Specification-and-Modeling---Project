@@ -35,9 +35,8 @@ public class RentedBooksController implements Observer {
         libraryRepo.loadContributors(library);
         libraryRepo.loadContributorRoles(library);
         controller = new IssuedBookController(library);
-        rentedBooksTable.setItems(getRentedBooks());
 
-
+        rentedBooksTable.getColumns().clear();
         TableColumn<RentedBooksTable, String> colMember = new TableColumn<RentedBooksTable, String>("Member") {
             {
                 prefWidthProperty().bind(rentedBooksTable.widthProperty().multiply(0.2));
@@ -72,6 +71,7 @@ public class RentedBooksController implements Observer {
             }
         };
         rentedBooksTable.getColumns().add(colState);
+        rentedBooksTable.setItems(getRentedBooks());
 
         colMember.setCellValueFactory(new PropertyValueFactory<>("member"));
         colBook.setCellValueFactory(new PropertyValueFactory<>("book"));

@@ -50,6 +50,14 @@ public class BookMemberController {
         a.setContentText(text);
         a.show();
     }
+    @FXML
+    private void createConfirmation(String text) {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setTitle("Confirmation");
+        a.setContentText(text);
+        a.show();
+    }
+
 
     @FXML
     public void initData(Edition edition, MemberController memberController, Account account) {
@@ -83,6 +91,7 @@ public class BookMemberController {
         try {
             MemberReservationController memberReservationController = new MemberReservationController(library);
             memberReservationController.sendReservationRequest((Member) account.getPerson(), edition);
+            createConfirmation("You have successfully applied for reservation");
         } catch (MemberAlreadyHasReservedBook memberAlreadyHasReservedBook) {
             createAlert("Member already have 1 reserved book.");
         } catch (MemberAlreadyHasPendingRequestException memberAlreadyHasPendingRequestException) {

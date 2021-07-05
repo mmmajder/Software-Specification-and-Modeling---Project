@@ -1,6 +1,7 @@
 package repository;
 
 import model.*;
+import model.enums.MemberType;
 
 public interface ILibraryRepo {
     void loadAccounts(Library library);
@@ -49,4 +50,10 @@ public interface ILibraryRepo {
     void addMembersReservation(Member member);
     void deleteMembersPendingReservation(Member member);
     void deleteMembersReservation(Member member);
+    void updateMaxIssueDay(MemberType type, int days);
+    void updateMaxIssuedBooks(MemberType type, int books);
+    void addPriceCatalog(PriceCatalog priceCatalog);
+    void updateToDatePriceCatalog(PriceCatalog priceCatalog);
+    void addHalfAYearPrices(PriceCatalog priceCatalog);
+    void addFullYearPrices(PriceCatalog priceCatalog);
 }

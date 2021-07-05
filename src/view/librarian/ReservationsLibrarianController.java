@@ -11,6 +11,7 @@ import model.*;
 import observer.Observer;
 import repository.ILibraryRepo;
 import repository.LibraryRepo;
+import utils.exceptions.MemberUnableToRentException;
 import view.librarian.model.ApprovedReservationTable;
 import view.librarian.model.CurrentIssueTable;
 import view.librarian.model.MemberTable;
@@ -121,7 +122,7 @@ public class ReservationsLibrarianController implements Observer {
         approvedReservationsTable.setItems(getApproved());
     }
 
-    public void issue() {
+    public void issue() throws MemberUnableToRentException {
         ApprovedReservationTable reservation = approvedReservationsTable.getSelectionModel().getSelectedItem();
         reservationController.issueReservation(reservation.getId(), account);
     }

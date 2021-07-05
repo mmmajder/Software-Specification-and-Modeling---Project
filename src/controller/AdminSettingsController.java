@@ -21,6 +21,7 @@ public class AdminSettingsController {
         setNewMaxIssueDays(MemberType.PRESCHOOLER, maxIssueDays.get(2));
         setNewMaxIssueDays(MemberType.PUPIL, maxIssueDays.get(3));
         setNewMaxIssueDays(MemberType.RETIRED, maxIssueDays.get(4));
+        setNewMaxIssueDays(MemberType.PRIVILEGED, maxIssueDays.get(5));
     }
 
     private void setNewMaxIssueDays(MemberType type, Integer newMaxIssueDays){
@@ -35,6 +36,7 @@ public class AdminSettingsController {
         setNewMaxIssuedBooks(MemberType.PRESCHOOLER, maxIssuedBooks.get(2));
         setNewMaxIssuedBooks(MemberType.PUPIL, maxIssuedBooks.get(3));
         setNewMaxIssuedBooks(MemberType.RETIRED, maxIssuedBooks.get(4));
+        setNewMaxIssuedBooks(MemberType.PRIVILEGED, maxIssuedBooks.get(5));
     }
 
     private void setNewMaxIssuedBooks(MemberType type, Integer newMaxIssuedBooks){
@@ -58,6 +60,7 @@ public class AdminSettingsController {
         addPrice(prices, MemberType.PRESCHOOLER, newPrices.get(2), numOfMonths);
         addPrice(prices, MemberType.PUPIL, newPrices.get(3), numOfMonths);
         addPrice(prices, MemberType.RETIRED, newPrices.get(4), numOfMonths);
+        addPrice(prices, MemberType.PRIVILEGED, newPrices.get(5), numOfMonths);
 
         return prices;
     }

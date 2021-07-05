@@ -56,13 +56,11 @@ public class Member extends Person {
     }
 
     public LocalDate getMembershipExpirationDate() {
-        LocalDate expirationDate = null;
         if (!payments.isEmpty()) {
             Payment lastPayment = payments.get(payments.size() - 1);
-            expirationDate = lastPayment.getValidToDate();
+            return lastPayment.getValidToDate();
         }
-
-        return expirationDate;
+        return null;
     }
 
     public Reservation getReservation() {

@@ -49,6 +49,9 @@ public class MembershipController implements Observer {
         this.account = account;
         membershipControler = new MembershipControler(library);
         accountController = new AccountController(library);
+        libraryRepo.loadAccounts(library);
+        libraryRepo.loadPersons(library);
+        libraryRepo.loadPayments(library);
         libraryRepo.loadMaxIssueDays(library);
         libraryRepo.loadMaxIssuedBooks(library);
         libraryRepo.loadPriceCatalogs(library);

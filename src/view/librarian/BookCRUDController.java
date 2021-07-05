@@ -119,7 +119,7 @@ public class BookCRUDController implements Observer {
         colRestricted.setCellValueFactory(new PropertyValueFactory<>("isRestricted"));
         colPosition.setCellValueFactory(new PropertyValueFactory<>("position"));
 
-        colIssueDate.setCellValueFactory(new PropertyValueFactory<>("issueDte"));
+        colIssueDate.setCellValueFactory(new PropertyValueFactory<>("issueDate"));
         colReturnedDate.setCellValueFactory(new PropertyValueFactory<>("returnedDate"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("state"));
         colMember.setCellValueFactory(new PropertyValueFactory<>("member"));
